@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 7 * * *"
+
+permissions:
+  contents: write
+  issues: read
+  #pull-requests: write # to be able to comment on released pull requests
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false # This is important if you have branch protection rules!
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          branch: 'master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get Semantic Release Version
+        id: get-version
+        run: echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' CHANGELOG.md | tr -d '[]')"
+
+      - name: show version
+        run: |
+          echo "Semantic Release Version: ${{ steps.get-version.outputs.version }}"
+
+      - name: setup qemu for multi-arch build
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: amd64,arm64
+      - name: setup buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          #registry: registry.hub.docker.com
+          username: wurstbrot
+          password: ${{ secrets.HUB_TOKEN }}
+      - name: create and push yaml image
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          file: Dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }},wurstbrot/dsomm-yaml-generation:latest
+      - name: Extract generated.yaml
+        run: |
+          docker cp wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }}:/var/www/html/src/assets/YAML/generated/generated.yaml src/assets/YAML/generated/generated.yaml
+      # Commit all changed files back to the repository
+      - uses: planetscale/ghcommit-action@v0.1.6
+        with:
+          commit_message: "🤖 fmt"
+          repo: ${{ github.repository }}
+          branch: ${{ github.head_ref || github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
