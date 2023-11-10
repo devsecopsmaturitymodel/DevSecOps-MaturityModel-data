@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.6.0...v1.7.0) (2023-11-10)
+
+
+### Features
+
+* add gitignore ([be0083f](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/be0083f406b8f161a2f7e810f38205d7b8423c04))
+
 # [1.6.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.5.0...v1.6.0) (2023-11-10)
 
 
