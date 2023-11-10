@@ -28,7 +28,6 @@ jobs:
       - name: Get Semantic Release Version
         id: get-version
         run: |
-          cat CHANGELOG.md
           echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' CHANGELOG.md | tr -d '[]')"
 
       - name: show version
@@ -56,7 +55,8 @@ jobs:
           tags: wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }},wurstbrot/dsomm-yaml-generation:latest
       - name: Extract generated.yaml
         run: |
-          docker cp wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }}:/var/www/html/src/assets/YAML/generated/generated.yaml src/assets/YAML/generated/generated.yaml
+          docker run --name=yaml --entrypoint="/bin/sleep" wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }} 60 
+          docker cp yaml:/var/www/html/src/assets/YAML/generated/generated.yaml src/assets/YAML/generated/generated.yaml
       # Commit all changed files back to the repository
       - uses: planetscale/ghcommit-action@v0.1.6
         with:
