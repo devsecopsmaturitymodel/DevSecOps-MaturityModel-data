@@ -30,7 +30,6 @@ jobs:
         run: |
           cat CHANGELOG.md
           echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' CHANGELOG.md | tr -d '[]')"
-          
 
       - name: show version
         run: |
