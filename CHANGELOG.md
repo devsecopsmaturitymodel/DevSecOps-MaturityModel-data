@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.4.0...v1.5.0) (2023-11-10)
+
+
+### Features
+
+* enhance signing description ([1914f4c](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/1914f4c831ea98c87dbb396fc91bbaf479de58e7))
+
 # [1.4.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.3.0...v1.4.0) (2023-11-10)
 
 
