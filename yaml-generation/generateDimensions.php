@@ -86,7 +86,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 }
 	    }
 
-	    if (!array_key_exists("openCRE", $activity["references"]["openCRE"])) {
+	    if (!array_key_exists("openCRE", $activity["references"])) {
 		    $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
 		    $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/${subdimension}/" + $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
             }
