@@ -84,12 +84,18 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                         echo "Warning: '$activityName -> evidence -> $team' has no evidence set but should have";
                     }
                 }
+	    }
+
+	    if (!array_key_exists("mapping", $activity)) {
+		    $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
+		    $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/${subdimension}/" + $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
             }
+
             $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] = array_merge($teamsImplemented, $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"], $evidenceImplemented);
             // can be removed in 2024
             if (array_key_exists("isImplemented", $activity)) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
-            }
+	    }
         }
     }
 }
