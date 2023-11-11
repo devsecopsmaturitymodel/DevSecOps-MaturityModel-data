@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.7.0...v1.7.1) (2023-11-11)
+
+
+### Bug Fixes
+
+* add uuid to "Conduction of collaborative security checks with developers and system administrators" ([7ebc150](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/7ebc150cb3fa9df2ac49e5b20a608ecdc2a2b98c))
+
 # [1.7.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.6.0...v1.7.0) (2023-11-10)
 
 
