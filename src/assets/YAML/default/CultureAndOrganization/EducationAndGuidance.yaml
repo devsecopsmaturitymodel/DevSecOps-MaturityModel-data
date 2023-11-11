@@ -107,8 +107,9 @@ Culture and Organization:
       isImplemented: false
       evidence: ""
       comments: ""
-    ? Conduction of collaborative security checks with developers and system administrators
-    : risk:
+    Conduction of collaborative security checks with developers and system administrators:
+      uuid: 95caef96-36ed-458c-a087-5c35d4f9dec2
+      risk:
         Security checks by external companies do not increase the understanding
         of an application/system for internal employees.
       measure:
