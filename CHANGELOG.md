@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.7.1...v1.7.2) (2023-11-11)
+
+
+### Bug Fixes
+
+* Contextualized encoding uuid ([0e5e572](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/0e5e572fc2365d8c4574f3262bf09d6659b4b46d))
+
 ## [1.7.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.7.0...v1.7.1) (2023-11-11)
 
 

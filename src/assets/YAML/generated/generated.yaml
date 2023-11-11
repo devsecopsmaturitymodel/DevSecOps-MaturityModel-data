@@ -3470,10 +3470,10 @@ Implementation:
         B: false
         C: false
     Contextualized Encoding:
-      identifier: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
-      hazard: The generation of interpreter directives from user-provided data poses
+      uuid: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
+      risk: The generation of interpreter directives from user-provided data poses
         difficulties and can introduce vulnerabilities to injection attacks.
-      remediation: |
+      measure: |
         Implementing contextualized encoding, such as employing object-relational mapping tools or utilizing prepared statements, nearly removes the threat of injection vulnerabilities.
       difficultyOfImplementation:
         knowledge: 2
@@ -3483,20 +3483,7 @@ Implementation:
       level: 1
       description: |
         Bear in mind that utilizing frameworks is a recommended approach; however, they can develop known security weaknesses over time. Diligent and regular patching is crucial.
-      implementation:
-      - uuid: 88767cde-1610-402e-98ec-bc3575377183
-        name: OWASP ASVS
-        tags: []
-        url: https://owasp.org/www-project-application-security-verification-standard/
-      - uuid: 7bf90650-a53a-4581-a214-1afd5de3a059
-        name: OWASP MASVS
-        tags: []
-        url: https://github.com/OWASP/owasp-masvs
-      - uuid: 596cb528-8981-4723-bcc3-22c261f26114
-        name: API Security Maturity Model for Authorization
-        tags:
-        - api
-        url: https://curity.io/resources/learn/the-api-security-maturity-model/
+      implementation: []
       references:
         samm2:
         - D-SR-1-A
