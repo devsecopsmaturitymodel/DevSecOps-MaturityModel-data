@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.8.1...v1.8.2) (2023-11-11)
+
+
+### Bug Fixes
+
+* string concat ([06e40f1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/06e40f1a5357c4bcb66c1d5976923a1d9b5afc82))
+
 ## [1.7.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.7.1...v1.7.2) (2023-11-11)
 
 
