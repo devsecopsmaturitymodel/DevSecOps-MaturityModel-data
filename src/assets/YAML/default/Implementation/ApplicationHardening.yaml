@@ -52,10 +52,10 @@ Implementation:
       isImplemented: false
       comments: ""
     Contextualized Encoding:
-      identifier: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
-      hazard:
+      uuid: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
+      risk:
         The generation of interpreter directives from user-provided data poses difficulties and can introduce vulnerabilities to injection attacks.
-      remediation: |
+      measure: |
         Implementing contextualized encoding, such as employing object-relational mapping tools or utilizing prepared statements, nearly removes the threat of injection vulnerabilities.
       difficultyOfImplementation:
         knowledge: 2
@@ -65,10 +65,7 @@ Implementation:
       level: 1
       description: |
         Bear in mind that utilizing frameworks is a recommended approach; however, they can develop known security weaknesses over time. Diligent and regular patching is crucial.
-      implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-asvs
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-masvs
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/apimaturity
+      implementation: []
       references:
         samm2:
           - D-SR-1-A
