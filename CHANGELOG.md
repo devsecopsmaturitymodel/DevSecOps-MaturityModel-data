@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.8.2...v1.9.0) (2023-11-15)
+
+
+### Features
+
+* Remove WAF ([cbd3326](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/cbd3326fa4d1c783e953669f5ddcdfead618f38f))
+
 ## [1.8.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.8.1...v1.8.2) (2023-11-11)
 
 

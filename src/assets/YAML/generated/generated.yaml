@@ -3637,49 +3637,6 @@ Implementation:
         Default: false
         B: false
         C: false
-    Usage of a Web Application Firewall:
-      uuid: 3e6253ab-89e5-4dea-aca0-3e770b78d39e
-      risk: Using an insecure application might lead to a compromised application.
-        This might lead to total data theft or data modification.
-      measure: |
-        The usage of an API Gateway / Web Application Firewall might mitigate it. There are debates on how useful a WAF is for APIs.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 4
-      usefulness: 2
-      level: 5
-      implementation:
-      - uuid: 6150533e-58ca-4b52-a9b2-6226545d9ea0
-        name: Top 5 API Security Myths That Are Crushing Your Business
-        tags:
-        - documentation
-        - waf
-        url: https://thehackernews.com/2022/11/top-5-api-security-myths-that-are.html
-        description: |
-          There are several myths and misconceptions about API security. These myths about securing APIs are crushing your business
-      references:
-        samm2:
-        - D-SR-3-A
-        iso27001-2017:
-        - Hardening is not explicitly covered by ISO 27001 - too specific
-        - 13.1.3
-        iso27001-2022:
-        - Hardening is not explicitly covered by ISO 27001 - too specific
-        - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          Hardening/3e6253ab-89e5-4dea-aca0-3e770b78d39e
-      isImplemented: false
-      comments: ""
-      dependsOn:
-      - App. Hardening Level 2
-      tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Development and Source Control:
     .gitignore:
       uuid: 363a3eea-baf9-4010-88ca-bb8186a2989d
