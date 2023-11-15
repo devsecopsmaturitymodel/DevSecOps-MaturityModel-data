@@ -675,7 +675,7 @@ Implementation:
           - 8.14
       isImplemented: false
       evidence: ""
-      comments: ""
+      comments: ""  
     WAF baseline:
       uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b
       risk:
@@ -690,6 +690,8 @@ Implementation:
           - Gradually switch to a proactive blocking stance as confidence in the accuracy of the rules increases
 
         It's crucial to monitor and update the WAF configuration to adapt to evolving threats and minimize the potential for both false positives and false negatives.
+
+        There are debates on how useful a WAF is for APIs.
       difficultyOfImplementation:
         knowledge: 3
         time: 4
@@ -701,11 +703,14 @@ Implementation:
       dependsOn:
         - Contextualized encoding
       implementation: []
-      references:
         samm2:
-          - TODO: Identify and implement SAMM security practices relevant to WAF configuration.
+          - D-SR-3-A
+        iso27001-2017:
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 13.1.3
         iso27001-2022:
-          - TODO: Integrate WAF deployment with ISO 27001 controls for system hardening.
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 8.22
       comments: 
     WAF medium:
       uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b
@@ -716,12 +721,14 @@ Implementation:
       description: |
         A medium-level WAF configuration builds upon the baseline to offer a more nuanced and responsive defense mechanism against a wider array of threats.
 
-        Steps:
+        Sample steps:
           - Implement an enhanced set of WAF rules based on baseline data
           - Continuous monitoring and fine-tuning of the WAF configuration
           - Develop a strategic incident response plan utilizing WAF insights        
           
         The medium configuration requires diligent management and continuous improvement to address new vulnerabilities while maintaining the integrity of application access.
+
+        There are debates on how useful a WAF is for APIs.
       difficultyOfImplementation:
         knowledge: 4
         time: 5
@@ -733,11 +740,14 @@ Implementation:
       dependsOn:
         - WAF baseline
       implementation: []
-      references:
         samm2:
-          - TODO: Establish advanced SAMM security practices for WAF management.
+          - D-SR-3-A
+        iso27001-2017:
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 13.1.3
         iso27001-2022:
-          - TODO: Ensure WAF processes are integrated into the overall security management in accordance with ISO 27001 standards.
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 8.22
       comments: 
         
     WAF Advanced:
@@ -749,7 +759,7 @@ Implementation:
       description: |
         This advanced configuration goes beyond typical WAF implementations by enforcing strict input format checks and parameter validation to prevent any unauthorized or malformed data from compromising the application.
 
-        Steps:
+        Sample Steps:
           - Implement strict data type and format validation rules to ensure only correctly formatted data is processed.
           - Establish a denylist for all parameters that are not explicitly required, blocking them by default.
           - Develop and continuously refine custom rulesets based on the application's traffic patterns, user behavior, and known vulnerabilities.
@@ -759,6 +769,8 @@ Implementation:
           - Activate automated threat response mechanisms to immediately neutralize detected threats.
 
         Embracing an advanced WAF setup requires a proactive approach, with continuous improvement and updating of security measures to ensure all inputs are scrutinized and validated, thus maintaining a resilient security posture against sophisticated attacks.
+
+        There are debates on how useful a WAF is for APIs.
       difficultyOfImplementation:
         knowledge: 5
         time: 5
@@ -770,11 +782,14 @@ Implementation:
       dependsOn:
         - WAF medium
       implementation: []
-      references:
         samm2:
-          - TODO: Develop an advanced threat management framework that includes rigorous input validation strategies.
+          - D-SR-3-A
+        iso27001-2017:
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 13.1.3
         iso27001-2022:
-          - TODO: Incorporate advanced WAF input validation processes into the organization's ISMS.
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 8.22
       comments: 
         
 
