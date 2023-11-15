@@ -703,6 +703,7 @@ Implementation:
       dependsOn:
         - Contextualized encoding
       implementation: []
+      references:
         samm2:
           - D-SR-3-A
         iso27001-2017:
@@ -740,6 +741,7 @@ Implementation:
       dependsOn:
         - WAF baseline
       implementation: []
+      references:
         samm2:
           - D-SR-3-A
         iso27001-2017:
@@ -782,6 +784,7 @@ Implementation:
       dependsOn:
         - WAF medium
       implementation: []
+      references:
         samm2:
           - D-SR-3-A
         iso27001-2017:
