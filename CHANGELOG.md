@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.10.0...v1.10.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* references ([6d7f7ba](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/6d7f7ba57413a0b484e83b07bcd54b07d66c10d0))
+
 # [1.9.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.8.2...v1.9.0) (2023-11-15)
 
 

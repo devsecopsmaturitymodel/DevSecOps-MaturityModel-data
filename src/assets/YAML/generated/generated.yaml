@@ -4868,11 +4868,13 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - TODO: Develop an advanced threat management framework that includes rigorous
-            input validation strategies.
+        - D-SR-3-A
+        iso27001-2017:
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
         iso27001-2022:
-        - TODO: Incorporate advanced WAF input validation processes into the organization's
-            ISMS.
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.22
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
           Hardening/f0e01814-3b88-4bd0-a3a9-f91db001d20b-advanced
@@ -4904,9 +4906,13 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - TODO: Identify and implement SAMM security practices relevant to WAF configuration.
+        - D-SR-3-A
+        iso27001-2017:
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
         iso27001-2022:
-        - TODO: Integrate WAF deployment with ISO 27001 controls for system hardening.
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.22
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
           Hardening/f0e01814-3b88-4bd0-a3a9-f91db001d20b
@@ -4938,10 +4944,13 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - TODO: Establish advanced SAMM security practices for WAF management.
+        - D-SR-3-A
+        iso27001-2017:
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
         iso27001-2022:
-        - TODO: Ensure WAF processes are integrated into the overall security management
-            in accordance with ISO 27001 standards.
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.22
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
           Hardening/f0e01814-3b88-4bd0-a3a9-f91db001d20b
