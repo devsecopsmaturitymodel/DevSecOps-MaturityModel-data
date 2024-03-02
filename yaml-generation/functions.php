@@ -79,8 +79,10 @@ function getDimensions($filename = "data/generated/dimensions.yaml") {
 
                 if (!array_key_exists("tags", $content)) {
                     $content["tags"] = array();
+                    $content["tags"][] = "none";
                 }
-
+                unset($content["isImplemented"]);
+                unset($content["evidence"]);
                 $elements[$activityName] = $content;
             }
             $newElements = $elements;
