@@ -273,7 +273,7 @@ Culture and Organization:
     Information security targets are communicated:
       uuid: 1b9281b9-48e2-4c01-9ac6-9db9931c4885
       risk:
-        Employees don't known their organizations security targets. Therefore
+        Employees don't know their organizations security targets. Therefore
         security is not considered during development and administration as much as
         it should be.
       measure:
