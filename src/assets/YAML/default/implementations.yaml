@@ -83,8 +83,13 @@ implementations:
   dependabot:
     uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
     name: dependabot
-    tags: []
+    tags: ["auto-pr", "patching"]
     url: https://dependabot.com/
+  renovate:
+    uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
+    name: renovate
+    tags: ["auto-pr", "patching"]
+    url: https://github.com/renovatebot/renovate
   jenkins:
     uuid: 42ddb49f-48f2-4a3a-b76a-e73104ac6971
     name: Jenkins
