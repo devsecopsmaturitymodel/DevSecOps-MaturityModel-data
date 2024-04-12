@@ -204,31 +204,31 @@ Build and Deployment:
       isImplemented: false
       evidence: ""
       comments: ""
-  Automated merge of automated PRs:
-    uuid: f2594f8f-1cd6-45f9-af29-eaf3315698eb
-    description: |-
-      Automated merges of automated created PRs for outdated dependencies.
-    risk:
-      Vulnerabilities in running containers stay for too long and might get
-      exploited.
-    measure: |
-      A good practice is to merge trusted dependencies (e.g. spring boot) after a grace period like one week.
-      Often, patches, fixes and minor updates are automatically merged. Be aware that automated merging requires a high
-      automated test coverage.
-    difficultyOfImplementation:
-      knowledge: 2
-      time: 1
-      resources: 1
-    usefulness: 3
-    level: 2
-    implementation:
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
-      - $ref: src/assets/YAML/default/implementations.yaml#/implementations/renovate
-    references:
-      samm2:
-        - O-EM-2-B
-      iso27001-2017:
-        - 12.6.1
-      iso27001-2022:
-        - 8.8
-    comments: ""
+    Automated merge of automated PRs:
+      uuid: f2594f8f-1cd6-45f9-af29-eaf3315698eb
+      description: |-
+        Automated merges of automated created PRs for outdated dependencies.
+      risk:
+        Vulnerabilities in running containers stay for too long and might get
+        exploited.
+      measure: |
+        A good practice is to merge trusted dependencies (e.g. spring boot) after a grace period like one week.
+        Often, patches, fixes and minor updates are automatically merged. Be aware that automated merging requires a high
+        automated test coverage.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/renovate
+      references:
+        samm2:
+          - O-EM-2-B
+        iso27001-2017:
+          - 12.6.1
+        iso27001-2022:
+          - 8.8
+      comments: ""
