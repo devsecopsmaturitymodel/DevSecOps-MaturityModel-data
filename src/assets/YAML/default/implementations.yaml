@@ -1,5 +1,10 @@
 # yaml-language-server: $schema=../schemas/dsomm-implementations-schema.json
 implementations:
+  argocd:
+    uuid: fdb0e7cc-d3dd-4a2b-9f45-7d403001294f
+    name: argoCD
+    tags: [deployment]
+    url: https://argo-cd.readthedocs.io/en/stable/
   signing-of-commits-protection:
     uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
     name: Enforcement of commit signing

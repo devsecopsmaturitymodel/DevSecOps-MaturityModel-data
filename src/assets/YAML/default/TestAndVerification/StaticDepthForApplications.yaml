@@ -55,6 +55,8 @@ Test and Verification:
         This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
       usefulness: 3
       level: 2
+      dependsOn:
+        - Automated PRs for patches
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -71,6 +73,9 @@ Test and Verification:
     Test for Patch Deployment Time:
       <<: *Exclusion-of-source-code-duplicates
       risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities in production artifacts.
+      dependsOn:
+        - Automated PRs for patches
+        - Defined build process
       measure: |
         Test of the Patch Deployment Time.
         This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.

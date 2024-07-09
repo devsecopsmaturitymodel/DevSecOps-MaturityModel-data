@@ -380,7 +380,13 @@ Build and Deployment:
       usefulness: 4
       level: 2
       implementation:
-      - signing-of-commits-protection:
+      - argocd:
+          uuid: fdb0e7cc-d3dd-4a2b-9f45-7d403001294f
+          name: argoCD
+          tags:
+          - deployment
+          url: https://argo-cd.readthedocs.io/en/stable/
+        signing-of-commits-protection:
           uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
           name: Enforcement of commit signing
           tags:
@@ -1828,6 +1834,42 @@ Build and Deployment:
       comments: ""
       tags:
       - patching
+    Automated deployment of automated PRs:
+      uuid: 08f27c26-2c6a-47fe-9458-5e88f188085d
+      description: Automated merges of automated created PRs for outdated dependencies.
+      risk: Even if automated dependencies PRs are merged, they might not be deployed.
+        This results in vulnerabilities in running artifacts stay for too long and
+        might get exploited.
+      measure: |
+        After merging of an automated dependency PR, automated deployment is needed,
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 3
+      dependsOn:
+      - Automated merge of automated PRs
+      implementation:
+      - uuid: 0d63f907-37fe-4375-88a5-a5e252732618
+        name: terraform
+        tags:
+        - IaC
+        url: https://www.terraform.io/
+        description: |
+          Terraform enables infrastructure automation for provisioning, compliance, and management of any cloud, datacenter, and service.
+      - uuid: fdb0e7cc-d3dd-4a2b-9f45-7d403001294f
+        name: argoCD
+        tags:
+        - deployment
+        url: https://argo-cd.readthedocs.io/en/stable/
+      references:
+        samm2: []
+        iso27001-2017: []
+        iso27001-2022: []
+      comments: ""
+      tags:
+      - patching
     Automated merge of automated PRs:
       uuid: f2594f8f-1cd6-45f9-af29-eaf3315698eb
       description: Automated merges of automated created PRs for outdated dependencies.
@@ -1842,6 +1884,8 @@ Build and Deployment:
         resources: 1
       usefulness: 3
       level: 2
+      dependsOn:
+      - Automated PRs for patches
       implementation:
       - uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
         name: dependabot
@@ -6040,7 +6084,13 @@ Test and Verification:
         - 8.32
         - 8.29
       implementation:
-      - signing-of-commits-protection:
+      - argocd:
+          uuid: fdb0e7cc-d3dd-4a2b-9f45-7d403001294f
+          name: argoCD
+          tags:
+          - deployment
+          url: https://argo-cd.readthedocs.io/en/stable/
+        signing-of-commits-protection:
           uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
           name: Enforcement of commit signing
           tags:
@@ -7112,7 +7162,13 @@ Test and Verification:
           url: https://thehackernews.com/2022/11/top-5-api-security-myths-that-are.html
           description: |
             There are several myths and misconceptions about API security. These myths about securing APIs are crushing your business
-      - signing-of-commits-protection:
+      - argocd:
+          uuid: fdb0e7cc-d3dd-4a2b-9f45-7d403001294f
+          name: argoCD
+          tags:
+          - deployment
+          url: https://argo-cd.readthedocs.io/en/stable/
+        signing-of-commits-protection:
           uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
           name: Enforcement of commit signing
           tags:
@@ -8702,7 +8758,13 @@ Test and Verification:
         tags:
         - ide
         - sast
-      - signing-of-commits-protection:
+      - argocd:
+          uuid: fdb0e7cc-d3dd-4a2b-9f45-7d403001294f
+          name: argoCD
+          tags:
+          - deployment
+          url: https://argo-cd.readthedocs.io/en/stable/
+        signing-of-commits-protection:
           uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
           name: Enforcement of commit signing
           tags:
@@ -9860,10 +9922,10 @@ Test and Verification:
         are performed.
       difficultyOfImplementation:
         knowledge: 1
-        time: 2
+        time: 3
         resources: 1
       usefulness: 5
-      level: 1
+      level: 2
       dependsOn:
       - Defined build process
       implementation:
@@ -10067,10 +10129,10 @@ Test and Verification:
         dataflow analysis.
       difficultyOfImplementation:
         knowledge: 2
-        time: 3
+        time: 2
         resources: 1
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
       - uuid: 6a0948a7-4781-4858-9766-f4303971b28b
         name: eslint
@@ -10184,6 +10246,7 @@ Test and Verification:
         name: PMD
         tags: []
       dependsOn:
+      - Automated PRs for patches
       - Defined build process
       references:
         samm2:
@@ -10230,7 +10293,7 @@ Test and Verification:
         - patching
         url: https://github.com/renovatebot/renovate
       dependsOn:
-      - Defined build process
+      - Automated PRs for patches
       references:
         samm2:
         - V-ST-2-A
