@@ -252,10 +252,10 @@ Test and Verification:
         dataflow analysis.
       difficultyOfImplementation:
         knowledge: 2
-        time: 2
+        time: 3
         resources: 1
       usefulness: 4
-      level: 2
+      level: 3
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/eslint
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/findsecuritybugs
