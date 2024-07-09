@@ -27,9 +27,65 @@ Test and Verification:
           - Not explicitly covered by ISO 27001 - too specific
           - 8.25
           - 8.27
-      isImplemented: false
-      evidence: ""
       comments: ""
+    Test libyear:
+      <<: *Exclusion-of-source-code-duplicates
+      risk: Vulnerabilities in running artifacts stay for long and might get exploited.
+      measure: |-
+        Test `libyear`, which provides a good insight how good patch management is.
+      usefulness: 3
+      level: 2
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/libyear
+      meta:
+        implementationGuide: |
+          `libyear` can be integrated into the build process and flag or even better break the build in case the defined threshold (e.g. 30 years) is reached.
+          An alternative approach is to determine `libyear` based on deployed artifacts (which requires more effort in implementation).
+      tags:
+        - patching
+    Test for Time to Patch:
+      <<: *Exclusion-of-source-code-duplicates
+      risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities in production artifacts.
+      measure: |-
+        Test of the Time to Patch (e.g. based on Mean Time to Close automatic PRs)
+        This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
+      usefulness: 3
+      level: 2
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/renovate
+      meta:
+        implementationGuide:
+          Usage of a version control platform API (e.g. github API) can be used to fetch the information.
+          Consider that `Measure libyears` might be an alternative to this activity.
+      tags:
+        - patching
+    Test for Patch Deployment Time:
+      <<: *Exclusion-of-source-code-duplicates
+      risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities in production artifacts.
+      measure: |
+        Test of the Patch Deployment Time.
+        This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
+      usefulness: 3
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      level: 3
+      meta:
+        implementationGuide:
+          Self implementation.
+          This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
+      tags:
+        - patching
     Dead code elimination:
       <<: *Exclusion-of-source-code-duplicates
       uuid: d17dbff0-1f10-492a-b4c7-17bb59a0a711
