@@ -10067,7 +10067,7 @@ Test and Verification:
         dataflow analysis.
       difficultyOfImplementation:
         knowledge: 2
-        time: 2
+        time: 3
         resources: 1
       usefulness: 4
       level: 2

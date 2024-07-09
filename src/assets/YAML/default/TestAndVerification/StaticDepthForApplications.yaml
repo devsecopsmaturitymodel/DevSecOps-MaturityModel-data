@@ -252,7 +252,7 @@ Test and Verification:
         dataflow analysis.
       difficultyOfImplementation:
         knowledge: 2
-        time: 3
+        time: 2
         resources: 1
       usefulness: 4
       level: 3
@@ -341,10 +341,10 @@ Test and Verification:
         are performed.
       difficultyOfImplementation:
         knowledge: 1
-        time: 2
+        time: 3
         resources: 1
       usefulness: 5
-      level: 1
+      level: 2
       dependsOn:
         - Defined build process
       implementation:
