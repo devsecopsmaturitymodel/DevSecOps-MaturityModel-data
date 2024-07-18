@@ -164,6 +164,13 @@ implementations:
     description:
       "[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
       \ and [Practical Security Stories and Security Tasks for Agile Development Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
+  libyear:
+    uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
+    name: libyear
+    tags: [patching, build]
+    url: https://libyear.com/
+    description: |-
+      A simple measure of software dependency freshness. It is a single number telling you how up-to-date your dependencies are.
   owasp-juice-shop:
     uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
     name: OWASP Juice Shop

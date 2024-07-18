@@ -41,16 +41,11 @@ Build and Deployment:
         - 14.2.6
         iso27001-2022:
         - 8.31
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Build/a340f46b-6360-4cb8-847b-a0d3483d09d3
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Defined build process:
       uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
       risk: Performing builds without a defined process is error prone; for example,
@@ -93,16 +88,11 @@ Build and Deployment:
         iso27001-2022:
         - 5.37
         - 8.32
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Build/f6f7737f-25a9-4317-8de2-09bf59f29b5b
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Pinning of artifacts:
       uuid: f3c4971e-9f4d-4e59-8ed0-f0bdb6262477
       risk: Unauthorized manipulation of artifacts might be difficult to spot. For
@@ -138,16 +128,11 @@ Build and Deployment:
         - 14.2.6
         iso27001-2022:
         - 8.31
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Build/f3c4971e-9f4d-4e59-8ed0-f0bdb6262477
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     SBOM of components:
       uuid: 2858ac12-0179-40d9-9acf-1b839c030473
       description: |-
@@ -177,16 +162,11 @@ Build and Deployment:
         iso27001-2022:
         - 5.9
         - 5.12
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Build/2858ac12-0179-40d9-9acf-1b839c030473
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Signing of artifacts:
       uuid: 5786959d-0c6f-46a6-8e1c-a32ff1a50222
       risk: Execution or usage of malicious code or data e.g. via executables, libraries
@@ -232,16 +212,11 @@ Build and Deployment:
         - 14.2.6
         iso27001-2022:
         - 8.31
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Build/5786959d-0c6f-46a6-8e1c-a32ff1a50222
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Signing of code:
       uuid: 9f107927-61e9-4574-85ad-3f2b4bca8665
       risk: Execution or usage of malicious code or data e.g. via executables, libraries
@@ -276,16 +251,11 @@ Build and Deployment:
         - 14.2.6
         iso27001-2022:
         - 8.31
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Build/9f107927-61e9-4574-85ad-3f2b4bca8665
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Deployment:
     Blue/Green Deployment:
       uuid: 0cb2626b-fb0d-4a0f-9688-57f787310d97
@@ -323,16 +293,11 @@ Build and Deployment:
         - 8.32
         - 8.19
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/0cb2626b-fb0d-4a0f-9688-57f787310d97
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Defined decommissioning process:
       uuid: da4ff665-dcb9-4e93-9d20-48cdedc50fc2
       description: |-
@@ -357,16 +322,11 @@ Build and Deployment:
         - 11.2.7
         iso27001-2022:
         - 7.14
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/da4ff665-dcb9-4e93-9d20-48cdedc50fc2
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Defined deployment process:
       uuid: 74938a3f-1269-49b9-9d0f-c43a79a1985a
       risk: Deployment of insecure or malfunctioning artifacts.
@@ -401,16 +361,11 @@ Build and Deployment:
         iso27001-2022:
         - 5.37
         - 8.32
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/74938a3f-1269-49b9-9d0f-c43a79a1985a
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Environment depending configuration parameters (secrets):
       uuid: df428c9d-efa0-4226-9f47-a15bb53f822b
       risk: Unauthorized access to secrets stored in source code or in artifacts (e.g.
@@ -510,8 +465,17 @@ Build and Deployment:
         dependabot:
           uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
           name: dependabot
-          tags: []
+          tags:
+          - auto-pr
+          - patching
           url: https://dependabot.com/
+        renovate:
+          uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
+          name: renovate
+          tags:
+          - auto-pr
+          - patching
+          url: https://github.com/renovatebot/renovate
         jenkins:
           uuid: 42ddb49f-48f2-4a3a-b76a-e73104ac6971
           name: Jenkins
@@ -604,6 +568,15 @@ Build and Deployment:
           description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
             and [Practical Security Stories and Security Tasks for Agile Development
             Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+        libyear:
+          uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
+          name: libyear
+          tags:
+          - patching
+          - build
+          url: https://libyear.com/
+          description: A simple measure of software dependency freshness. It is a
+            single number telling you how up-to-date your dependencies are.
         owasp-juice-shop:
           uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
           name: OWASP Juice Shop
@@ -1490,16 +1463,11 @@ Build and Deployment:
         - 8.31
         d3f:
         - ApplicationConfigurationHardening
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/df428c9d-efa0-4226-9f47-a15bb53f822b
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Evaluation of the trust of used components:
       uuid: 0de465a6-55a7-4343-af79-948bb5ff10ba
       risk: Application and system components like Open Source libraries or images
@@ -1543,16 +1511,11 @@ Build and Deployment:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/0de465a6-55a7-4343-af79-948bb5ff10ba
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Handover of confidential parameters:
       uuid: 94a96f79-8bd6-4904-97c0-994ff88f176a
       risk: Parameters are often used to set credentials, for example by starting
@@ -1587,16 +1550,11 @@ Build and Deployment:
         - 8.24
         d3f:
         - ApplicationConfigurationHardening
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/94a96f79-8bd6-4904-97c0-994ff88f176a
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Inventory of dependencies:
       uuid: 13e9757e-58e2-4277-bc0f-eadc674891e6
       risk: In case a vulnerability of severity high or critical is known by the organization,
@@ -1635,16 +1593,11 @@ Build and Deployment:
         iso27001-2022:
         - 5.9
         - 5.12
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/13e9757e-58e2-4277-bc0f-eadc674891e6
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Inventory of running artifacts:
       uuid: 83057028-0b77-4d2e-8135-40969768ae88
       risk: In case a vulnerability of severity high or critical exists, it needs
@@ -1669,16 +1622,11 @@ Build and Deployment:
         iso27001-2022:
         - 5.9
         - 5.12
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/83057028-0b77-4d2e-8135-40969768ae88
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Rolling update on deployment:
       uuid: 85d52588-f542-4225-a338-20dc22a5508d
       risk: While a deployment is performed, the application can not be reached.
@@ -1714,16 +1662,11 @@ Build and Deployment:
         - 8.19
         - 8.32
         - 8.14
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/85d52588-f542-4225-a338-20dc22a5508d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Same artifact for environments:
       uuid: a854b48d-83bd-4f8d-8621-a0bdd470837f
       risk: Building of an artifact for different environments means that an untested
@@ -1754,16 +1697,11 @@ Build and Deployment:
         - 8.33
         - 8.29
         - 8.31
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/a854b48d-83bd-4f8d-8621-a0bdd470837f
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of feature toggles:
       uuid: a511799b-045e-4b96-9843-7d63d8c1e2ad
       risk: Using environment variables to enable or disable features can lead to
@@ -1805,20 +1743,15 @@ Build and Deployment:
         - 8.31
         d3f:
         - ApplicationConfigurationHardening
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Deployment/a511799b-045e-4b96-9843-7d63d8c1e2ad
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Patch Management:
     A patch policy is defined:
       uuid: 99415139-6b50-441b-89e1-0aa59accd43d
-      risk: Vulnerabilities in running containers stay for long and might get exploited.
+      risk: Vulnerabilities in running artifacts stay for long and might get exploited.
       measure: A patch policy for all artifacts (e.g. in images) is defined. How often
         is an image rebuilt?
       difficultyOfImplementation:
@@ -1839,17 +1772,11 @@ Build and Deployment:
         - 8.8
         - 8.19
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Patch
-          Management/99415139-6b50-441b-89e1-0aa59accd43d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
+      - patching
     Automated PRs for patches:
       uuid: 8ae0b92c-10e0-4602-ba22-7524d6aed488
       risk: Components with known (or unknown) vulnerabilities might stay for long
@@ -1868,7 +1795,9 @@ Build and Deployment:
       implementation:
       - uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
         name: dependabot
-        tags: []
+        tags:
+        - auto-pr
+        - patching
         url: https://dependabot.com/
       - uuid: 42ddb49f-48f2-4a3a-b76a-e73104ac6971
         name: Jenkins
@@ -1881,6 +1810,12 @@ Build and Deployment:
         url: https://www.terraform.io/
         description: |
           Terraform enables infrastructure automation for provisioning, compliance, and management of any cloud, datacenter, and service.
+      - uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
+        name: renovate
+        tags:
+        - auto-pr
+        - patching
+        url: https://github.com/renovatebot/renovate
       references:
         samm2:
         - O-EM-1-B
@@ -1890,17 +1825,46 @@ Build and Deployment:
         iso27001-2022:
         - 8.8
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Patch
-          Management/8ae0b92c-10e0-4602-ba22-7524d6aed488
-      isImplemented: false
       comments: ""
       tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
+      - patching
+    Automated merge of automated PRs:
+      uuid: f2594f8f-1cd6-45f9-af29-eaf3315698eb
+      description: Automated merges of automated created PRs for outdated dependencies.
+      risk: Vulnerabilities in running artifacts stay for too long and might get exploited.
+      measure: |
+        A good practice is to merge trusted dependencies (e.g. spring boot) after a grace period like one week.
+        Often, patches, fixes and minor updates are automatically merged. Be aware that automated merging requires a high
+        automated test coverage. Enforcement of merging of pull requests after a grace period.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+      - uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
+        name: dependabot
+        tags:
+        - auto-pr
+        - patching
+        url: https://dependabot.com/
+      - uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
+        name: renovate
+        tags:
+        - auto-pr
+        - patching
+        url: https://github.com/renovatebot/renovate
+      references:
+        samm2:
+        - O-EM-2-B
+        iso27001-2017:
+        - 12.6.1
+        iso27001-2022:
+        - 8.8
+      comments: ""
+      tags:
+      - patching
     Nightly build of images (base images):
       uuid: 34869eaf-f2e1-4926-b0bd-28c43402f057
       description: |-
@@ -1929,17 +1893,11 @@ Build and Deployment:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Patch
-          Management/34869eaf-f2e1-4926-b0bd-28c43402f057
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
+      - patching
     Reduction of the attack surface:
       uuid: 16e39c8f-5336-4001-88ed-a552d2447531
       description: |-
@@ -1979,17 +1937,10 @@ Build and Deployment:
         - 14.2.1
         iso27001-2022:
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Patch
-          Management/16e39c8f-5336-4001-88ed-a552d2447531
-      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
+      - patching
     Usage of a maximum lifetime for images:
       uuid: 485a3383-7f2e-4dba-bb84-479377070904
       description: |-
@@ -2023,17 +1974,10 @@ Build and Deployment:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Patch
-          Management/485a3383-7f2e-4dba-bb84-479377070904
-      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
+      - patching
     Usage of a short maximum lifetime for images:
       uuid: 6b96e5a0-ce34-4ea4-a88f-469d3b84546e
       description: |-
@@ -2077,17 +2021,11 @@ Build and Deployment:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Patch
-          Management/6b96e5a0-ce34-4ea4-a88f-469d3b84546e
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
+      - patching
 Culture and Organization:
   Design:
     Conduction of advanced threat modeling:
@@ -2182,16 +2120,11 @@ Culture and Organization:
         - May be part of risk assessment
         - 5.12
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Design/ae22dafd-bcd6-41ee-ba01-8b7fe6fc1ad9
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Conduction of simple threat modeling on business level:
       uuid: 48f97f31-931c-46eb-9b3e-e2fec0cd0426
       risk: Business related threats are discovered too late in the development and
@@ -2218,16 +2151,11 @@ Culture and Organization:
         - May be part of risk assessment
         - 5.12
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Design/48f97f31-931c-46eb-9b3e-e2fec0cd0426
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Conduction of simple threat modeling on technical level:
       uuid: 47419324-e263-415b-815d-e7161b6b905e
       risk: Technical related threats are discovered too late in the development and
@@ -2343,16 +2271,11 @@ Culture and Organization:
         - May be part of risk assessment
         - 5.12
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Design/47419324-e263-415b-815d-e7161b6b905e
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Creation of advanced abuse stories:
       uuid: 0a929c3e-ab9a-4206-8761-adf84b74622e
       risk: Simple user stories are not going deep enough. Relevant security considerations
@@ -2390,16 +2313,11 @@ Culture and Organization:
         - 5.8
         - May be part of risk assessment
         - 5.9
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Design/0a929c3e-ab9a-4206-8761-adf84b74622e
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Creation of simple abuse stories:
       uuid: bacf85b6-5bc0-405d-b5ba-a5d971467cc1
       risk: User stories mostly don't consider security implications. Security flaws
@@ -2437,16 +2355,11 @@ Culture and Organization:
         - 5.8
         - May be part of risk assessment
         - 5.9
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Design/bacf85b6-5bc0-405d-b5ba-a5d971467cc1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Creation of threat modeling processes and standards:
       uuid: dd5ed7c1-bdbf-400f-b75f-6d3953a1a04e
       risk: Inadequate identification of business and technical risks.
@@ -2491,16 +2404,11 @@ Culture and Organization:
         - May be part of risk assessment
         - 5.12
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Design/dd5ed7c1-bdbf-400f-b75f-6d3953a1a04e
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Information security targets are communicated:
       uuid: 1b9281b9-48e2-4c01-9ac6-9db9931c4885
       risk: Employees don't known their organizations security targets. Therefore
@@ -2523,16 +2431,11 @@ Culture and Organization:
         iso27001-2022:
         - 5.1
         - 5.4
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Design/1b9281b9-48e2-4c01-9ac6-9db9931c4885
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Education and Guidance:
     Ad-Hoc Security trainings for software developers:
       uuid: 12c90cc6-3d58-4d9b-82ff-d469d2a0c298
@@ -2567,17 +2470,11 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/12c90cc6-3d58-4d9b-82ff-d469d2a0c298
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Aligning security in teams:
       uuid: f994a55d-71bb-45a4-a887-0a213d72c504
       risk: The concept of Security Champions might suggest that only he/she is responsible
@@ -2604,17 +2501,11 @@ Culture and Organization:
         - 7.1.1
         iso27001-2022:
         - 6.1
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/f994a55d-71bb-45a4-a887-0a213d72c504
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Conduction of build-it, break-it, fix-it contests:
       uuid: bfdb576e-a416-4ec6-96fe-a078d58b2ff8
       risk: Understanding security is hard, even for security champions and the conduction
@@ -2641,17 +2532,11 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/bfdb576e-a416-4ec6-96fe-a078d58b2ff8
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Conduction of collaborative security checks with developers and system administrators:
       uuid: 95caef96-36ed-458c-a087-5c35d4f9dec2
       risk: Security checks by external companies do not increase the understanding
@@ -2681,17 +2566,11 @@ Culture and Organization:
         - 6.3
         - 8.8
         - 8.34
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/95caef96-36ed-458c-a087-5c35d4f9dec2
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Conduction of collaborative team security checks:
       uuid: 35446784-7610-40d9-af9e-d43f3173bf8c
       risk: Development teams limited insight over security practices.
@@ -2714,17 +2593,11 @@ Culture and Organization:
         iso27001-2022:
         - Mutual security testing is not explicitly required in ISO 27001 may be
         - 6.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/35446784-7610-40d9-af9e-d43f3173bf8c
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Conduction of war games:
       uuid: 534f60bf-0995-4314-bb9c-f0f2bf204694
       risk: Understanding incident response plans during an incident is hard and ineffective.
@@ -2751,17 +2624,11 @@ Culture and Organization:
         - 6.3
         - 5.24
         - 5.26
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/534f60bf-0995-4314-bb9c-f0f2bf204694
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Each team has a security champion:
       uuid: 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87
       risk: No one feels directly responsible for security and the security champion
@@ -2811,17 +2678,11 @@ Culture and Organization:
         - Security champions are missing in ISO 27001 most likely
         - 5.4
         - 6.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/6217fe11-5ed7-4cf4-9de4-555bcfa6fe87
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Regular security training for all:
       uuid: 9768f154-357a-4c06-af6f-d66570677c9b
       risk: Understanding security is hard.
@@ -2861,17 +2722,11 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/9768f154-357a-4c06-af6f-d66570677c9b
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Regular security training for externals:
       uuid: 31833d56-35af-4ef3-9300-f23d27646ce7
       risk: Understanding security is hard.
@@ -2904,17 +2759,11 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/31833d56-35af-4ef3-9300-f23d27646ce7
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Regular security training of security champions:
       uuid: f88d1b17-3d7d-4c3d-8139-ad44fc4942d4
       risk: Understanding security is hard, even for security champions.
@@ -2946,17 +2795,11 @@ Culture and Organization:
         iso27001-2022:
         - Security champions are missing in ISO 27001
         - 6.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/f88d1b17-3d7d-4c3d-8139-ad44fc4942d4
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Reward of good communication:
       uuid: 91b6f75b-9f4a-4d77-95a2-af7ad3222c7c
       risk: Employees are not getting excited about security.
@@ -2994,17 +2837,11 @@ Culture and Organization:
           but nothing to promote good behavior.
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/91b6f75b-9f4a-4d77-95a2-af7ad3222c7c
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Security Coaching:
       uuid: f7b215dc-73a4-4c61-9e49-b3a3af1c9ac3
       risk: Training does not change behaviour. Therefore, even if security practices
@@ -3035,17 +2872,11 @@ Culture and Organization:
         - 7.1.1
         iso27001-2022:
         - 6.1
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/f7b215dc-73a4-4c61-9e49-b3a3af1c9ac3
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Security code review:
       uuid: 7121b0c7-6ace-4d6b-95d0-94535dbccb57
       risk: Understanding security is hard.
@@ -3086,17 +2917,11 @@ Culture and Organization:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/7121b0c7-6ace-4d6b-95d0-94535dbccb57
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Security consulting on request:
       uuid: 0b28367b-75a0-4bae-a926-3725c1bf9bb0
       risk: Not asking a security expert when questions regarding security appear
@@ -3128,17 +2953,11 @@ Culture and Organization:
         - 5.2
         - 5.6
         - 5.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/0b28367b-75a0-4bae-a926-3725c1bf9bb0
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Security-Lessoned-Learned:
       uuid: 58c46807-fee9-448b-b6dd-8050c464ab52
       risk: After an incident, a similar incident might reoccur.
@@ -3159,17 +2978,11 @@ Culture and Organization:
         - 16.1.6
         iso27001-2022:
         - 5.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/58c46807-fee9-448b-b6dd-8050c464ab52
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Simple mob hacking:
       uuid: 535f301a-e8e8-4eda-ad77-a08b035c92de
       risk: Understanding security is hard.
@@ -3217,17 +3030,11 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
-          and Guidance/535f301a-e8e8-4eda-ad77-a08b035c92de
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Process:
     Approval by reviewing any new version:
       uuid: 3f63bdbc-c75f-4780-a941-e6ad42e894e1
@@ -3253,16 +3060,11 @@ Culture and Organization:
         - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 5.3
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Process/3f63bdbc-c75f-4780-a941-e6ad42e894e1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Definition of a change management process:
       uuid: b4193d32-3948-47e2-a326-3748c48019a1
       risk: The impact of a change is not controlled because these are not recorded
@@ -3284,16 +3086,11 @@ Culture and Organization:
         iso27001-2022:
         - 8.32
         - 8.15
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Process/b4193d32-3948-47e2-a326-3748c48019a1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Definition of simple BCDR practices for critical components:
       uuid: c72da779-86cc-45b1-a339-190ce5093171
       risk: In case of an emergency, like a power outage, DR actions to perform are
@@ -3316,16 +3113,11 @@ Culture and Organization:
         - 17.1.1
         iso27001-2022:
         - 5.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Process/c72da779-86cc-45b1-a339-190ce5093171
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
 Implementation:
   Application Hardening:
     App. Hardening Level 1:
@@ -3386,16 +3178,9 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          Hardening/cf819225-30cb-4702-8e32-60225eedc33d
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     App. Hardening Level 1 (50%):
       uuid: b597928e-54d6-48a5-a806-8003dcd56aab
       risk: Using an insecure application might lead to a compromised application.
@@ -3452,17 +3237,10 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          Hardening/b597928e-54d6-48a5-a806-8003dcd56aab
       isImplemented: false
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     App. Hardening Level 2:
       uuid: ffe86caf-2fec-4630-b514-2db83983984d
       risk: Using an insecure application might lead to a compromised application.
@@ -3497,19 +3275,13 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          Hardening/ffe86caf-2fec-4630-b514-2db83983984d
       isImplemented: false
+      evidence: ""
       comments: ""
       dependsOn:
       - App. Hardening Level 2 (75%)
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     App. Hardening Level 2 (75%):
       uuid: 03643ca2-03c2-472b-8e19-956bf02fe9b7
       risk: Using an insecure application might lead to a compromised application.
@@ -3544,19 +3316,13 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          Hardening/03643ca2-03c2-472b-8e19-956bf02fe9b7
       isImplemented: false
+      evidence: ""
       comments: ""
       dependsOn:
       - App. Hardening Level 1
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     App. Hardening Level 3:
       uuid: 4cae98c2-4163-44ed-bb88-3c67c569533a
       risk: Using an insecure application might lead to a compromised application.
@@ -3591,19 +3357,13 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          Hardening/4cae98c2-4163-44ed-bb88-3c67c569533a
       isImplemented: false
+      evidence: ""
       comments: ""
       dependsOn:
       - App. Hardening Level 2
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Contextualized Encoding:
       uuid: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
       risk: The generation of interpreter directives from user-provided data poses
@@ -3628,15 +3388,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          Hardening/e1f37abb-d848-4a3a-b3df-65e91a89dcb7
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Development and Source Control:
     .gitignore:
       uuid: 363a3eea-baf9-4010-88ca-bb8186a2989d
@@ -3663,17 +3416,10 @@ Implementation:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.37
         - 8.32
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Development
-          and Source Control/363a3eea-baf9-4010-88ca-bb8186a2989d
       evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     API design validation:
       uuid: 948a4d51-ceb5-4ebd-bdc7-d74ea25e171c
       risk: Creation of insecure or non-compliant API.
@@ -3718,17 +3464,11 @@ Implementation:
         - 8.25
         - 8.27
         - 8.28
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Development
-          and Source Control/948a4d51-ceb5-4ebd-bdc7-d74ea25e171c
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Local development linting & style checks performed:
       uuid: 517b0957-4981-4ac0-b4c7-0d8d1934c474
       risk: Insecure or unmaintainable code base.
@@ -3760,17 +3500,11 @@ Implementation:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Development
-          and Source Control/517b0957-4981-4ac0-b4c7-0d8d1934c474
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Source Control Protection:
       uuid: e7598ac4-b082-4e56-b7df-e2c6b426a5e2
       risk: Intentional or accidental alterations in critical branches like master.
@@ -3815,17 +3549,11 @@ Implementation:
         - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 5.3
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Development
-          and Source Control/e7598ac4-b082-4e56-b7df-e2c6b426a5e2
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Versioning:
       uuid: 066084c6-1135-4635-9cc5-9e75c7c5459f
       risk: Deployment of untracked artifacts.
@@ -3853,17 +3581,11 @@ Implementation:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.37
         - 8.32
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Development
-          and Source Control/066084c6-1135-4635-9cc5-9e75c7c5459f
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Infrastructure Hardening:
     Applications are running in virtualized environments:
       uuid: 3a94d55e-fd82-4996-9eb3-20d23ff2a873
@@ -3886,17 +3608,11 @@ Implementation:
         iso27001-2022:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/3a94d55e-fd82-4996-9eb3-20d23ff2a873
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Backup:
       uuid: 5c61fd6b-8106-4c68-ac28-a8a42f1c67dc
       risk: If errors are experienced during the deployment process you want to deploy
@@ -3927,17 +3643,11 @@ Implementation:
         iso27001-2022:
         - 8.13
         - 8.31
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/5c61fd6b-8106-4c68-ac28-a8a42f1c67dc
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Baseline Hardening of the environment:
       uuid: 5992c38c-8597-4035-89db-d15820d81c3a
       risk: Using default configurations for a cluster environment leads to potential
@@ -3999,17 +3709,11 @@ Implementation:
         - 13.1.3
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/5992c38c-8597-4035-89db-d15820d81c3a
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Filter outgoing traffic:
       uuid: 6df508ef-86fc-4c22-bd9f-646c3127ce7d
       risk: A compromised infrastructure component might try to send out stolen data.
@@ -4040,17 +3744,11 @@ Implementation:
         iso27001-2022:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/6df508ef-86fc-4c22-bd9f-646c3127ce7d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Hardening of the Environment:
       uuid: dcf9601b-b4f2-4e25-9143-e39af75f7c33
       risk: Using default configurations for a cluster environment leads to potential
@@ -4113,17 +3811,11 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/dcf9601b-b4f2-4e25-9143-e39af75f7c33
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Immutable infrastructure:
       uuid: 48e92bb1-fdba-40e8-b6c2-35de0d431833
       risk: The availability of IT systems might be disturbed due to components failures
@@ -4149,17 +3841,11 @@ Implementation:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.14
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/48e92bb1-fdba-40e8-b6c2-35de0d431833
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Infrastructure as Code:
       uuid: 8b994601-575e-4ea5-b228-accb18c8e514
       risk: No tracking of changes in systems might lead to errors in the configuration.
@@ -4205,17 +3891,11 @@ Implementation:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.37
         - 8.32
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/8b994601-575e-4ea5-b228-accb18c8e514
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Isolated networks for virtual environments:
       uuid: 4ce24abd-8ba6-494c-828d-4d193e28e4a1
       risk: Virtual environments in default settings are able to access other virtual
@@ -4252,17 +3932,11 @@ Implementation:
         iso27001-2022:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/4ce24abd-8ba6-494c-828d-4d193e28e4a1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Limitation of system events:
       uuid: e5386abf-9154-4752-a1a8-c3a8900f732d
       risk: System events (system calls) can lead to privilege escalation.
@@ -4300,17 +3974,11 @@ Implementation:
         - System hardening is not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/e5386abf-9154-4752-a1a8-c3a8900f732d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     MFA:
       uuid: 598e9f13-1ac8-4a01-b85e-8fab93ee81de
       risk: One factor authentication is more vulnerable to brute force attacks and
@@ -4354,17 +4022,11 @@ Implementation:
         - 8.25
         d3f:
         - Multi-factorAuthentication
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/598e9f13-1ac8-4a01-b85e-8fab93ee81de
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     MFA for admins:
       uuid: 8098e416-e1ed-4ae4-a561-83efbe76bf57
       risk: One factor authentication is more vulnerable to brute force attacks and
@@ -4406,17 +4068,11 @@ Implementation:
         - 8.25
         d3f:
         - Multi-factorAuthentication
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/8098e416-e1ed-4ae4-a561-83efbe76bf57
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Microservice-architecture:
       uuid: 118b869b-3850-456e-98d9-1abdb85cbc5a
       risk: Monolithic applications are hard to test.
@@ -4436,17 +4092,11 @@ Implementation:
         - Not explicitly covered by ISO 27001
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/118b869b-3850-456e-98d9-1abdb85cbc5a
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Production near environments are used by developers:
       uuid: e14de741-94b3-447c-8b07-eea947d82e61
       risk: In case an errors occurs in production, the developer need to be able
@@ -4475,17 +4125,11 @@ Implementation:
         iso27001-2022:
         - 8.31
         - 8.14
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/e14de741-94b3-447c-8b07-eea947d82e61
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Role based authentication and authorization:
       uuid: 070bb14b-e04a-4f3d-896a-a08eba7a35f9
       risk: Everyone is able to get unauthorized access to information on systems
@@ -4516,17 +4160,11 @@ Implementation:
         - 9.4.1
         iso27001-2022:
         - 8.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/070bb14b-e04a-4f3d-896a-a08eba7a35f9
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Simple access control for systems:
       uuid: 82e499d1-f463-4a4b-be90-68812a874af6
       risk: Attackers a gaining access to internal systems and application interfaces
@@ -4555,17 +4193,11 @@ Implementation:
         - 9.4.1
         iso27001-2022:
         - 8.3
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/82e499d1-f463-4a4b-be90-68812a874af6
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of a chaos monkey:
       uuid: f8e80f18-2503-4e3e-b3bc-7f67bb28defe
       risk: Due to manual changes on a system, they are not replaceable anymore. In
@@ -4589,17 +4221,11 @@ Implementation:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/f8e80f18-2503-4e3e-b3bc-7f67bb28defe
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of an security account:
       uuid: 746025a6-dbfb-4087-a000-e46acab64ee1
       risk: Having security auditing in the same account as infrastructure and applications
@@ -4620,17 +4246,11 @@ Implementation:
         - 10.1
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/746025a6-dbfb-4087-a000-e46acab64ee1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of edge encryption at transit:
       uuid: ad23be9c-5661-4f1f-81a3-5a5dc7061629
       risk: Evil actors might be able to perform a man in the middle attack and sniff
@@ -4651,17 +4271,11 @@ Implementation:
         - 10.1
         iso27001-2022:
         - 8.24
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/ad23be9c-5661-4f1f-81a3-5a5dc7061629
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of encryption at rest:
       uuid: 0ff45fb8-7eef-46ed-9b3a-84c955cd7060
       risk: Evil actors might be able to access data and read information, e.g. from
@@ -4682,17 +4296,11 @@ Implementation:
         - 10.1
         iso27001-2022:
         - 8.24
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/0ff45fb8-7eef-46ed-9b3a-84c955cd7060
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of internal encryption at transit:
       uuid: ecb0184c-6bc9-45da-bbbb-a983797ffc93
       risk: Evil actors within the organization of traffic in transit might be able
@@ -4714,17 +4322,11 @@ Implementation:
         - 10.1
         iso27001-2022:
         - 8.24
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/ecb0184c-6bc9-45da-bbbb-a983797ffc93
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of security by default for components:
       uuid: 11b3848e-e931-4146-a35d-35409ada24ee
       risk: Components (images, libraries, applications) are not hardened.
@@ -4761,17 +4363,11 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/11b3848e-e931-4146-a35d-35409ada24ee
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of test and production environments:
       uuid: bfdacb52-1e3f-431d-ae72-d844a5e86415
       risk: Security tests are not running regularly because test environments are
@@ -4797,17 +4393,11 @@ Implementation:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.31
         - 8.14
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/bfdacb52-1e3f-431d-ae72-d844a5e86415
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Virtual environments are limited:
       uuid: 760f1056-b0ee-4f22-a35b-f65446f944ca
       risk: Denial of service (internally by an attacker or unintentionally by a bug)
@@ -4836,17 +4426,11 @@ Implementation:
         - 8.6
         - 8.22
         - 8.14
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/760f1056-b0ee-4f22-a35b-f65446f944ca
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     WAF Advanced:
       uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b-advanced
       risk: The presence of sophisticated threats necessitates a robust defense strategy
@@ -4875,16 +4459,9 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/f0e01814-3b88-4bd0-a3a9-f91db001d20b-advanced
       comments: ~
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     WAF baseline:
       uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b
       risk: Vulnerable input, such as exploits, can infiltrate the application via
@@ -4913,16 +4490,9 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/f0e01814-3b88-4bd0-a3a9-f91db001d20b
       comments: ~
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     WAF medium:
       uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b
       risk: The threat from malicious inputs remains high, with exploits seeking to
@@ -4951,16 +4521,9 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Infrastructure
-          Hardening/f0e01814-3b88-4bd0-a3a9-f91db001d20b
       comments: ~
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
 Information Gathering:
   Logging:
     Centralized application logging:
@@ -4989,16 +4552,11 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Logging/fe875e17-ae4a-45f8-a359-244aa4fcbc04
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Centralized system logging:
       uuid: 4eced38a-7904-4c45-adb0-50b663065540
       risk: Local stored system logs can be unauthorized manipulated by attackers
@@ -5034,16 +4592,11 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Logging/4eced38a-7904-4c45-adb0-50b663065540
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Correlation of security events:
       uuid: ccf4561d-253f-4762-adcb-bc4622fd6fc5
       risk: Detection of security related events with hints on different systems/tools/metrics
@@ -5069,16 +4622,11 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Logging/ccf4561d-253f-4762-adcb-bc4622fd6fc5
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Logging of security events:
       uuid: ccfdd0a8-991e-4269-ad77-c0a54ca655cb
       description: |
@@ -5132,19 +4680,14 @@ Information Gathering:
         - 12.4.1
         iso27001-2022:
         - 8.15
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Logging/ccfdd0a8-991e-4269-ad77-c0a54ca655cb
       risk: |-
         * No track of security-relevant events makes it harder to analyze an incident.
         * Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     PII logging concept:
       uuid: 613a73dc-4f60-49db-a6ce-4fb7bf8519f9
       risk: Personal identifiable information (PII) is logged and the privacy law
@@ -5190,16 +4733,11 @@ Information Gathering:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
         - 5.31
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Logging/613a73dc-4f60-49db-a6ce-4fb7bf8519f9
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Visualized logging:
       uuid: 7c735089-6a83-419f-8b27-c1e676cedea1
       risk: System and application protocols are not visualized properly which leads
@@ -5231,16 +4769,11 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Logging/7c735089-6a83-419f-8b27-c1e676cedea1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Monitoring:
     Advanced app. metrics:
       uuid: d03bc410-74a7-4e92-82cb-d01a020cb6bf
@@ -5264,16 +4797,11 @@ Information Gathering:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/d03bc410-74a7-4e92-82cb-d01a020cb6bf
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Advanced availability and stability metrics:
       uuid: ed715b38-c34b-40cd-83fd-ce807f306fc1
       risk: Trends and advanced attacks are not detected.
@@ -5296,16 +4824,11 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/ed715b38-c34b-40cd-83fd-ce807f306fc1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Alerting:
       uuid: 8a442d8e-0eb1-4793-a513-571aef982edd
       risk: Incidents are discovered after they happened.
@@ -5331,16 +4854,11 @@ Information Gathering:
         - 6.8
         - 5.25
         - 8.31
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/8a442d8e-0eb1-4793-a513-571aef982edd
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Audit of system events:
       uuid: 1cd5e4b8-be36-4726-adc7-d8f843f47ac8
       risk: System events (system calls) trends and attacks are not detected.
@@ -5370,16 +4888,11 @@ Information Gathering:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/1cd5e4b8-be36-4726-adc7-d8f843f47ac8
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Coverage and control metrics:
       uuid: d0d681e7-d6de-4829-ac64-a9eb2546aa0d
       risk: The effectiveness of configuration, patch and vulnerability management
@@ -5411,16 +4924,11 @@ Information Gathering:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/d0d681e7-d6de-4829-ac64-a9eb2546aa0d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Deactivation of unused metrics:
       uuid: 7f36b9ba-bc05-4fd6-9a2a-73344c249722
       risk: High resources are used while gathering unused metrics.
@@ -5443,16 +4951,11 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.6
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/7f36b9ba-bc05-4fd6-9a2a-73344c249722
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Defense metrics:
       uuid: e808028c-351c-42f1-bcd9-fba738d1fc55
       risk: IDS/IPS systems like packet- or application-firewalls detect and prevent
@@ -5479,16 +4982,11 @@ Information Gathering:
         iso27001-2022:
         - 8.15
         - 8.2
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/e808028c-351c-42f1-bcd9-fba738d1fc55
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Grouping of metrics:
       uuid: 42170a71-d4c8-47af-bd71-bf36875fd05b
       risk: The analysis of metrics takes long.
@@ -5509,16 +5007,11 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.6
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/42170a71-d4c8-47af-bd71-bf36875fd05b
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Metrics are combined with tests:
       uuid: 71699daf-b2a4-466b-a0b2-89f7dbb18506
       risk: Changes might cause high load due to programming errors.
@@ -5539,16 +5032,11 @@ Information Gathering:
         - not explicitly covered by ISO 27001
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/71699daf-b2a4-466b-a0b2-89f7dbb18506
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Monitoring of costs:
       uuid: 10e23a8c-22ff-4487-a706-87ccc9d0798e
       risk: Not monitoring costs might lead to unexpected high resource consumption
@@ -5573,16 +5061,11 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/10e23a8c-22ff-4487-a706-87ccc9d0798e
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Screens with metric visualization:
       uuid: 8746647c-638c-473f-8e17-82c068e4c311
       risk: Security related information is discovered too late during an incident.
@@ -5606,16 +5089,11 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.26
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/8746647c-638c-473f-8e17-82c068e4c311
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Simple application metrics:
       uuid: e9a6d403-a467-445e-b98a-74f0c29da0b1
       risk: Attacks on an application are not recognized.
@@ -5639,16 +5117,11 @@ Information Gathering:
         - 12.4.1
         iso27001-2022:
         - 8.15
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/e9a6d403-a467-445e-b98a-74f0c29da0b1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Simple budget metrics:
       uuid: f08a3219-6941-43ec-8762-4aff739f4664
       risk: Not getting notified about reaching the end of the budget (e.g. due to
@@ -5672,16 +5145,11 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/f08a3219-6941-43ec-8762-4aff739f4664
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Simple system metrics:
       uuid: 3d1f4c3b-f713-46d9-933a-54a014a26c03
       risk: Without simple metrics analysis of incidents are hard. In case an application
@@ -5708,16 +5176,11 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/3d1f4c3b-f713-46d9-933a-54a014a26c03
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Targeted alerting:
       uuid: d6f06ae8-401a-4f44-85df-1079247fa030
       risk: People are bored (ignorant) of incident alarm messages, as they are not
@@ -5742,16 +5205,11 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.26
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/d6f06ae8-401a-4f44-85df-1079247fa030
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Visualized metrics:
       uuid: ded39bcf-4eaa-4c5f-9c94-09acde0a4734
       risk: Not visualized metrics lead to restricted usage of metrics.
@@ -5773,16 +5231,11 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Monitoring/ded39bcf-4eaa-4c5f-9c94-09acde0a4734
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
 Test and Verification:
   Application tests:
     High coverage of security related module and integration tests:
@@ -5807,17 +5260,11 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          tests/67667c97-c33e-4306-a4e5-e7b1d8e10c5a
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Security integration tests for important components:
       uuid: f57d55f2-dc05-4b34-9d1f-f8ce5bfb0715
       risk: Vulnerabilities are rising due to code changes in a complex microservice
@@ -5839,17 +5286,11 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          tests/f57d55f2-dc05-4b34-9d1f-f8ce5bfb0715
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Security unit tests for important components:
       uuid: eb2c7f9d-d0bd-4253-a2ba-cff2ace4a075
       risk: Vulnerabilities are rising due to code changes.
@@ -5883,16 +5324,10 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          tests/eb2c7f9d-d0bd-4253-a2ba-cff2ace4a075
       isImplemented: false
+      evidence: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Smoke Test:
       uuid: 73aaae0b-5d68-4953-9fa4-fd25bf665f2a
       risk: During a deployment an error might happen which leads to non-availability
@@ -5917,17 +5352,11 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
-          tests/73aaae0b-5d68-4953-9fa4-fd25bf665f2a
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Consolidation:
     Advanced visualization of defects:
       uuid: 7a82020c-94d1-471c-bbd3-5f7fe7df4876
@@ -5976,16 +5405,11 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/7a82020c-94d1-471c-bbd3-5f7fe7df4876
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Generation of Patch Management Statistics:
       uuid: 785e34ef-40c6-487a-984c-3e7706c9bc1f
       risk: Delays in patch response lead to an increased attack surface through longer
@@ -6030,16 +5454,11 @@ Test and Verification:
         - 16.1.4
         iso27001-2022:
         - 5.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/785e34ef-40c6-487a-984c-3e7706c9bc1f
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Generation of Response Statistics:
       uuid: c922981b-65ed-40f3-a947-96fee9a0125f
       risk: No or delayed reaction to findings leads to potential exploitation of
@@ -6094,18 +5513,13 @@ Test and Verification:
         iso27001-2022:
         - 5.25
         - 5.1
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/c922981b-65ed-40f3-a947-96fee9a0125f
       isImplemented: false
+      evidence: ""
       comments: The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client)
         generates statistics from OWASP DefectDojo and places the results in a [Github
         repository](https://github.com/pagel-pro/cluster-image-scanner-all-results).
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Integration of vulnerability issues into the development process:
       uuid: ce970c9b-da94-41cf-bd78-8c15357b7e8e
       risk: To read console output of the build server to search for vulnerabilities
@@ -6145,16 +5559,11 @@ Test and Verification:
         - 5.25
         - 5.26
         - 5.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/ce970c9b-da94-41cf-bd78-8c15357b7e8e
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Reproducible defect tickets:
       uuid: 27337442-e4b1-4e87-8dc9-ce86fbb79a39
       risk: Vulnerability descriptions are hard to understand by staff from operations
@@ -6182,16 +5591,11 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/27337442-e4b1-4e87-8dc9-ce86fbb79a39
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Simple false positive treatment:
       uuid: c1acc8af-312e-4503-a817-a26220c993a0
       risk: As false positive occur during each test, all vulnerabilities might be
@@ -6226,16 +5630,11 @@ Test and Verification:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/c1acc8af-312e-4503-a817-a26220c993a0
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Simple visualization of defects:
       uuid: 55f4c916-3a34-474d-ad96-9a9f7a4f6a83
       risk: The security level of a component is not visible. Therefore, the motivation
@@ -6255,6 +5654,18 @@ Test and Verification:
         - Supply Chain
         - vulnerability
         url: https://owasp.org/www-project-dependency-check/
+      - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
+        name: Dependency-Track is an intelligent Component Analysis platform that
+          allows organizations to identify and reduce risk in the software supply
+          chain. Dependency-Track takes a unique and highly beneficial approach by
+          leveraging the capabilities of Software Bill of Materials (SBOM).
+        url: https://github.com/DependencyTrack/dependency-track
+        tags:
+        - sca
+        - inventory
+        - OpenSource
+        - Supply Chain
+        - vulnerability
       - uuid: ef80cd34-d3ba-4406-a4fa-4cf6f30c2e81
         name: LogParser Jenkins Plugins
         tags: []
@@ -6286,16 +5697,11 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/55f4c916-3a34-474d-ad96-9a9f7a4f6a83
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Treatment of all defects:
       uuid: b2f77606-3e6c-41e9-b72d-7c0b1d3d581d
       risk: Vulnerabilities with severity low are not visible.
@@ -6316,16 +5722,11 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 5.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/b2f77606-3e6c-41e9-b72d-7c0b1d3d581d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Treatment of defects with severity high or higher:
       uuid: 44f2c8a9-4aaa-4c72-942d-63f78b89f385
       risk: Vulnerabilities with severity high or higher are not visible.
@@ -6347,16 +5748,11 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 5.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/44f2c8a9-4aaa-4c72-942d-63f78b89f385
       implementation: []
       isImplemented: false
+      evidence: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Treatment of defects with severity middle:
       uuid: 9cac3341-fe83-4079-bef2-bfc4279eb594
       risk: Vulnerabilities with severity middle are not visible.
@@ -6377,16 +5773,11 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 5.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/9cac3341-fe83-4079-bef2-bfc4279eb594
       implementation: []
       isImplemented: false
+      evidence: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of a vulnerability management system:
       uuid: 85ba5623-84be-4219-8892-808837be582d
       risk: Maintenance of false positives in each tool enforces a high workload.
@@ -6431,16 +5822,11 @@ Test and Verification:
         - 5.25
         - 5.26
         - 5.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/85ba5623-84be-4219-8892-808837be582d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Dynamic depth for applications:
     Coverage analysis:
       uuid: d0ba0be5-c573-405f-b905-b7a8f87a9cc7
@@ -6473,17 +5859,11 @@ Test and Verification:
         - part of periodic review, PDCA
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/d0ba0be5-c573-405f-b905-b7a8f87a9cc7
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Coverage of client side dynamic components:
       uuid: 9711f871-f79d-4573-8d4f-d2c98fd0d18e
       risk: Parts of the service are not covered during the scan, because JavaScript
@@ -6507,22 +5887,16 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/9711f871-f79d-4573-8d4f-d2c98fd0d18e
       implementation:
       - uuid: 6583fd5f-4314-4b39-9265-de72f861c8cb
         name: Ajax Spider
         tags: []
         url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Coverage of hidden endpoints:
       uuid: 6a9cb303-0f98-48a8-bdcd-56d41c0012b8
       risk: Hidden endpoints of the service are not getting tracked.
@@ -6569,17 +5943,11 @@ Test and Verification:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/6a9cb303-0f98-48a8-bdcd-56d41c0012b8
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Coverage of more input vectors:
       uuid: 5e0ff85b-ec89-4ef0-96b1-5695fa0025dc
       risk: Parts of the service are not covered. For example specially formatted
@@ -6602,9 +5970,6 @@ Test and Verification:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/5e0ff85b-ec89-4ef0-96b1-5695fa0025dc
       implementation:
       - uuid: c9bbecf2-567b-4422-b29a-67b16385f32b
         name: Schemathesis
@@ -6616,13 +5981,10 @@ Test and Verification:
         description: |
           Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Coverage of sequential operations:
       uuid: 845f06ec-148c-4c67-9755-7041911dcca5
       risk: Sequential operations like workflows (e.g. login -> put products in the
@@ -6651,17 +6013,11 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/845f06ec-148c-4c67-9755-7041911dcca5
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Coverage of service to service communication:
       uuid: 22aab0ef-76ce-4b8c-979c-3699784330db
       risk: Service to service communication is not covered.
@@ -6683,9 +6039,6 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/22aab0ef-76ce-4b8c-979c-3699784330db
       implementation:
       - signing-of-commits-protection:
           uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
@@ -6772,8 +6125,17 @@ Test and Verification:
         dependabot:
           uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
           name: dependabot
-          tags: []
+          tags:
+          - auto-pr
+          - patching
           url: https://dependabot.com/
+        renovate:
+          uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
+          name: renovate
+          tags:
+          - auto-pr
+          - patching
+          url: https://github.com/renovatebot/renovate
         jenkins:
           uuid: 42ddb49f-48f2-4a3a-b76a-e73104ac6971
           name: Jenkins
@@ -6866,6 +6228,15 @@ Test and Verification:
           description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
             and [Practical Security Stories and Security Tasks for Agile Development
             Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+        libyear:
+          uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
+          name: libyear
+          tags:
+          - patching
+          - build
+          url: https://libyear.com/
+          description: A simple measure of software dependency freshness. It is a
+            single number telling you how up-to-date your dependencies are.
         owasp-juice-shop:
           uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
           name: OWASP Juice Shop
@@ -7826,8 +7197,17 @@ Test and Verification:
         dependabot:
           uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
           name: dependabot
-          tags: []
+          tags:
+          - auto-pr
+          - patching
           url: https://dependabot.com/
+        renovate:
+          uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
+          name: renovate
+          tags:
+          - auto-pr
+          - patching
+          url: https://github.com/renovatebot/renovate
         jenkins:
           uuid: 42ddb49f-48f2-4a3a-b76a-e73104ac6971
           name: Jenkins
@@ -7920,6 +7300,15 @@ Test and Verification:
           description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
             and [Practical Security Stories and Security Tasks for Agile Development
             Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+        libyear:
+          uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
+          name: libyear
+          tags:
+          - patching
+          - build
+          url: https://libyear.com/
+          description: A simple measure of software dependency freshness. It is a
+            single number telling you how up-to-date your dependencies are.
         owasp-juice-shop:
           uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
           name: OWASP Juice Shop
@@ -8796,13 +8185,10 @@ Test and Verification:
           description: |
             There are several myths and misconceptions about API security. These myths about securing APIs are crushing your business
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Simple Scan:
       uuid: 07796811-37f9-467c-9ff2-48f346e77ff3
       risk: Deficient security tests are performed. Simple vulnerabilities are not
@@ -8840,17 +8226,11 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/07796811-37f9-467c-9ff2-48f346e77ff3
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of different roles:
       uuid: 65a2d7d9-5441-46bf-a4e3-f76919857750
       risk: Parts of the service are not covered during the scan, because a login
@@ -8874,9 +8254,6 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/65a2d7d9-5441-46bf-a4e3-f76919857750
       implementation:
       - uuid: 7eb37566-02d5-4fff-8dcf-8fcd1c8197f3
         name: Zest
@@ -8887,13 +8264,10 @@ Test and Verification:
           Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
       isImplemented: false
       assessment: For REST APIs, multiple OAuth2 scopes are used.
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Usage of multiple scanners:
       uuid: 5b5a1eb2-113f-41fb-a3d6-06af4fdc9cea
       risk: Each vulnerability scanner has different opportunities. By using just
@@ -8926,17 +8300,11 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for applications/5b5a1eb2-113f-41fb-a3d6-06af4fdc9cea
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Dynamic depth for infrastructure:
     Load tests:
       uuid: ab5725aa-4d53-47b9-96df-c14b3fa93bcd
@@ -8962,17 +8330,11 @@ Test and Verification:
         - 8.6
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for infrastructure/ab5725aa-4d53-47b9-96df-c14b3fa93bcd
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test for exposed services:
       uuid: a6c4cefb-a0b7-4787-8cc7-a0f96b4b00d8
       risk: Standard network segmentation and firewalling has not been performed,
@@ -9009,17 +8371,11 @@ Test and Verification:
         - 8.22
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for infrastructure/a6c4cefb-a0b7-4787-8cc7-a0f96b4b00d8
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test for unauthorized installation:
       uuid: dccf1949-b9a8-4ce8-b992-6a4a7f3a623a
       risk: Unapproved components are used.
@@ -9047,18 +8403,12 @@ Test and Verification:
         iso27001-2022:
         - 8.19
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for infrastructure/dccf1949-b9a8-4ce8-b992-6a4a7f3a623a
       isImplemented: false
+      evidence: ""
       dependsOn:
       - Evaluation of the trust of used components
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test for unused Resources:
       uuid: 6532c1fe-9d23-4228-8722-558ddabca7d4
       risk: Unused resources, specially secrets, might be still valid, but are exposing
@@ -9093,17 +8443,11 @@ Test and Verification:
         - 8.22
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for infrastructure/6532c1fe-9d23-4228-8722-558ddabca7d4
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test network segmentation:
       uuid: 6d2c3ac6-8afc-4af6-a5e9-6188341aca01
       risk: Wrong or no network segmentation of pods makes it easier for an attacker
@@ -9134,17 +8478,11 @@ Test and Verification:
         - 8.22
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for infrastructure/6d2c3ac6-8afc-4af6-a5e9-6188341aca01
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test of the configuration of cloud environments:
       uuid: 7bb70764-9392-4462-935d-e55b2e148199
       risk: Standard hardening practices for cloud environments are not performed
@@ -9187,17 +8525,11 @@ Test and Verification:
         - 8.8
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for infrastructure/7bb70764-9392-4462-935d-e55b2e148199
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Weak password test:
       uuid: 61e10f9c-e126-4ffa-af12-fdbe0d0a831f
       risk: Weak passwords in components like applications or systems, specially for
@@ -9223,17 +8555,11 @@ Test and Verification:
         - 9.4.3
         iso27001-2022:
         - 5.17
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Dynamic
-          depth for infrastructure/61e10f9c-e126-4ffa-af12-fdbe0d0a831f
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Static depth for applications:
     API design validation:
       uuid: 017d9e26-42b5-49a4-b945-9f59b308fb99
@@ -9279,17 +8605,11 @@ Test and Verification:
         - 8.25
         - 8.27
         - 8.28
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/017d9e26-42b5-49a4-b945-9f59b308fb99
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Dead code elimination:
       uuid: d17dbff0-1f10-492a-b4c7-17bb59a0a711
       risk: Dead code increases the attack surface (use of hard coded credentials
@@ -9318,17 +8638,9 @@ Test and Verification:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/d17dbff0-1f10-492a-b4c7-17bb59a0a711
-      isImplemented: false
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Exclusion of source code duplicates:
       uuid: d17dbff0-1f10-492a-b4c7-17bb59a0a711
       risk: Duplicates in source code might influence the stability of the application.
@@ -9356,17 +8668,9 @@ Test and Verification:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/d17dbff0-1f10-492a-b4c7-17bb59a0a711
-      isImplemented: false
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Local development security checks performed:
       uuid: 6e180abc-7c98-4265-b4e9-852cb91b067b
       risk: Creating and developing code contains code smells and quality issues.
@@ -9483,8 +8787,17 @@ Test and Verification:
         dependabot:
           uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
           name: dependabot
-          tags: []
+          tags:
+          - auto-pr
+          - patching
           url: https://dependabot.com/
+        renovate:
+          uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
+          name: renovate
+          tags:
+          - auto-pr
+          - patching
+          url: https://github.com/renovatebot/renovate
         jenkins:
           uuid: 42ddb49f-48f2-4a3a-b76a-e73104ac6971
           name: Jenkins
@@ -9577,6 +8890,15 @@ Test and Verification:
           description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
             and [Practical Security Stories and Security Tasks for Agile Development
             Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+        libyear:
+          uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
+          name: libyear
+          tags:
+          - patching
+          - build
+          url: https://libyear.com/
+          description: A simple measure of software dependency freshness. It is a
+            single number telling you how up-to-date your dependencies are.
         owasp-juice-shop:
           uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
           name: OWASP Juice Shop
@@ -10471,17 +9793,11 @@ Test and Verification:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/6e180abc-7c98-4265-b4e9-852cb91b067b
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Software Composition Analysis (client side):
       uuid: 07fe8c4f-ae33-4409-b1b2-cf64cfccea86
       risk: Client side components might have vulnerabilities.
@@ -10532,17 +9848,11 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/07fe8c4f-ae33-4409-b1b2-cf64cfccea86
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Software Composition Analysis (server side):
       uuid: d918cd44-a972-43e9-a974-eff3f4a5dcfe
       risk: Server side components might have vulnerabilities.
@@ -10600,17 +9910,11 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/d918cd44-a972-43e9-a974-eff3f4a5dcfe
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Static analysis for all components/libraries:
       uuid: f4ff841d-3b2a-45d9-853e-5ec7ecbcb054
       risk: Used components like libraries and legacy applications might have vulnerabilities
@@ -10632,17 +9936,11 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/f4ff841d-3b2a-45d9-853e-5ec7ecbcb054
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Static analysis for all self written components:
       uuid: ee68331f-9b1d-4f61-844b-b2ea04753a84
       risk: Parts in the source code of the frontend or middleware have vulnerabilities.
@@ -10695,17 +9993,11 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/ee68331f-9b1d-4f61-844b-b2ea04753a84
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Static analysis for important client side components:
       uuid: e237176b-bec5-447d-a926-e37d6dd60e4b
       risk: Important parts in the source code of the frontend have vulnerabilities.
@@ -10762,17 +10054,11 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/e237176b-bec5-447d-a926-e37d6dd60e4b
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Static analysis for important server side components:
       uuid: 6c05c837-8c99-46e2-828b-7c903e27dba4
       risk: Important parts in the source code of the middleware have vulnerabilities.
@@ -10781,7 +10067,7 @@ Test and Verification:
         dataflow analysis.
       difficultyOfImplementation:
         knowledge: 2
-        time: 2
+        time: 3
         resources: 1
       usefulness: 4
       level: 2
@@ -10824,17 +10110,11 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/6c05c837-8c99-46e2-828b-7c903e27dba4
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Stylistic analysis:
       uuid: efa52cc8-6c5c-4ba2-a3d2-7164b0402f34
       risk: Unclear or obfuscated code might have unexpected behavior.
@@ -10881,17 +10161,134 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/efa52cc8-6c5c-4ba2-a3d2-7164b0402f34
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
+    Test for Patch Deployment Time:
+      uuid: d17dbff0-1f10-492a-b4c7-17bb59a0a711
+      risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities
+        in production artifacts.
+      measure: |
+        Test of the Patch Deployment Time.
+        This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation:
+      - uuid: 00702aca-04d9-49ca-90d0-c32c199b26cb
+        name: PMD
+        tags: []
+      dependsOn:
+      - Defined build process
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 14.2.1
+        - 14.2.5
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 8.25
+        - 8.27
+      comments: ""
+      meta:
+        implementationGuide: Self implementation. This activity is not repeated in
+          the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure
+          as well.
+      tags:
+      - patching
+    Test for Time to Patch:
+      uuid: d17dbff0-1f10-492a-b4c7-17bb59a0a711
+      risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities
+        in production artifacts.
+      measure: |-
+        Test of the Time to Patch (e.g. based on Mean Time to Close automatic PRs)
+        This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+      - uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
+        name: dependabot
+        tags:
+        - auto-pr
+        - patching
+        url: https://dependabot.com/
+      - uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
+        name: renovate
+        tags:
+        - auto-pr
+        - patching
+        url: https://github.com/renovatebot/renovate
+      dependsOn:
+      - Defined build process
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 14.2.1
+        - 14.2.5
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 8.25
+        - 8.27
+      comments: ""
+      meta:
+        implementationGuide: Usage of a version control platform API (e.g. github
+          API) can be used to fetch the information. Consider that `Measure libyears`
+          might be an alternative to this activity.
+      tags:
+      - patching
+    Test libyear:
+      uuid: d17dbff0-1f10-492a-b4c7-17bb59a0a711
+      risk: Vulnerabilities in running artifacts stay for long and might get exploited.
+      measure: Test `libyear`, which provides a good insight how good patch management
+        is.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 2
+      implementation:
+      - uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
+        name: libyear
+        tags:
+        - patching
+        - build
+        url: https://libyear.com/
+        description: A simple measure of software dependency freshness. It is a single
+          number telling you how up-to-date your dependencies are.
+      dependsOn:
+      - Defined build process
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 14.2.1
+        - 14.2.5
+        iso27001-2022:
+        - Not explicitly covered by ISO 27001 - too specific
+        - 8.25
+        - 8.27
+      comments: ""
+      meta:
+        implementationGuide: |
+          `libyear` can be integrated into the build process and flag or even better break the build in case the defined threshold (e.g. 30 years) is reached.
+          An alternative approach is to determine `libyear` based on deployed artifacts (which requires more effort in implementation).
+      tags:
+      - patching
     Usage of multiple analyzers:
       uuid: 297be001-8d94-41ee-ab29-207020d423c0
       risk: Each vulnerability analyzer has different opportunities. By using just
@@ -10919,17 +10316,11 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for applications/297be001-8d94-41ee-ab29-207020d423c0
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Static depth for infrastructure:
     Analyze logs:
       uuid: b217c8bb-5d61-4b41-a675-1083993f83b1
@@ -10952,17 +10343,11 @@ Test and Verification:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/b217c8bb-5d61-4b41-a675-1083993f83b1
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Correlate known vulnerabilities in infrastructure with new image versions:
       uuid: 7de0ae33-6538-45cd-8222-a1475647ba58
       risk: TODO.
@@ -11001,17 +10386,11 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/7de0ae33-6538-45cd-8222-a1475647ba58
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test cluster deployment resources:
       uuid: 621fb6a5-5c0a-4408-826a-068868bb031b
       risk: The deployment configuration (e.g. kubernetes deployment resources) might
@@ -11042,17 +10421,11 @@ Test and Verification:
         - 8.8
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/621fb6a5-5c0a-4408-826a-068868bb031b
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test for image lifetime:
       uuid: ddfe7c3c-b7a4-4cba-9041-b044d4a34e5b
       risk: Old container images in production indicate that patch management is not
@@ -11087,17 +10460,11 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/ddfe7c3c-b7a4-4cba-9041-b044d4a34e5b
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test for known vulnerabilities:
       uuid: 26e1c6d5-5632-4ec7-80d2-e564b98732ad
       risk: Known vulnerabilities in infrastructure components like container images
@@ -11141,17 +10508,11 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/26e1c6d5-5632-4ec7-80d2-e564b98732ad
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test for malware:
       uuid: 837f8f90-adc2-4e6b-9ebb-60c2ee29494d
       risk: Third party might include  malware. Ether due to the maintainer (e.g.
@@ -11186,17 +10547,11 @@ Test and Verification:
         - 12.2.1
         iso27001-2022:
         - 8.7
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/837f8f90-adc2-4e6b-9ebb-60c2ee29494d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test for new image version:
       uuid: cb6321aa-0fbf-4996-9e08-05ab26ef4c1e
       risk: When a new version of an image is available, it might fix security vulnerabilities.
@@ -11219,17 +10574,11 @@ Test and Verification:
         - 8.8
         - 8.7
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/cb6321aa-0fbf-4996-9e08-05ab26ef4c1e
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test for stored secrets:
       uuid: c6e3c812-56e2-41b0-ae01-b7afc41a004c
       risk: Stored secrets in git history, in container images or directly in code
@@ -11261,17 +10610,11 @@ Test and Verification:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 5.17
         - 8.24
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/c6e3c812-56e2-41b0-ae01-b7afc41a004c
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test of infrastructure components for known vulnerabilities:
       uuid: 13367d8f-e37f-4197-a610-9ffca4fde261
       risk: Infrastructure components might have vulnerabilities.
@@ -11314,17 +10657,11 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/13367d8f-e37f-4197-a610-9ffca4fde261
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test of virtualized environments:
       uuid: 58825d22-1ce6-4748-af81-0ec9956e4129
       risk: Virtualized environments (e.g. via <i>Container Images</i>) might contains
@@ -11361,17 +10698,11 @@ Test and Verification:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/58825d22-1ce6-4748-af81-0ec9956e4129
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test the cloud configuration:
       uuid: 46d6a2a8-f9dc-4c15-9fc8-1723cfecbddc
       risk: Standard hardening practices for cloud environments are not performed
@@ -11402,17 +10733,11 @@ Test and Verification:
         - 8.8
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/46d6a2a8-f9dc-4c15-9fc8-1723cfecbddc
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Test the definition of virtualized environments:
       uuid: 8fc3de67-7b8d-420b-8d24-f35928cfed6e
       risk: The definition of virtualized environments (e.g. via <i>Dockerfile</i>)
@@ -11462,17 +10787,11 @@ Test and Verification:
         - 8.32
         - 8.29
         - 8.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
-          depth for infrastructure/8fc3de67-7b8d-420b-8d24-f35928cfed6e
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
   Test-Intensity:
     Creation and application of a testing concept:
       uuid: 79ef8103-e1ed-4055-8df8-fd2b2015bebe
@@ -11502,16 +10821,11 @@ Test and Verification:
         - 8.32
         - 8.27
         - 8.8
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Test-Intensity/79ef8103-e1ed-4055-8df8-fd2b2015bebe
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Deactivating of unneeded tests:
       uuid: 1bd78cdd-ef11-4bb5-9b58-5af2e25fe1c5
       risk: As tools cover a wide range of different vulnerability tests, they might
@@ -11538,16 +10852,11 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Test-Intensity/1bd78cdd-ef11-4bb5-9b58-5af2e25fe1c5
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Default settings for intensity:
       uuid: ab0a4b51-3b18-43f1-a6fc-a98e4b28453d
       risk: Time pressure and ignorance might lead to false predictions for the test
@@ -11571,16 +10880,11 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Test-Intensity/ab0a4b51-3b18-43f1-a6fc-a98e4b28453d
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     High test intensity:
       uuid: 2ebfc421-8c76-415c-a3b0-fa518915bd10
       risk: A too small intensity or a too high confidence might lead to not visible
@@ -11605,16 +10909,11 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Test-Intensity/2ebfc421-8c76-415c-a3b0-fa518915bd10
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
     Regular tests:
       uuid: 598897a2-358e-441f-984c-e12ec4f6110a
       risk: After pushing source code to the version control system, any delay in
@@ -11638,14 +10937,9 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Test-Intensity/598897a2-358e-441f-984c-e12ec4f6110a
       isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
 ...
