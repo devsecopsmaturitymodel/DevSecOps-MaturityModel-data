@@ -1,3 +1,14 @@
+# [1.11.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.10.1...v1.11.0) (2024-07-19)
+
+
+### Features
+
+* add auto merge of PRs ([8f9ea61](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/8f9ea61b80c2dab6aea733e35da0ad665618ff44))
+* Add dep track to visualization ([162da73](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/162da7338f4e1ad690637122516fd1873147a9e0))
+* add patching ([7233396](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/7233396cfc8e8a72cc75f53bbe9067101178fdd2))
+* move SCA to level 2 ([11dafa2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/11dafa271acff38c9c8ae2cca7c3a72022e9df7a))
+* move SCA to level 2 ([51b8cd1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/51b8cd13daec712acee77ec3710557da95453dda))
+
 ## [1.10.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.10.0...v1.10.1) (2023-11-15)
 
 
