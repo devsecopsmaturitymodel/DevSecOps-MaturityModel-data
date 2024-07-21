@@ -203,7 +203,32 @@ Build and Deployment:
       isImplemented: false
       evidence: ""
       comments: ""
-    Inventory of running artifacts:
+    Inventory of production applications:
+      uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f
+      risk:
+        An organization is unaware of applications in production.
+      measure: A documented inventory or applications exists (gathered manually or automatically)
+      dependsOn:
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 3
+      usefulness: 3
+      level: 3
+      implementation: []
+      references:
+        samm2:
+          - I-SD-2-A
+        iso27001-2017:
+          - 8.1
+          - 8.2
+        iso27001-2022:
+          - 5.9
+          - 5.12
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Inventory of production artifacts:
       uuid: 83057028-0b77-4d2e-8135-40969768ae88
       risk:
         In case a vulnerability of severity high or critical exists, it needs
