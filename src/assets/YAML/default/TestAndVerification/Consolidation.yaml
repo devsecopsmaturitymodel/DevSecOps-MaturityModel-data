@@ -2,6 +2,69 @@
 ---
 Test and Verification:
   Consolidation:
+    Fix based on accessibility:
+      uuid: 0c10a7f7-f78f-49f2-943d-19fdef248fed
+      risk:
+        Overwhelming volume of security findings from automated testing tools. This might lead to ignorance of findings.
+      measure: |-
+        Implement a simple risk-based prioritization framework for vulnerability remediation based on accessibility of the applications.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 3
+      meta:
+        implementationGuide: |-
+          Develop a scoring system for asset accessibility, considering factors like:
+          - Whether the asset is internet-facing (highly recommended)
+          - The number of network hops required to reach the asset (recommended)
+          - Authentication requirements for access (recommended)
+      dependsOn:
+        - uuid:38d1bd10-7b5f-4ae1-868c-0ec813285425 # Fix based on severity
+        #- uuid:3260a15f-2df0-4173-8790-f11de2cb525a # Access applications accessibility TODO
+        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f #iventory of apps
+      implementation:
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2017:
+          - 16.1.4
+          - 8.2.1
+          - 8.2.2
+          - 8.2.3
+        iso27001-2022:
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
+      tags: ["vuln-action", "defect-management"]
+    Fix based on severity:
+      uuid: 38d1bd10-7b5f-4ae1-868c-0ec813285425
+      risk: |-
+        Overwhelming volume of security findings from automated testing tools. This might lead to ignorance of findings.
+      measure: Implement a very simple risk-based prioritization framework for vulnerability remediation based on the severity of the findings.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 1
+      implementation:
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2017:
+          - 16.1.4
+          - 8.2.1
+          - 8.2.2
+          - 8.2.3
+        iso27001-2022:
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
+      tags: ["vuln-action", "defect-management"]
     Advanced visualization of defects:
       uuid: 7a82020c-94d1-471c-bbd3-5f7fe7df4876
       risk:
