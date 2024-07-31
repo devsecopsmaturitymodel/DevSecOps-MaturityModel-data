@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.11.0...v1.11.1) (2024-07-31)
+
+
+### Bug Fixes
+
+* formatting ([4b37b45](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/4b37b45c9a5f40c2f739f0e8509b7d07fe736224))
+
 # [1.11.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.10.1...v1.11.0) (2024-07-19)
 
 

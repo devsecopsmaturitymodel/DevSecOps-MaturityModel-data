@@ -1871,16 +1871,14 @@ Build and Deployment:
       uuid: 8ae0b92c-10e0-4602-ba22-7524d6aed488
       risk: Components with known (or unknown) vulnerabilities might stay for long
         and get exploited, even when a patch is available.
-      measure: Fast patching of third party component is needed. The DevOps way is
-        to have an automated pull request for new components. This includes * Applications
-        * Virtualized operating system components (e.g. container images) * Operating
-        Systems * Infrastructure as Code/GitOps (e.g. argocd based on a git repository
-        or terraform)
+      measure: |-
+        Fast patching of third party component is needed. The DevOps way is to have an automated pull request for new components. This includes
+        * Applications * Virtualized operating system components (e.g. container images) * Operating Systems * Infrastructure as Code/GitOps (e.g. argocd based on a git repository or terraform)
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
-      usefulness: 5
+      usefulness: 4
       level: 1
       implementation:
       - uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
@@ -1913,8 +1911,8 @@ Build and Deployment:
         - 12.6.1
         - 14.2.5
         iso27001-2022:
-        - 8.8
-        - 8.27
+        - "8.8"
+        - "8.27"
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Patch
           Management/8ae0b92c-10e0-4602-ba22-7524d6aed488
