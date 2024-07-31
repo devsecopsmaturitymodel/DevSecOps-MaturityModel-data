@@ -39,6 +39,7 @@ Build and Deployment:
       measure:
         Fast patching of third party component is needed. The DevOps way is
         to have an automated pull request for new components. This includes
+
         * Applications
         * Virtualized operating system components (e.g. container images)
         * Operating Systems
@@ -47,7 +48,7 @@ Build and Deployment:
         knowledge: 2
         time: 2
         resources: 2
-      usefulness: 5
+      usefulness: 4
       level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
@@ -62,8 +63,8 @@ Build and Deployment:
           - 12.6.1
           - 14.2.5
         iso27001-2022:
-          - 8.8
-          - 8.27
+          - "8.8"
+          - "8.27"
       comments: ""
       tags:
         - patching
