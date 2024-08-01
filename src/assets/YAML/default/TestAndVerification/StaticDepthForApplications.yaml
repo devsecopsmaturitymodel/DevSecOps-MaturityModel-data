@@ -152,7 +152,7 @@ Test and Verification:
           - 8.28 # Secure coding
       isImplemented: false
       dependsOn:
-        - Inventory of production applications
+        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       comments: ""
     Static analysis for all components/libraries:
       uuid: f4ff841d-3b2a-45d9-853e-5ec7ecbcb054
@@ -167,7 +167,7 @@ Test and Verification:
       dependsOn:
         - Static analysis for important client side components
         - Static analysis for important server side components
-        - Inventory of production applications
+        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation: []
       references:
         samm2:
@@ -202,7 +202,7 @@ Test and Verification:
       dependsOn:
         - Static analysis for important client side components
         - Static analysis for important server side components
-        - Inventory of production applications
+        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
           - V-ST-2-A
@@ -236,7 +236,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       dependsOn:
         - Defined build process
-        - Inventory of production applications
+        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
           - V-ST-2-A
@@ -269,7 +269,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       dependsOn:
         - Defined build process
-        - Inventory of production applications
+        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
           - V-ST-2-A
@@ -323,7 +323,7 @@ Test and Verification:
       level: 3
       dependsOn:
         - Defined build process
-        - Inventory of production applications
+        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
@@ -353,7 +353,7 @@ Test and Verification:
       level: 2
       dependsOn:
         - Defined build process
-        - Inventory of production applications
+        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-dependency-che
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
