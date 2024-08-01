@@ -49,7 +49,8 @@ Build and Deployment:
         Unused applications are not maintained and may contain vulnerabilities.
         Once exploited they can be used to attack other applications or
         to perform lateral movements within the organization.
-      measure: A clear decommissioning process ensures the removal of unused applications.
+      measure: |-
+        A clear decommissioning process ensures the removal of unused applications from the `Inventory of production components` and if implemented from `Inventory of production artifacts`.
       difficultyOfImplementation:
         knowledge: 1
         time: 2
@@ -129,8 +130,8 @@ Build and Deployment:
         d3f:
           - ApplicationConfigurationHardening
       isImplemented: false
-      evidence: ""
-      comments: ""
+      tags:
+        - secret
     Handover of confidential parameters:
       uuid: 94a96f79-8bd6-4904-97c0-994ff88f176a
       risk:
@@ -169,19 +170,19 @@ Build and Deployment:
         d3f:
           - ApplicationConfigurationHardening
       isImplemented: false
-      evidence: ""
-      comments: ""
-    Inventory of dependencies:
+      tags:
+        - secret
+    Inventory of production dependencies:
       uuid: 13e9757e-58e2-4277-bc0f-eadc674891e6
       risk:
-        In case a vulnerability of severity high or critical is known by the organization,
-        it needs to be known where an artifacts with that vulnerability is deployed
+        Delayed identification of components and their vulnerabilities in production.
+        In case a vulnerability is known by the organization, it needs to be known where an artifacts with that vulnerability is deployed
         with which dependencies.
       measure:
-        A documented inventory of dependencies used in images and containers
+        A documented inventory of dependencies used in artifacts like container images and containers
         exists.
       dependsOn:
-        - Defined deployment process
+        - uuid:83057028-0b77-4d2e-8135-40969768ae88 # Inventory of production artifacts
         - SBOM of components
       difficultyOfImplementation:
         knowledge: 2
@@ -190,7 +191,9 @@ Build and Deployment:
       usefulness: 3
       level: 3
       implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/backstage
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/image-metadata-collector
       references:
         samm2:
           - I-SD-2-A
@@ -200,22 +203,29 @@ Build and Deployment:
         iso27001-2022:
           - 5.9
           - 5.12
-      isImplemented: false
-      evidence: ""
       comments: ""
-    Inventory of production applications:
+      tags:
+        - inventory
+        - sbom
+    Inventory of production components:
       uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f
-      risk:
-        An organization is unaware of applications in production.
-      measure: A documented inventory or applications exists (gathered manually or automatically)
+      risk: |-
+        An organization is unaware of components like applications in production. Not knowing existing applications in production leads to not assessing it.
+      measure: |-
+        A documented inventory of components in production exists (gathered manually or automatically). For example a manually created document with applications in production.
+        In a kubernetes cluster, namespaces can be automatically gathered and documented, e.g. in a JSON in a S3 bucket/git repository, dependency track.
       dependsOn:
+        - Defined deployment process
       difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 3
-      usefulness: 3
-      level: 3
-      implementation: []
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 1
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/backstage
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/image-metadata-collector
       references:
         samm2:
           - I-SD-2-A
@@ -225,25 +235,28 @@ Build and Deployment:
         iso27001-2022:
           - 5.9
           - 5.12
-      isImplemented: false
-      evidence: ""
-      comments: ""
+      tags:
+        - inventory
     Inventory of production artifacts:
       uuid: 83057028-0b77-4d2e-8135-40969768ae88
       risk:
         In case a vulnerability of severity high or critical exists, it needs
         to be known where an artifacts (e.g. container image) with that vulnerability
         is deployed.
-      measure: A documented inventory or a possibility to gather the needed information.
+      measure: A documented inventory of artifacts in production like container images exists (gathered manually or automatically).
       dependsOn:
         - Defined deployment process
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 3
       usefulness: 3
-      level: 3
-      implementation: []
+      level: 2
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/backstage
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/image-metadata-collector
       references:
         samm2:
           - I-SD-2-A
@@ -253,9 +266,8 @@ Build and Deployment:
         iso27001-2022:
           - 5.9
           - 5.12
-      isImplemented: false
-      evidence: ""
-      comments: ""
+      tags:
+        - inventory
     Rolling update on deployment:
       uuid: 85d52588-f542-4225-a338-20dc22a5508d
       risk: While a deployment is performed, the application can not be reached.
