@@ -947,3 +947,10 @@ implementations:
     url: https://github.com/SDA-SE/image-metadata-collector/
     description: |
       Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
+  jira:
+    uuid: 889444eb-de68-4367-bada-a66f8cb9733a
+    name: Jira
+    tags: [documentation, issue, proprietary]
+    url: https://jira.atlassian.com/
+    description: |-
+      Jira is a bug tracking and project management tool developed by Atlassian, used by development teams for tracking issues, planning sprints, and managing software releases. It offers features for creating and managing tasks, assigning them to team members, and monitoring progress through customizable workflows and dashboards.
