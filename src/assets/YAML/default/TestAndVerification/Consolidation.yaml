@@ -379,3 +379,42 @@ Test and Verification:
       tags:
         - vulnerability-mgmt
         - vmm-measurements
+    Treatment of defects per protection requirement:
+      uuid: 123e4567-e89b-12d3-a456-426614174000
+      risk: |-
+        Not defining the protection requirement of applications can lead to wrong prioritization, delayed remediation of 
+        critical security issues, increasing the risk of exploitation and potential damage to the organization.
+      measure: |-
+        Defining the protection requirement and the corresponding handling of vulnerabilities per severity for components like applications are aligned to SLAs. 
+         This is performed for the hole organization and doesn't need to be broken down (yet) on team/product/application. 
+         At least quarterly.
+      description: |-
+        The protection requirements for an application should consider:
+        - Data criticality
+        - Application accessibility (internal vs. external)
+        - Regulatory compliance
+        - Other relevant factors
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 3
+      dependsOn: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2022:
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
+      tags:
+        - vulnerability-mgmt
+        - metrics
+        - vmm-measurements
