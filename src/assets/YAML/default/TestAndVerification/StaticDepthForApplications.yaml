@@ -341,6 +341,7 @@ Test and Verification:
       comments: ""
     Software Composition Analysis (server side):
       uuid: d918cd44-a972-43e9-a974-eff3f4a5dcfe
+      description: Use a tool like trivy and concentrate on application related vulnerabilities. At this stage, ignore vulnerabilities in container base images used in the service.
       risk: Server side components might have vulnerabilities.
       measure:
         Tests for known vulnerabilities in server side components (e.g. backend/middleware)
@@ -360,6 +361,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-dependabot
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
       references:
         samm2:
           - V-ST-2-A
@@ -367,9 +369,8 @@ Test and Verification:
           - 12.6.1
         iso27001-2022:
           - 8.8
-      isImplemented: false
-      evidence: ""
-      comments: ""
+      tags:
+        - vmm-testing
     Usage of multiple analyzers:
       uuid: 297be001-8d94-41ee-ab29-207020d423c0
       risk:
