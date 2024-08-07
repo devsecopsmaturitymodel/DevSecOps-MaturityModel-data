@@ -146,6 +146,30 @@ function getReferenceLabel($reference_id) {
 }
 
 
+function getActivityNameByUuid($uuid, $dimensionsAggregated) {
+    foreach ($dimensionsAggregated as $dimension => $subdimensions) {
+        ksort($subdimensions);
+        foreach ($subdimensions as $subdimension => $elements) {
+            if (sizeof($elements) == 0) {
+                echo "unsetting $subdimension\n";
+                unset($dimensionsAggregated[$dimension][$subdimension]);
+                continue;
+            }
+            if (substr($subdimension, 0, 1) == "_") {
+                continue;
+            }
+
+            foreach ($elements as $activityName => $activity) {
+                if($activity["uuid"] == $uuid) {
+                    return $activityName;
+                }
+            }
+        }
+    }
+    return "TODO:Mapping";
+}
+
+
 /**
  *
  * @param unknown $headings
