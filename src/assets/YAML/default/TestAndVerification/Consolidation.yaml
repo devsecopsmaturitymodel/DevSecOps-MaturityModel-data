@@ -23,7 +23,7 @@ Test and Verification:
       dependsOn:
         - uuid:38d1bd10-7b5f-4ae1-868c-0ec813285425 # Fix based on severity
         #- uuid:3260a15f-2df0-4173-8790-f11de2cb525a # Access applications accessibility TODO
-        - uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f #iventory of apps
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f #iventory of apps
       implementation:
       references:
         samm2:

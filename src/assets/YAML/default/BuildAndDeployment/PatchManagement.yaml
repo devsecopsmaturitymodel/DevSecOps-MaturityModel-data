@@ -262,4 +262,3 @@ Build and Deployment:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/terraform
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/argocd
-      references:

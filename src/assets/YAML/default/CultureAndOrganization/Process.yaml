@@ -86,12 +86,9 @@ Culture and Organization:
         Not defining the protection requirement of applications can lead to wrong prioritization, delayed remediation of 
         critical security issues, increasing the risk of exploitation and potential damage to the organization.
       measure: |-
-        Defining the SLA to respond to findings depending on protection requirement and the corresponding handling of vulnerabilities per severity for components like applications are aligned to SLAs. 
-         This is performed for the hole organization and doesn't need to be broken down (yet) on team/product/application. 
-         At least quarterly.
-      description: |-
+        Defining the protection requirement. 
         The protection requirements for an application should consider:
-        - Data criticality
+        - Processed data criticality
         - Application accessibility (internal vs. external)
         - Regulatory compliance
         - Other relevant factors
@@ -101,7 +98,8 @@ Culture and Organization:
         resources: 1
       usefulness: 3
       level: 2
-      dependsOn: []
+      dependsOn:
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
