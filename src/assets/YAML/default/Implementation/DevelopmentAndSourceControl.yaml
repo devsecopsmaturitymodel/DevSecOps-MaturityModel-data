@@ -203,7 +203,7 @@ Implementation:
         knowledge: 2
         time: 1
         resources: 2
-      usefulness: 4
+      usefulness: 3
       level: 3
       dependsOn:
         - uuid:e7598ac4-b082-4e56-b7df-e2c6b426a5e2
