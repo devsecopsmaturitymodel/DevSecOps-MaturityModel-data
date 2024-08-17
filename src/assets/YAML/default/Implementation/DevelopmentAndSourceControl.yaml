@@ -27,32 +27,6 @@ Implementation:
       isImplemented: false
       evidence: ""
       comments: ""
-    API design validation:
-      uuid: 948a4d51-ceb5-4ebd-bdc7-d74ea25e171c
-      risk: Creation of insecure or non-compliant API.
-      measure: |
-        Design contract-first APIs using an interface description language such as OpenAPI, AsyncAPI or SOAP
-        and validate the specification using specific tools.
-        Checks should be integrated in IDEs and CI/CD pipelines.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 2
-      usefulness: 4
-      level: 3
-      implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stoplight-spectral
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker
-      references:
-        samm2:
-          - V-ST-1-A
-        iso27001-2017:
-          - 14.2.1
-          - 14.2.5
-        iso27001-2022:
-          - 8.25 # Secure development lifecycle
-          - 8.27 # Secure system architecture and engineering principles
-          - 8.28 # Secure coding
     Require a PR before merging:
       uuid: e7598ac4-b082-4e56-b7df-e2c6b426a5e2
       risk: Intentional or accidental alterations in critical branches like main (or master).
