@@ -714,7 +714,7 @@ Implementation:
           - 8.22
       comments: 
     WAF medium:
-      uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b
+      uuid: f0e01814-3b88-4bd0-a3a9-f91db001d20b-medium
       risk:
         The threat from malicious inputs remains high, with exploits seeking to exploit any vulnerabilities present at the various points of entry to the application.
       measure:
