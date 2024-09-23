@@ -49,7 +49,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Test for known vulnerabilities:
+    Software Composition Analysis:
       uuid: 26e1c6d5-5632-4ec7-80d2-e564b98732ad
       risk:
         Known vulnerabilities in infrastructure components like container images
@@ -340,12 +340,10 @@ Test and Verification:
           - 14.2.8
           - 14.2.1
         iso27001-2022:
-          - System hardening, virtual environments are not explicitly covered by ISO
-            27001 - too specific
+          - System hardening, virtual environments are not explicitly covered by ISO 27001 - too specific
           - 8.8
           - 8.32
           - 8.29
           - 8.25
       isImplemented: false
-      evidence: ""
-      comments: ""
+

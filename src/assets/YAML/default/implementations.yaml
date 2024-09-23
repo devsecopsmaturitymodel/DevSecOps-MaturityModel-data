@@ -1,5 +1,10 @@
 # yaml-language-server: $schema=../schemas/dsomm-implementations-schema.json
 implementations:
+  argocd:
+    uuid: fdb0e7cc-d3dd-4a2b-9f45-7d403001294f
+    name: argoCD
+    tags: [deployment]
+    url: https://argo-cd.readthedocs.io/en/stable/
   signing-of-commits-protection:
     uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
     name: Enforcement of commit signing
@@ -788,7 +793,7 @@ implementations:
     uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
     name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
     url: https://github.com/DependencyTrack/dependency-track
-    tags: [sca, inventory, OpenSource, "Supply Chain", vulnerability]
+    tags: [sca, inventory, OpenSource, "Supply Chain", vulnerability, inventory]
   juice-shop:
     uuid: c021aa72-c71c-43e4-9573-717b74d6c19d
     name: OWASP Juice Shop
@@ -928,3 +933,24 @@ implementations:
     url: https://thehackernews.com/2022/11/top-5-api-security-myths-that-are.html
     description: |
       There are several myths and misconceptions about API security. These myths about securing APIs are crushing your business
+  backstage:
+    uuid: 2210e02b-a856-4da4-8732-5acd77e20fca
+    name: Backstage
+    tags: [documentation, inventory]
+    url: https://github.com/backstage/backstage
+    description: |
+      Backstage is an open-source platform designed to create developer portals. At its core is a centralized software catalog that brings organization to your microservices and infrastructure.
+  image-metadata-collector:
+    uuid: 879bd03f-8de1-43d6-b492-d974181bfa6c
+    name: Image Metadata Collector
+    tags: [documentation, inventory, kubernetes]
+    url: https://github.com/SDA-SE/image-metadata-collector/
+    description: |
+      Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
+  jira:
+    uuid: 889444eb-de68-4367-bada-a66f8cb9733a
+    name: Jira
+    tags: [documentation, issue, proprietary]
+    url: https://jira.atlassian.com/
+    description: |-
+      Jira is a bug tracking and project management tool developed by Atlassian, used by development teams for tracking issues, planning sprints, and managing software releases. It offers features for creating and managing tasks, assigning them to team members, and monitoring progress through customizable workflows and dashboards.

@@ -41,9 +41,52 @@ function readYaml($file) {
         }
 
     }
+
+    if (isset($ret['_yaml_references'])) {
+        foreach ($ret['_yaml_references'] as $include) {
+            if (preg_match('/^include\((\w+),\s*(.+)\)$/', $include, $matches)) {
+                $team = $matches[1];
+                $baseDir = dirname($file);
+
+                $includeFile = $baseDir . DIRECTORY_SEPARATOR . $matches[2];
+                echo "In file $file, including $includeFile for team $team\n";
+                $includedContent = includeYamlAndSetTeamImplemented($includeFile, $team);
+                $ret = array_merge_recursive_ex($ret, $includedContent);
+            }
+        }
+        unset($ret['_yaml_references']);
+    }
+
     return $ret;
 }
 
+function includeYamlAndSetTeamImplemented($filename, $team) {
+    echo "File to include $filename";
+    $content = yaml_parse_file($filename);
+    if ($content === false) {
+        echo "Error parsing YAML file: $filename\n";
+        return array();
+    }
+    // Add teamsImplemented for each activity
+    foreach ($content as $dimension => $subdimensions) {
+        foreach ($subdimensions as $subdimension => $elements) {
+            foreach ($elements as $activityName => $activity) {
+                if (is_array($elements) && (isset($activity['teamsEvidence']) || isset($activity['teamsImplemented']))) {
+                    if (!isset($activity['teamsImplemented'])) {
+                        echo "# setting teamsImplemented first time for team $team";
+                        $content[$dimension][$subdimension][$activityName]['teamsImplemented'] = array();
+                    }
+                    if(array_key_exists('teamsEvidence', $activity)) {
+                        echo "# adding team to teamsImplemented for team $team";
+                        $content[$dimension][$subdimension][$activityName]['teamsImplemented'][$team] = true ;
+                    }
+                }
+            }
+        }
+    }
+    return $content;
+
+}
 
 /**
  * Get dimensions from yaml file.
@@ -143,6 +186,30 @@ function getReferenceLabel($reference_id) {
     $referenceLabels = readYaml("data/strings.yml#/strings/en/references");
 
     return $referenceLabels[$reference_id]["label"] ?? $reference_id;
+}
+
+
+function getActivityNameByUuid($uuid, $dimensionsAggregated) {
+    foreach ($dimensionsAggregated as $dimension => $subdimensions) {
+        ksort($subdimensions);
+        foreach ($subdimensions as $subdimension => $elements) {
+            if (sizeof($elements) == 0) {
+                echo "unsetting $subdimension\n";
+                unset($dimensionsAggregated[$dimension][$subdimension]);
+                continue;
+            }
+            if (substr($subdimension, 0, 1) == "_") {
+                continue;
+            }
+
+            foreach ($elements as $activityName => $activity) {
+                if($activity["uuid"] == $uuid) {
+                    return $activityName;
+                }
+            }
+        }
+    }
+    return "TODO:Mapping";
 }
 
 

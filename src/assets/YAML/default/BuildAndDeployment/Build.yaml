@@ -158,7 +158,7 @@ Build and Deployment:
       measure:
         Digitally signing artifacts for all steps during the build and especially
         docker images, helps to ensure their integrity and authenticity.
-      description: |-
+      description: |- 
         To perform a push to a GitHub repository, you must be authenticated. It's important to note that GitHub does not verify if the authenticated user's email address matches the one in the commit.
         To clearly identify the author of a commit for reviewers, commit signing is recommended.
       

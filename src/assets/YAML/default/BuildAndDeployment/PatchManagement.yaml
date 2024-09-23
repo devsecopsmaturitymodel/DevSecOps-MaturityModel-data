@@ -214,7 +214,7 @@ Build and Deployment:
       comments: ""
       tags:
         - patching
-    Automated merge of automated PRs:
+    Automated merge of automated PRs: &automerge-PR
       uuid: f2594f8f-1cd6-45f9-af29-eaf3315698eb
       description: |-
         Automated merges of automated created PRs for outdated dependencies.
@@ -230,6 +230,8 @@ Build and Deployment:
         resources: 1
       usefulness: 3
       level: 2
+      dependsOn:
+        - Automated PRs for patches
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/renovate
@@ -243,3 +245,21 @@ Build and Deployment:
       comments: ""
       tags:
         - patching
+    Automated deployment of automated PRs:
+      uuid: 08f27c26-2c6a-47fe-9458-5e88f188085d
+      <<: *automerge-PR
+      risk:
+        Even if automated dependencies PRs are merged, they might not be deployed. This results in vulnerabilities in running artifacts stay for too long and might get exploited.
+      measure: |
+        After merging of an automated dependency PR, automated deployment is needed,
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 3
+      dependsOn:
+        - Automated merge of automated PRs
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/terraform
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/argocd

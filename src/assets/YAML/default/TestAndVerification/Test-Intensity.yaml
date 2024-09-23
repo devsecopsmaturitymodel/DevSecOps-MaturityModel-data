@@ -121,7 +121,7 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Regular tests:
+    Regular automated tests:
       uuid: 598897a2-358e-441f-984c-e12ec4f6110a
       risk:
         After pushing source code to the version control system, any delay in

@@ -4,18 +4,17 @@ require_once "functions.php";
 
 $metadata = readYaml("src/assets/YAML/meta.yaml");
 $teams = $metadata["teams"];
-if(sizeof($teams)  == 0) {
+if (sizeof($teams) == 0) {
     echo "Warning: No teams defined";
 }
 $teamsImplemented = array();
-foreach($teams as $team) {
+foreach ($teams as $team) {
     $teamsImplemented[$team] = false;
 }
 
 
-
 $files = glob("src/assets/YAML/default/*/*.yaml");
-$dimensions=array();
+$dimensions = array();
 foreach ($files as $filename) {
     //echo "Found $filename";
     if (preg_match("/_meta.yaml/", $filename)) continue;
@@ -27,12 +26,12 @@ foreach ($files as $filename) {
 }
 
 $files = glob("src/assets/YAML/custom/*/*.yaml");
-$dimensionsCustom=array();
-$dimensionsAggregated=array();
+$dimensionsCustom = array();
+$dimensionsAggregated = array();
 foreach ($files as $filename) {
     //echo "Found $filename";
     $dimensionCustom = getDimensions($filename);
-    $dimensionsCustom = array_merge_recursive($dimensionsCustom, $dimensionCustom);
+    $dimensionsCustom = array_merge_recursive_ex($dimensionsCustom, $dimensionCustom);
 }
 if (sizeof($files) > 0) {
     $dimensions = array_merge_recursive_ex($dimensions, $dimensionsCustom);
@@ -46,16 +45,16 @@ if (sizeof($files) > 0) {
         }
     }
 } else {
-    $dimensionsAggregated=$dimensions;
+    $dimensionsAggregated = $dimensions;
 }
 
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     ksort($subdimensions);
     foreach ($subdimensions as $subdimension => $elements) {
-        if(sizeof($elements) == 0) {
+        if (sizeof($elements) == 0) {
             echo "unsetting $subdimension\n";
             unset($dimensionsAggregated[$dimension][$subdimension]);
-                continue;
+            continue;
         }
         if (substr($subdimension, 0, 1) == "_") {
             continue;
@@ -70,37 +69,63 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 exit;
             }
             if (!array_key_exists("tags", $activity)) {
-                $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = [ "none" ];
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = ["none"];
             }
             if (!array_key_exists("teamsImplemented", $activity)) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] = array();
             }
             $evidenceImplemented = array();
-            if(array_key_exists("evidence", $activity) && is_array($activity["evidence"]) && IS_IMPLEMENTED_WHEN_EVIDENCE) {
-                foreach($activity["evidence"] as $team => $evidenceForTeam) {
-                    if(strlen($activity["evidence"][$team]) > 0) {
+            if (array_key_exists("teamsEvidence", $activity) && is_array($activity["teamsEvidence"]) && IS_IMPLEMENTED_WHEN_EVIDENCE) {
+                foreach ($activity["teamsEvidence"] as $team => $evidenceForTeam) {
+                    if(!is_string($activity["teamsEvidence"][$team])) {
+                        echo "teamsEvidence for team $team in $activityName is not a string, ignoring";
+                        continue;
+                    }
+                    if (strlen($activity["teamsEvidence"][$team]) > 0) {
                         $evidenceImplemented[$team] = true;
-                    }else {
+                    } else {
                         echo "Warning: '$activityName -> evidence -> $team' has no evidence set but should have";
                     }
                 }
-	    }
-
-	    if (!array_key_exists("openCRE", $activity["references"])) {
-		    $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
-		    $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/" . $subdimension . "/" . $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
             }
-
-            $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] = array_merge($teamsImplemented, $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"], $evidenceImplemented);
-            // can be removed in 2024
+            $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] =
+                array_merge(
+                    $teamsImplemented,
+                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"],
+                    $evidenceImplemented
+                );
+            if (!array_key_exists("openCRE", $activity["references"])) {
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/" . $subdimension . "/" . $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
+            }
+            // can be removed in 2025
             if (array_key_exists("isImplemented", $activity)) {
+                unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["isImplemented"]);
+            }
+            if (array_key_exists("evidence", $activity)) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
-	    }
+            }
+            if (array_key_exists("dependsOn", $activity)) {
+                foreach($activity['dependsOn'] as $index => $dependingElement) {
+                    if(!is_string($dependingElement)) {
+                        echo "$dependingElement is not a string in $activityName";
+                        var_dump($dependingElement);
+                        continue;
+                    }
+                    if(str_starts_with($dependingElement, "uuid:" )) {
+                        echo "$dependingElement is having a uuuid\n";
+                        $dependsOnUuid = str_replace("uuid:", "", $dependingElement);
+                        $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOnUuid;
+                        $dependsOnActivityName = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
+                        echo "exchanged $dependingElement to name $dependsOnActivityName";
+                    }
+                }
+            }
         }
     }
 }
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
-    if(sizeof($subdimensions) == 0) {
+    if (sizeof($subdimensions) == 0) {
         echo "unsetting $dimension\n";
         unset($dimensionsAggregated[$dimension]);
     }
@@ -109,8 +134,9 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
 resolve_json_ref($dimensionsAggregated);
 
 $dimensionsString = yaml_emit($dimensionsAggregated);
-file_put_contents("src/assets/YAML/generated/generated.yaml", $dimensionsString);
-
+$targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
+echo "\nStoring to $targetGeneratedFile\n";
+file_put_contents($targetGeneratedFile, $dimensionsString);
 
 
 /**
@@ -119,7 +145,8 @@ file_put_contents("src/assets/YAML/generated/generated.yaml", $dimensionsString)
  * @param unknown $activityName
  * @return unknown
  */
-function isActivityExisting($dimensions, $activityName) {
+function isActivityExisting($dimensions, $activityName)
+{
     foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
         foreach ($activities as $activity => $activityContent) {
             if ($activity == $activityName) {
@@ -133,11 +160,12 @@ function isActivityExisting($dimensions, $activityName) {
 
 /**
  *
- * @param array   $array1
- * @param array   $array2
+ * @param array $array1
+ * @param array $array2
  * @return unknown
  */
-function array_merge_recursive_ex(array $array1, array $array2) {
+function array_merge_recursive_ex(array $array1, array $array2)
+{
     $merged = $array1;
 
     foreach ($array2 as $key => & $value) {
@@ -161,7 +189,8 @@ function array_merge_recursive_ex(array $array1, array $array2) {
  *
  * @param unknown $data (reference)
  */
-function resolve_json_ref(&$data) {
+function resolve_json_ref(&$data)
+{
 
 
     /**
@@ -170,8 +199,9 @@ function resolve_json_ref(&$data) {
      * @param unknown $key
      * @param unknown $ctx
      */
-    function resolve_json_ref_cb(&$value, $key, $ctx) {
-        if (! is_array($value)) {
+    function resolve_json_ref_cb(&$value, $key, $ctx)
+    {
+        if (!is_array($value)) {
             return;
         }
 

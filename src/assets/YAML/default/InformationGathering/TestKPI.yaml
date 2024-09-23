@@ -1,0 +1,232 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-information-gathering.json
+---
+Information Gathering:
+  Test KPI:
+    #Number of vulnerabilities - appsec - vuln management ?
+    # Fix Rate?
+    Number of vulnerabilities/severity:
+      uuid: bc548cba-cb82-4f76-bd4b-325d9d256279
+      risk: |-
+        Failing to convey the number of vulnerabilities by severity might undermine the effectiveness of product teams. This might lead to ignorance of findings.
+      measure: |-
+        Measurement and communication of vulnerabilities per severity for components like applications. At least quarterly.
+      description: |-
+        Communication can be performed in a simple way, e.g. text based during the build process.
+        This activity depends on at least one security testing implementation.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 2
+      dependsOn: []
+      implementation: []
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2022:
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
+      tags:
+        - vulnerability-mgmt
+        - metrics
+        - vmm-measurement
+    Number of vulnerabilities/severity/layer:
+      uuid: 0ec92899-a5cb-4649-984b-2fb1d6c784ad
+      risk: |-
+        Failing to convey the number of vulnerabilities by severity and layer (app/infra) might undermine the effectiveness of product teams. This might lead to ignorance of findings.
+      measure: |-
+        Measurement and communication of vulnerabilities per severity for components like applications and split it depending on the layer (e.g. app/infra). At least quarterly.
+      description: |-
+        Communication can be performed in a simple way, e.g. text based during the build process.
+        This activity depends on at least one security testing implementation.
+        Layers to consider (SCA):
+        - Cloud provider (if insights are possible)
+        - Runtimes, e.g. Kubernetes nodes
+        - Base images and container images
+        - Application
+        
+        Layers to consider SAST/DAST:
+        - Cloud provider
+        - Runtime, e.g. Kubernetes
+        - Base images and container images
+        - Application
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 2
+      dependsOn: []
+      implementation: []
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2022:
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
+      tags:
+        - vulnerability-mgmt
+        - metrics
+        - vmm-measurement
+    Patching mean time to resolution via PR:
+      uuid: 86d490b9-d798-4a5b-a011-ab9688014c46
+      risk: |-
+        Without measuring Mean Time to Resolution (MTTR) related to patching, it is challenging to identify delays in the patching process. Unaddressed vulnerabilities can be exploited by attackers, leading to potential security breaches and data loss.
+      measure: |-
+        Measurement and communication of patching Mean Time to Resolution (MTTR) in alignment with Service Level Agreements (SLAs), conducted at least on a quarterly basis.
+        This includes the measurement of the existence of a properly configured automated pull request (PR) tool (e.g., Dependabot or Renovate) in a repository. 
+        In addition, the measurement of the time from opening an automated PR to merging it.
+        
+        Average time to patch is visualized per component/project/team.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 2
+      usefulness: 3
+      level: 2
+      dependsOn:
+        - uuid:8ae0b92c-10e0-4602-ba22-7524d6aed488 #Automated PRs for patches
+      implementation: []
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2022:
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
+      tags:
+        - patching
+        - metrics
+        - vmm-measurements
+    SLA per criticality: # is this the definition of SLAs or the measurement?
+      uuid: 123e4567-e89b-12d3-a456-426614174000
+      risk: |-
+        Not communicating how many applications are adhering to SLAs based on the criticality of vulnerabilities can lead to delayed remediation of 
+        critical security issues, increasing the risk of exploitation and potential damage to the organization.
+      measure: |-
+        Measurement and communication of how many of the vulnerabilities handling per severity for components like applications are aligned to SLAs. 
+        This is performed for the hole organization and doesn't need to be broken down (yet) on team/product/application. 
+        At least quarterly.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 3
+      dependsOn: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2022:
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
+      tags:
+        - vulnerability-mgmt
+        - metrics
+        - vmm-measurements
+    Patching mean time to resolution via production:
+      uuid: 77ffc53e-9f3d-41f4-92d3-02f04f9b6b0f
+      risk: |-
+        Without measuring Mean Time to Resolution (MTTR) related to patching, it is challenging to identify delays in the patching process. Unaddressed vulnerabilities can be exploited by attackers, leading to potential security breaches and data loss.
+      measure: |-
+        Measurement and communication of the time from the availability of a patch to its deployment in production in alignment with Service Level Agreements (SLAs), conducted at least on a quarterly basis.
+        Average time to patch is visualized per component/project/team.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 2
+      usefulness: 3
+      level: 4
+      dependsOn:
+        - uuid:86d490b9-d798-4a5b-a011-ab9688014c46 # Patching mean time to resolution via PR
+        - uuid:8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
+      implementation: []
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2017:
+          - 16.1.4
+        iso27001-2022:
+          - 5.25
+      tags:
+        - patching
+        - metrics
+        - vmm-measurements
+    Generation of response statistics:
+      uuid: c922981b-65ed-40f3-a947-96fee9a0125f
+      risk: No or delayed reaction to findings leads to potential exploitation of findings.
+      measure: Creation and response statistics (e.g. Mean Time to Resolution) of findings. This is also referred to as _Mean Time to Resolve_.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      dependsOn:
+        - Usage of a vulnerability management system
+      level: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
+      references:
+        samm2:
+          - I-DM-2-B
+        iso27001-2017:
+          - 16.1.4
+          - 8.2.3
+        iso27001-2022:
+          - 5.25
+          - 5.10
+      tags:
+        - vulnerability-mgmt
+        - metrics
+        - vmm-measurements
+      comments: "The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client) generates statistics from OWASP DefectDojo and places the results in a [Github repository](https://github.com/pagel-pro/cluster-image-scanner-all-results)."
+    Fix rate per repo/product:
+      uuid: 123e4567-e89b-12d3-a456-426614174000
+      risk: |-
+        Not communicating how many applications are adhering to SLAs based on the criticality of vulnerabilities can lead to delayed remediation of 
+        critical security issues, increasing the risk of exploitation and potential damage to the organization.
+      measure: |-
+        Measurement and communication of the number of vulnerabilities handled per severity level for components such as applications, ensuring alignment with SLAs. 
+        The rate should be broken down by team, product, application, repository, and/or service. This analysis should be conducted at least quarterly.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 3
+      dependsOn:
+        - uuid:123e4567-e89b-12d3-a456-426614174000
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
+      references:
+        samm2:
+          - I-DM-3-B
+        iso27001-2022:
+          - 5.25
+          - 5.12
+          - 5.13
+          - 5.10
+      tags:
+        - vulnerability-mgmt
+        - metrics
+        - vmm-measurements
+

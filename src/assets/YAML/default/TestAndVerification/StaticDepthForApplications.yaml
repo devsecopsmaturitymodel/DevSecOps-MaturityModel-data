@@ -57,6 +57,8 @@ Test and Verification:
         This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
       usefulness: 3
       level: 2
+      dependsOn:
+        - Automated PRs for patches
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -74,6 +76,9 @@ Test and Verification:
       <<: *Exclusion-of-source-code-duplicates
       uuid: 0cb2c39a-3cec-4353-b3ab-8d70daf4c9d2
       risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities in production artifacts.
+      dependsOn:
+        - Automated PRs for patches
+        - Defined build process
       measure: |
         Test of the Patch Deployment Time.
         This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
@@ -138,8 +143,8 @@ Test and Verification:
         knowledge: 2
         time: 2
         resources: 2
-      usefulness: 4
-      level: 2
+      usefulness: 3
+      level: 3
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stoplight-spectral
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker
@@ -154,8 +159,8 @@ Test and Verification:
           - 8.27 # Secure system architecture and engineering principles
           - 8.28 # Secure coding
       isImplemented: false
-      evidence: ""
-      comments: ""
+      dependsOn:
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
     Static analysis for all components/libraries:
       uuid: f4ff841d-3b2a-45d9-853e-5ec7ecbcb054
       risk: Used components like libraries and legacy applications might have vulnerabilities
@@ -169,6 +174,7 @@ Test and Verification:
       dependsOn:
         - Static analysis for important client side components
         - Static analysis for important server side components
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation: []
       references:
         samm2:
@@ -203,6 +209,7 @@ Test and Verification:
       dependsOn:
         - Static analysis for important client side components
         - Static analysis for important server side components
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
           - V-ST-2-A
@@ -236,6 +243,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       dependsOn:
         - Defined build process
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
           - V-ST-2-A
@@ -268,6 +276,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       dependsOn:
         - Defined build process
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
           - V-ST-2-A
@@ -321,6 +330,7 @@ Test and Verification:
       level: 3
       dependsOn:
         - Defined build process
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
@@ -338,6 +348,7 @@ Test and Verification:
       comments: ""
     Software Composition Analysis (server side):
       uuid: d918cd44-a972-43e9-a974-eff3f4a5dcfe
+      description: Use a tool like trivy and concentrate on application related vulnerabilities. At this stage, ignore vulnerabilities in container base images used in the service.
       risk: Server side components might have vulnerabilities.
       measure:
         Tests for known vulnerabilities in server side components (e.g. backend/middleware)
@@ -350,12 +361,14 @@ Test and Verification:
       level: 2
       dependsOn:
         - Defined build process
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-dependency-che
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-dependabot
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
       references:
         samm2:
           - V-ST-2-A
@@ -363,9 +376,8 @@ Test and Verification:
           - 12.6.1
         iso27001-2022:
           - 8.8
-      isImplemented: false
-      evidence: ""
-      comments: ""
+      tags:
+        - vmm-testing
     Usage of multiple analyzers:
       uuid: 297be001-8d94-41ee-ab29-207020d423c0
       risk:
