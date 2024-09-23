@@ -30,6 +30,7 @@ Test and Verification:
       comments: ""
     Test libyear:
       <<: *Exclusion-of-source-code-duplicates
+      uuid: 87b54313-fafd-4860-930f-5ef132b3e4ad
       risk: Vulnerabilities in running artifacts stay for long and might get exploited.
       measure: |-
         Test `libyear`, which provides a good insight how good patch management is.
@@ -49,6 +50,7 @@ Test and Verification:
         - patching
     Test for Time to Patch:
       <<: *Exclusion-of-source-code-duplicates
+      uuid: 13af1227-3dd1-4d4f-a9e9-53deb793c18f
       risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities in production artifacts.
       measure: |-
         Test of the Time to Patch (e.g. based on Mean Time to Close automatic PRs)
@@ -70,6 +72,7 @@ Test and Verification:
         - patching
     Test for Patch Deployment Time:
       <<: *Exclusion-of-source-code-duplicates
+      uuid: 0cb2c39a-3cec-4353-b3ab-8d70daf4c9d2
       risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities in production artifacts.
       measure: |
         Test of the Patch Deployment Time.
@@ -88,7 +91,7 @@ Test and Verification:
         - patching
     Dead code elimination:
       <<: *Exclusion-of-source-code-duplicates
-      uuid: d17dbff0-1f10-492a-b4c7-17bb59a0a711
+      uuid: a8d7d1f1-fc24-49ab-8fb6-f3a03da9c61d
       risk:
         Dead code increases the attack surface (use of hard coded credentials and
         variables, sensitive information)
