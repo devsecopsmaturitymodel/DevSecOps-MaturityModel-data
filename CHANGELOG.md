@@ -1,3 +1,21 @@
+# [1.12.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.11.1...v1.12.0) (2024-09-23)
+
+
+### Bug Fixes
+
+* de-duplicate API design validation ([c6d8242](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/c6d82427ddc272f27afc5d7eee36d91e96face14))
+
+
+### Features
+
+* add dependsOn for new patching activities ([72e26ad](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/72e26ad825e4a8458e39e5e93814ebf3bcb9aa71))
+* add includes ([bfb9a99](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/bfb9a993e85cd6c88f79ca314c3cf34e03c1d7be))
+* add uuid: resolution to name ([a2a55b3](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/a2a55b363e2c50ef7af9eaca814ef9137f61835d))
+* add vuln ([70ffec4](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/70ffec4ddb3ddb2112190b5ca30f97e80eef2d64))
+* add vuln ([58e67b7](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/58e67b76c7f4457aac333900bf2430e487a72f2d))
+* enhance source control platform requirements ([e8c57ff](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/e8c57ffb898839c26927d0fc827623935e48c82a))
+* enhance source control platform requirements ([2049504](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/2049504bfab5d284ecba144814260cad10864e60))
+
 ## [1.11.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.11.0...v1.11.1) (2024-07-31)
 
 
