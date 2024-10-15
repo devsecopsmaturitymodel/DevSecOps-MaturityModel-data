@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.12.0...v1.13.0) (2024-10-15)
+
+
+### Features
+
+* add office hours, vuln management tools, epss ([09b3e8a](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/09b3e8a69936aec7b10dbdb293cbe41fc864edfe))
+
 # [1.12.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.11.1...v1.12.0) (2024-09-23)
 
 

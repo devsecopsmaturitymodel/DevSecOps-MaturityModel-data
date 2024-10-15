@@ -943,6 +943,14 @@ Build and Deployment:
           url: https://github.com/faloker/purify/
           description: |
             The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+        SecObserve:
+          uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+          name: SecObserve
+          tags:
+          - vulnerability management system
+          url: https://github.com/MaibornWolff/SecObserve
+          description: |
+            The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
         see-other-actions-e:
           uuid: 44c08670-78dc-47ee-a4c1-2503ca6b6cf8
           name: See other actions, e.g. "Treatment of defects with severity high".
@@ -1528,6 +1536,21 @@ Build and Deployment:
             sprints, and managing software releases. It offers features for creating
             and managing tasks, assigning them to team members, and monitoring progress
             through customizable workflows and dashboards.
+        epss:
+          uuid: e39afc58-8195-4600-92c6-11922e3a141b
+          name: Exploit Prediction Scoring System
+          tags:
+          - vulnerability
+          url: https://www.first.org/epss/
+          description: Estimates the likelihood that a software vulnerability will
+            be exploited.
+        cisa-kev:
+          uuid: aa507341-9531-42cd-95cf-d7b51af47086
+          name: Known Exploited Vulnerabilities
+          tags:
+          - vulnerability
+          url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+          description: A catalog of vulnerabilities that have been exploited.
       references:
         samm2:
         - I-SD-1-B
@@ -2807,7 +2830,6 @@ Culture and Organization:
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
           and Guidance/12c90cc6-3d58-4d9b-82ff-d469d2a0c298
-      comments: ""
       tags:
       - none
       teamsImplemented:
@@ -3046,6 +3068,35 @@ Culture and Organization:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
           and Guidance/6217fe11-5ed7-4cf4-9de4-555bcfa6fe87
       comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Office Hours:
+      uuid: 185d5a74-19dc-4422-be07-44ea35226783
+      risk: Developers and Operations are not in contact with the security team and
+        therefore do not ask prior implementation of (known or unknown) threats-
+      measure: As a security team, be open for questions and hints during defined
+        office hours. x x d
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation: ~
+      references:
+        samm2:
+        - G-EG-1-A
+        iso27001-2017:
+        - 7.2.2
+        iso27001-2022:
+        - 6.3
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Education
+          and Guidance/185d5a74-19dc-4422-be07-44ea35226783
       tags:
       - none
       teamsImplemented:
@@ -7195,14 +7246,23 @@ Test and Verification:
       risk: Maintenance of false positives in each tool enforces a high workload.
         In addition a correlation of the same finding from different tools is not
         possible.
-      measure: Aggregation of vulnerabilities in one tool reduce the workload to mark
-        false positives.
+      measure: Aggregation of vulnerabilities in one tool reduce the workload to handle
+        them, e.g. mark as false positives.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
         resources: 2
       usefulness: 2
+      dependsOn:
+      - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
+      - 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87
+      - 185d5a74-19dc-4422-be07-44ea35226783
       level: 3
+      description: "For known vulnerabilities a processes to estimate the exploit
+        ability of a vulnerability is recommended.\n\nTo implement a security culture
+        including training, office hours and security champions can help integrating
+        \nsecurity scanning at scale. Such activities help to understand why a vulnerability
+        is potentially critical and needs handling."
       implementation:
       - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
         name: OWASP DefectDojo
@@ -7219,6 +7279,13 @@ Test and Verification:
         url: https://github.com/faloker/purify/
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+        name: SecObserve
+        tags:
+        - vulnerability management system
+        url: https://github.com/MaibornWolff/SecObserve
+        description: |
+          The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
       references:
         samm2:
         - I-DM-1-B
@@ -8009,6 +8076,14 @@ Test and Verification:
           url: https://github.com/faloker/purify/
           description: |
             The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+        SecObserve:
+          uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+          name: SecObserve
+          tags:
+          - vulnerability management system
+          url: https://github.com/MaibornWolff/SecObserve
+          description: |
+            The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
         see-other-actions-e:
           uuid: 44c08670-78dc-47ee-a4c1-2503ca6b6cf8
           name: See other actions, e.g. "Treatment of defects with severity high".
@@ -8594,6 +8669,21 @@ Test and Verification:
             sprints, and managing software releases. It offers features for creating
             and managing tasks, assigning them to team members, and monitoring progress
             through customizable workflows and dashboards.
+        epss:
+          uuid: e39afc58-8195-4600-92c6-11922e3a141b
+          name: Exploit Prediction Scoring System
+          tags:
+          - vulnerability
+          url: https://www.first.org/epss/
+          description: Estimates the likelihood that a software vulnerability will
+            be exploited.
+        cisa-kev:
+          uuid: aa507341-9531-42cd-95cf-d7b51af47086
+          name: Known Exploited Vulnerabilities
+          tags:
+          - vulnerability
+          url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+          description: A catalog of vulnerabilities that have been exploited.
       - argocd:
           uuid: fdb0e7cc-d3dd-4a2b-9f45-7d403001294f
           name: argoCD
@@ -9120,6 +9210,14 @@ Test and Verification:
           url: https://github.com/faloker/purify/
           description: |
             The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+        SecObserve:
+          uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+          name: SecObserve
+          tags:
+          - vulnerability management system
+          url: https://github.com/MaibornWolff/SecObserve
+          description: |
+            The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
         see-other-actions-e:
           uuid: 44c08670-78dc-47ee-a4c1-2503ca6b6cf8
           name: See other actions, e.g. "Treatment of defects with severity high".
@@ -9705,6 +9803,21 @@ Test and Verification:
             sprints, and managing software releases. It offers features for creating
             and managing tasks, assigning them to team members, and monitoring progress
             through customizable workflows and dashboards.
+        epss:
+          uuid: e39afc58-8195-4600-92c6-11922e3a141b
+          name: Exploit Prediction Scoring System
+          tags:
+          - vulnerability
+          url: https://www.first.org/epss/
+          description: Estimates the likelihood that a software vulnerability will
+            be exploited.
+        cisa-kev:
+          uuid: aa507341-9531-42cd-95cf-d7b51af47086
+          name: Known Exploited Vulnerabilities
+          tags:
+          - vulnerability
+          url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+          description: A catalog of vulnerabilities that have been exploited.
       comments: ""
       tags:
       - none
@@ -10258,6 +10371,50 @@ Test and Verification:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
           depth for applications/d17dbff0-1f10-492a-b4c7-17bb59a0a711
       comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Exploit likelihood estimation:
+      uuid: f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
+      risk: Without proper prioritization, organizations may waste time and effort
+        on low-risk vulnerabilities while neglecting critical ones.
+      measure: Estimate the likelihood of exploitation by using data (CISA KEV) from
+        the past or prediction models (EPSS).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 3
+      dependsOn:
+      - d918cd44-a972-43e9-a974-eff3f4a5dcfe
+      implementation:
+      - uuid: aa507341-9531-42cd-95cf-d7b51af47086
+        name: Known Exploited Vulnerabilities
+        tags:
+        - vulnerability
+        url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+        description: A catalog of vulnerabilities that have been exploited.
+      - uuid: e39afc58-8195-4600-92c6-11922e3a141b
+        name: Exploit Prediction Scoring System
+        tags:
+        - vulnerability
+        url: https://www.first.org/epss/
+        description: Estimates the likelihood that a software vulnerability will be
+          exploited.
+      references:
+        samm2:
+        - V-ST-2-A
+        iso27001-2017:
+        - 12.6.1
+        iso27001-2022:
+        - 8.8
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
+          depth for applications/f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
       tags:
       - none
       teamsImplemented:
@@ -10821,6 +10978,14 @@ Test and Verification:
           url: https://github.com/faloker/purify/
           description: |
             The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+        SecObserve:
+          uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+          name: SecObserve
+          tags:
+          - vulnerability management system
+          url: https://github.com/MaibornWolff/SecObserve
+          description: |
+            The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
         see-other-actions-e:
           uuid: 44c08670-78dc-47ee-a4c1-2503ca6b6cf8
           name: See other actions, e.g. "Treatment of defects with severity high".
@@ -11406,6 +11571,21 @@ Test and Verification:
             sprints, and managing software releases. It offers features for creating
             and managing tasks, assigning them to team members, and monitoring progress
             through customizable workflows and dashboards.
+        epss:
+          uuid: e39afc58-8195-4600-92c6-11922e3a141b
+          name: Exploit Prediction Scoring System
+          tags:
+          - vulnerability
+          url: https://www.first.org/epss/
+          description: Estimates the likelihood that a software vulnerability will
+            be exploited.
+        cisa-kev:
+          uuid: aa507341-9531-42cd-95cf-d7b51af47086
+          name: Known Exploited Vulnerabilities
+          tags:
+          - vulnerability
+          url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+          description: A catalog of vulnerabilities that have been exploited.
       - uuid: 58ac9dea-b6c7-4698-904e-df89a9451c82
         name: DevSecOps control Pre-commit
         url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
@@ -11449,6 +11629,7 @@ Test and Verification:
       dependsOn:
       - Defined build process
       - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
       implementation:
       - uuid: aa54a82c-d628-4d42-9bc8-1aa269cd91c7
         name: retire.js
@@ -12078,6 +12259,14 @@ Test and Verification:
           url: https://github.com/faloker/purify/
           description: |
             The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+        SecObserve:
+          uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+          name: SecObserve
+          tags:
+          - vulnerability management system
+          url: https://github.com/MaibornWolff/SecObserve
+          description: |
+            The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
         see-other-actions-e:
           uuid: 44c08670-78dc-47ee-a4c1-2503ca6b6cf8
           name: See other actions, e.g. "Treatment of defects with severity high".
@@ -12663,6 +12852,21 @@ Test and Verification:
             sprints, and managing software releases. It offers features for creating
             and managing tasks, assigning them to team members, and monitoring progress
             through customizable workflows and dashboards.
+        epss:
+          uuid: e39afc58-8195-4600-92c6-11922e3a141b
+          name: Exploit Prediction Scoring System
+          tags:
+          - vulnerability
+          url: https://www.first.org/epss/
+          description: Estimates the likelihood that a software vulnerability will
+            be exploited.
+        cisa-kev:
+          uuid: aa507341-9531-42cd-95cf-d7b51af47086
+          name: Known Exploited Vulnerabilities
+          tags:
+          - vulnerability
+          url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+          description: A catalog of vulnerabilities that have been exploited.
       references:
         samm2:
         - V-ST-2-A
