@@ -297,8 +297,6 @@ Test and Verification:
           - 8.8
           - 5.25
       implementation: []
-      isImplemented: false
-      evidence: ""
     Usage of a vulnerability management system:
       uuid: 85ba5623-84be-4219-8892-808837be582d
       risk:
@@ -306,17 +304,26 @@ Test and Verification:
         In addition a correlation of the same finding from different tools is not
         possible.
       measure:
-        Aggregation of vulnerabilities in one tool reduce the workload to mark
-        false positives.
+        Aggregation of vulnerabilities in one tool reduce the workload to handle them, e.g. mark as false positives.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
         resources: 2
       usefulness: 2
+      dependsOn:
+        - uuid:f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
+        - uuid:6217fe11-5ed7-4cf4-9de4-555bcfa6fe87 # Each team has a security champion
+        - uuid:185d5a74-19dc-4422-be07-44ea35226783 # Office Hours
       level: 3
+      description: |-
+        For known vulnerabilities a processes to estimate the exploit ability of a vulnerability is recommended.
+        
+        To implement a security culture including training, office hours and security champions can help integrating 
+        security scanning at scale. Such activities help to understand why a vulnerability is potentially critical and needs handling.
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/SecObserve
       references:
         samm2:
           - I-DM-1-B

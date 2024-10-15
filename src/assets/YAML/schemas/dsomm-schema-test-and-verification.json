@@ -154,10 +154,7 @@
                 "usefulness",
                 "level",
                 "implementation",
-                "references",
-                "isImplemented",
-                "evidence",
-                "comments"
+                "references"
               ],
               "additionalProperties": false
             }

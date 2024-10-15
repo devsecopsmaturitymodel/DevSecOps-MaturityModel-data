@@ -479,6 +479,13 @@ implementations:
     url: https://github.com/faloker/purify/
     description: |
       The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+  SecObserve:
+    uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+    name: SecObserve
+    tags: [vulnerability management system]
+    url: https://github.com/MaibornWolff/SecObserve
+    description: |
+      The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
   see-other-actions-e:
     uuid: 44c08670-78dc-47ee-a4c1-2503ca6b6cf8
     name: See other actions, e.g. "Treatment of defects with severity high".
@@ -954,3 +961,17 @@ implementations:
     url: https://jira.atlassian.com/
     description: |-
       Jira is a bug tracking and project management tool developed by Atlassian, used by development teams for tracking issues, planning sprints, and managing software releases. It offers features for creating and managing tasks, assigning them to team members, and monitoring progress through customizable workflows and dashboards.
+  epss:
+    uuid: e39afc58-8195-4600-92c6-11922e3a141b
+    name: Exploit Prediction Scoring System
+    tags: [vulnerability]
+    url: https://www.first.org/epss/
+    description: |-
+      Estimates the likelihood that a software vulnerability will be exploited.
+  cisa-kev:
+    uuid: aa507341-9531-42cd-95cf-d7b51af47086
+    name: Known Exploited Vulnerabilities
+    tags: [vulnerability]
+    url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+    description: |-
+      A catalog of vulnerabilities that have been exploited.

@@ -318,6 +318,29 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
+    Exploit likelihood estimation:
+      uuid: f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
+      risk: |-
+        Without proper prioritization, organizations may waste time and effort on low-risk vulnerabilities while neglecting critical ones.
+      measure: Estimate the likelihood of exploitation by using data (CISA KEV) from the past or prediction models (EPSS).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 3
+      dependsOn:
+        - uuid:d918cd44-a972-43e9-a974-eff3f4a5dcfe # SCA for server
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cisa-kev
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/epss
+      references:
+        samm2:
+          - V-ST-2-A
+        iso27001-2017:
+          - 12.6.1
+        iso27001-2022:
+          - 8.8
     Software Composition Analysis (client side):
       uuid: 07fe8c4f-ae33-4409-b1b2-cf64cfccea86
       risk: Client side components might have vulnerabilities.
@@ -331,6 +354,7 @@ Test and Verification:
       dependsOn:
         - Defined build process
         - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - uuid:f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit

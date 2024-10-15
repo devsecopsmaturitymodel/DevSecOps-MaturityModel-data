@@ -27,9 +27,26 @@ Culture and Organization:
           - 7.2.2
         iso27001-2022:
           - 6.3
-      isImplemented: false
-      evidence: ""
-      comments: ""
+    Office Hours:
+      uuid: 185d5a74-19dc-4422-be07-44ea35226783
+      risk:
+        Developers and Operations are not in contact with the security team and therefore do not ask prior implementation of (known or unknown) threats-
+      measure:
+        As a security team, be open for questions and hints during defined office hours. x x d
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 3
+      level: 3
+      implementation:
+      references:
+        samm2:
+          - G-EG-1-A
+        iso27001-2017:
+          - 7.2.2
+        iso27001-2022:
+          - 6.3
     Security Coaching:
       uuid: f7b215dc-73a4-4c61-9e49-b3a3af1c9ac3
       risk: Training does not change behaviour. Therefore, even if security practices are understood, it's likely that they are not performed.
