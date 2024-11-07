@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.13.0...v1.14.0) (2024-11-07)
+
+
+### Features
+
+* replace acitivity uuids with activity names ([93aa2e9](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/93aa2e91f732f03d54c273e9bbd53a6e4a8a977b))
+
 # [1.13.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.12.0...v1.13.0) (2024-10-15)
 
 
