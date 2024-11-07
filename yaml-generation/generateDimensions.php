@@ -34,28 +34,6 @@ foreach ($files as $filename) {
     $dimensionsCustom = array_merge_recursive_ex($dimensionsCustom, $dimensionCustom);
 }
 
-$uuidArray=array();
-foreach ($dimensionsCustom as $dimension => $subdimensions) {
-    ksort($subdimensions);
-    $uuidArray[$dimension] = array();
-    foreach ($subdimensions as $subdimension => $elements) {
-        $uuidArray[$dimension][$subdimension] = array();
-        foreach ($elements as $activityName => $activity) {
-            if(str_starts_with($activityName, "uuid:" )) {
-              echo "activity name $activityName is having a uuuid\n";
-              $activityUuid = str_replace("uuid:", "", $activityName);
-	      $activityName = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
-	      $uuidArray[$dimension][$subdimension][$activityName]=$dimensionsAggregated[$dimension][$subdimension][$activityUuid];
-
-              array_merge_recursive_ex($dimensionsCustom, $uuidArray);
-	      unset($dimensionsCustom[$dimension][$subdimension][$activityUuid]);
-              echo "exchanged uuid $activityUuid to name $activityName";
-	    }
-	}
-    }
-}
-
-
 if (sizeof($files) > 0) {
     $dimensions = array_merge_recursive_ex($dimensions, $dimensionsCustom);
     foreach (getActions($dimensions) as list($dimension, $subdimension, $activities)) {
@@ -67,6 +45,8 @@ if (sizeof($files) > 0) {
             }
         }
     }
+}
+
 } else {
     $dimensionsAggregated = $dimensions;
 }
