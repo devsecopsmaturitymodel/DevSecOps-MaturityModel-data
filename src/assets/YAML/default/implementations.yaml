@@ -975,3 +975,13 @@ implementations:
     url: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
     description: |-
       A catalog of vulnerabilities that have been exploited.
+  owasp-secure-headers:
+    uuid: 370b7f35-4da7-4833-89d6-7266b82ea07e
+    name: OWASP Secure Headers Project
+    tags: [header, documentation]
+    url: https://owasp.org/www-project-secure-headers/
+    description: |-
+      The OWASP Secure Headers Project (also called OSHP) describes HTTP response headers that your application can use 
+      to increase the security of your application. Once set, these HTTP response headers can restrict modern browsers 
+      from running into easily preventable vulnerabilities. The OWASP Secure Headers Project intends to raise awareness
+      and use of these headers.

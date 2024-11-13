@@ -96,8 +96,6 @@ Implementation:
         iso27001-2022:
           - Virtual environments are not explicitly covered by ISO 27001 - too specific
           - 8.22
-      isImplemented: false
-      evidence: ""
       comments: ""
     Backup:
       uuid: 5c61fd6b-8106-4c68-ac28-a8a42f1c67dc
