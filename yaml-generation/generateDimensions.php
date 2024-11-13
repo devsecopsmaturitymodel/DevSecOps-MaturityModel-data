@@ -45,8 +45,6 @@ if (sizeof($files) > 0) {
             }
         }
     }
-}
-
 } else {
     $dimensionsAggregated = $dimensions;
 }
