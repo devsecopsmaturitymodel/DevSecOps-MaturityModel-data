@@ -135,11 +135,17 @@
                     "iso27001-2022"
                   ]
                 },
-                "isImplemented": {
-                  "type": "boolean"
+                "teamsImplemented": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
                 },
-                "evidence": {
-                  "type": "string"
+                "teamsEvidence": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
                 },
                 "comments": {
                   "type": "string"
@@ -155,8 +161,6 @@
                 "level",
                 "implementation",
                 "references",
-                "isImplemented",
-                "evidence",
                 "comments"
               ],
               "additionalProperties": false

@@ -48,9 +48,7 @@ Build and Deployment:
         A well defined build process lowers the possibility of errors during
         the build process.
       description: |
-        Sample evidence as an attribute in the yaml: The build process is defined in [REPLACE-ME Pipeline](https://replace-me/jenkins/job)
-        in the folder _vars_. Projects are using a _Jenkinsfile_ to use the
-        defined process.
+        A build process can be defined in code, for example in a `Jenkinsfile`.
       difficultyOfImplementation:
         knowledge: 2
         time: 3

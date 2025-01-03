@@ -511,9 +511,11 @@ Implementation:
       risk:
         Evil actors might be able to perform a man in the middle attack and sniff
         confidential information (e.g. authentication factors like passwords)
-      measure:
+      measure: |-
         By using encryption at the edge of traffic in transit, it is impossible
-        or at least harder to sniff credentials being outside of the organization.
+        or at least harder to sniff credentials or information being outside of the organization.
+      
+        Useage of standard protocols like HTTPS is recommended.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
