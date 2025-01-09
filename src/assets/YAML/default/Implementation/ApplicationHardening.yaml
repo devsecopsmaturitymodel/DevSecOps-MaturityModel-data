@@ -55,10 +55,10 @@ Implementation:
       risk:
         The generation of interpreter directives from user-provided data poses difficulties and can introduce vulnerabilities to injection attacks.
       measure: |
-        Implementing contextualized encoding fpr the next interpreter, such as employing object-relational mapping tools 
+        Implementing contextualized encoding for the next interpreter, such as employing object-relational mapping tools 
         or utilizing prepared statements, nearly removes the threat of injection vulnerabilities.
         
-        Also take into account a a secure by default UI framework, which performs automatic contextual encoding of outputs with potential malicious user input (e.g. angular).
+        Also take into account a secure by default UI framework, which performs automatic contextual encoding of outputs with potential malicious user input (e.g. angular).
       difficultyOfImplementation:
         knowledge: 2
         time: 2

@@ -23,7 +23,7 @@ Test and Verification:
       dependsOn:
         - uuid:38d1bd10-7b5f-4ae1-868c-0ec813285425 # Fix based on severity
         #- uuid:3260a15f-2df0-4173-8790-f11de2cb525a # Access applications accessibility TODO
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f #iventory of apps
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
       references:
         samm2:
@@ -141,7 +141,7 @@ Test and Verification:
         As false positive occur during each test, all vulnerabilities might be
         ignored. Specially, if tests are automated an run daily.
       measure: |-
-        Findings from security tests must be triaged and outcomes persistend/documented to:
+        Findings from security tests must be triaged and outcomes persisted/documented to:
           - Prevent re-analysis of known issues in subsequent test runs
           - Track accepted risks vs false positives
           - Enable consistent decision-making across teams
@@ -228,7 +228,7 @@ Test and Verification:
           - 8.8
           - 5.25
       tags: ["vuln-action", "defect-management"]
-      comments: ""#
+      comments: ""
     Treatment of defects with severity high or higher:
       uuid: 44f2c8a9-4aaa-4c72-942d-63f78b89f385
       risk: Vulnerabilities with severity high or higher are not visible.

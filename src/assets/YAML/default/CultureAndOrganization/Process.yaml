@@ -58,15 +58,18 @@ Culture and Organization:
       comments: ""
     Definition of simple BCDR practices for critical components:
       uuid: c72da779-86cc-45b1-a339-190ce5093171
+      description:
+        A _Business Continuity and Disaster Recovery_ (BCDR) is a plan and a process
+        that helps a business to return to normal operations if a disaster occurs.
       risk:
-        In case of an emergency, like a power outage, DR actions to perform are
-        not clear. This leads to reaction and remediation delays.
+        If the disaster recovery actions are not clear, you risk slow reaction and remediation delays.
+        This applies to cyber attacks as well as natural emergencies, such as a power outage.
       measure:
         By understanding and documenting a business continuity and disaster
         recovery (BCDR) plan, the overall availability of systems and applications
         is increased. Success factors like responsibilities, Service Level Agreements,
         Recovery Point Objectives, Recovery Time Objectives or Failover must be fully
-        documented and understood.
+        documented and understood by the people involved in the recovery.
       difficultyOfImplementation:
         knowledge: 4
         time: 3
