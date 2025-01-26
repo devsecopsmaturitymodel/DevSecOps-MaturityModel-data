@@ -151,7 +151,7 @@ Test and Verification:
         Samples for false positive handling:
           - [OWASP Dependency Check](https://jeremylong.github.io/DependencyCheck/general/suppression.html)
           - [Kubescape with VEX](https://kubescape.io/blog/2023/12/07/kubescape-support-for-vex-generation/)
-          - [OWASP DefectDojo Risk Acceptance](https://docs.defectdojo.com/en/working_with_findings/findings_workflows/risk_acceptances/) and [False Positive Handling]
+          - [OWASP DefectDojo Risk Acceptance](https://docs.defectdojo.com/en/working_with_findings/findings_workflows/risk_acceptances/) and [False Positive Handling](https://docs.defectdojo.com/en/working_with_findings/intro_to_findings/#triage-vulnerabilities-using-finding-status)
       difficultyOfImplementation:
         knowledge: 1
         time: 1
