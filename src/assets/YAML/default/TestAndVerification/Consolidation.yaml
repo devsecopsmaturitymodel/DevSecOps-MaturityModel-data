@@ -21,7 +21,7 @@ Test and Verification:
           - The number of network hops required to reach the asset (recommended)
           - Authentication requirements for access (recommended)
       dependsOn:
-        - uuid:38d1bd10-7b5f-4ae1-868c-0ec813285425 # Fix based on severity
+        - uuid:44f2c8a9-4aaa-4c72-942d-63f78b89f385 # Treatment of defects with severity high or higher:
         #- uuid:3260a15f-2df0-4173-8790-f11de2cb525a # Access applications accessibility TODO
         - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
