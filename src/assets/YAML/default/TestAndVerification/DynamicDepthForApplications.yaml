@@ -30,7 +30,9 @@ Test and Verification:
       uuid: 9711f871-f79d-4573-8d4f-d2c98fd0d18e
       risk:
         Parts of the service are not covered during the scan, because JavaScript
-        is not getting executed. Therefore, the co
+        is not getting executed. Therefore, the coverage of client-side dynamic
+        components is limited, leading to potential security risks and undetected
+        vulnerabilities.
       measure:
         Usage of a spider which executes dynamic content like JavaScript, e.g.
         via Selenium.
