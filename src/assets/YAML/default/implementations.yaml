@@ -161,9 +161,9 @@ implementations:
     name: Threagile
     tags: [threat-modeling]
     url: https://github.com/Threagile/threagile
-  don-t-forget-evil-u:
+  don-t-forget-evil-user-stories:
     uuid: bb5b8988-021b-452a-a914-bd36887b6860
-    name: "[Don't Forget EVIL U"
+    name: "Don't Forget EVIL User stories"
     tags: []
     url: https://www.owasp.org/index.php/Agile_Software_Development
     description:
