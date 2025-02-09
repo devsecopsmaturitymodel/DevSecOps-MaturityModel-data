@@ -510,10 +510,12 @@ Implementation:
       uuid: ad23be9c-5661-4f1f-81a3-5a5dc7061629
       risk:
         Evil actors might be able to perform a man in the middle attack and sniff
-        confidential information (e.g. authentication factors like passwords)
-      measure:
+        confidential information (e.g. authentication factors like passwords).
+      measure: |-
         By using encryption at the edge of traffic in transit, it is impossible
-        or at least harder to sniff credentials being outside of the organization.
+        or at least harder to sniff credentials or information being outside of the organization.
+      
+        Using standard secure protocols like HTTPS is recommended.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
