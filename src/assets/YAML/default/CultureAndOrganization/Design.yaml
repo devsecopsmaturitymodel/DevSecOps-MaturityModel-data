@@ -181,7 +181,7 @@ Culture and Organization:
       dependsOn:
         - Creation of simple abuse stories
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-u
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-user-stories
       references:
         samm2:
           - D-TA-2-B
@@ -213,7 +213,7 @@ Culture and Organization:
       usefulness: 4
       level: 3
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-u
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-user-stories
       dependsOn:
         - Conduction of simple threat modeling on technical level
         - Creation of threat modeling processes and standards
