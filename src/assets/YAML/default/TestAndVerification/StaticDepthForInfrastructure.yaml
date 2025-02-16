@@ -63,7 +63,7 @@ Test and Verification:
       level: 4
       description: Subscribing to Github projects and reading release notes might help. Software Composition Analysis for infrastructure might help, but is often too fine-granular.
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-github-com-a
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/registries-like-quay
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
       references:

@@ -168,7 +168,6 @@ Test and Verification:
           - 8.32
           - 8.29
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pact-io
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/citrusframework
       isImplemented: false
       evidence: ""

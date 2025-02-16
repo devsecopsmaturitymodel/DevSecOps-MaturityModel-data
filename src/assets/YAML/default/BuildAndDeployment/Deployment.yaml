@@ -117,7 +117,7 @@ Build and Deployment:
       usefulness: 4
       level: 2
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/hasicorp-vault
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/hashicorp-vault
       references:
         samm2:
           - I-SD-1-B

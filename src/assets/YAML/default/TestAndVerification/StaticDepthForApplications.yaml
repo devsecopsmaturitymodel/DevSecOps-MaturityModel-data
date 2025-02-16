@@ -117,7 +117,6 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fortify-vscode-extension
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/checkmarx-vscode-extension
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-microsoft
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
       references:

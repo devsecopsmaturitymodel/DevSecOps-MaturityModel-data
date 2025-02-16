@@ -712,7 +712,7 @@ implementations:
     name: go-pillage-registries
     tags: []
     url: https://github.com/nccgroup/go-pillage-registries
-  https-github-com-a:
+  trivy:
     uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
     name: https://github.com/aquasecurity/trivy
     tags: []
@@ -985,3 +985,10 @@ implementations:
       to increase the security of your application. Once set, these HTTP response headers can restrict modern browsers 
       from running into easily preventable vulnerabilities. The OWASP Secure Headers Project intends to raise awareness
       and use of these headers.
+  citrusframework:
+    uuid: 000b55f9-e6fd-4649-8290-27876a0409e2
+    name: Citrus Fresh Integration Testing
+    tags: [framework, testing]
+    url: https://citrusframework.org/
+    description: |-
+      Integration Test framework with focus on messaging applications and Microservices.
