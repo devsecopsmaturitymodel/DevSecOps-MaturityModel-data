@@ -701,7 +701,7 @@ Implementation:
       description: |
         Begin with the WAF in a monitoring state to understand the traffic and threats. Progressively enforce blocking actions based on intelligence gathered, ensuring minimal disruption to legitimate traffic.
       dependsOn:
-        - Contextualized encoding
+        - Context-aware output encoding
       implementation: []
       references:
         samm2:
