@@ -52,14 +52,15 @@ Build and Deployment:
         C: false
     Defined build process:
       uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
+      description: "A *build process* include more than just compiling your source
+        code. \nIt also includes steps such as managing (third party) dependencies,
+        \nenvironment configuration, running the unit tests, etc. \n\nA *defined build
+        process* has automated these steps to ensure consistency.\n\nThis can be done
+        with a Jenkinsfile, Maven, or similar tools.\n"
       risk: Performing builds without a defined process is error prone; for example,
         as a result of incorrect security related configuration.
       measure: A well defined build process lowers the possibility of errors during
         the build process.
-      description: |
-        Sample evidence as an attribute in the yaml: The build process is defined in [REPLACE-ME Pipeline](https://replace-me/jenkins/job)
-        in the folder _vars_. Projects are using a _Jenkinsfile_ to use the
-        defined process.
       difficultyOfImplementation:
         knowledge: 2
         time: 3
@@ -2429,13 +2430,17 @@ Culture and Organization:
         C: false
     Definition of simple BCDR practices for critical components:
       uuid: c72da779-86cc-45b1-a339-190ce5093171
-      risk: In case of an emergency, like a power outage, DR actions to perform are
-        not clear. This leads to reaction and remediation delays.
+      description: A _Business Continuity and Disaster Recovery_ (BCDR) is a plan
+        and a process that helps a business to return to normal operations if a disaster
+        occurs.
+      risk: If the disaster recovery actions are not clear, you risk slow reaction
+        and remediation delays. This applies to cyber attacks as well as natural emergencies,
+        such as a power outage.
       measure: By understanding and documenting a business continuity and disaster
         recovery (BCDR) plan, the overall availability of systems and applications
         is increased. Success factors like responsibilities, Service Level Agreements,
         Recovery Point Objectives, Recovery Time Objectives or Failover must be fully
-        documented and understood.
+        documented and understood by the people involved in the recovery.
       difficultyOfImplementation:
         knowledge: 4
         time: 3
@@ -2859,21 +2864,40 @@ Implementation:
         Default: false
         B: false
         C: false
-    Contextualized Encoding:
+    Context-aware output encoding:
       uuid: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
-      risk: The generation of interpreter directives from user-provided data poses
-        difficulties and can introduce vulnerabilities to injection attacks.
-      measure: |
-        Implementing contextualized encoding, such as employing object-relational mapping tools or utilizing prepared statements, nearly removes the threat of injection vulnerabilities.
+      description: "**Input validation** stops malicious data from entering your system.
+        \\\n**Output encoding** neutralizes malicious data before rendering to user,
+        or the next system.\n\nInput validation and output encoding work together.
+        Apply both. \n\n**Context-aware output encoding** encodes data differently,
+        depending on its context. In the sample below the `{{bad_data}}` must be encoded
+        differently, depending on its context, to render safe HTML.\n\n```html\n<div>{{bad_data}}</div>\n<a
+        href=\"{{bad_data}}\">Click me</a>\n<script>var x = '{{bad_data}}';</script>\n<script>/**
+        Comment {{bad_data}} */</script>\n```                \n"
+      risk: If an attacker manages to slip though your input validation, the attacker
+        may gain control over the user session or execute arbitrary actions.
+      measure: "* Use modern secure frameworks such as React/Angular/Vue/Svelte. The
+        default method here renders data in a safe way.\n* Use established and well-maintained
+        encoding libraries such as OWASP\u2019s Java Encoder and Microsoft\u2019s
+        AntiXSS.\n* Implement content security policies (CSP) to restrict the types
+        of content that can be loaded and executed.\n"
       difficultyOfImplementation:
-        knowledge: 2
+        knowledge: 1
         time: 2
         resources: 1
       usefulness: 3
       level: 1
-      description: |
-        Bear in mind that utilizing frameworks is a recommended approach; however, they can develop known security weaknesses over time. Diligent and regular patching is crucial.
-      implementation: []
+      implementation:
+      - uuid: 2d61e48f-bade-4332-a383-adc50c29673a
+        name: OWASP DOM based XSS Prevention CheatSheet
+        url: https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html
+        tags: []
+      - uuid: ae97c9b0-308c-4dab-bff9-bf3330a897dc
+        name: CWE-838 Inappropriate Encoding for Output Context
+        tags:
+        - documentation
+        - cwe
+        url: https://cwe.mitre.org/data/definitions/838.html
       references:
         samm2:
         - D-SR-1-A
@@ -2886,6 +2910,58 @@ Implementation:
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
           Hardening/e1f37abb-d848-4a3a-b3df-65e91a89dcb7
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Parametrization:
+      uuid: 00e91a8a-3972-4692-8679-674ab8547486
+      description: |
+        By concatenating strings from user input to build SQL queries, an attacker can manipulate the query to do other unintentional SQL commands as well.
+
+        This is called *SQL injection* but the principle applies to NoSql, and anywhere that your code is building commands that will be executed.
+
+        Pay attention to these two lines of code. They seem similar, but behave very differently.
+
+          * `sql.execute("SELECT * FROM table WHERE ID = " + id);`
+          * `sql.execute("SELECT * FROM table WHERE ID = ?", id);`
+        The second line is parameterized. The same principle applies to other types, such as command line execution, etc.
+      risk: "Systems vulnerable to injections may lead to data breaches, loss of data,
+        \nunauthorized alteration of data, or complete database compromise or downtime.\n\nThis
+        applies to SQL, NoSql, LDAP, XPath, email headers OS commands, etc. \n"
+      measure: |
+        * Identify which of the types your application is using. Check that you use:
+          * Use _parametrized queries_ (or _prepared statements_)
+        * For database queries, you may also use:
+          * Use _stored procedures_ ()
+          * Use ORM (Object-Relational Mapping) tools that automatically handle input sanitization
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 1
+      implementation:
+      - uuid: d880fa0f-9dbb-454e-a003-d844fad31ab4
+        name: OWASP Parameterization CheatSheet
+        url: https://cheatsheetseries.owasp.org/cheatsheets/Query_Parameterization_Cheat_Sheet.html
+        tags: []
+      references:
+        samm2:
+        - D-SR-1-A
+        iso27001-2017:
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 13.1.3
+        iso27001-2022:
+        - Hardening is not explicitly covered by ISO 27001 - too specific
+        - 8.22
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Application
+          Hardening/00e91a8a-3972-4692-8679-674ab8547486
+      comments: ""
       tags:
       - none
       teamsImplemented:
@@ -4025,9 +4101,12 @@ Implementation:
     Usage of edge encryption at transit:
       uuid: ad23be9c-5661-4f1f-81a3-5a5dc7061629
       risk: Evil actors might be able to perform a man in the middle attack and sniff
-        confidential information (e.g. authentication factors like passwords)
-      measure: By using encryption at the edge of traffic in transit, it is impossible
-        or at least harder to sniff credentials being outside of the organization.
+        confidential information (e.g. authentication factors like passwords).
+      measure: |-
+        By using encryption at the edge of traffic in transit, it is impossible
+        or at least harder to sniff credentials or information being outside of the organization.
+
+        Using standard secure protocols like HTTPS is recommended.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -4287,7 +4366,7 @@ Implementation:
       usefulness: 3
       level: 3
       dependsOn:
-      - Contextualized encoding
+      - Context-aware output encoding
       implementation: []
       references:
         samm2:
@@ -4986,8 +5065,19 @@ Information Gathering:
     Simple application metrics:
       uuid: e9a6d403-a467-445e-b98a-74f0c29da0b1
       risk: Attacks on an application are not recognized.
-      measure: Gathering of application metrics helps to identify incidents like brute
-        force attacks, login/logout.
+      measure: |-
+        Gathering of application metrics helps to identify incidents like brute force attacks, login/logout patterns, and unusual spikes in activity. Key metrics to monitor include:
+          - Authentication attempts (successful/failed logins)
+          - Transaction volumes and patterns (e.g. orders, payments)
+          - API call rates and response times
+          - User session metrics
+          - Resource utilization
+
+        Example: An e-commerce application normally processes 100 orders per hour. A sudden spike to 1000 orders per hour could indicate either:
+         - A legitimate event (unannounced marketing campaign, viral social media post)
+         - A security incident (automated bulk purchase bots, credential stuffing attack)
+
+        By monitoring these basic metrics, teams can quickly investigate abnormal patterns and determine if they represent security incidents requiring response.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -5729,7 +5819,7 @@ Test and Verification:
           - The number of network hops required to reach the asset (recommended)
           - Authentication requirements for access (recommended)
       dependsOn:
-      - 38d1bd10-7b5f-4ae1-868c-0ec813285425
+      - 44f2c8a9-4aaa-4c72-942d-63f78b89f385
       - 2a44b708-734f-4463-b0cb-86dc46344b2f
       implementation: ~
       references:
@@ -5747,43 +5837,6 @@ Test and Verification:
         - 5.1
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/0c10a7f7-f78f-49f2-943d-19fdef248fed
-      tags:
-      - vuln-action
-      - defect-management
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
-    Fix based on severity:
-      uuid: 38d1bd10-7b5f-4ae1-868c-0ec813285425
-      risk: Overwhelming volume of security findings from automated testing tools.
-        This might lead to ignorance of findings.
-      measure: |
-        Implement a very simple risk-based prioritization framework for vulnerability remediation based on the severity of the findings.
-
-        On level one, fix only critical findings.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 1
-      usefulness: 3
-      level: 1
-      implementation: ~
-      references:
-        samm2:
-        - I-DM-3-B
-        iso27001-2017:
-        - 16.1.4
-        - 8.2.1
-        - 8.2.2
-        - 8.2.3
-        iso27001-2022:
-        - 5.25
-        - 5.12
-        - 5.13
-        - 5.1
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/38d1bd10-7b5f-4ae1-868c-0ec813285425
       tags:
       - vuln-action
       - defect-management
@@ -5961,10 +6014,19 @@ Test and Verification:
     Simple false positive treatment:
       uuid: c1acc8af-312e-4503-a817-a26220c993a0
       risk: As false positive occur during each test, all vulnerabilities might be
-        ignored.
-      measure: False positives are suppressed so they will not show up on the next
-        tests again. Most security tools have the possibility to suppress false positives.
-        A Vulnerability Management System might be used.
+        ignored. Specially, if tests are automated an run daily.
+      measure: |-
+        Findings from security tests must be triaged and outcomes persisted/documented to:
+          - Prevent re-analysis of known issues in subsequent test runs
+          - Track accepted risks vs false positives
+          - Enable consistent decision-making across teams
+
+        At this maturity level, a simple tracking system suffices - tools need only distinguish between "triaged" and "untriaged" findings, without complex categorization. Some tools refer to this as "suppression" of findings.
+
+        Samples for false positive handling:
+          - [OWASP Dependency Check](https://jeremylong.github.io/DependencyCheck/general/suppression.html)
+          - [Kubescape with VEX](https://kubescape.io/blog/2023/12/07/kubescape-support-for-vex-generation/)
+          - [OWASP DefectDojo Risk Acceptance](https://docs.defectdojo.com/en/working_with_findings/findings_workflows/risk_acceptances/) and [False Positive Handling](https://docs.defectdojo.com/en/working_with_findings/intro_to_findings/#triage-vulnerabilities-using-finding-status)
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -6095,9 +6157,10 @@ Test and Verification:
         - 5.25
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/b2f77606-3e6c-41e9-b72d-7c0b1d3d581d
-      comments: ""
       tags:
-      - none
+      - vuln-action
+      - defect-management
+      comments: ""
       teamsImplemented:
         Default: false
         B: false
@@ -6198,7 +6261,8 @@ Test and Verification:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/44f2c8a9-4aaa-4c72-942d-63f78b89f385
       implementation: []
       tags:
-      - none
+      - vuln-action
+      - defect-management
       teamsImplemented:
         Default: false
         B: false
@@ -6227,7 +6291,8 @@ Test and Verification:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/9cac3341-fe83-4079-bef2-bfc4279eb594
       implementation: []
       tags:
-      - none
+      - vuln-action
+      - defect-management
       teamsImplemented:
         Default: false
         B: false
@@ -8421,7 +8486,7 @@ Test and Verification:
       uuid: ab0a4b51-3b18-43f1-a6fc-a98e4b28453d
       risk: Time pressure and ignorance might lead to false predictions for the test
         intensity.
-      measure: The intensity of the used tools are not modified to safe time.
+      measure: The intensity of the used tools are not modified to save time.
       difficultyOfImplementation:
         knowledge: 1
         time: 1

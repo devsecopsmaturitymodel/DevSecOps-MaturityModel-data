@@ -1,3 +1,15 @@
+# [1.15.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.14.3...v1.15.0) (2025-02-23)
+
+
+### Bug Fixes
+
+* add meta.yaml via download ([95d8577](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/95d8577b248fb7d56c1e49b7adbd49280255dd14))
+
+
+### Features
+
+* enhance descriptions ([2bc6246](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/2bc6246e0adb2db2ceb05ac8d975ac3be2418aeb))
+
 # [1.14.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.13.0...v1.14.0) (2024-11-07)
 
 
