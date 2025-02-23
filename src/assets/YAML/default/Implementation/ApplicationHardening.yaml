@@ -54,11 +54,11 @@ Implementation:
       uuid: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
       description: |
         **Input validation** stops malicious data from entering your system. \
-        **Output encoding** neutralizes malicious data before rendering to user, or the next system. \
+        **Output encoding** neutralizes malicious data before rendering to user, or the next system.
 
         Input validation and output encoding work together. Apply both. 
 
-        **Context-aware output encoding** encodes data differently, depending on its context. In the following example, the `{{bad_data}}` must be encoded differently, depending on its context, to render safe HTML.
+        **Context-aware output encoding** encodes data differently, depending on its context. In the sample below the `{{bad_data}}` must be encoded differently, depending on its context, to render safe HTML.
 
         ```html
         <div>{{bad_data}}</div>
