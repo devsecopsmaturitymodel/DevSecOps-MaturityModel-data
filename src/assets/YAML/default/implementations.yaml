@@ -41,6 +41,11 @@ implementations:
     name: CWE Top 25 Most Dangerous Software Weaknesses
     tags: ["documentation", "threat"]
     url: https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html
+  cwe-838:
+    uuid: ae97c9b0-308c-4dab-bff9-bf3330a897dc
+    name: CWE-838 Inappropriate Encoding for Output Context
+    tags: ["documentation", "cwe"]
+    url: https://cwe.mitre.org/data/definitions/838.html
   docker-content-trust:
     uuid: ee81f93f-8230-4cfb-a132-ae4ec61cb8e6
     name: Docker Content Trust
@@ -430,6 +435,16 @@ implementations:
     name: OWASP Logging CheatSheet
     url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
     tags: [logging, documentation]
+  owasp-dom-xss-cheats:
+    uuid: 2d61e48f-bade-4332-a383-adc50c29673a
+    name: OWASP DOM based XSS Prevention CheatSheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html
+    tags: []
+  owasp-parameterization-cheats:
+    uuid: d880fa0f-9dbb-454e-a003-d844fad31ab4
+    name: OWASP Parameterization CheatSheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Query_Parameterization_Cheat_Sheet.html
+    tags: []
   elk-stack:
     uuid: 38fe9d00-df8b-44b6-910d-ca0f02b5c5d3
     name: ELK-Stack

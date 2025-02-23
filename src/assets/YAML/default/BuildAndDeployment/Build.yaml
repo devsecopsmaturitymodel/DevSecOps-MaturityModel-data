@@ -41,16 +41,20 @@ Build and Deployment:
       comments: ""
     Defined build process:
       uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
+      description: |
+        A *build process* include more than just compiling your source code. 
+        It also includes steps such as managing (third party) dependencies, 
+        environment configuration, running the unit tests, etc. 
+        
+        A *defined build process* has automated these steps to ensure consistency.
+
+        This can be done with a Jenkinsfile, Maven, or similar tools.
       risk:
         Performing builds without a defined process is error prone; for example,
         as a result of incorrect security related configuration.
       measure:
         A well defined build process lowers the possibility of errors during
         the build process.
-      description: |
-        Sample evidence as an attribute in the yaml: The build process is defined in [REPLACE-ME Pipeline](https://replace-me/jenkins/job)
-        in the folder _vars_. Projects are using a _Jenkinsfile_ to use the
-        defined process.
       difficultyOfImplementation:
         knowledge: 2
         time: 3

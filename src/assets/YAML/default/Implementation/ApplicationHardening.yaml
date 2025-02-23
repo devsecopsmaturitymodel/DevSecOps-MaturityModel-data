@@ -49,23 +49,38 @@ Implementation:
         iso27001-2022:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 8.22
-      isImplemented: false
       comments: ""
-    Contextualized Encoding:
+    Context-aware output encoding:
       uuid: e1f37abb-d848-4a3a-b3df-65e91a89dcb7
+      description: |
+        **Input validation** stops malicious data from entering your system. \
+        **Output encoding** neutralizes malicious data before rendering to user, or the next system.
+
+        Input validation and output encoding work together. Apply both. 
+
+        **Context-aware output encoding** encodes data differently, depending on its context. In the sample below the `{{bad_data}}` must be encoded differently, depending on its context, to render safe HTML.
+
+        ```html
+        <div>{{bad_data}}</div>
+        <a href="{{bad_data}}">Click me</a>
+        <script>var x = '{{bad_data}}';</script>
+        <script>/** Comment {{bad_data}} */</script>
+        ```                
       risk:
-        The generation of interpreter directives from user-provided data poses difficulties and can introduce vulnerabilities to injection attacks.
+        If an attacker manages to slip though your input validation, the attacker may gain control over the user session or execute arbitrary actions.
       measure: |
-        Implementing contextualized encoding, such as employing object-relational mapping tools or utilizing prepared statements, nearly removes the threat of injection vulnerabilities.
+        * Use modern secure frameworks such as React/Angular/Vue/Svelte. The default method here renders data in a safe way.
+        * Use established and well-maintained encoding libraries such as OWASP’s Java Encoder and Microsoft’s AntiXSS.
+        * Implement content security policies (CSP) to restrict the types of content that can be loaded and executed.
       difficultyOfImplementation:
-        knowledge: 2
+        knowledge: 1
         time: 2
         resources: 1
       usefulness: 3
       level: 1
-      description: |
-        Bear in mind that utilizing frameworks is a recommended approach; however, they can develop known security weaknesses over time. Diligent and regular patching is crucial.
-      implementation: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-dom-xss-cheats
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cwe-838
       references:
         samm2:
           - D-SR-1-A
@@ -75,6 +90,48 @@ Implementation:
         iso27001-2022:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 8.22
+      comments: ""
+    Parametrization:
+      uuid: 00e91a8a-3972-4692-8679-674ab8547486
+      description: |
+        By concatenating strings from user input to build SQL queries, an attacker can manipulate the query to do other unintentional SQL commands as well.
+
+        This is called *SQL injection* but the principle applies to NoSql, and anywhere that your code is building commands that will be executed.
+
+        Pay attention to these two lines of code. They seem similar, but behave very differently.
+
+          * `sql.execute("SELECT * FROM table WHERE ID = " + id);`
+          * `sql.execute("SELECT * FROM table WHERE ID = ?", id);`
+        The second line is parameterized. The same principle applies to other types, such as command line execution, etc.
+      risk: |
+        Systems vulnerable to injections may lead to data breaches, loss of data, 
+        unauthorized alteration of data, or complete database compromise or downtime.
+
+        This applies to SQL, NoSql, LDAP, XPath, email headers OS commands, etc. 
+      measure: |
+        * Identify which of the types your application is using. Check that you use:
+          * Use _parametrized queries_ (or _prepared statements_)
+        * For database queries, you may also use:
+          * Use _stored procedures_ ()
+          * Use ORM (Object-Relational Mapping) tools that automatically handle input sanitization
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 1
+      implementation: 
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-parameterization-cheats
+      references:
+        samm2:
+          - D-SR-1-A
+        iso27001-2017:
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 13.1.3
+        iso27001-2022:
+          - Hardening is not explicitly covered by ISO 27001 - too specific
+          - 8.22
+      comments: ""
     App. Hardening Level 1:
       uuid: cf819225-30cb-4702-8e32-60225eedc33d
       risk:
@@ -155,7 +212,6 @@ Implementation:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 8.22
       isImplemented: false
-      evidence: ""
       comments: ""
       dependsOn:
         - App. Hardening Level 1
@@ -189,7 +245,6 @@ Implementation:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 8.22
       isImplemented: false
-      evidence: ""
       comments: ""
       dependsOn:
         - App. Hardening Level 2 (75%)

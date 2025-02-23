@@ -21,38 +21,9 @@ Test and Verification:
           - The number of network hops required to reach the asset (recommended)
           - Authentication requirements for access (recommended)
       dependsOn:
-        - uuid:38d1bd10-7b5f-4ae1-868c-0ec813285425 # Fix based on severity
+        - uuid:44f2c8a9-4aaa-4c72-942d-63f78b89f385 # Treatment of defects with severity high or higher:
         #- uuid:3260a15f-2df0-4173-8790-f11de2cb525a # Access applications accessibility TODO
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f #iventory of apps
-      implementation:
-      references:
-        samm2:
-          - I-DM-3-B
-        iso27001-2017:
-          - 16.1.4
-          - 8.2.1
-          - 8.2.2
-          - 8.2.3
-        iso27001-2022:
-          - 5.25
-          - 5.12
-          - 5.13
-          - 5.10
-      tags: ["vuln-action", "defect-management"]
-    Fix based on severity:
-      uuid: 38d1bd10-7b5f-4ae1-868c-0ec813285425
-      risk: |-
-        Overwhelming volume of security findings from automated testing tools. This might lead to ignorance of findings.
-      measure: |
-       Implement a very simple risk-based prioritization framework for vulnerability remediation based on the severity of the findings.
-       
-       On level one, fix only critical findings.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 1
-      usefulness: 3
-      level: 1
+        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
       references:
         samm2:
@@ -168,11 +139,19 @@ Test and Verification:
       uuid: c1acc8af-312e-4503-a817-a26220c993a0
       risk:
         As false positive occur during each test, all vulnerabilities might be
-        ignored.
-      measure:
-        False positives are suppressed so they will not show up on the next
-        tests again. Most security tools have the possibility to suppress false positives.
-        A Vulnerability Management System might be used.
+        ignored. Specially, if tests are automated an run daily.
+      measure: |-
+        Findings from security tests must be triaged and outcomes persisted/documented to:
+          - Prevent re-analysis of known issues in subsequent test runs
+          - Track accepted risks vs false positives
+          - Enable consistent decision-making across teams
+        
+        At this maturity level, a simple tracking system suffices - tools need only distinguish between "triaged" and "untriaged" findings, without complex categorization. Some tools refer to this as "suppression" of findings.
+        
+        Samples for false positive handling:
+          - [OWASP Dependency Check](https://jeremylong.github.io/DependencyCheck/general/suppression.html)
+          - [Kubescape with VEX](https://kubescape.io/blog/2023/12/07/kubescape-support-for-vex-generation/)
+          - [OWASP DefectDojo Risk Acceptance](https://docs.defectdojo.com/en/working_with_findings/findings_workflows/risk_acceptances/) and [False Positive Handling](https://docs.defectdojo.com/en/working_with_findings/intro_to_findings/#triage-vulnerabilities-using-finding-status)
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -248,8 +227,7 @@ Test and Verification:
         iso27001-2022:
           - 8.8
           - 5.25
-      isImplemented: false
-      evidence: ""
+      tags: ["vuln-action", "defect-management"]
       comments: ""
     Treatment of defects with severity high or higher:
       uuid: 44f2c8a9-4aaa-4c72-942d-63f78b89f385
@@ -274,7 +252,7 @@ Test and Verification:
           - 8.8
           - 5.25
       implementation: []
-      isImplemented: false
+      tags: ["vuln-action", "defect-management"]
       evidence: ""
     Treatment of defects with severity middle:
       uuid: 9cac3341-fe83-4079-bef2-bfc4279eb594
@@ -297,6 +275,7 @@ Test and Verification:
           - 8.8
           - 5.25
       implementation: []
+      tags: ["vuln-action", "defect-management"]
     Usage of a vulnerability management system:
       uuid: 85ba5623-84be-4219-8892-808837be582d
       risk:

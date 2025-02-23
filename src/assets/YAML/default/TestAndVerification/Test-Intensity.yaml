@@ -70,7 +70,7 @@ Test and Verification:
       risk:
         Time pressure and ignorance might lead to false predictions for the test
         intensity.
-      measure: The intensity of the used tools are not modified to safe time.
+      measure: The intensity of the used tools are not modified to save time.
       difficultyOfImplementation:
         knowledge: 1
         time: 1
