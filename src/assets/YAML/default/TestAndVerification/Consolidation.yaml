@@ -319,7 +319,7 @@ Test and Verification:
           - 5.26
           - 5.27
     Integration in development process:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: aaffa73f-59f6-4267-b0ab-732f3d13e90d
       risk: |-
         Not integrating vulnerability handling into the development process may result in product teams ignoring findings. 
         
@@ -366,7 +366,7 @@ Test and Verification:
         - vulnerability-mgmt
         - vmm-measurements
     Treatment of defects per protection requirement:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: 2b7cc923-bdaf-43e3-8fb4-a995b7783969
       risk: |-
         Not defining the protection requirement of applications can lead to wrong prioritization, delayed remediation of 
         critical security issues, increasing the risk of exploitation and potential damage to the organization.
