@@ -137,7 +137,7 @@ Implementation:
           - 5.37
           - 8.32
     Require status checks to pass:
-      uuid: ac8730a2-ccc0-465c-9550-d91edae9d5ee
+      uuid: 993d517f-e409-4575-a34c-8fbc65adb4af
       risk: Organizations risk introducing broken builds, quality issues, and security vulnerabilities into their codebase.
       measure: >-
         Mandate passing of security related specified status checks, like successful builds or static application security tests, before proceeding.
