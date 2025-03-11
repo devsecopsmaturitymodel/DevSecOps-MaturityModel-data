@@ -124,10 +124,24 @@ Build and Deployment:
       usefulness: 3
       level: 2
       implementation:
-      - Container technology automatically creates a hash for images, which can be
-        used.
-      - Immutable images are an other way, e.g. by using a registry, which doesn't
-        allow overriding of images.
+      - uuid: 9368abfb-cf37-477a-9091-a804d2de9148
+        name: Signing of containers
+        tags:
+        - signing
+        - container
+        - build
+        url: https://www.aquasec.com/cloud-native-academy/supply-chain-security/container-image-signing/
+        description: Container technology automatically creates a hash for images,
+          which can be used.
+      - uuid: 638b3691-c9a5-45fa-9ba8-e40aeea32766
+        name: Immutable images
+        tags:
+        - deployment
+        - container
+        - build
+        url: https://kubernetes.io/blog/2022/09/29/enforce-immutability-using-cel/#immutablility-after-first-modification
+        description: Immutable images are an other way, e.g. by using a registry,
+          which doesn't allow overriding of images.
       dependsOn:
       - Defined build process
       references:
@@ -2463,7 +2477,7 @@ Culture and Organization:
         B: false
         C: false
     Determining the protection requirement:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: 72737130-472c-4984-80f8-9ab2f1c2ed5d
       risk: "Not defining the protection requirement of applications can lead to wrong
         prioritization, delayed remediation of \ncritical security issues, increasing
         the risk of exploitation and potential damage to the organization."
@@ -2519,7 +2533,7 @@ Culture and Organization:
         - 5.13
         - 5.1
         openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Process/123e4567-e89b-12d3-a456-426614174000
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Process/72737130-472c-4984-80f8-9ab2f1c2ed5d
       tags:
       - vulnerability-mgmt
       - metrics
@@ -5845,7 +5859,7 @@ Test and Verification:
         B: false
         C: false
     Integration in development process:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: aaffa73f-59f6-4267-b0ab-732f3d13e90d
       risk: "Not integrating vulnerability handling into the development process may
         result in product teams ignoring findings. \n\nSecurity joke: We will gain
         100% false negatives."
@@ -5919,7 +5933,7 @@ Test and Verification:
         - 5.13
         - 5.1
         openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/123e4567-e89b-12d3-a456-426614174000
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/aaffa73f-59f6-4267-b0ab-732f3d13e90d
       tags:
       - vulnerability-mgmt
       - vmm-measurements
@@ -6166,7 +6180,7 @@ Test and Verification:
         B: false
         C: false
     Treatment of defects per protection requirement:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: 2b7cc923-bdaf-43e3-8fb4-a995b7783969
       risk: "Not defining the protection requirement of applications can lead to wrong
         prioritization, delayed remediation of \ncritical security issues, increasing
         the risk of exploitation and potential damage to the organization."
@@ -6227,7 +6241,7 @@ Test and Verification:
         - 5.13
         - 5.1
         openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/123e4567-e89b-12d3-a456-426614174000
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/2b7cc923-bdaf-43e3-8fb4-a995b7783969
       tags:
       - vulnerability-mgmt
       - metrics
