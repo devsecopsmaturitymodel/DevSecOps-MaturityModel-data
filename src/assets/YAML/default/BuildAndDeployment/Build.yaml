@@ -106,10 +106,8 @@ Build and Deployment:
       usefulness: 3
       level: 2
       implementation:
-        - Container technology automatically creates a hash for images, which can be
-          used.
-        - Immutable images are an other way, e.g. by using a registry, which doesn't
-          allow overriding of images.
+         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-containers
+         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/immutable-images
       dependsOn:
         - Defined build process
       references:

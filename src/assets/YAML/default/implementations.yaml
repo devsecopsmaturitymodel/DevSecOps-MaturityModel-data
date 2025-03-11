@@ -1007,3 +1007,15 @@ implementations:
     url: https://citrusframework.org/
     description: |-
       Integration Test framework with focus on messaging applications and Microservices.
+  signing-of-containers:
+    uuid: 9368abfb-cf37-477a-9091-a804d2de9148
+    name: Signing of containers
+    tags: [signing, container, build]
+    url: https://www.aquasec.com/cloud-native-academy/supply-chain-security/container-image-signing/
+    description: Container technology automatically creates a hash for images, which can be used.
+  immutable-images:
+    uuid: 638b3691-c9a5-45fa-9ba8-e40aeea32766
+    name: Immutable images
+    tags: [deployment, container, build]
+    url: https://kubernetes.io/blog/2022/09/29/enforce-immutability-using-cel/#immutablility-after-first-modification
+    description: Immutable images are an other way, e.g. by using a registry, which doesn't allow overriding of images.
