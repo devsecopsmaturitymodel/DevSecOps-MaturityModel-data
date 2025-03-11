@@ -84,7 +84,7 @@ Culture and Organization:
         iso27001-2022:
           - 5.29
     Determining the protection requirement:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: 72737130-472c-4984-80f8-9ab2f1c2ed5d
       risk: |-
         Not defining the protection requirement of applications can lead to wrong prioritization, delayed remediation of 
         critical security issues, increasing the risk of exploitation and potential damage to the organization.
