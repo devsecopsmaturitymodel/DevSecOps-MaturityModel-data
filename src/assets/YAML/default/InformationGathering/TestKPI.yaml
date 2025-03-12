@@ -210,8 +210,6 @@ Information Gathering:
         resources: 2
       usefulness: 3
       level: 3
-      dependsOn:
-        - uuid:123e4567-e89b-12d3-a456-426614174000
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
