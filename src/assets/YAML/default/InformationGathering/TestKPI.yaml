@@ -105,7 +105,7 @@ Information Gathering:
         - metrics
         - vmm-measurements
     SLA per criticality: # is this the definition of SLAs or the measurement?
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: 51f3fce5-b5c8-4683-8c41-e785fe4f3b5f
       risk: |-
         Not communicating how many applications are adhering to SLAs based on the criticality of vulnerabilities can lead to delayed remediation of 
         critical security issues, increasing the risk of exploitation and potential damage to the organization.
@@ -197,7 +197,7 @@ Information Gathering:
         - vmm-measurements
       comments: "The [DefectDojo-Client](https://github.com/SDA-SE/defectdojo-client/tree/master/statistic-client) generates statistics from OWASP DefectDojo and places the results in a [Github repository](https://github.com/pagel-pro/cluster-image-scanner-all-results)."
     Fix rate per repo/product:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: cf0d600e-114d-4887-9059-d81c53805f0d
       risk: |-
         Not communicating how many applications are adhering to SLAs based on the criticality of vulnerabilities can lead to delayed remediation of 
         critical security issues, increasing the risk of exploitation and potential damage to the organization.
@@ -210,8 +210,6 @@ Information Gathering:
         resources: 2
       usefulness: 3
       level: 3
-      dependsOn:
-        - uuid:123e4567-e89b-12d3-a456-426614174000
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
