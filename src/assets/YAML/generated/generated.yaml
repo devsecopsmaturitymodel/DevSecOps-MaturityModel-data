@@ -5251,7 +5251,7 @@ Information Gathering:
         C: false
   Test KPI:
     Fix rate per repo/product:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: cf0d600e-114d-4887-9059-d81c53805f0d
       risk: "Not communicating how many applications are adhering to SLAs based on
         the criticality of vulnerabilities can lead to delayed remediation of \ncritical
         security issues, increasing the risk of exploitation and potential damage
@@ -5266,8 +5266,6 @@ Information Gathering:
         resources: 2
       usefulness: 3
       level: 3
-      dependsOn:
-      - 123e4567-e89b-12d3-a456-426614174000
       implementation:
       - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
         name: OWASP DefectDojo
@@ -5309,7 +5307,7 @@ Information Gathering:
         - 5.1
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Test
-          KPI/123e4567-e89b-12d3-a456-426614174000
+          KPI/cf0d600e-114d-4887-9059-d81c53805f0d
       tags:
       - vulnerability-mgmt
       - metrics
@@ -5550,7 +5548,7 @@ Information Gathering:
         B: false
         C: false
     SLA per criticality:
-      uuid: 123e4567-e89b-12d3-a456-426614174000
+      uuid: 51f3fce5-b5c8-4683-8c41-e785fe4f3b5f
       risk: "Not communicating how many applications are adhering to SLAs based on
         the criticality of vulnerabilities can lead to delayed remediation of \ncritical
         security issues, increasing the risk of exploitation and potential damage
@@ -5607,7 +5605,7 @@ Information Gathering:
         - 5.1
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Test
-          KPI/123e4567-e89b-12d3-a456-426614174000
+          KPI/51f3fce5-b5c8-4683-8c41-e785fe4f3b5f
       tags:
       - vulnerability-mgmt
       - metrics
