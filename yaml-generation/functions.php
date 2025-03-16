@@ -213,6 +213,38 @@ function getActivityNameByUuid($uuid, $dimensionsAggregated) {
 }
 
 
+function getUuidByActivityName($activityName, $dimensionsAggregated) {
+    $activity = getActivityByActivityName($activityName, $dimensionsAggregated);
+    if ($activity) {
+        return $activity["uuid"];
+    } else {
+        return null;
+    }
+}
+
+
+function getActivityByActivityName($activityName, $dimensionsAggregated) {
+    foreach ($dimensionsAggregated as $dimension => $subdimensions) {
+        ksort($subdimensions);
+        foreach ($subdimensions as $subdimension => $elements) {
+            if (sizeof($elements) == 0) {
+                echo "unsetting $subdimension\n";
+                unset($dimensionsAggregated[$dimension][$subdimension]);
+                continue;
+            }
+            if (substr($subdimension, 0, 1) == "_") {
+                continue;
+            }
+
+            if (array_key_exists($activityName, $elements)) {
+                return $elements[$activityName];
+            }
+        }
+    }
+    return null;
+}
+
+
 /**
  *
  * @param unknown $headings

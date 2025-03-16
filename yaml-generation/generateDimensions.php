@@ -48,7 +48,7 @@ if (sizeof($files) > 0) {
 } else {
     $dimensionsAggregated = $dimensions;
 }
-
+$errorMsg = array();
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     ksort($subdimensions);
     foreach ($subdimensions as $subdimension => $elements) {
@@ -68,8 +68,23 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 var_dump($activity);
                 echo "</pre>";
                 exit;
-	    }
+	        }
 	    
+            if (!array_key_exists("uuid", $activity)) {
+                array_push($errorMsg, "$activityName is missing an uuid in $dimension");
+            } else {
+                $uuid = $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
+                $tmp_activityName = getActivityNameByUuid($uuid, $dimensionsAggregated);
+                if ($tmp_activityName != $activityName) {
+                    array_push($errorMsg, "Duplicate UUID: $uuid in '$dimension'\n - ". $tmp_activityName ."\n - " . $activityName);
+                }
+
+                if ($uuid != getUuidByActivityName($activityName, $dimensionsAggregated)) {
+                    array_push($errorMsg, "Duplicate activity name: ". $activityName ."");
+                }
+            }
+
+
             if (!array_key_exists("tags", $activity)) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = ["none"];
             }
@@ -126,6 +141,15 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
         }
     }
 }
+if (count($errorMsg) > 0) {
+    echo "\n\nFound " . count($errorMsg) . " errors:\n";
+    foreach ($errorMsg as $e) {
+        echo "ERROR: $e\n";
+    }
+    exit("Please fix the errors");
+}
+
+
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     if (sizeof($subdimensions) == 0) {
         echo "unsetting $dimension\n";
