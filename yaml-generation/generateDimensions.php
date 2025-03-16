@@ -134,7 +134,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                         $dependsOnUuid = str_replace("uuid:", "", $dependingElement);
                         $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOnUuid;
                         $dependsOnActivityName = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
-                        echo "exchanged $dependingElement to name $dependsOnActivityName";
+                        $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOnActivityName;
                     }
                 }
             }
