@@ -209,7 +209,7 @@ function getActivityNameByUuid($uuid, $dimensionsAggregated) {
             }
         }
     }
-    return "TODO:Mapping";
+    return null;
 }
 
 

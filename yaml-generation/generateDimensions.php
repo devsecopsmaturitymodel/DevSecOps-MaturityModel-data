@@ -16,7 +16,7 @@ foreach ($teams as $team) {
 $files = glob("src/assets/YAML/default/*/*.yaml");
 $dimensions = array();
 foreach ($files as $filename) {
-    //echo "Found $filename";
+    //echo "Found $filename\n";
     if (preg_match("/_meta.yaml/", $filename)) continue;
     $dimension = getDimensions($filename);
     if (array_key_exists("_yaml_references", $dimension)) {
@@ -125,16 +125,25 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
             if (array_key_exists("dependsOn", $activity)) {
                 foreach($activity['dependsOn'] as $index => $dependingElement) {
                     if(!is_string($dependingElement)) {
-                        echo "$dependingElement is not a string in $activityName";
-                        var_dump($dependingElement);
+                        array_push($errorMsg, "The 'dependsOn' is not a string in $activityName: $dependingElement");
                         continue;
                     }
-                    if(str_starts_with($dependingElement, "uuid:" )) {
-                        echo "$dependingElement is having a uuuid\n";
-                        $dependsOnUuid = str_replace("uuid:", "", $dependingElement);
-                        $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOnUuid;
+                    $uuidRegExp = "/(uuid:)?\s*([0-9a-f]{6,}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{6,})/";
+                    if (preg_match($uuidRegExp, $dependingElement, $matches)) {
+                        $dependsOnUuid = $matches[2];
                         $dependsOnActivityName = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
+                        if (is_null($dependsOnActivityName)) {
+                            array_push($errorMsg,"DependsOn non-existing activity uuid: $dependsOnUuid  (in activity: $activityName)");
+                        } else if ($matches[1] == "") {
+                            echo "WARNING: DependsOn is not prefixed by 'uuid:' for $dependsOnUuid (in activity: $activityName)\n";
+                        }
+    
                         $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOnActivityName;
+                        // echo "exchanged $dependingElement to name $dependsOnActivityName\n";
+                    } else {
+                        if (is_null(getUuidByActivityName($dependingElement, $dimensionsAggregated))) {
+                            array_push($errorMsg,"DependsOn non-existing activity: '$dependingElement' (in activity: $activityName)");
+                        }
                     }
                 }
             }
