@@ -63,11 +63,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
 
         foreach ($elements as $activityName => $activity) {
             if (!array_key_exists("level", $activity)) {
-                echo "'$activityName' is not complete!";
-                echo "<pre>";
-                var_dump($activity);
-                echo "</pre>";
-                exit;
+                array_push($errorMsg,"Missing 'level' attribute in activity: $activityName");
 	        }
 	    
             echo "$subdimension | $activityName\n";
