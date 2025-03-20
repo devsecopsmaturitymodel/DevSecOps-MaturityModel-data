@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.15.0...v1.15.1) (2025-03-20)
+
+
+### Bug Fixes
+
+* dependsOn uuid ref ([943f10c](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/943f10cb6693af573d9f792f028e5da79797aa0a))
+
 # [1.15.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.14.3...v1.15.0) (2025-02-23)
 
 

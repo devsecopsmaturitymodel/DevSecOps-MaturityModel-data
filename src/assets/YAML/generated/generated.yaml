@@ -388,7 +388,7 @@ Build and Deployment:
       usefulness: 4
       level: 1
       dependsOn:
-      - Continuous Integration
+      - Defined build process
       implementation:
       - uuid: b4bfead3-5fb6-4dd0-ba44-5da713bd22e4
         name: CI/CD tools
@@ -564,7 +564,7 @@ Build and Deployment:
         exists (gathered manually or automatically).
       dependsOn:
       - Defined deployment process
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Inventory of production components
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -690,7 +690,7 @@ Build and Deployment:
       measure: A documented inventory of dependencies used in artifacts like container
         images and containers exists.
       dependsOn:
-      - 83057028-0b77-4d2e-8135-40969768ae88
+      - Inventory of production artifacts
       - SBOM of components
       difficultyOfImplementation:
         knowledge: 2
@@ -2492,7 +2492,7 @@ Culture and Organization:
       usefulness: 3
       level: 2
       dependsOn:
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Inventory of production components
       implementation:
       - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
         name: OWASP DefectDojo
@@ -3100,7 +3100,7 @@ Implementation:
       usefulness: 3
       level: 3
       dependsOn:
-      - e7598ac4-b082-4e56-b7df-e2c6b426a5e2
+      - Require a PR before merging
       implementation:
       - uuid: b1b88bc5-5a22-4888-a27b-acce3d9fe29a
         name: Improve code quality with branch policies
@@ -3146,7 +3146,7 @@ Implementation:
       usefulness: 4
       level: 3
       dependsOn:
-      - e7598ac4-b082-4e56-b7df-e2c6b426a5e2
+      - Require a PR before merging
       implementation:
       - uuid: b1b88bc5-5a22-4888-a27b-acce3d9fe29a
         name: Improve code quality with branch policies
@@ -3288,7 +3288,7 @@ Implementation:
       usefulness: 4
       level: 3
       dependsOn:
-      - e7598ac4-b082-4e56-b7df-e2c6b426a5e2
+      - Require a PR before merging
       implementation:
       - uuid: b1b88bc5-5a22-4888-a27b-acce3d9fe29a
         name: Improve code quality with branch policies
@@ -5489,7 +5489,7 @@ Information Gathering:
       usefulness: 3
       level: 2
       dependsOn:
-      - 8ae0b92c-10e0-4602-ba22-7524d6aed488
+      - Automated PRs for patches
       implementation: []
       references:
         samm2:
@@ -5526,8 +5526,8 @@ Information Gathering:
       usefulness: 3
       level: 4
       dependsOn:
-      - 86d490b9-d798-4a5b-a011-ab9688014c46
-      - 8ae0b92c-10e0-4602-ba22-7524d6aed488
+      - Patching mean time to resolution via PR
+      - Automated PRs for patches
       implementation: []
       references:
         samm2:
@@ -5831,8 +5831,8 @@ Test and Verification:
           - The number of network hops required to reach the asset (recommended)
           - Authentication requirements for access (recommended)
       dependsOn:
-      - 44f2c8a9-4aaa-4c72-942d-63f78b89f385
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Treatment of defects with severity high or higher
+      - Inventory of production components
       implementation: ~
       references:
         samm2:
@@ -6322,9 +6322,9 @@ Test and Verification:
         resources: 2
       usefulness: 2
       dependsOn:
-      - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
-      - 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87
-      - 185d5a74-19dc-4422-be07-44ea35226783
+      - Exploit likelihood estimation
+      - Each team has a security champion
+      - Office Hours
       level: 3
       description: "For known vulnerabilities a processes to estimate the exploit
         ability of a vulnerability is recommended.\n\nTo implement a security culture
@@ -6946,7 +6946,7 @@ Test and Verification:
         tags: []
         url: https://github.com/controlplaneio/netassert
       dependsOn:
-      - Segmented networks for virtual environments
+      - Isolated networks for virtual environments
       references:
         samm2:
         - V-ST-2-A
@@ -7104,7 +7104,7 @@ Test and Verification:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
           depth for applications/017d9e26-42b5-49a4-b945-9f59b308fb99
       dependsOn:
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Inventory of production components
       tags:
       - none
       teamsImplemented:
@@ -7199,7 +7199,7 @@ Test and Verification:
       usefulness: 4
       level: 3
       dependsOn:
-      - d918cd44-a972-43e9-a974-eff3f4a5dcfe
+      - Software Composition Analysis (server side)
       implementation:
       - uuid: aa507341-9531-42cd-95cf-d7b51af47086
         name: Known Exploited Vulnerabilities
@@ -7303,8 +7303,8 @@ Test and Verification:
       level: 3
       dependsOn:
       - Defined build process
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
-      - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
+      - Inventory of production components
+      - Exploit likelihood estimation
       implementation:
       - uuid: aa54a82c-d628-4d42-9bc8-1aa269cd91c7
         name: retire.js
@@ -7369,7 +7369,7 @@ Test and Verification:
       level: 2
       dependsOn:
       - Defined build process
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Inventory of production components
       implementation:
       - uuid: 06334caf-8be6-487a-96b1-d41c7ed5f207
         name: OWASP Dependency Check
@@ -7441,7 +7441,7 @@ Test and Verification:
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Inventory of production components
       implementation: []
       references:
         samm2:
@@ -7505,7 +7505,7 @@ Test and Verification:
       dependsOn:
       - Static analysis for important client side components
       - Static analysis for important server side components
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Inventory of production components
       references:
         samm2:
         - V-ST-2-A
@@ -7572,7 +7572,7 @@ Test and Verification:
         - sast
       dependsOn:
       - Defined build process
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Inventory of production components
       references:
         samm2:
         - V-ST-2-A
@@ -7634,7 +7634,7 @@ Test and Verification:
         - sast
       dependsOn:
       - Defined build process
-      - 2a44b708-734f-4463-b0cb-86dc46344b2f
+      - Inventory of production components
       references:
         samm2:
         - V-ST-2-A
