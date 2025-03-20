@@ -2,7 +2,10 @@
 
 require_once "functions.php";
 
+$errorMsg = array();
+$implementationReferenceFile = "src/assets/YAML/default/implementations.yaml";
 $metadata = readYaml("src/assets/YAML/meta.yaml");
+
 $teams = $metadata["teams"];
 if (sizeof($teams) == 0) {
     echo "Warning: No teams defined";
@@ -12,11 +15,10 @@ foreach ($teams as $team) {
     $teamsImplemented[$team] = false;
 }
 
-
 $files = glob("src/assets/YAML/default/*/*.yaml");
 $dimensions = array();
 foreach ($files as $filename) {
-    //echo "Found $filename\n";
+    echo "Reading $filename\n";
     if (preg_match("/_meta.yaml/", $filename)) continue;
     $dimension = getDimensions($filename);
     if (array_key_exists("_yaml_references", $dimension)) {
@@ -29,7 +31,7 @@ $files = glob("src/assets/YAML/custom/*/*.yaml");
 $dimensionsCustom = array();
 $dimensionsAggregated = array();
 foreach ($files as $filename) {
-    //echo "Found $filename";
+    echo "Reading custom $filename\n";
     $dimensionCustom = getDimensions($filename);
     $dimensionsCustom = array_merge_recursive_ex($dimensionsCustom, $dimensionCustom);
 }
@@ -48,7 +50,7 @@ if (sizeof($files) > 0) {
 } else {
     $dimensionsAggregated = $dimensions;
 }
-$errorMsg = array();
+
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     ksort($subdimensions);
     foreach ($subdimensions as $subdimension => $elements) {
@@ -150,13 +152,6 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
         }
     }
 }
-if (count($errorMsg) > 0) {
-    echo "\n\nFound " . count($errorMsg) . " errors:\n";
-    foreach ($errorMsg as $e) {
-        echo "ERROR: $e\n";
-    }
-    exit("Please fix the errors");
-}
 
 
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
@@ -166,12 +161,52 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     }
 }
 
+
+$implementationReferences = readYaml($implementationReferenceFile)['implementations'];
+assert_unique_refs($implementationReferences, $errorMsg);
+
 resolve_json_ref($dimensionsAggregated);
+
+
+if (count($errorMsg) > 0) {
+    echo "\n\nFound " . count($errorMsg) . " errors:\n";
+    foreach ($errorMsg as $e) {
+        echo "ERROR: $e\n";
+    }
+    exit("Please fix the errors");
+}
+
+
+
 
 $dimensionsString = yaml_emit($dimensionsAggregated);
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $dimensionsString);
+
+
+
+function assert_unique_refs($implementationReferences, &$errorMsg) {
+    assert_unique_ref_by_key($implementationReferences, 'uuid', $errorMsg);
+    assert_unique_ref_by_key($implementationReferences, 'name', $errorMsg);
+    assert_unique_ref_by_key($implementationReferences, 'url', $errorMsg);
+}
+
+function assert_unique_ref_by_key($implementationReferences, $keyToAssert, &$errorMsg) {
+    $all_values = array();
+
+    foreach ($implementationReferences as $key => $reference) {
+        if (array_key_exists($keyToAssert, $reference)) {
+            $value = $reference[$keyToAssert];
+            // echo "$key: $value\n";
+            if (array_key_exists($value, $all_values)) {
+                array_push($errorMsg, "Duplicate '$keyToAssert' in reference: " . $all_values[$value] . " and $key: '$value'");
+            } else {
+                $all_values[$value] = $key;
+            }
+        }
+    }
+}
 
 
 /**
