@@ -209,7 +209,34 @@ function getActivityNameByUuid($uuid, $dimensionsAggregated) {
             }
         }
     }
-    return "TODO:Mapping";
+    return null;
+}
+
+
+function getUuidByActivityName($activityName, $dimensionsAggregated) {
+    $activity = getActivityByActivityName($activityName, $dimensionsAggregated);
+    if ($activity) {
+        return $activity["uuid"];
+    } else {
+        return null;
+    }
+}
+
+
+function getActivityByActivityName($activityName, $dimensionsAggregated) {
+    foreach ($dimensionsAggregated as $dimension => $subdimensions) {
+        ksort($subdimensions);
+        foreach ($subdimensions as $subdimension => $elements) {
+            if (substr($subdimension, 0, 1) == "_") {
+                continue;
+            }
+
+            if (array_key_exists($activityName, $elements)) {
+                return $elements[$activityName];
+            }
+        }
+    }
+    return null;
 }
 
 

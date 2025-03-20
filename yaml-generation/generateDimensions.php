@@ -16,7 +16,7 @@ foreach ($teams as $team) {
 $files = glob("src/assets/YAML/default/*/*.yaml");
 $dimensions = array();
 foreach ($files as $filename) {
-    //echo "Found $filename";
+    //echo "Found $filename\n";
     if (preg_match("/_meta.yaml/", $filename)) continue;
     $dimension = getDimensions($filename);
     if (array_key_exists("_yaml_references", $dimension)) {
@@ -48,7 +48,7 @@ if (sizeof($files) > 0) {
 } else {
     $dimensionsAggregated = $dimensions;
 }
-
+$errorMsg = array();
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     ksort($subdimensions);
     foreach ($subdimensions as $subdimension => $elements) {
@@ -63,13 +63,25 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
 
         foreach ($elements as $activityName => $activity) {
             if (!array_key_exists("level", $activity)) {
-                echo "'$activityName' is not complete!";
-                echo "<pre>";
-                var_dump($activity);
-                echo "</pre>";
-                exit;
-	    }
+                array_push($errorMsg,"Missing 'level' attribute in activity: $activityName");
+	        }
 	    
+            echo "$subdimension | $activityName\n";
+            if (!array_key_exists("uuid", $activity)) {
+                array_push($errorMsg, "$activityName is missing an uuid in $dimension");
+            } else {
+                $uuid = $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
+                $tmp_activityName = getActivityNameByUuid($uuid, $dimensionsAggregated);
+                if ($tmp_activityName != $activityName) {
+                    array_push($errorMsg, "Duplicate UUID: $uuid in '$dimension'\n - ". $tmp_activityName ."\n - " . $activityName);
+                }
+
+                if ($uuid != getUuidByActivityName($activityName, $dimensionsAggregated)) {
+                    array_push($errorMsg, "Duplicate activity name: ". $activityName ."");
+                }
+            }
+
+
             if (!array_key_exists("tags", $activity)) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = ["none"];
             }
@@ -108,24 +120,45 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
             }
             if (array_key_exists("dependsOn", $activity)) {
-                foreach($activity['dependsOn'] as $index => $dependingElement) {
-                    if(!is_string($dependingElement)) {
-                        echo "$dependingElement is not a string in $activityName";
-                        var_dump($dependingElement);
+                foreach($activity['dependsOn'] as $index => $dependsOn) {
+                    if(!is_string($dependsOn)) {
+                        array_push($errorMsg, "The 'dependsOn' is not a string '" . json_encode($dependsOn) . "' (in $activityName)");
                         continue;
-                    }
-                    if(str_starts_with($dependingElement, "uuid:" )) {
-                        echo "$dependingElement is having a uuuid\n";
-                        $dependsOnUuid = str_replace("uuid:", "", $dependingElement);
-                        $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOnUuid;
-                        $dependsOnActivityName = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
-                        echo "exchanged $dependingElement to name $dependsOnActivityName";
+                    } 
+
+                    // Swap uuids with activity name
+                    $uuidRegExp = "/(uuid:)?\s*([0-9a-f]{6,}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{6,})/";
+                    if (preg_match($uuidRegExp, $dependsOn, $matches)) {
+                        $dependsOnUuid = $matches[2];
+                        $dependsOn = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
+                        if (is_null($dependsOn)) {
+                            array_push($errorMsg,"DependsOn non-existing activity uuid: $dependsOnUuid  (in activity: $activityName)");
+                        } else if ($matches[1] == "") {
+                            echo "WARNING: DependsOn is not prefixed by 'uuid:' for $dependsOnUuid (in activity: $activityName)\n";
+                        } 
+                        
+                        // echo "exchanged $dependsOnUuid with name $dependsOnActivityName\n";
+                        $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOn;
+                        
+                    } else {
+                        if (is_null(getUuidByActivityName($dependsOn, $dimensionsAggregated))) {
+                            array_push($errorMsg,"DependsOn non-existing activity: '$dependsOn' (in activity: $activityName)");
+                        }
                     }
                 }
             }
         }
     }
 }
+if (count($errorMsg) > 0) {
+    echo "\n\nFound " . count($errorMsg) . " errors:\n";
+    foreach ($errorMsg as $e) {
+        echo "ERROR: $e\n";
+    }
+    exit("Please fix the errors");
+}
+
+
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     if (sizeof($subdimensions) == 0) {
         echo "unsetting $dimension\n";
