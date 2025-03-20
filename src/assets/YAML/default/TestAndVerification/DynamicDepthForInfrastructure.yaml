@@ -142,7 +142,7 @@ Test and Verification:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/netassert
       dependsOn:
-        - Segmented networks for virtual environments
+        - uuid:4ce24abd-8ba6-494c-828d-4d193e28e4a1 # Isolated networks for virtual environments
       references:
         samm2:
           - V-ST-2-A
@@ -154,8 +154,6 @@ Test and Verification:
           - 8.22
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""
     Test of the configuration of cloud environments:
       uuid: 7bb70764-9392-4462-935d-e55b2e148199

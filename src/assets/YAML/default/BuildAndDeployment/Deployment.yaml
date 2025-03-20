@@ -83,7 +83,7 @@ Build and Deployment:
       usefulness: 4
       level: 1
       dependsOn:
-        - Continuous Integration
+        - uuid:f6f7737f-25a9-4317-8de2-09bf59f29b5b # Def. Build Process
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
