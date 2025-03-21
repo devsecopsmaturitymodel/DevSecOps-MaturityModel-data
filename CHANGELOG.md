@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.15.1...v1.15.2) (2025-03-21)
+
+
+### Bug Fixes
+
+* app logging does not depends on visualiziation ([ce1f8e0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/ce1f8e0b519ac5a5967285ae9df6094ae6187f8b))
+
 ## [1.15.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.15.0...v1.15.1) (2025-03-20)
 
 
