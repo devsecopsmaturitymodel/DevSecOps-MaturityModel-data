@@ -18,7 +18,6 @@ Information Gathering:
       usefulness: 5
       level: 3
       dependsOn:
-        - Visualized logging
         - Alerting
       implementation: []
       references:
