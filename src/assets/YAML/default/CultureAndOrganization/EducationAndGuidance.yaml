@@ -272,7 +272,7 @@ Culture and Organization:
 
         [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
       references:
         samm2:
@@ -297,7 +297,7 @@ Culture and Organization:
       usefulness: 4
       level: 4
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-cheatsheetse
       references:
         samm2:
