@@ -165,6 +165,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
 $implementationReferences = readYaml($implementationReferenceFile)['implementations'];
 $references = array("implementations" => $implementationReferences);
 assertUniqueRefs($references, $errorMsg);
+assertSecureUrlsInRefs($references, $errorMsg);
 assertLiveUrlsInRefs($references, $errorMsg);
 
 resolveYamlReferences($dimensionsAggregated, $references, $errorMsg);
@@ -210,6 +211,22 @@ function assertUniqueRefByKey($references, $keyToAssert, &$errorMsg) {
                 array_push($errorMsg, "Duplicate '$keyToAssert' in reference file: " . $all_values[$value] . " and $key: $printable_keyToAssert='$value'");
             } else {
                 $all_values[$value] = $key;
+            }
+        }
+    }
+}
+
+
+function assertSecureUrlsInRefs($all_references, &$errorMsg) {
+    foreach ($all_references as $references) {
+        foreach ($references as $id => $reference) {
+            foreach ($reference as $key => $value) {   
+                if (is_string($value)) {
+                    // echo "KEY: $key VAL: " . var_dump($value) . "\n";
+                    if (str_contains($value,'http://')) {
+                        array_push($errorMsg, "Insecure url in '$key' of $id: " . $reference[$key]);
+                    }
+                }
             }
         }
     }
