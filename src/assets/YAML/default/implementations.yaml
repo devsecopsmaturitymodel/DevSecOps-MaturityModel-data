@@ -188,7 +188,7 @@ implementations:
     url: https://github.com/bkimminich/juice-shop
     description: |-
       In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
-  owasp-cheatsheet-ser:
+  owasp-cheatsheet-series:
     uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
     name: OWASP Cheatsheet Series
     tags: [training, secure coding]
@@ -268,7 +268,7 @@ implementations:
     url: https://attack.mitre.org/matrices/enterprise/cloud/
     description: |-
       Attack matrix for cloud
-  attack-matrix-contai:
+  attack-matrix-containers:
     uuid: 59881520-4c69-4922-a44e-99044a77de2b
     name: Attack Matrix Containers
     tags: [mitre]
