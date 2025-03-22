@@ -289,13 +289,25 @@ function resolveYamlReferences(&$data, $references, &$errorMsg)
 
             // Insert the actual reference object, instead of the reference link
             $value = $payload['references'][$context][$ref];
+            $payload['usedRefs']["$context/$ref"] = true;
         }
     }
 
 
     // Call resolve_yaml_references_cb for each and every node in the data array
-    $payload = array('references' => &$references, 'errorMsg' => &$errorMsg);
+    $usedRefs = array();
+    $payload = array('references' => &$references, 'errorMsg' => &$errorMsg, 'usedRefs' => &$usedRefs);
     array_walk($data, "resolveYamlReferencesCallback", $payload);
+
+    // Inform of unused references
+    echo "\n";
+    foreach ($references as $context => $refs) {
+        foreach ($refs as $ref => $refData) {
+            if (!array_key_exists("$context/$ref", $usedRefs)) {
+                echo "INFO: Reference never used: $context: $ref\n";
+            }
+        }
+    }
 }
 
 
