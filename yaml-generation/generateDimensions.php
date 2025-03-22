@@ -165,6 +165,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
 $implementationReferences = readYaml($implementationReferenceFile)['implementations'];
 $references = array("implementations" => $implementationReferences);
 assertUniqueRefs($references, $errorMsg);
+assertLiveUrlsInRefs($references, $errorMsg);
 
 resolveYamlReferences($dimensionsAggregated, $references, $errorMsg);
 
@@ -213,6 +214,63 @@ function assertUniqueRefByKey($references, $keyToAssert, &$errorMsg) {
         }
     }
 }
+
+
+function assertLiveUrlsInRefs($all_references, &$errorMsg) {
+    if (TEST_REFERENCED_URLS) {
+        echo "\nTesting referenced URLs:\n";
+        foreach ($all_references as $references) {
+            foreach ($references as $key => $reference) {
+                if (array_key_exists('url', $reference)) {
+                    $url = $reference['url'];
+                    echo "  $key: $url\n";
+                    $err = assertLiveUrl($reference['url']);
+                    if ($err) {
+                        echo "    # $err\n";
+                        array_push($errorMsg, "Dead ref URL ($key): $err");
+                    }
+                }
+            }
+        }
+        echo "\n";
+    }
+}
+
+
+function assertLiveUrl($url):string {
+    $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0';
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_USERAGENT, $useragent);
+    curl_setopt($curl, CURLOPT_NOBODY, true);
+    curl_setopt($curl, CURLOPT_HEADER, true);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
+    $response = curl_exec($curl);
+    
+    if (curl_errno($curl)) {
+        echo curl_error($curl);
+        curl_close($curl);
+        return "No reply";
+    }
+    
+    // Extract header info
+    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    $redirectUrl = curl_getinfo($curl,  CURLINFO_REDIRECT_URL );
+
+    curl_close($curl);
+
+    if ($statusCode == 200) {   
+        return "";
+    }
+    if ($statusCode == 301 || $statusCode == 302) {   
+        return "Status code $statusCode redirects to: $redirectUrl";
+    }
+    return "Status code: $statusCode: $url";
+}
+
 
 
 /**

@@ -14,11 +14,17 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 define('NUMBER_LEVELS', 4);
-if (isset($_ENV["IS_IMPLEMENTED_WHEN_EVIDENCE"])) {
-    $enforce=boolval($_ENV["IS_IMPLEMENTED_WHEN_EVIDENCE"]);
-    define('IS_IMPLEMENTED_WHEN_EVIDENCE', $enforce);
-}else {
-    define('IS_IMPLEMENTED_WHEN_EVIDENCE', false);
+defineConstFromEnv("IS_IMPLEMENTED_WHEN_EVIDENCE");
+defineConstFromEnv("TEST_REFERENCED_URLS");
+
+
+function defineConstFromEnv($envVar) {
+    if (isset($_ENV[$envVar])) {
+        $value = boolval($_ENV[$envVar]);
+        define($envVar, $value);
+    }else {
+        define($envVar, false);
+    }
 }
 
 /**
