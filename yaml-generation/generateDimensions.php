@@ -2,7 +2,10 @@
 
 require_once "functions.php";
 
+$errorMsg = array();
+$implementationReferenceFile = "src/assets/YAML/default/implementations.yaml";
 $metadata = readYaml("src/assets/YAML/meta.yaml");
+
 $teams = $metadata["teams"];
 if (sizeof($teams) == 0) {
     echo "Warning: No teams defined";
@@ -12,11 +15,10 @@ foreach ($teams as $team) {
     $teamsImplemented[$team] = false;
 }
 
-
 $files = glob("src/assets/YAML/default/*/*.yaml");
 $dimensions = array();
 foreach ($files as $filename) {
-    //echo "Found $filename\n";
+    echo "Reading $filename\n";
     if (preg_match("/_meta.yaml/", $filename)) continue;
     $dimension = getDimensions($filename);
     if (array_key_exists("_yaml_references", $dimension)) {
@@ -29,7 +31,7 @@ $files = glob("src/assets/YAML/custom/*/*.yaml");
 $dimensionsCustom = array();
 $dimensionsAggregated = array();
 foreach ($files as $filename) {
-    //echo "Found $filename";
+    echo "Reading custom $filename\n";
     $dimensionCustom = getDimensions($filename);
     $dimensionsCustom = array_merge_recursive_ex($dimensionsCustom, $dimensionCustom);
 }
@@ -48,7 +50,7 @@ if (sizeof($files) > 0) {
 } else {
     $dimensionsAggregated = $dimensions;
 }
-$errorMsg = array();
+
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     ksort($subdimensions);
     foreach ($subdimensions as $subdimension => $elements) {
@@ -150,13 +152,6 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
         }
     }
 }
-if (count($errorMsg) > 0) {
-    echo "\n\nFound " . count($errorMsg) . " errors:\n";
-    foreach ($errorMsg as $e) {
-        echo "ERROR: $e\n";
-    }
-    exit("Please fix the errors");
-}
 
 
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
@@ -166,12 +161,133 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     }
 }
 
-resolve_json_ref($dimensionsAggregated);
+// Identify any issues regarding the references
+$implementationReferences = readYaml($implementationReferenceFile)['implementations'];
+$references = array("implementations" => $implementationReferences);
+assertUniqueRefs($references, $errorMsg);
+assertSecureUrlsInRefs($references, $errorMsg);
+assertLiveUrlsInRefs($references, $errorMsg);
 
+resolveYamlReferences($dimensionsAggregated, $references, $errorMsg);
+
+
+// Inform of any errors detected
+if (count($errorMsg) > 0) {
+    echo "\n\nFound " . count($errorMsg) . " errors:\n";
+    foreach ($errorMsg as $e) {
+        echo "ERROR: $e\n";
+    }
+    exit("Please fix the errors");
+}
+
+
+// Store generated data
 $dimensionsString = yaml_emit($dimensionsAggregated);
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $dimensionsString);
+
+
+
+function assertUniqueRefs($all_references, &$errorMsg) {
+    foreach ($all_references as $references) {
+        assertUniqueRefByKey($references, 'uuid', $errorMsg);
+        assertUniqueRefByKey($references, 'name', $errorMsg);
+        assertUniqueRefByKey($references, 'url', $errorMsg);
+        assertUniqueRefByKey($references, "\n  description", $errorMsg);
+    }
+}
+
+function assertUniqueRefByKey($references, $keyToAssert, &$errorMsg) {
+    $all_values = array();
+    $printable_keyToAssert = $keyToAssert;
+    $keyToAssert = trim($keyToAssert);
+
+    foreach ($references as $key => $reference) {
+        if (array_key_exists($keyToAssert, $reference)) {
+            $value = $reference[$keyToAssert];
+            // echo "$key: $value\n";
+            if (array_key_exists($value, $all_values)) {
+                array_push($errorMsg, "Duplicate '$keyToAssert' in reference file: " . $all_values[$value] . " and $key: $printable_keyToAssert='$value'");
+            } else {
+                $all_values[$value] = $key;
+            }
+        }
+    }
+}
+
+
+function assertSecureUrlsInRefs($all_references, &$errorMsg) {
+    foreach ($all_references as $references) {
+        foreach ($references as $id => $reference) {
+            foreach ($reference as $key => $value) {   
+                if (is_string($value)) {
+                    // echo "KEY: $key VAL: " . var_dump($value) . "\n";
+                    if (str_contains($value,'http://')) {
+                        array_push($errorMsg, "Insecure url in '$key' of $id: " . $reference[$key]);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+function assertLiveUrlsInRefs($all_references, &$errorMsg) {
+    if (TEST_REFERENCED_URLS) {
+        echo "\nTesting referenced URLs:\n";
+        foreach ($all_references as $references) {
+            foreach ($references as $key => $reference) {
+                if (array_key_exists('url', $reference)) {
+                    $url = $reference['url'];
+                    echo "  $key: $url\n";
+                    $err = assertLiveUrl($reference['url']);
+                    if ($err) {
+                        echo "    # $err\n";
+                        array_push($errorMsg, "Dead ref URL ($key): $err");
+                    }
+                }
+            }
+        }
+        echo "\n";
+    }
+}
+
+
+function assertLiveUrl($url):string {
+    $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0';
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_USERAGENT, $useragent);
+    curl_setopt($curl, CURLOPT_NOBODY, true);
+    curl_setopt($curl, CURLOPT_HEADER, true);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
+    $response = curl_exec($curl);
+    
+    if (curl_errno($curl)) {
+        echo curl_error($curl);
+        curl_close($curl);
+        return "No reply";
+    }
+    
+    // Extract header info
+    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    $redirectUrl = curl_getinfo($curl,  CURLINFO_REDIRECT_URL );
+
+    curl_close($curl);
+
+    if ($statusCode == 200) {   
+        return "";
+    }
+    if ($statusCode == 301 || $statusCode == 302) {   
+        return "Status code $statusCode redirects to: $redirectUrl";
+    }
+    return "Status code: $statusCode: $url";
+}
+
 
 
 /**
@@ -219,42 +335,64 @@ function array_merge_recursive_ex(array $array1, array $array2)
 }
 
 
-/**
- * Traverse in-place an array and replaces json-pointers.
- *
- * @param unknown $data (reference)
+/*
+* Traverse an array in-place and replaces yaml pointers.
  */
-function resolve_json_ref(&$data)
+function resolveYamlReferences(&$data, $references, &$errorMsg)
 {
-
-
-    /**
-     *
-     * @param unknown $value (reference)
-     * @param unknown $key
-     * @param unknown $ctx
-     */
-    function resolve_json_ref_cb(&$value, $key, $ctx)
+    function resolveYamlReferencesCallback(&$value, $key, $payload)
     {
         if (!is_array($value)) {
             return;
         }
 
         if (!array_key_exists('$ref', $value)) {
-            $ctx["ctx"] = &$value;
-            array_walk($value, "resolve_json_ref_cb", $ctx);
+            // Call recursively until $value contains a '$ref' child
+            array_walk($value, "resolveYamlReferencesCallback", $payload);
+            return;
+        } else {
+            list($context, $ref) = extractReference($value['$ref']);
+            if (is_null($context) || is_null($ref)) {
+                array_push($payload['errorMsg'],"Invalid syntax in reference file: '" . $value['$ref'] . "'");
             return;
         }
+            if (!array_key_exists($context, $payload['references']) ||
+                !array_key_exists($ref, $payload['references'][$context]) ) {
+                array_push($payload['errorMsg'],"Reference does not exist: '$context/$ref'");
+                return;
+            }
 
-        // echo "key: $key\nvalue: ".var_dump($ctx). "\n";
-        $ctx["ctx"][$key] = readYaml($value['$ref']);
-
+            // Insert the actual reference object, instead of the reference link
+            $value = $payload['references'][$context][$ref];
+            $payload['usedRefs']["$context/$ref"] = true;
+        }
     }
 
 
-    // Create a context variable to store
-    // the reference to the actual data, so that
-    // resolve_reference can replace them.
-    $ctx = array("ctx" => null);
-    array_walk($data, "resolve_json_ref_cb", $ctx);
+    // Call resolve_yaml_references_cb for each and every node in the data array
+    $usedRefs = array();
+    $payload = array('references' => &$references, 'errorMsg' => &$errorMsg, 'usedRefs' => &$usedRefs);
+    array_walk($data, "resolveYamlReferencesCallback", $payload);
+
+    // Inform of unused references
+    echo "\n";
+    foreach ($references as $context => $refs) {
+        foreach ($refs as $ref => $refData) {
+            if (!array_key_exists("$context/$ref", $usedRefs)) {
+                echo "INFO: Reference never used: $context: $ref\n";
+            }
+        }
+    }
+}
+
+
+/*
+ * Extract the context id and the reference id from the '$ref' value in the yaml
+ */
+function extractReference($str) {
+    $regExp = "~#/([\w-]+)/([\w-]+)~";
+    if (preg_match($regExp, $str, $matches)) {
+        return array($matches[1], $matches[2]);
+    }
+    return null;
 }

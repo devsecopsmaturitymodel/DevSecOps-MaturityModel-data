@@ -406,7 +406,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-docker-bench-for
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/for-example-for-cont
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-cloud
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-contai
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-containers
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-kubern
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defend-the-core-kubernetes
       references:
@@ -439,7 +439,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-docker-bench-for
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/for-example-for-cont
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-cloud
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-contai
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-containers
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-kubern
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defend-the-core-kubernetes
       references:
