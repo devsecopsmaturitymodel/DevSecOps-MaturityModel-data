@@ -19,7 +19,7 @@ Culture and Organization:
       level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
       references:
         samm2:
           - G-EG-1-A
@@ -272,8 +272,8 @@ Culture and Organization:
 
         [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
       references:
         samm2:
           - G-EG-1-A
@@ -297,8 +297,8 @@ Culture and Organization:
       usefulness: 4
       level: 4
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juiceshop
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-cheatsheetse
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
       references:
         samm2:
           - G-EG-3-A
@@ -323,7 +323,7 @@ Culture and Organization:
       usefulness: 5
       level: 2
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
       dependsOn:
         - Each team has a security champion
       references:
@@ -420,7 +420,7 @@ Culture and Organization:
       usefulness: 3
       level: 1
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-ser
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
       references:
         samm2:
           - G-EG-1-A

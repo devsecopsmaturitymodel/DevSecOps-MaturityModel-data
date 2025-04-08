@@ -159,7 +159,7 @@ Test and Verification:
       usefulness: 4
       level: 1
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defect-dojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
       references:
         samm2:

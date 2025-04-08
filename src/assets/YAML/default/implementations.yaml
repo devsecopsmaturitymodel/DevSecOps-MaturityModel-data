@@ -188,23 +188,9 @@ implementations:
     url: https://github.com/bkimminich/juice-shop
     description: |-
       In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
-  owasp-cheatsheet-ser:
+  owasp-cheatsheet-series:
     uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
     name: OWASP Cheatsheet Series
-    tags: [secure coding]
-    url: https://cheatsheetseries.owasp.org/
-  owasp-juiceshop:
-    uuid: 81476121-67dd-4ba9-a67b-e78a23050c28
-    name: OWASP JuiceShop
-    tags: []
-    url: https://github.com/bkimminich/juice-shop
-    description:
-      "In case you do not have the budget to hire an external security\
-      \ expert, an option\nis to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop)\
-      \ on a \"hacking Friday\""
-  https-cheatsheetse:
-    uuid: 99080ac7-60cd-46af-93a1-a53a33597cba
-    name: https://cheatsheetseries.owasp.org/
     tags: [training, secure coding]
     url: https://cheatsheetseries.owasp.org/
   owasp-security-champ:
@@ -282,11 +268,11 @@ implementations:
     url: https://attack.mitre.org/matrices/enterprise/cloud/
     description: |-
       Attack matrix for cloud
-  attack-matrix-contai:
+  attack-matrix-containers:
     uuid: 59881520-4c69-4922-a44e-99044a77de2b
     name: Attack Matrix Containers
     tags: [mitre]
-    url: https://attack.mitre.org/matrices/enterprise/cloud/
+    url: https://attack.mitre.org/matrices/enterprise/containers/
     description: |-
       Attack matrix for containers
   attack-matrix-kubern:
@@ -465,11 +451,6 @@ implementations:
     uuid: 73f6a52c-4fc2-45dc-991b-d5911b6c1ef8
     name: collected
     tags: []
-  httpunit:
-    uuid: 3bd40005-f180-4b95-907d-ec5b58ac1f20
-    name: HttpUnit
-    tags: []
-    url: http://httpunit.sourceforge.net/
   junit:
     uuid: cc2eec82-f3a7-4ae5-9ccb-3d75352b2e4d
     name: JUnit
@@ -501,10 +482,6 @@ implementations:
     url: https://github.com/MaibornWolff/SecObserve
     description: |
       The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
-  see-other-actions-e:
-    uuid: 44c08670-78dc-47ee-a4c1-2503ca6b6cf8
-    name: See other actions, e.g. "Treatment of defects with severity high".
-    tags: []
   sast:
     uuid: aaad322e-806e-4c51-b78d-6551f7dc376a
     name: SAST
@@ -522,11 +499,6 @@ implementations:
       "At DAST (Dynamic Application Security Testing): vulnerabilities
       are classified and can be assigned to server-side and client-side teams."
     url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
-  owasp-defect-dojo:
-    uuid: bb9d0f2d-f8bc-46b5-bbc7-7dbcf927191c
-    name: OWASP Defect Dojo
-    tags: []
-    url: https://github.com/DefectDojo/django-DefectDojo
   owasp-dependency-che:
     uuid: 06334caf-8be6-487a-96b1-d41c7ed5f207
     name: OWASP Dependency Check
@@ -816,45 +788,6 @@ implementations:
     name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
     url: https://github.com/DependencyTrack/dependency-track
     tags: [sca, inventory, OpenSource, "Supply Chain", vulnerability, inventory]
-  juice-shop:
-    uuid: c021aa72-c71c-43e4-9573-717b74d6c19d
-    name: OWASP Juice Shop
-    tags: [training]
-    url: https://github.com/bkimminich/juice-shop
-    description: |-
-      In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
-  dvwa:
-    uuid: e1282ab3-7ffd-4ee5-a564-8e9af070979d
-    name: Damn Vulnerable Web Application
-    tags: [training]
-    description: |-
-      Simple Application with intended vulnerabilities. HTML based.
-  loggingCheatSheet:
-    uuid: 032ca7cc-67dc-46bc-9702-3580a3c9d1a9
-    name: OWASP Logging CheatSheet
-    url: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
-    tags: [logging, documentation]
-  zap:
-    uuid: 84a2a907-a6fb-4ceb-8e21-f65c0d633445
-    name: OWASP Zap
-    tags: [vulnerability, scanner]
-    url: https://github.com/zaproxy/zaproxy
-    description: |
-      The OWASP Zed Attack Proxy (ZAP) is one of the world's most popular free security tools and is actively maintained by a dedicated international team of ...
-  secureCodeBox:
-    uuid: dc0995a5-ff13-4cfc-b95f-07bf8a30b6ab
-    name: OWASP secureCodeBox
-    tags: [vulnerability, scanner-orchestration]
-    url: https://github.com/secureCodeBox/secureCodeBox
-    description: |
-      secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
-  K8sPurger:
-    uuid: 7a019f5e-a77d-4f4a-89a6-d5107054a2cb
-    name: K8sPurger
-    tags: [vulnerability, scanner, dast, infrastructure]
-    url: https://github.com/yogeshkk/K8sPurger
-    description: |
-      Hunt Unused Resources In Kubernetes.
   hashicorp-vault:
     uuid: e3a2ffc8-313f-437e-9663-b24591568209
     name: Hashicorp Vault
