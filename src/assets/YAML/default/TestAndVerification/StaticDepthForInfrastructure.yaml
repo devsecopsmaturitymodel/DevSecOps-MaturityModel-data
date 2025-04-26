@@ -157,12 +157,41 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
-    Test for stored secrets:
+    Test for stored secrets in code:
       uuid: c6e3c812-56e2-41b0-ae01-b7afc41a004c
       risk:
-        Stored secrets in git history, in container images or directly in code
+        Stored secrets in git history or directly in code
         shouldn't exists because they might be exposed to unauthorized parties.
-      measure: Test for secrets in code, container images and history
+      measure: Test for secrets in code and git history
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 2
+      level: 1
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trufflehog
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/go-pillage-registrie
+      references:
+        samm2:
+          - V-ST-1-A
+        iso27001-2017:
+          - vcs usage is not explicitly covered by ISO 27001 - too specific
+          - 9.4.3
+          - 10.1.2
+        iso27001-2022:
+          - vcs usage is not explicitly covered by ISO 27001 - too specific
+          - 5.17
+          - 8.24
+      isImplemented: false
+      evidence: ""
+      comments: "" 
+    Test for stored secrets in build artifacts:
+      uuid: c6e3c812-56e2-41b0-ae01-b7afc41a004c
+      risk:
+        Stored secrets in container images or other buil artifacts
+        shouldn't exists because they might be exposed to unauthorized parties.
+      measure: Test for secrets in container images and other artifacts
       difficultyOfImplementation:
         knowledge: 2
         time: 1
