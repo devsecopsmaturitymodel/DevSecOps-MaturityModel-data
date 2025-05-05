@@ -187,7 +187,7 @@ Test and Verification:
       evidence: ""
       comments: "" 
     Test for stored secrets in build artifacts:
-      uuid: c6e3c812-56e2-41b0-ae01-b7afc41a004c
+      uuid: d5e6303c-d5c6-4d59-b258-a3b9de38a07f
       risk:
         Stored secrets in container images or other build artifacts
         shouldn't exists because they might be exposed to unauthorized parties.
