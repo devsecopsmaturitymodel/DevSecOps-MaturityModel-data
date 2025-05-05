@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.15.2...v1.15.3) (2025-05-05)
+
+
+### Bug Fixes
+
+* douplicate uuid ([84927c8](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/84927c85d3409c17a1e762db9fabfde96b7438fe))
+
 ## [1.15.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.15.1...v1.15.2) (2025-03-21)
 
 
