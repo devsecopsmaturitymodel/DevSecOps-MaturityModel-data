@@ -173,6 +173,45 @@ Test and Verification:
       isImplemented: false
       evidence: ""
       comments: ""
+    Artifact-based false positive treatment:
+      uuid: 8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f
+      risk:
+        Without artifact-specific false positive handling, teams must repeatedly
+        triage the same findings across different versions or deployments of the
+        same component, leading to inefficient use of security resources.
+      measure: |-
+        Implement false positive marking and temporary acceptance of findings 
+        based on specific artifacts (applications, components, or repositories).
+        This allows teams to suppress findings for specific versions or builds
+        while maintaining visibility for future releases.
+      description: |-
+        Artifact-based false positive treatment enables more granular control
+        over finding suppression by linking decisions to specific code artifacts,
+        container images, or application versions. This approach helps maintain
+        security oversight while reducing repeated analysis overhead.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 2
+      dependsOn:
+        - uuid: c1acc8af-312e-4503-a817-a26220c993a0 # Simple false positive treatment
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
+      references:
+        samm2:
+          - I-DM-2-A
+          - I-DM-2-B
+        iso27001-2017:
+          - 16.1.4
+          - 16.1.6
+        iso27001-2022:
+          - 5.25
+          - 5.27
+      tags: ["false-positive", "defect-management"]
     Simple visualization of defects:
       uuid: 55f4c916-3a34-474d-ad96-9a9f7a4f6a83
       risk:
@@ -276,6 +315,47 @@ Test and Verification:
           - 5.25
       implementation: []
       tags: ["vuln-action", "defect-management"]
+    Global false positive treatment:
+      uuid: 9e3a7c2f-1b4d-4e8a-a5c6-7f2b9d1e3a8c
+      risk:
+        Without centralized false positive management across environments,
+        organizations face inconsistent security decisions, duplicated analysis
+        efforts, and potential security gaps when the same findings are handled
+        differently across applications and teams.
+      measure: |-
+        Implement global false positive and acceptance management that applies 
+        consistently across all applications. This enables organization-wide security decisions and reduces redundant 
+        analysis of common false positives.
+      description: |-
+        Global false positive treatment allows (security) teams to make 
+        organization-wide decisions about specific vulnerabilities or finding 
+        patterns. When a finding is marked as a false positive or temporarily 
+        accepted at the global level, this decision automatically applies to 
+        all applications in the specified environment, ensuring consistency 
+        and operational efficiency.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      dependsOn:
+        - uuid: 8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f # Artifact-based false positive treatment
+        - uuid: 85ba5623-84be-4219-8892-808837be582d # Usage of a vulnerability management system
+      implementation:
+      references:
+        samm2:
+          - I-DM-2-B
+          - I-DM-3-A
+        iso27001-2017:
+          - 16.1.3
+          - 16.1.4
+          - 16.1.6
+        iso27001-2022:
+          - 6.8
+          - 5.25
+          - 5.27
+      tags: ["false-positive", "defect-management"]
     Usage of a vulnerability management system:
       uuid: 85ba5623-84be-4219-8892-808837be582d
       risk:
