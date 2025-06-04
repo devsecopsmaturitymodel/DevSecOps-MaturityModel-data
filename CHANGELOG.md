@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.15.3...v1.16.0) (2025-06-04)
+
+
+### Features
+
+* differenciate handling of findings ([b7620b7](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/b7620b7fc2c2306e08787657e1c1cf8af42ccda9))
+
 ## [1.15.3](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.15.2...v1.15.3) (2025-05-05)
 
 
