@@ -1527,9 +1527,9 @@ Culture and Organization:
         name: Don't Forget EVIL User stories
         tags: []
         url: https://www.owasp.org/index.php/Agile_Software_Development
-        description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
+        description: '[Do not Forget EVIL User Stories](https://owasp.org/www-community/Agile_Software_Development)
           and [Practical Security Stories and Security Tasks for Agile Development
-          Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+          Environments](https://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
       references:
         samm2:
         - D-TA-2-B
@@ -1570,9 +1570,9 @@ Culture and Organization:
         name: Don't Forget EVIL User stories
         tags: []
         url: https://www.owasp.org/index.php/Agile_Software_Development
-        description: '[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)
+        description: '[Do not Forget EVIL User Stories](https://owasp.org/www-community/Agile_Software_Development)
           and [Practical Security Stories and Security Tasks for Agile Development
-          Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
+          Environments](https://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
       dependsOn:
       - Conduction of simple threat modeling on technical level
       - Creation of threat modeling processes and standards
@@ -1709,6 +1709,7 @@ Culture and Organization:
       - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
         name: OWASP Cheatsheet Series
         tags:
+        - training
         - secure coding
         url: https://cheatsheetseries.owasp.org/
       references:
@@ -2001,16 +2002,17 @@ Culture and Organization:
 
         [Source: OWASP SAMM 2](https://owaspsamm.org/model/governance/education-and-guidance/stream-a/)
       implementation:
-      - uuid: 81476121-67dd-4ba9-a67b-e78a23050c28
-        name: OWASP JuiceShop
-        tags: []
+      - uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
+        name: OWASP Juice Shop
+        tags:
+        - training
         url: https://github.com/bkimminich/juice-shop
-        description: |-
-          In case you do not have the budget to hire an external security expert, an option
-          is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
+        description: In case you do not have the budget to hire an external security
+          expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
       - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
         name: OWASP Cheatsheet Series
         tags:
+        - training
         - secure coding
         url: https://cheatsheetseries.owasp.org/
       references:
@@ -2042,15 +2044,15 @@ Culture and Organization:
       usefulness: 4
       level: 4
       implementation:
-      - uuid: 81476121-67dd-4ba9-a67b-e78a23050c28
-        name: OWASP JuiceShop
-        tags: []
+      - uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
+        name: OWASP Juice Shop
+        tags:
+        - training
         url: https://github.com/bkimminich/juice-shop
-        description: |-
-          In case you do not have the budget to hire an external security expert, an option
-          is to use the [OWASP JuiceShop](https://github.com/bkimminich/juice-shop) on a "hacking Friday"
-      - uuid: 99080ac7-60cd-46af-93a1-a53a33597cba
-        name: https://cheatsheetseries.owasp.org/
+        description: In case you do not have the budget to hire an external security
+          expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
+      - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
+        name: OWASP Cheatsheet Series
         tags:
         - training
         - secure coding
@@ -2089,6 +2091,7 @@ Culture and Organization:
       - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
         name: OWASP Cheatsheet Series
         tags:
+        - training
         - secure coding
         url: https://cheatsheetseries.owasp.org/
       dependsOn:
@@ -2266,6 +2269,7 @@ Culture and Organization:
       - uuid: 1c3f2f7a-5031-4687-9d69-76c5178c74e1
         name: OWASP Cheatsheet Series
         tags:
+        - training
         - secure coding
         url: https://cheatsheetseries.owasp.org/
       references:
@@ -3451,11 +3455,11 @@ Implementation:
       - uuid: edaec98d-dac7-4dfd-8ab3-42c471d5b9ff
         name: CIS Kubernetes Bench for Security
         tags: []
-        url: https://www.cisecurity.org/cis-benchmarks/
+        url: https://www.cisecurity.org/cis-benchmarks/cis-kubernetes-benchmark
       - uuid: 4dd23c4a-5a7e-4917-82cf-d00e0f04482f
         name: CIS Docker Bench for Security
         tags: []
-        url: https://www.cisecurity.org/cis-benchmarks/
+        url: https://www.cisecurity.org/cis-benchmarks/cis-docker-benchmark
       - uuid: f4d7c796-8574-4a88-ab00-98d245a115ef
         name: For example for Cont
         tags: []
@@ -3472,7 +3476,7 @@ Implementation:
         name: Attack Matrix Containers
         tags:
         - mitre
-        url: https://attack.mitre.org/matrices/enterprise/cloud/
+        url: https://attack.mitre.org/matrices/enterprise/containers/
         description: Attack matrix for containers
       - uuid: 9fbc47ad-82bc-46d1-bba9-66815ab79935
         name: Attack Matrix Kubernetes
@@ -3562,11 +3566,11 @@ Implementation:
       - uuid: edaec98d-dac7-4dfd-8ab3-42c471d5b9ff
         name: CIS Kubernetes Bench for Security
         tags: []
-        url: https://www.cisecurity.org/cis-benchmarks/
+        url: https://www.cisecurity.org/cis-benchmarks/cis-kubernetes-benchmark
       - uuid: 4dd23c4a-5a7e-4917-82cf-d00e0f04482f
         name: CIS Docker Bench for Security
         tags: []
-        url: https://www.cisecurity.org/cis-benchmarks/
+        url: https://www.cisecurity.org/cis-benchmarks/cis-docker-benchmark
       - uuid: f4d7c796-8574-4a88-ab00-98d245a115ef
         name: For example for Cont
         tags: []
@@ -3583,7 +3587,7 @@ Implementation:
         name: Attack Matrix Containers
         tags:
         - mitre
-        url: https://attack.mitre.org/matrices/enterprise/cloud/
+        url: https://attack.mitre.org/matrices/enterprise/containers/
         description: Attack matrix for containers
       - uuid: 9fbc47ad-82bc-46d1-bba9-66815ab79935
         name: Attack Matrix Kubernetes
@@ -3822,7 +3826,7 @@ Implementation:
       - uuid: d5981117-9bc2-45ed-b4a4-383135dc13d8
         name: YubiKey
         tags: []
-        url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+        url: https://www.yubico.com/products/
       - uuid: 6151cfb3-c894-421e-83da-cac0b2bfaec8
         name: SMS
         tags: []
@@ -3873,7 +3877,7 @@ Implementation:
       - uuid: d5981117-9bc2-45ed-b4a4-383135dc13d8
         name: YubiKey
         tags: []
-        url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+        url: https://www.yubico.com/products/
       - uuid: 6151cfb3-c894-421e-83da-cac0b2bfaec8
         name: SMS
         tags: []
@@ -4704,6 +4708,675 @@ Information Gathering:
         - 8.15
         openCRE:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Logging/7c735089-6a83-419f-8b27-c1e676cedea1
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+  Threat Intelligence:
+    Automated Threat Intelligence:
+      uuid: e5f6g7h8-i9j0-1234-efgh-567890123456
+      description: |
+        Advanced automation of threat intelligence operations including:
+        - Automated OSINT collection from multiple sources simultaneously
+        - Machine learning-based threat classification and scoring
+        - Dynamic IOC generation from malware analysis sandboxes
+        - Automated attribution analysis using behavior clustering
+        - Real-time threat landscape monitoring and alerting
+        - Intelligent threat hunting based on predictive analytics
+      risk: Manual threat intelligence processes create operational bottlenecks, introduce
+        human error, and cannot scale to address the volume of modern threat data,
+        resulting in delayed threat detection and response.
+      measure: |
+        Deploy enterprise threat intelligence platforms with:
+        - Multi-source automated data collection and normalization
+        - Machine learning algorithms for threat pattern recognition
+        - Automated indicator extraction and validation workflows
+        - Integration with SOAR platforms for response automation
+        - Predictive threat modeling based on historical attack patterns
+        - Automated reporting and briefing generation for stakeholders
+      difficultyOfImplementation:
+        knowledge: 5
+        time: 4
+        resources: 4
+      usefulness: 5
+      level: 5
+      dependsOn:
+      - Threat Intelligence Integration
+      - Correlation of security events
+      implementation:
+      - uuid: 88888888-8888-8888-8888-888888888888
+        name: SpiderFoot
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://www.spiderfoot.net/
+        description: Automated OSINT reconnaissance tool for threat intelligence gathering
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      references:
+        samm2:
+        - O-IM-2-A
+        iso27001-2017:
+        - 16.1.2
+        iso27001-2022:
+        - 5.25
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
+          Intelligence/e5f6g7h8-i9j0-1234-efgh-567890123456
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Threat Intelligence Analysis:
+      uuid: b2c3d4e5-f6g7-8901-bcde-f23456789012
+      description: |
+        Analysis and contextualization of collected intelligence data including:
+        - Indicator enrichment and validation using multiple sources
+        - Attribution analysis linking threats to known actor groups
+        - Campaign tracking across multiple attack vectors
+        - Threat landscape assessment for organizational risk
+        - False positive reduction through cross-referencing
+        - Timeline analysis of threat actor activities
+      risk: Raw threat intelligence without proper analysis leads to alert fatigue,
+        missed critical threats, and inability to prioritize security responses effectively.
+      measure: |
+        Establish analytical workflows that include:
+        - Multi-source indicator verification and scoring
+        - Threat actor profiling and campaign attribution
+        - Industry-specific threat landscape analysis
+        - Integration with internal security events for correlation
+        - Regular threat briefings for stakeholders with actionable recommendations
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 3
+      dependsOn:
+      - Threat Intelligence Collection
+      - Correlation of security events
+      implementation:
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      - uuid: 88888888-8888-8888-8888-888888888888
+        name: SpiderFoot
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://www.spiderfoot.net/
+        description: Automated OSINT reconnaissance tool for threat intelligence gathering
+      - uuid: 22222222-2222-2222-2222-222222222222
+        name: VirusTotal
+        tags:
+        - threat-intelligence
+        - malware-analysis
+        - osint
+        url: https://www.virustotal.com/
+        description: Malware and URL analysis service for threat intelligence and
+          IOC validation
+      references:
+        samm2:
+        - O-IM-2-A
+        iso27001-2017:
+        - 16.1.2
+        iso27001-2022:
+        - 5.25
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
+          Intelligence/b2c3d4e5-f6g7-8901-bcde-f23456789012
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Threat Intelligence Collection:
+      uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      description: |
+        Systematic collection of threat intelligence from diverse sources including:
+        - OSINT platforms (Shodan, VirusTotal, URLScan.io, PublicWWW)
+        - Dark web monitoring (leak databases, underground forums)
+        - Social media intelligence (Twitter/X, Telegram, Discord)
+        - Technical indicators (DNS, certificates, IP reputation)
+        - Vulnerability databases (CVE, NVD, exploit-db)
+        - Government and industry threat reports
+      risk: Without systematic threat intelligence collection, organizations cannot
+        proactively identify emerging threats, ongoing campaigns, or indicators of
+        compromise targeting their industry sector or technology stack.
+      measure: |
+        Implement automated and manual collection processes using:
+        - OSINT tools for reconnaissance detection (domain monitoring, certificate transparency)
+        - Social media monitoring for brand mentions and threat actor discussions
+        - Dark web monitoring for leaked credentials and company mentions
+        - Threat feed aggregation from commercial and open sources
+        - Regular assessment of attack surface exposure via search engines
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 2
+      dependsOn:
+      - Logging of security events
+      implementation:
+      - uuid: 11111111-1111-1111-1111-111111111111
+        name: Shodan
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://www.shodan.io/
+        description: Search engine for Internet-connected devices and services for
+          reconnaissance and threat intelligence
+      - uuid: 22222222-2222-2222-2222-222222222222
+        name: VirusTotal
+        tags:
+        - threat-intelligence
+        - malware-analysis
+        - osint
+        url: https://www.virustotal.com/
+        description: Malware and URL analysis service for threat intelligence and
+          IOC validation
+      - uuid: 33333333-3333-3333-3333-333333333333
+        name: URLScan.io
+        tags:
+        - threat-intelligence
+        - url-analysis
+        - osint
+        url: https://urlscan.io/
+        description: URL and website analysis service for threat intelligence collection
+      - uuid: 55555555-5555-5555-5555-555555555555
+        name: Censys
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://censys.io/
+        description: Internet scanning and reconnaissance platform for threat intelligence
+      - uuid: 77777777-7777-7777-7777-777777777777
+        name: theHarvester
+        tags:
+        - osint
+        - reconnaissance
+        - email-intelligence
+        url: https://github.com/laramies/theHarvester
+        description: OSINT tool for gathering email accounts, subdomains, hosts, and
+          employee names
+      references:
+        samm2:
+        - O-IM-2-A
+        iso27001-2017:
+        - 16.1.2
+        - 16.1.3
+        iso27001-2022:
+        - 5.25
+        - 5.26
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
+          Intelligence/a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Threat Intelligence Integration:
+      uuid: c3d4e5f6-g7h8-9012-cdef-345678901234
+      description: |
+        Tactical integration of threat intelligence into security infrastructure:
+        - SIEM rule creation based on IOCs and behavioral patterns
+        - Automated blocking of malicious IPs, domains, and file hashes
+        - DNS sinkholing for known malicious domains
+        - Email security enhancement with threat indicators
+        - Endpoint detection rules based on YARA signatures
+        - Network monitoring alerts for suspicious communications
+      risk: Threat intelligence that remains isolated from security controls provides
+        no operational value and allows known threats to successfully compromise systems.
+      measure: |
+        Deploy automated integration mechanisms:
+        - STIX/TAXII feeds integrated into security tools
+        - Custom APIs for threat intelligence platform integration
+        - Automated IOC blocking across network and endpoint security
+        - Regular validation of integrated indicators for effectiveness
+        - Threat hunting queries based on intelligence analysis
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 3
+      usefulness: 5
+      level: 3
+      dependsOn:
+      - Threat Intelligence Analysis
+      - Centralized application logging
+      - Centralized system logging
+      implementation:
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      - uuid: 88888888-8888-8888-8888-888888888888
+        name: SpiderFoot
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://www.spiderfoot.net/
+        description: Automated OSINT reconnaissance tool for threat intelligence gathering
+      references:
+        samm2:
+        - O-IM-2-A
+        iso27001-2017:
+        - 13.1.1
+        - 16.1.2
+        iso27001-2022:
+        - 8.22
+        - 5.25
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
+          Intelligence/c3d4e5f6-g7h8-9012-cdef-345678901234
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Threat Intelligence Sharing:
+      uuid: d4e5f6g7-h8i9-0123-defg-456789012345
+      description: |
+        Strategic participation in threat intelligence ecosystems including:
+        - Industry-specific threat sharing groups (FS-ISAC, H-ISAC)
+        - Government programs (US-CERT, NCSC, national CERTs)
+        - Commercial threat intelligence platforms
+        - Open source intelligence communities
+        - Vendor security communities and user groups
+        - Regional cybersecurity alliances
+      risk: Isolation from threat intelligence sharing communities results in delayed
+        threat awareness, reduced collective defense capabilities, and missed opportunities
+        for early warning of targeted campaigns.
+      measure: |
+        Establish formal sharing relationships through:
+        - Membership in relevant industry sharing organizations
+        - Bilateral threat intelligence sharing agreements
+        - Automated sharing via STIX/TAXII protocols
+        - Regular participation in threat briefings and working groups
+        - Sanitized indicator sharing while protecting sensitive sources
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 4
+      dependsOn:
+      - Threat Intelligence Analysis
+      implementation:
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      - uuid: 44444444-4444-4444-4444-444444444444
+        name: PublicWWW
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://publicwww.com/
+        description: Source code search engine for OSINT and threat intelligence gathering
+      references:
+        samm2:
+        - O-IM-2-A
+        iso27001-2017:
+        - 16.1.2
+        - 16.1.3
+        iso27001-2022:
+        - 5.25
+        - 5.26
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
+          Intelligence/d4e5f6g7-h8i9-0123-defg-456789012345
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+  Incident Response:
+    Incident Containment and Eradication:
+      uuid: h8i9j0k1-l2m3-4567-hijk-890123456789
+      description: |
+        OSINT-enhanced containment and eradication procedures:
+        - Threat infrastructure mapping using passive DNS and certificate analysis
+        - Attack campaign tracking to identify additional compromised systems
+        - IOC generation and sharing for community defense
+        - Attribution analysis to understand threat actor methods and motivations
+        - Infrastructure takedown coordination with hosting providers and registrars
+        - Real-time threat landscape monitoring during incident response
+      risk: Containment efforts without external intelligence context may miss related
+        infrastructure, fail to prevent reinfection, and allow threat actors to continue
+        operations against other targets.
+      measure: Establish procedures to contain security incidents, eliminate the root
+        cause, and remove malicious artifacts while preserving evidence for investigation.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 3
+      usefulness: 5
+      level: 3
+      dependsOn:
+      - Incident Detection and Classification
+      - Threat Intelligence Integration
+      implementation:
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      - uuid: 88888888-8888-8888-8888-888888888888
+        name: SpiderFoot
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://www.spiderfoot.net/
+        description: Automated OSINT reconnaissance tool for threat intelligence gathering
+      references:
+        samm2:
+        - O-IM-3-A
+        iso27001-2017:
+        - 16.1.5
+        iso27001-2022:
+        - 5.28
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
+          Response/h8i9j0k1-l2m3-4567-hijk-890123456789
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Incident Detection and Classification:
+      uuid: g7h8i9j0-k1l2-3456-ghij-789012345678
+      description: |
+        Advanced incident detection enhanced with OSINT capabilities:
+        - Multi-source indicator correlation from internal logs and external intelligence
+        - Automated enrichment of security alerts with threat context
+        - Social media monitoring for brand mentions and potential targeting
+        - Dark web monitoring for organization-specific threats and leaked data
+        - Threat actor tracking to identify campaign patterns and attribution
+        - Geolocation analysis of attack sources and infrastructure
+      risk: Basic incident detection without external intelligence context results
+        in missed sophisticated attacks, delayed attribution, and inability to understand
+        attack campaigns targeting the organization.
+      measure: |
+        Deploy enhanced detection capabilities with:
+        - SIEM integration with multiple threat intelligence feeds
+        - Automated OSINT enrichment of security alerts and indicators
+        - Social media and dark web monitoring for early threat detection
+        - Machine learning algorithms for anomaly detection and pattern recognition
+        - Threat hunting programs guided by external intelligence and industry reports
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 3
+      usefulness: 5
+      level: 2
+      dependsOn:
+      - Incident Response Plan
+      - Correlation of security events
+      - Alerting
+      implementation:
+      - uuid: 99999999-9999-9999-9999-999999999999
+        name: GHunt
+        tags:
+        - osint
+        - google-intelligence
+        - reconnaissance
+        url: https://github.com/mxrch/GHunt
+        description: OSINT tool for Google accounts and services investigation
+      - uuid: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+        name: Sherlock
+        tags:
+        - osint
+        - username-intelligence
+        - social-media
+        url: https://github.com/sherlock-project/sherlock
+        description: Social media username OSINT investigation tool
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      references:
+        samm2:
+        - O-IM-3-A
+        iso27001-2017:
+        - 16.1.4
+        iso27001-2022:
+        - 5.27
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
+          Response/g7h8i9j0-k1l2-3456-ghij-789012345678
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Incident Recovery and Post-Incident Analysis:
+      uuid: i9j0k1l2-m3n4-5678-ijkl-901234567890
+      description: |
+        Intelligence-driven recovery and analysis processes:
+        - Threat landscape analysis to identify ongoing risks and similar campaigns
+        - Attribution reporting with indicators for threat intelligence sharing
+        - Vulnerability assessment based on attack methods and exploitation techniques
+        - Industry threat briefings to warn of similar attacks against peer organizations
+        - Long-term monitoring for threat actor return or infrastructure reuse
+        - Integration of lessons learned into threat detection and prevention systems
+      risk: Recovery efforts without comprehensive threat analysis leave organizations
+        vulnerable to similar attacks and fail to contribute to community defense
+        through intelligence sharing.
+      measure: Implement recovery procedures to restore normal operations and conduct
+        post-incident analysis to identify lessons learned and implement improvements
+        to prevent similar incidents.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      dependsOn:
+      - Incident Containment and Eradication
+      implementation:
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      references:
+        samm2:
+        - O-IM-3-A
+        iso27001-2017:
+        - 16.1.6
+        - 16.1.7
+        iso27001-2022:
+        - 5.29
+        - 5.3
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
+          Response/i9j0k1l2-m3n4-5678-ijkl-901234567890
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Incident Response Plan:
+      uuid: f6g7h8i9-j0k1-2345-fghi-678901234567
+      description: |
+        Comprehensive incident response plan incorporating OSINT-driven intelligence gathering:
+        - Pre-defined incident classification matrix with response procedures
+        - OSINT collection protocols for threat actor attribution and campaign analysis
+        - Integration with threat intelligence platforms for context enrichment
+        - Communication templates for internal teams and external stakeholders
+        - Legal and regulatory compliance requirements for different incident types
+        - Evidence preservation procedures for digital forensics and legal proceedings
+      risk: Without a documented incident response plan that includes intelligence
+        gathering procedures, organizations respond reactively, miss attribution opportunities,
+        and fail to understand the broader threat landscape context.
+      measure: |
+        Develop comprehensive incident response documentation including:
+        - Playbooks for common incident types with OSINT collection steps
+        - Role-based access controls and escalation procedures
+        - Integration points with threat intelligence and OSINT tools
+        - Regular plan testing through tabletop exercises and simulations
+        - Post-incident review processes for continuous improvement
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 5
+      level: 1
+      implementation:
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      references:
+        samm2:
+        - O-IM-3-A
+        iso27001-2017:
+        - 16.1.1
+        - 16.1.5
+        iso27001-2022:
+        - 5.24
+        - 5.28
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
+          Response/f6g7h8i9-j0k1-2345-fghi-678901234567
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Incident Response Training and Testing:
+      uuid: j0k1l2m3-n4o5-6789-jklm-012345678901
+      description: |
+        Comprehensive training program incorporating OSINT and threat intelligence:
+        - Hands-on OSINT training for incident responders and analysts
+        - Threat intelligence platform training for indicator enrichment and analysis
+        - Tabletop exercises based on real-world attack campaigns and threat actor TTPs
+        - Red team exercises incorporating current threat intelligence and attack methods
+        - Cross-functional training between security operations and threat intelligence teams
+        - Regular updates on emerging threats, tools, and investigation techniques
+      risk: Training programs that don't incorporate current threat intelligence and
+        OSINT capabilities leave teams unprepared for sophisticated attacks and limit
+        their ability to conduct effective threat attribution and campaign analysis.
+      measure: Conduct regular incident response training for team members and perform
+        tabletop exercises, simulations, and drills to test and improve incident response
+        procedures.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 4
+      dependsOn:
+      - Incident Response Plan
+      - Incident Recovery and Post-Incident Analysis
+      implementation:
+      - uuid: 66666666-6666-6666-6666-666666666666
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      - uuid: 99999999-9999-9999-9999-999999999999
+        name: GHunt
+        tags:
+        - osint
+        - google-intelligence
+        - reconnaissance
+        url: https://github.com/mxrch/GHunt
+        description: OSINT tool for Google accounts and services investigation
+      - uuid: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+        name: Sherlock
+        tags:
+        - osint
+        - username-intelligence
+        - social-media
+        url: https://github.com/sherlock-project/sherlock
+        description: Social media username OSINT investigation tool
+      references:
+        samm2:
+        - O-IM-3-A
+        iso27001-2017:
+        - 16.1.1
+        iso27001-2022:
+        - 5.24
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
+          Response/j0k1l2m3-n4o5-6789-jklm-012345678901
       comments: ""
       tags:
       - none
@@ -5811,6 +6484,76 @@ Test and Verification:
         Default: false
         B: false
         C: false
+    Artifact-based false positive treatment:
+      uuid: 8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f
+      risk: Without artifact-specific false positive handling, teams must repeatedly
+        triage the same findings across different versions or deployments of the same
+        component, leading to inefficient use of security resources.
+      measure: "Implement false positive marking and temporary acceptance of findings
+        \nbased on specific artifacts (applications, components, or repositories).\nThis
+        allows teams to suppress findings for specific versions or builds\nwhile maintaining
+        visibility for future releases."
+      description: |-
+        Artifact-based false positive treatment enables more granular control
+        over finding suppression by linking decisions to specific code artifacts,
+        container images, or application versions. This approach helps maintain
+        security oversight while reducing repeated analysis overhead.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 2
+      dependsOn:
+      - Simple false positive treatment
+      implementation:
+      - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
+        name: OWASP DefectDojo
+        tags:
+        - vulnerability management system
+        - owasp
+        url: https://github.com/DefectDojo/django-DefectDojo
+        description: |
+          DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
+      - uuid: d2eb592d-c9b5-4c39-bff7-bb313a58e3a9
+        name: Purify
+        tags:
+        - vulnerability management system
+        url: https://github.com/faloker/purify/
+        description: |
+          The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
+        name: Dependency-Track is an intelligent Component Analysis platform that
+          allows organizations to identify and reduce risk in the software supply
+          chain. Dependency-Track takes a unique and highly beneficial approach by
+          leveraging the capabilities of Software Bill of Materials (SBOM).
+        url: https://github.com/DependencyTrack/dependency-track
+        tags:
+        - sca
+        - inventory
+        - OpenSource
+        - Supply Chain
+        - vulnerability
+        - inventory
+      references:
+        samm2:
+        - I-DM-2-A
+        - I-DM-2-B
+        iso27001-2017:
+        - 16.1.4
+        - 16.1.6
+        iso27001-2022:
+        - 5.25
+        - 5.27
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f
+      tags:
+      - false-positive
+      - defect-management
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
     Fix based on accessibility:
       uuid: 0c10a7f7-f78f-49f2-943d-19fdef248fed
       risk: Overwhelming volume of security findings from automated testing tools.
@@ -5850,6 +6593,51 @@ Test and Verification:
         - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/0c10a7f7-f78f-49f2-943d-19fdef248fed
       tags:
       - vuln-action
+      - defect-management
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Global false positive treatment:
+      uuid: 9e3a7c2f-1b4d-4e8a-a5c6-7f2b9d1e3a8c
+      risk: Without centralized false positive management across environments, organizations
+        face inconsistent security decisions, duplicated analysis efforts, and potential
+        security gaps when the same findings are handled differently across applications
+        and teams.
+      measure: "Implement global false positive and acceptance management that applies
+        \nconsistently across all applications. This enables organization-wide security
+        decisions and reduces redundant \nanalysis of common false positives."
+      description: "Global false positive treatment allows (security) teams to make
+        \norganization-wide decisions about specific vulnerabilities or finding \npatterns.
+        When a finding is marked as a false positive or temporarily \naccepted at
+        the global level, this decision automatically applies to \nall applications
+        in the specified environment, ensuring consistency \nand operational efficiency."
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      dependsOn:
+      - Artifact-based false positive treatment
+      - Usage of a vulnerability management system
+      implementation: ~
+      references:
+        samm2:
+        - I-DM-2-B
+        - I-DM-3-A
+        iso27001-2017:
+        - 16.1.3
+        - 16.1.4
+        - 16.1.6
+        iso27001-2022:
+        - 6.8
+        - 5.25
+        - 5.27
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Consolidation/9e3a7c2f-1b4d-4e8a-a5c6-7f2b9d1e3a8c
+      tags:
+      - false-positive
       - defect-management
       teamsImplemented:
         Default: false
@@ -6045,10 +6833,14 @@ Test and Verification:
       usefulness: 4
       level: 1
       implementation:
-      - uuid: bb9d0f2d-f8bc-46b5-bbc7-7dbcf927191c
-        name: OWASP Defect Dojo
-        tags: []
+      - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
+        name: OWASP DefectDojo
+        tags:
+        - vulnerability management system
+        - owasp
         url: https://github.com/DefectDojo/django-DefectDojo
+        description: |
+          DefectDojo is a security program and vulnerability management tool. DefectDojo allows you to manage your application security program, maintain product and application information, triage vulnerabilities and push findings into defect trackers. Consolidate your findings into one source of truth with DefectDojo.
       - uuid: d2eb592d-c9b5-4c39-bff7-bb313a58e3a9
         name: Purify
         tags:
@@ -8183,11 +8975,52 @@ Test and Verification:
         Default: false
         B: false
         C: false
-    Test for stored secrets:
+    Test for stored secrets in build artifacts:
+      uuid: d5e6303c-d5c6-4d59-b258-a3b9de38a07f
+      risk: Stored secrets in container images or other build artifacts shouldn't
+        exists because they might be exposed to unauthorized parties.
+      measure: Test for secrets in container images and other artifacts
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 2
+      usefulness: 2
+      level: 1
+      implementation:
+      - uuid: d90fefc9-4e5d-420f-ac87-eeb165bf0ee6
+        name: truffleHog
+        tags: []
+        url: https://github.com/dxa4481/truffleHog
+      - uuid: 382873e2-8604-4410-ae5e-b0f5ccdee835
+        name: go-pillage-registries
+        tags: []
+        url: https://github.com/nccgroup/go-pillage-registries
+      references:
+        samm2:
+        - V-ST-1-A
+        iso27001-2017:
+        - vcs usage is not explicitly covered by ISO 27001 - too specific
+        - 9.4.3
+        - 10.1.2
+        iso27001-2022:
+        - vcs usage is not explicitly covered by ISO 27001 - too specific
+        - 5.17
+        - 8.24
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Static
+          depth for infrastructure/d5e6303c-d5c6-4d59-b258-a3b9de38a07f
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Test for stored secrets in code:
       uuid: c6e3c812-56e2-41b0-ae01-b7afc41a004c
-      risk: Stored secrets in git history, in container images or directly in code
-        shouldn't exists because they might be exposed to unauthorized parties.
-      measure: Test for secrets in code, container images and history
+      risk: Stored secrets in git history or directly in code shouldn't exists because
+        they might be exposed to unauthorized parties.
+      measure: Test for secrets in code and git history
       difficultyOfImplementation:
         knowledge: 2
         time: 1
