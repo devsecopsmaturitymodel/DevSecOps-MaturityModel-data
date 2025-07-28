@@ -46,6 +46,67 @@ implementations:
     name: CWE-838 Inappropriate Encoding for Output Context
     tags: ["documentation", "cwe"]
     url: https://cwe.mitre.org/data/definitions/838.html
+  # OSINT and Threat Intelligence Tools
+  shodan:
+    uuid: ab1555aa-225a-49b0-9b74-15a5407e0722
+    name: Shodan
+    tags: [osint, reconnaissance, threat-intelligence]
+    url: https://www.shodan.io/
+    description: Search engine for Internet-connected devices and services for reconnaissance and threat intelligence
+  virustotal:
+    uuid: d3a10c34-9e9f-43bd-a474-269d07188efe
+    name: VirusTotal
+    tags: [threat-intelligence, malware-analysis, osint]
+    url: https://www.virustotal.com/
+    description: Malware and URL analysis service for threat intelligence and IOC validation
+  urlscan-io:
+    uuid: 3ec27730-928f-45be-a4fa-92d19c8b3d56
+    name: URLScan.io
+    tags: [threat-intelligence, url-analysis, osint]
+    url: https://urlscan.io/
+    description: URL and website analysis service for threat intelligence collection
+  publicwww:
+    uuid: 17d1eb75-bf05-4d05-8e55-c6233819bfdb
+    name: PublicWWW
+    tags: [osint, reconnaissance, threat-intelligence]
+    url: https://publicwww.com/
+    description: Source code search engine for OSINT and threat intelligence gathering
+  censys:
+    uuid: d21f595e-f742-46b3-9871-0c415ab37127
+    name: Censys
+    tags: [osint, reconnaissance, threat-intelligence]
+    url: https://censys.io/
+    description: Internet scanning and reconnaissance platform for threat intelligence
+  maltego:
+    uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
+    name: Maltego
+    tags: [osint, threat-intelligence, visualization]
+    url: https://www.maltego.com/
+    description: OSINT and forensics application for link analysis and threat intelligence visualization
+  theharvester:
+    uuid: dc429e58-cf5b-4596-bbe2-ed0ce2bb5215
+    name: theHarvester
+    tags: [osint, reconnaissance, email-intelligence]
+    url: https://github.com/laramies/theHarvester
+    description: OSINT tool for gathering email accounts, subdomains, hosts, and employee names
+  spiderfoot:
+    uuid: 659e9838-4a79-45a1-ac1f-6b9964a5d21c
+    name: SpiderFoot
+    tags: [osint, reconnaissance, threat-intelligence]
+    url: https://www.spiderfoot.net/
+    description: Automated OSINT reconnaissance tool for threat intelligence gathering
+  ghunt:
+    uuid: 607d2158-3d17-4518-b751-61c7422be9a2
+    name: GHunt
+    tags: [osint, google-intelligence, reconnaissance]
+    url: https://github.com/mxrch/GHunt
+    description: OSINT tool for Google accounts and services investigation
+  sherlock:
+    uuid: fc20c021-f64e-427a-93ce-11872eaec241
+    name: Sherlock
+    tags: [osint, username-intelligence, social-media]
+    url: https://github.com/sherlock-project/sherlock
+    description: Social media username OSINT investigation tool
   docker-content-trust:
     uuid: ee81f93f-8230-4cfb-a132-ae4ec61cb8e6
     name: Docker Content Trust
@@ -172,8 +233,8 @@ implementations:
     tags: []
     url: https://www.owasp.org/index.php/Agile_Software_Development
     description:
-      "[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
-      \ and [Practical Security Stories and Security Tasks for Agile Development Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
+      "[Do not Forget EVIL User Stories](https://owasp.org/www-community/Agile_Software_Development)\
+      \ and [Practical Security Stories and Security Tasks for Agile Development Environments](https://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
   libyear:
     uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
     name: libyear
@@ -247,12 +308,12 @@ implementations:
     uuid: edaec98d-dac7-4dfd-8ab3-42c471d5b9ff
     name: CIS Kubernetes Bench for Security
     tags: []
-    url: https://www.cisecurity.org/cis-benchmarks/
+    url: https://www.cisecurity.org/cis-benchmarks/cis-kubernetes-benchmark
   cis-docker-bench-for:
     uuid: 4dd23c4a-5a7e-4917-82cf-d00e0f04482f
     name: CIS Docker Bench for Security
     tags: []
-    url: https://www.cisecurity.org/cis-benchmarks/
+    url: https://www.cisecurity.org/cis-benchmarks/cis-docker-benchmark
   for-example-for-cont:
     uuid: f4d7c796-8574-4a88-ab00-98d245a115ef
     name: For example for Cont
@@ -358,7 +419,7 @@ implementations:
     uuid: d5981117-9bc2-45ed-b4a4-383135dc13d8
     name: YubiKey
     tags: []
-    url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
+    url: https://www.yubico.com/products/
   sms:
     uuid: 6151cfb3-c894-421e-83da-cac0b2bfaec8
     name: SMS
