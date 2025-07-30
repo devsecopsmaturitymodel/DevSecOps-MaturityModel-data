@@ -24,8 +24,7 @@ implementations:
     name: chaosmonkey
     tags: [chaos, testing]
     url: https://github.com/Netflix/chaosmonkey
-    description: |-
-      CI/CD tools such as jenkins, gitlab-ci or github-actions
+    description: Chaos Monkey is a resiliency tool that helps applications tolerate random instance failures. Chaos Monkey randomly terminates virtual machine instances and containers that run inside of your production environment. Exposing engineers to failures more frequently incentivizes them to build resilient services.
   ci-cd-tools:
     uuid: b4bfead3-5fb6-4dd0-ba44-5da713bd22e4
     name: CI/CD tools
