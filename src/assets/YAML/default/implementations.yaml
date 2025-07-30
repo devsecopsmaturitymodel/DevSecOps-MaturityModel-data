@@ -19,6 +19,13 @@ implementations:
     url: https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
     description: |-
       Signing of commits in git
+  chaosmonkey:
+    uuid: c117e79b-8223-4e55-9da5-efbf5d741c15
+    name: chaosmonkey
+    tags: [chaos, testing]
+    url: https://github.com/Netflix/chaosmonkey
+    description: |-
+      CI/CD tools such as jenkins, gitlab-ci or github-actions
   ci-cd-tools:
     uuid: b4bfead3-5fb6-4dd0-ba44-5da713bd22e4
     name: CI/CD tools
