@@ -481,7 +481,7 @@ Implementation:
           - Not explicitly covered by ISO 27001 - too specific
           - 5.29
       isImplemented: false
-      evidence: "Test execution report, logs in test automation system"
+      evidence: ""
       comments: ""
     Usage of an security account:
       uuid: 746025a6-dbfb-4087-a000-e46acab64ee1
