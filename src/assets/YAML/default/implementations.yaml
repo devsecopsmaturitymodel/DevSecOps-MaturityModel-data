@@ -21,7 +21,7 @@ implementations:
       Signing of commits in git
   chaosmonkey:
     uuid: c117e79b-8223-4e55-9da5-efbf5d741c15
-    name: chaosmonkey
+    name: Chaos Monkey
     tags: [chaos, testing]
     url: https://github.com/Netflix/chaosmonkey
     description: Chaos Monkey is a resiliency tool that helps applications tolerate random instance failures. Chaos Monkey randomly terminates virtual machine instances and containers that run inside of your production environment. Exposing engineers to failures more frequently incentivizes them to build resilient services.
