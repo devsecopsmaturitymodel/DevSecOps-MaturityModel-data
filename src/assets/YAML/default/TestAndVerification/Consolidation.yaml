@@ -21,9 +21,8 @@ Test and Verification:
           - The number of network hops required to reach the asset (recommended)
           - Authentication requirements for access (recommended)
       dependsOn:
-        - uuid:44f2c8a9-4aaa-4c72-942d-63f78b89f385 # Treatment of defects with severity high or higher:
-        #- uuid:3260a15f-2df0-4173-8790-f11de2cb525a # Access applications accessibility TODO
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - Treatment of defects with severity high or higher
+        - Inventory of production components
       implementation:
       references:
         samm2:
@@ -196,7 +195,7 @@ Test and Verification:
       usefulness: 3
       level: 2
       dependsOn:
-        - uuid: c1acc8af-312e-4503-a817-a26220c993a0 # Simple false positive treatment
+        - Simple false positive treatment
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
@@ -340,8 +339,8 @@ Test and Verification:
       usefulness: 4
       level: 3
       dependsOn:
-        - uuid: 8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f # Artifact-based false positive treatment
-        - uuid: 85ba5623-84be-4219-8892-808837be582d # Usage of a vulnerability management system
+        - Artifact-based false positive treatment
+        - Usage of a vulnerability management system
       implementation:
       references:
         samm2:
