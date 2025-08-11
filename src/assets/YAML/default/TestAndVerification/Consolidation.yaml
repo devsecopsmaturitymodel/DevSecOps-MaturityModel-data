@@ -369,9 +369,9 @@ Test and Verification:
         resources: 2
       usefulness: 2
       dependsOn:
-        - uuid:f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
-        - uuid:6217fe11-5ed7-4cf4-9de4-555bcfa6fe87 # Each team has a security champion
-        - uuid:185d5a74-19dc-4422-be07-44ea35226783 # Office Hours
+        - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
+        - 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87 # Each team has a security champion
+        - 185d5a74-19dc-4422-be07-44ea35226783 # Office Hours
       level: 3
       description: |-
         For known vulnerabilities a processes to estimate the exploit ability of a vulnerability is recommended.

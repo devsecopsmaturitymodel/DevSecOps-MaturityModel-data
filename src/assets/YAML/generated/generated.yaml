@@ -4716,173 +4716,26 @@ Information Gathering:
         B: false
         C: false
   Threat Intelligence:
-    Automated Threat Intelligence:
-      uuid: e5f6g7h8-i9j0-1234-efgh-567890123456
-      description: |
-        Advanced automation of threat intelligence operations including:
-        - Automated OSINT collection from multiple sources simultaneously
-        - Machine learning-based threat classification and scoring
-        - Dynamic IOC generation from malware analysis sandboxes
-        - Automated attribution analysis using behavior clustering
-        - Real-time threat landscape monitoring and alerting
-        - Intelligent threat hunting based on predictive analytics
-      risk: Manual threat intelligence processes create operational bottlenecks, introduce
-        human error, and cannot scale to address the volume of modern threat data,
-        resulting in delayed threat detection and response.
-      measure: |
-        Deploy enterprise threat intelligence platforms with:
-        - Multi-source automated data collection and normalization
-        - Machine learning algorithms for threat pattern recognition
-        - Automated indicator extraction and validation workflows
-        - Integration with SOAR platforms for response automation
-        - Predictive threat modeling based on historical attack patterns
-        - Automated reporting and briefing generation for stakeholders
-      difficultyOfImplementation:
-        knowledge: 5
-        time: 4
-        resources: 4
-      usefulness: 5
-      level: 5
-      dependsOn:
-      - Threat Intelligence Integration
-      - Correlation of security events
-      implementation:
-      - uuid: 88888888-8888-8888-8888-888888888888
-        name: SpiderFoot
-        tags:
-        - osint
-        - reconnaissance
-        - threat-intelligence
-        url: https://www.spiderfoot.net/
-        description: Automated OSINT reconnaissance tool for threat intelligence gathering
-      - uuid: 66666666-6666-6666-6666-666666666666
-        name: Maltego
-        tags:
-        - osint
-        - threat-intelligence
-        - visualization
-        url: https://www.maltego.com/
-        description: OSINT and forensics application for link analysis and threat
-          intelligence visualization
-      references:
-        samm2:
-        - O-IM-2-A
-        iso27001-2017:
-        - 16.1.2
-        iso27001-2022:
-        - 5.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
-          Intelligence/e5f6g7h8-i9j0-1234-efgh-567890123456
-      comments: ""
-      tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
-    Threat Intelligence Analysis:
-      uuid: b2c3d4e5-f6g7-8901-bcde-f23456789012
-      description: |
-        Analysis and contextualization of collected intelligence data including:
-        - Indicator enrichment and validation using multiple sources
-        - Attribution analysis linking threats to known actor groups
-        - Campaign tracking across multiple attack vectors
-        - Threat landscape assessment for organizational risk
-        - False positive reduction through cross-referencing
-        - Timeline analysis of threat actor activities
-      risk: Raw threat intelligence without proper analysis leads to alert fatigue,
-        missed critical threats, and inability to prioritize security responses effectively.
-      measure: |
-        Establish analytical workflows that include:
-        - Multi-source indicator verification and scoring
-        - Threat actor profiling and campaign attribution
-        - Industry-specific threat landscape analysis
-        - Integration with internal security events for correlation
-        - Regular threat briefings for stakeholders with actionable recommendations
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 3
-        resources: 3
-      usefulness: 4
-      level: 3
-      dependsOn:
-      - Threat Intelligence Collection
-      - Correlation of security events
-      implementation:
-      - uuid: 66666666-6666-6666-6666-666666666666
-        name: Maltego
-        tags:
-        - osint
-        - threat-intelligence
-        - visualization
-        url: https://www.maltego.com/
-        description: OSINT and forensics application for link analysis and threat
-          intelligence visualization
-      - uuid: 88888888-8888-8888-8888-888888888888
-        name: SpiderFoot
-        tags:
-        - osint
-        - reconnaissance
-        - threat-intelligence
-        url: https://www.spiderfoot.net/
-        description: Automated OSINT reconnaissance tool for threat intelligence gathering
-      - uuid: 22222222-2222-2222-2222-222222222222
-        name: VirusTotal
-        tags:
-        - threat-intelligence
-        - malware-analysis
-        - osint
-        url: https://www.virustotal.com/
-        description: Malware and URL analysis service for threat intelligence and
-          IOC validation
-      references:
-        samm2:
-        - O-IM-2-A
-        iso27001-2017:
-        - 16.1.2
-        iso27001-2022:
-        - 5.25
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
-          Intelligence/b2c3d4e5-f6g7-8901-bcde-f23456789012
-      comments: ""
-      tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
-    Threat Intelligence Collection:
+    Automated OSINT Collection Pipeline:
       uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
-      description: |
-        Systematic collection of threat intelligence from diverse sources including:
-        - OSINT platforms (Shodan, VirusTotal, URLScan.io, PublicWWW)
-        - Dark web monitoring (leak databases, underground forums)
-        - Social media intelligence (Twitter/X, Telegram, Discord)
-        - Technical indicators (DNS, certificates, IP reputation)
-        - Vulnerability databases (CVE, NVD, exploit-db)
-        - Government and industry threat reports
+      description: "Automated collection system using cron jobs to query APIs (shodan.io,
+        virustotal.com) \nwith domain monitoring: `curl -H \"API-Key: $VT_KEY\" https://www.virustotal.com/vtapi/v2/domain/report`\nRSS
+        feed parsing via Python feedparser and data normalization into JSON/STIX format.\n"
       risk: Without systematic threat intelligence collection, organizations cannot
         proactively identify emerging threats, ongoing campaigns, or indicators of
         compromise targeting their industry sector or technology stack.
       measure: |
-        Implement automated and manual collection processes using:
-        - OSINT tools for reconnaissance detection (domain monitoring, certificate transparency)
-        - Social media monitoring for brand mentions and threat actor discussions
-        - Dark web monitoring for leaked credentials and company mentions
-        - Threat feed aggregation from commercial and open sources
-        - Regular assessment of attack surface exposure via search engines
+        Deploy cron-scheduled Python scripts with API calls to threat sources,
+        RSS feed monitoring, certificate transparency logs via crt.sh API,
+        and automated IOC extraction with regex patterns for IP/domain/hash identification.
       difficultyOfImplementation:
         knowledge: 3
         time: 2
         resources: 2
       usefulness: 4
       level: 2
-      dependsOn:
-      - Logging of security events
       implementation:
-      - uuid: 11111111-1111-1111-1111-111111111111
+      - uuid: ab1555aa-225a-49b0-9b74-15a5407e0722
         name: Shodan
         tags:
         - osint
@@ -4891,7 +4744,7 @@ Information Gathering:
         url: https://www.shodan.io/
         description: Search engine for Internet-connected devices and services for
           reconnaissance and threat intelligence
-      - uuid: 22222222-2222-2222-2222-222222222222
+      - uuid: d3a10c34-9e9f-43bd-a474-269d07188efe
         name: VirusTotal
         tags:
         - threat-intelligence
@@ -4900,7 +4753,7 @@ Information Gathering:
         url: https://www.virustotal.com/
         description: Malware and URL analysis service for threat intelligence and
           IOC validation
-      - uuid: 33333333-3333-3333-3333-333333333333
+      - uuid: 3ec27730-928f-45be-a4fa-92d19c8b3d56
         name: URLScan.io
         tags:
         - threat-intelligence
@@ -4908,7 +4761,7 @@ Information Gathering:
         - osint
         url: https://urlscan.io/
         description: URL and website analysis service for threat intelligence collection
-      - uuid: 55555555-5555-5555-5555-555555555555
+      - uuid: d21f595e-f742-46b3-9871-0c415ab37127
         name: Censys
         tags:
         - osint
@@ -4916,7 +4769,7 @@ Information Gathering:
         - threat-intelligence
         url: https://censys.io/
         description: Internet scanning and reconnaissance platform for threat intelligence
-      - uuid: 77777777-7777-7777-7777-777777777777
+      - uuid: dc429e58-cf5b-4596-bbe2-ed0ce2bb5215
         name: theHarvester
         tags:
         - osint
@@ -4944,37 +4797,36 @@ Information Gathering:
         Default: false
         B: false
         C: false
-    Threat Intelligence Integration:
-      uuid: c3d4e5f6-g7h8-9012-cdef-345678901234
+    ML-Powered Threat Classification:
+      uuid: e5f6g7h8-i9j0-1234-efgh-567890123456
       description: |
-        Tactical integration of threat intelligence into security infrastructure:
-        - SIEM rule creation based on IOCs and behavioral patterns
-        - Automated blocking of malicious IPs, domains, and file hashes
-        - DNS sinkholing for known malicious domains
-        - Email security enhancement with threat indicators
-        - Endpoint detection rules based on YARA signatures
-        - Network monitoring alerts for suspicious communications
-      risk: Threat intelligence that remains isolated from security controls provides
-        no operational value and allows known threats to successfully compromise systems.
+        Enterprise TIP with scikit-learn ML models for IOC classification.
+        API: `POST /ml/classify` with feature vectors for threat scoring,
+        automated sandbox integration, and predictive campaign analysis using time-series data.
+      risk: Manual threat intelligence processes create operational bottlenecks, introduce
+        human error, and cannot scale to address the volume of modern threat data,
+        resulting in delayed threat detection and response.
       measure: |
-        Deploy automated integration mechanisms:
-        - STIX/TAXII feeds integrated into security tools
-        - Custom APIs for threat intelligence platform integration
-        - Automated IOC blocking across network and endpoint security
-        - Regular validation of integrated indicators for effectiveness
-        - Threat hunting queries based on intelligence analysis
+        Deploy enterprise TIP with ML algorithms for pattern recognition,
+        automated IOC extraction from sandbox reports,
+        predictive analytics for campaign forecasting,
+        and SOAR integration with confidence-scored threat indicators.
       difficultyOfImplementation:
-        knowledge: 4
+        knowledge: 5
         time: 4
-        resources: 3
+        resources: 4
       usefulness: 5
-      level: 3
-      dependsOn:
-      - Threat Intelligence Analysis
-      - Centralized application logging
-      - Centralized system logging
+      level: 5
       implementation:
-      - uuid: 66666666-6666-6666-6666-666666666666
+      - uuid: 659e9838-4a79-45a1-ac1f-6b9964a5d21c
+        name: SpiderFoot
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://www.spiderfoot.net/
+        description: Automated OSINT reconnaissance tool for threat intelligence gathering
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
         name: Maltego
         tags:
         - osint
@@ -4983,7 +4835,52 @@ Information Gathering:
         url: https://www.maltego.com/
         description: OSINT and forensics application for link analysis and threat
           intelligence visualization
-      - uuid: 88888888-8888-8888-8888-888888888888
+      references:
+        samm2:
+        - O-IM-2-A
+        iso27001-2017:
+        - 16.1.2
+        iso27001-2022:
+        - 5.25
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
+          Intelligence/e5f6g7h8-i9j0-1234-efgh-567890123456
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    SIEM IOC Integration Gateway:
+      uuid: c3d4e5f6-g7h8-9012-cdef-345678901234
+      description: |
+        Automated IOC blocker using STIX/TAXII feeds with API calls to security tools.
+        Example: `POST /api/firewall/blocklist` with JSON payload containing IOCs,
+        DNS sinkholing via `/dns/blocklist`, and YARA rule deployment to endpoints.
+      risk: Threat intelligence that remains isolated from security controls provides
+        no operational value and allows known threats to successfully compromise systems.
+      measure: |
+        Deploy automated integration scripts with REST API calls to firewalls,
+        DNS servers, and SIEM platforms for IOC blocking,
+        threat hunting query generation, and validation of indicator effectiveness.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 3
+      usefulness: 5
+      level: 3
+      implementation:
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      - uuid: 659e9838-4a79-45a1-ac1f-6b9964a5d21c
         name: SpiderFoot
         tags:
         - osint
@@ -5010,36 +4907,28 @@ Information Gathering:
         Default: false
         B: false
         C: false
-    Threat Intelligence Sharing:
+    STIX/TAXII Community Exchange:
       uuid: d4e5f6g7-h8i9-0123-defg-456789012345
       description: |
-        Strategic participation in threat intelligence ecosystems including:
-        - Industry-specific threat sharing groups (FS-ISAC, H-ISAC)
-        - Government programs (US-CERT, NCSC, national CERTs)
-        - Commercial threat intelligence platforms
-        - Open source intelligence communities
-        - Vendor security communities and user groups
-        - Regional cybersecurity alliances
+        Automated STIX/TAXII server with industry feeds: `taxii2-client --discovery-url`
+        for feed discovery, bilateral IOC sharing via REST API endpoints,
+        and TLP compliance validation using JSON schema validation.
       risk: Isolation from threat intelligence sharing communities results in delayed
         threat awareness, reduced collective defense capabilities, and missed opportunities
         for early warning of targeted campaigns.
       measure: |
-        Establish formal sharing relationships through:
-        - Membership in relevant industry sharing organizations
-        - Bilateral threat intelligence sharing agreements
-        - Automated sharing via STIX/TAXII protocols
-        - Regular participation in threat briefings and working groups
-        - Sanitized indicator sharing while protecting sensitive sources
+        Deploy TAXII server with automated feed synchronization,
+        industry consortium integration (FS-ISAC, H-ISAC),
+        data sanitization pipelines for attribution protection,
+        and bilateral sharing agreements with automated compliance checks.
       difficultyOfImplementation:
         knowledge: 3
         time: 2
         resources: 2
       usefulness: 3
       level: 4
-      dependsOn:
-      - Threat Intelligence Analysis
       implementation:
-      - uuid: 66666666-6666-6666-6666-666666666666
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
         name: Maltego
         tags:
         - osint
@@ -5048,7 +4937,7 @@ Information Gathering:
         url: https://www.maltego.com/
         description: OSINT and forensics application for link analysis and threat
           intelligence visualization
-      - uuid: 44444444-4444-4444-4444-444444444444
+      - uuid: 17d1eb75-bf05-4d05-8e55-c6233819bfdb
         name: PublicWWW
         tags:
         - osint
@@ -5075,33 +4964,27 @@ Information Gathering:
         Default: false
         B: false
         C: false
-  Incident Response:
-    Incident Containment and Eradication:
-      uuid: h8i9j0k1-l2m3-4567-hijk-890123456789
+    Threat Intelligence Platform:
+      uuid: b2c3d4e5-f6g7-8901-bcde-f23456789012
       description: |
-        OSINT-enhanced containment and eradication procedures:
-        - Threat infrastructure mapping using passive DNS and certificate analysis
-        - Attack campaign tracking to identify additional compromised systems
-        - IOC generation and sharing for community defense
-        - Attribution analysis to understand threat actor methods and motivations
-        - Infrastructure takedown coordination with hosting providers and registrars
-        - Real-time threat landscape monitoring during incident response
-      risk: Containment efforts without external intelligence context may miss related
-        infrastructure, fail to prevent reinfection, and allow threat actors to continue
-        operations against other targets.
-      measure: Establish procedures to contain security incidents, eliminate the root
-        cause, and remove malicious artifacts while preserving evidence for investigation.
+        Centralized TIP with MISP integration: `misp-modules -l 0.0.0.0 -s` for enrichment,
+        automated YARA rule generation from samples,
+        MITRE ATT&CK mapping with `/attributes/restSearch` API for correlation.
+      risk: Raw threat intelligence without centralized analysis leads to alert fatigue
+        and inability to prioritize security responses effectively.
+      measure: |
+        Deploy MISP platform with automated enrichment APIs,
+        YARA rule generation workflows,
+        MITRE ATT&CK technique mapping,
+        and multi-source indicator correlation with confidence scoring.
       difficultyOfImplementation:
         knowledge: 4
-        time: 4
+        time: 3
         resources: 3
-      usefulness: 5
+      usefulness: 4
       level: 3
-      dependsOn:
-      - Incident Detection and Classification
-      - Threat Intelligence Integration
       implementation:
-      - uuid: 66666666-6666-6666-6666-666666666666
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
         name: Maltego
         tags:
         - osint
@@ -5110,7 +4993,7 @@ Information Gathering:
         url: https://www.maltego.com/
         description: OSINT and forensics application for link analysis and threat
           intelligence visualization
-      - uuid: 88888888-8888-8888-8888-888888888888
+      - uuid: 659e9838-4a79-45a1-ac1f-6b9964a5d21c
         name: SpiderFoot
         tags:
         - osint
@@ -5118,89 +5001,25 @@ Information Gathering:
         - threat-intelligence
         url: https://www.spiderfoot.net/
         description: Automated OSINT reconnaissance tool for threat intelligence gathering
-      references:
-        samm2:
-        - O-IM-3-A
-        iso27001-2017:
-        - 16.1.5
-        iso27001-2022:
-        - 5.28
-        openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
-          Response/h8i9j0k1-l2m3-4567-hijk-890123456789
-      comments: ""
-      tags:
-      - none
-      teamsImplemented:
-        Default: false
-        B: false
-        C: false
-    Incident Detection and Classification:
-      uuid: g7h8i9j0-k1l2-3456-ghij-789012345678
-      description: |
-        Advanced incident detection enhanced with OSINT capabilities:
-        - Multi-source indicator correlation from internal logs and external intelligence
-        - Automated enrichment of security alerts with threat context
-        - Social media monitoring for brand mentions and potential targeting
-        - Dark web monitoring for organization-specific threats and leaked data
-        - Threat actor tracking to identify campaign patterns and attribution
-        - Geolocation analysis of attack sources and infrastructure
-      risk: Basic incident detection without external intelligence context results
-        in missed sophisticated attacks, delayed attribution, and inability to understand
-        attack campaigns targeting the organization.
-      measure: |
-        Deploy enhanced detection capabilities with:
-        - SIEM integration with multiple threat intelligence feeds
-        - Automated OSINT enrichment of security alerts and indicators
-        - Social media and dark web monitoring for early threat detection
-        - Machine learning algorithms for anomaly detection and pattern recognition
-        - Threat hunting programs guided by external intelligence and industry reports
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 3
-        resources: 3
-      usefulness: 5
-      level: 2
-      dependsOn:
-      - Incident Response Plan
-      - Correlation of security events
-      - Alerting
-      implementation:
-      - uuid: 99999999-9999-9999-9999-999999999999
-        name: GHunt
+      - uuid: d3a10c34-9e9f-43bd-a474-269d07188efe
+        name: VirusTotal
         tags:
-        - osint
-        - google-intelligence
-        - reconnaissance
-        url: https://github.com/mxrch/GHunt
-        description: OSINT tool for Google accounts and services investigation
-      - uuid: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-        name: Sherlock
-        tags:
-        - osint
-        - username-intelligence
-        - social-media
-        url: https://github.com/sherlock-project/sherlock
-        description: Social media username OSINT investigation tool
-      - uuid: 66666666-6666-6666-6666-666666666666
-        name: Maltego
-        tags:
-        - osint
         - threat-intelligence
-        - visualization
-        url: https://www.maltego.com/
-        description: OSINT and forensics application for link analysis and threat
-          intelligence visualization
+        - malware-analysis
+        - osint
+        url: https://www.virustotal.com/
+        description: Malware and URL analysis service for threat intelligence and
+          IOC validation
       references:
         samm2:
-        - O-IM-3-A
+        - O-IM-2-A
         iso27001-2017:
-        - 16.1.4
+        - 16.1.2
         iso27001-2022:
-        - 5.27
+        - 5.25
         openCRE:
-        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
-          Response/g7h8i9j0-k1l2-3456-ghij-789012345678
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Threat
+          Intelligence/b2c3d4e5-f6g7-8901-bcde-f23456789012
       comments: ""
       tags:
       - none
@@ -5208,32 +5027,27 @@ Information Gathering:
         Default: false
         B: false
         C: false
-    Incident Recovery and Post-Incident Analysis:
+  Incident Response:
+    Attribution Analysis and IOC Sharing:
       uuid: i9j0k1l2-m3n4-5678-ijkl-901234567890
       description: |
-        Intelligence-driven recovery and analysis processes:
-        - Threat landscape analysis to identify ongoing risks and similar campaigns
-        - Attribution reporting with indicators for threat intelligence sharing
-        - Vulnerability assessment based on attack methods and exploitation techniques
-        - Industry threat briefings to warn of similar attacks against peer organizations
-        - Long-term monitoring for threat actor return or infrastructure reuse
-        - Integration of lessons learned into threat detection and prevention systems
+        Threat landscape analysis with MITRE ATT&CK mapping: `attack-navigator --layer techniques.json`
+        for TTP visualization, automated attribution reporting via REST APIs,
+        and vulnerability assessment integration with attack vector analysis.
       risk: Recovery efforts without comprehensive threat analysis leave organizations
         vulnerable to similar attacks and fail to contribute to community defense
         through intelligence sharing.
-      measure: Implement recovery procedures to restore normal operations and conduct
-        post-incident analysis to identify lessons learned and implement improvements
-        to prevent similar incidents.
+      measure: Deploy recovery workflows with threat landscape analysis tools, attribution
+        reporting with IOC generation for community sharing, vulnerability assessment
+        based on attack TTPs, and long-term threat actor monitoring.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
         resources: 2
       usefulness: 4
       level: 3
-      dependsOn:
-      - Incident Containment and Eradication
       implementation:
-      - uuid: 66666666-6666-6666-6666-666666666666
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
         name: Maltego
         tags:
         - osint
@@ -5261,26 +5075,72 @@ Information Gathering:
         Default: false
         B: false
         C: false
-    Incident Response Plan:
-      uuid: f6g7h8i9-j0k1-2345-fghi-678901234567
+    Infrastructure Mapping and Takedown:
+      uuid: h8i9j0k1-l2m3-4567-hijk-890123456789
       description: |
-        Comprehensive incident response plan incorporating OSINT-driven intelligence gathering:
-        - Pre-defined incident classification matrix with response procedures
-        - OSINT collection protocols for threat actor attribution and campaign analysis
-        - Integration with threat intelligence platforms for context enrichment
-        - Communication templates for internal teams and external stakeholders
-        - Legal and regulatory compliance requirements for different incident types
-        - Evidence preservation procedures for digital forensics and legal proceedings
-      risk: Without a documented incident response plan that includes intelligence
-        gathering procedures, organizations respond reactively, miss attribution opportunities,
-        and fail to understand the broader threat landscape context.
+        Passive DNS analysis: `dig +short -x $ip` for reverse lookups,
+        certificate transparency monitoring via crt.sh API,
+        automated hosting provider coordination for infrastructure takedown.
+      risk: Containment efforts without external intelligence context may miss related
+        infrastructure, fail to prevent reinfection, and allow threat actors to continue
+        operations against other targets.
+      measure: Deploy OSINT-enhanced containment with threat infrastructure mapping,
+        attack campaign tracking via shared IOCs, automated takedown coordination
+        scripts, and evidence preservation workflows.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 3
+      usefulness: 5
+      level: 3
+      implementation:
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      - uuid: 659e9838-4a79-45a1-ac1f-6b9964a5d21c
+        name: SpiderFoot
+        tags:
+        - osint
+        - reconnaissance
+        - threat-intelligence
+        url: https://www.spiderfoot.net/
+        description: Automated OSINT reconnaissance tool for threat intelligence gathering
+      references:
+        samm2:
+        - O-IM-3-A
+        iso27001-2017:
+        - 16.1.5
+        iso27001-2022:
+        - 5.28
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
+          Response/h8i9j0k1-l2m3-4567-hijk-890123456789
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    OSINT-Enhanced IR Documentation:
+      uuid: f6g7h8i9-j0k1-2345-fghi-678901234567
+      description: "Structured IR documentation with technical procedures: domain
+        analysis via\n`dig +trace $domain`, IP geolocation using `curl ipinfo.io/$ip`,
+        \nand automated evidence collection scripts with legal compliance frameworks.\n"
+      risk: Without documented incident response procedures that include intelligence
+        gathering, organizations respond reactively and miss critical attribution
+        opportunities.
       measure: |
-        Develop comprehensive incident response documentation including:
-        - Playbooks for common incident types with OSINT collection steps
-        - Role-based access controls and escalation procedures
-        - Integration points with threat intelligence and OSINT tools
-        - Regular plan testing through tabletop exercises and simulations
-        - Post-incident review processes for continuous improvement
+        Create technical IR documentation with OSINT collection procedures,
+        automated evidence preservation scripts,
+        legal compliance checklists for evidence handling,
+        and structured templates for threat actor attribution.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
@@ -5288,7 +5148,7 @@ Information Gathering:
       usefulness: 5
       level: 1
       implementation:
-      - uuid: 66666666-6666-6666-6666-666666666666
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
         name: Maltego
         tags:
         - osint
@@ -5316,33 +5176,42 @@ Information Gathering:
         Default: false
         B: false
         C: false
-    Incident Response Training and Testing:
-      uuid: j0k1l2m3-n4o5-6789-jklm-012345678901
-      description: |
-        Comprehensive training program incorporating OSINT and threat intelligence:
-        - Hands-on OSINT training for incident responders and analysts
-        - Threat intelligence platform training for indicator enrichment and analysis
-        - Tabletop exercises based on real-world attack campaigns and threat actor TTPs
-        - Red team exercises incorporating current threat intelligence and attack methods
-        - Cross-functional training between security operations and threat intelligence teams
-        - Regular updates on emerging threats, tools, and investigation techniques
-      risk: Training programs that don't incorporate current threat intelligence and
-        OSINT capabilities leave teams unprepared for sophisticated attacks and limit
-        their ability to conduct effective threat attribution and campaign analysis.
-      measure: Conduct regular incident response training for team members and perform
-        tabletop exercises, simulations, and drills to test and improve incident response
-        procedures.
+    Real-time Threat Enrichment:
+      uuid: g7h8i9j0-k1l2-3456-ghij-789012345678
+      description: "Live SIEM enrichment with external threat feeds: Splunk lookup
+        \n`| lookup threat_intel domain as query_domain OUTPUT confidence score`\nfor
+        real-time IOC validation and automated alert prioritization.\n"
+      risk: Incidents detected without external threat context result in delayed response
+        and missed attribution of sophisticated attack campaigns.
+      measure: |
+        Deploy SIEM enrichment with real-time threat intelligence APIs,
+        automated IOC validation against multiple sources,
+        confidence scoring for threat indicators,
+        and contextual alert enhancement with threat actor profiles.
       difficultyOfImplementation:
-        knowledge: 3
+        knowledge: 4
         time: 3
         resources: 3
-      usefulness: 4
-      level: 4
-      dependsOn:
-      - Incident Response Plan
-      - Incident Recovery and Post-Incident Analysis
+      usefulness: 5
+      level: 2
       implementation:
-      - uuid: 66666666-6666-6666-6666-666666666666
+      - uuid: 607d2158-3d17-4518-b751-61c7422be9a2
+        name: GHunt
+        tags:
+        - osint
+        - google-intelligence
+        - reconnaissance
+        url: https://github.com/mxrch/GHunt
+        description: OSINT tool for Google accounts and services investigation
+      - uuid: fc20c021-f64e-427a-93ce-11872eaec241
+        name: Sherlock
+        tags:
+        - osint
+        - username-intelligence
+        - social-media
+        url: https://github.com/sherlock-project/sherlock
+        description: Social media username OSINT investigation tool
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
         name: Maltego
         tags:
         - osint
@@ -5351,7 +5220,52 @@ Information Gathering:
         url: https://www.maltego.com/
         description: OSINT and forensics application for link analysis and threat
           intelligence visualization
-      - uuid: 99999999-9999-9999-9999-999999999999
+      references:
+        samm2:
+        - O-IM-3-A
+        iso27001-2017:
+        - 16.1.4
+        iso27001-2022:
+        - 5.27
+        openCRE:
+        - https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/Incident
+          Response/g7h8i9j0-k1l2-3456-ghij-789012345678
+      comments: ""
+      tags:
+      - none
+      teamsImplemented:
+        Default: false
+        B: false
+        C: false
+    Tactical OSINT Training Program:
+      uuid: j0k1l2m3-n4o5-6789-jklm-012345678901
+      description: |
+        Skills-based OSINT training: `recon-ng -w domain_enum -m recon/domains-hosts/brute_hosts`
+        for reconnaissance techniques, threat hunt simulation exercises,
+        and cross-team collaboration workshops with scenario-based learning.
+      risk: Teams without current OSINT skills cannot effectively investigate incidents,
+        conduct threat attribution, or leverage external intelligence for proactive
+        defense.
+      measure: Conduct technical OSINT training with hands-on tool usage, threat hunting
+        simulation exercises, incident response tabletop scenarios, and skills assessment
+        with certification tracking.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 4
+      implementation:
+      - uuid: 712eb583-2d3d-44f6-bb01-f32b72dc7942
+        name: Maltego
+        tags:
+        - osint
+        - threat-intelligence
+        - visualization
+        url: https://www.maltego.com/
+        description: OSINT and forensics application for link analysis and threat
+          intelligence visualization
+      - uuid: 607d2158-3d17-4518-b751-61c7422be9a2
         name: GHunt
         tags:
         - osint
@@ -5359,7 +5273,7 @@ Information Gathering:
         - reconnaissance
         url: https://github.com/mxrch/GHunt
         description: OSINT tool for Google accounts and services investigation
-      - uuid: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+      - uuid: fc20c021-f64e-427a-93ce-11872eaec241
         name: Sherlock
         tags:
         - osint

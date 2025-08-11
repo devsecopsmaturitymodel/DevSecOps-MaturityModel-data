@@ -196,77 +196,63 @@ Information Gathering:
       evidence: ""
       comments: ""
   Threat Intelligence:
-    Threat Intelligence Collection:
+    Basic OSINT Collection Integration:
       uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
-      description: |
-        Systematic collection of threat intelligence from diverse sources including:
-        - OSINT platforms (Shodan, VirusTotal, URLScan.io, PublicWWW)
-        - Dark web monitoring (leak databases, underground forums)
-        - Social media intelligence (Twitter/X, Telegram, Discord)
-        - Technical indicators (DNS, certificates, IP reputation)
-        - Vulnerability databases (CVE, NVD, exploit-db)
-        - Government and industry threat reports
-      risk: Without systematic threat intelligence collection, organizations cannot proactively identify emerging threats, ongoing campaigns, or indicators of compromise targeting their industry sector or technology stack.
-      measure: |
-        Implement automated and manual collection processes using:
-        - OSINT tools for reconnaissance detection (domain monitoring, certificate transparency)
-        - Social media monitoring for brand mentions and threat actor discussions
-        - Dark web monitoring for leaked credentials and company mentions
-        - Threat feed aggregation from commercial and open sources
-        - Regular assessment of attack surface exposure via search engines
+      risk: >-
+        Development teams lack external threat context about technologies and dependencies they use,
+        leading to uninformed security decisions and reactive incident response.
+      measure: >-
+        Integrate basic OSINT collection into development workflows using automated tools
+        to gather threat intelligence about used technologies, domains, and dependencies.
+        Implement simple API calls to threat intelligence sources during CI/CD processes.
+      description: >-
+        Basic threat intelligence collection using API calls to public sources like VirusTotal, Shodan.
+        Example: `curl -H "API-Key: $VT_KEY" https://www.virustotal.com/vtapi/v2/domain/report?domain=$DOMAIN`
+        Automated checks during deployment for known malicious domains or IPs in configuration.
       difficultyOfImplementation:
-        knowledge: 3
+        knowledge: 2
         time: 2
         resources: 2
       usefulness: 4
-      level: 2
-      dependsOn:
-        - Logging of security events
+      level: 1
+      dependsOn: []
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/shodan
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/virustotal
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/shodan
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/urlscan-io
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/censys
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/theharvester
       references:
         samm2:
-          - O-IM-2-A
+          - O-IM-1-A
         iso27001-2017:
           - 16.1.2
-          - 16.1.3
         iso27001-2022:
           - 5.25
-          - 5.26
       isImplemented: false
       evidence: ""
       comments: ""
-    Threat Intelligence Analysis:
+    Automated Threat Intelligence Pipeline:
       uuid: b2c3d4e5-f6g7-8901-bcde-f23456789012
-      description: |
-        Analysis and contextualization of collected intelligence data including:
-        - Indicator enrichment and validation using multiple sources
-        - Attribution analysis linking threats to known actor groups
-        - Campaign tracking across multiple attack vectors
-        - Threat landscape assessment for organizational risk
-        - False positive reduction through cross-referencing
-        - Timeline analysis of threat actor activities
-      risk: Raw threat intelligence without proper analysis leads to alert fatigue, missed critical threats, and inability to prioritize security responses effectively.
-      measure: |
-        Establish analytical workflows that include:
-        - Multi-source indicator verification and scoring
-        - Threat actor profiling and campaign attribution
-        - Industry-specific threat landscape analysis
-        - Integration with internal security events for correlation
-        - Regular threat briefings for stakeholders with actionable recommendations
+      risk: >-
+        Manual threat intelligence processes cannot scale with development velocity,
+        resulting in delayed threat awareness and inadequate security posture.
+      measure: >-
+        Deploy automated threat intelligence pipeline integrated with development tools
+        to continuously monitor threat landscape and automatically enrich security data
+        used by development and operations teams.
+      description: >-
+        Automated OSINT collection system with scheduled jobs querying multiple threat sources.
+        Integration with CI/CD pipelines for dependency threat scoring.
+        Command: `python3 osint_collector.py --sources shodan,virustotal --format stix --output /var/log/threats/`
       difficultyOfImplementation:
-        knowledge: 4
+        knowledge: 3
         time: 3
-        resources: 3
+        resources: 2
       usefulness: 4
-      level: 3
+      level: 2
       dependsOn:
-        - Threat Intelligence Collection
-        - Correlation of security events
+        - a1b2c3d4-e5f6-7890-abcd-ef1234567890 # Basic OSINT Collection Integration
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
@@ -281,24 +267,19 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
-    Threat Intelligence Integration:
+    Advanced Threat Intelligence Platform:
       uuid: c3d4e5f6-g7h8-9012-cdef-345678901234
-      description: |
-        Tactical integration of threat intelligence into security infrastructure:
-        - SIEM rule creation based on IOCs and behavioral patterns
-        - Automated blocking of malicious IPs, domains, and file hashes
-        - DNS sinkholing for known malicious domains
-        - Email security enhancement with threat indicators
-        - Endpoint detection rules based on YARA signatures
-        - Network monitoring alerts for suspicious communications
-      risk: Threat intelligence that remains isolated from security controls provides no operational value and allows known threats to successfully compromise systems.
-      measure: |
-        Deploy automated integration mechanisms:
-        - STIX/TAXII feeds integrated into security tools
-        - Custom APIs for threat intelligence platform integration
-        - Automated IOC blocking across network and endpoint security
-        - Regular validation of integrated indicators for effectiveness
-        - Threat hunting queries based on intelligence analysis
+      risk: >-
+        Isolated threat intelligence leads to fragmented security decision-making
+        across development teams and reduces organizational threat detection capabilities.
+      measure: >-
+        Implement centralized threat intelligence platform with automated enrichment,
+        correlation, and distribution capabilities integrated into all DevSecOps processes
+        and development team workflows.
+      description: >-
+        Enterprise threat intelligence platform with MISP integration, automated YARA generation,
+        MITRE ATT&CK mapping, and API integration with development tools.
+        Command: `misp-modules -l 0.0.0.0 -s --enrichment` for automated threat enrichment.
       difficultyOfImplementation:
         knowledge: 4
         time: 4
@@ -306,56 +287,48 @@ Information Gathering:
       usefulness: 5
       level: 3
       dependsOn:
-        - Threat Intelligence Analysis
-        - Centralized application logging
-        - Centralized system logging
+        - b2c3d4e5-f6g7-8901-bcde-f23456789012 # Automated Threat Intelligence Pipeline
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
       references:
         samm2:
           - O-IM-2-A
+          - O-IM-3-A
         iso27001-2017:
-          - 13.1.1
           - 16.1.2
         iso27001-2022:
-          - 8.22
           - 5.25
       isImplemented: false
       evidence: ""
       comments: ""
-    Threat Intelligence Sharing:
+    DevSecOps Threat Intelligence Integration:
       uuid: d4e5f6g7-h8i9-0123-defg-456789012345
-      description: |
-        Strategic participation in threat intelligence ecosystems including:
-        - Industry-specific threat sharing groups (FS-ISAC, H-ISAC)
-        - Government programs (US-CERT, NCSC, national CERTs)
-        - Commercial threat intelligence platforms
-        - Open source intelligence communities
-        - Vendor security communities and user groups
-        - Regional cybersecurity alliances
-      risk: Isolation from threat intelligence sharing communities results in delayed threat awareness, reduced collective defense capabilities, and missed opportunities for early warning of targeted campaigns.
-      measure: |
-        Establish formal sharing relationships through:
-        - Membership in relevant industry sharing organizations
-        - Bilateral threat intelligence sharing agreements
-        - Automated sharing via STIX/TAXII protocols
-        - Regular participation in threat briefings and working groups
-        - Sanitized indicator sharing while protecting sensitive sources
+      risk: >-
+        Threat intelligence isolated from development processes fails to inform
+        secure coding practices and technology selection decisions in DevSecOps workflows.
+      measure: >-
+        Integrate threat intelligence directly into development pipelines to inform
+        dependency selection, security testing priorities, and deployment decisions
+        based on current threat landscape.
+      description: >-
+        CI/CD pipeline integration with threat intelligence APIs for dependency threat scoring,
+        automated vulnerability prioritization based on active campaigns,
+        and security gate decisions informed by current IOCs.
+        Command: `curl -X POST /api/threat-score -d '{"dependencies": ["library@1.0.0"]}'`
       difficultyOfImplementation:
-        knowledge: 3
-        time: 2
-        resources: 2
-      usefulness: 3
+        knowledge: 4
+        time: 3
+        resources: 3
+      usefulness: 4
       level: 4
       dependsOn:
-        - Threat Intelligence Analysis
+        - c3d4e5f6-g7h8-9012-cdef-345678901234 # Advanced Threat Intelligence Platform
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/publicwww
       references:
         samm2:
-          - O-IM-2-A
+          - O-IM-3-A
         iso27001-2017:
           - 16.1.2
           - 16.1.3
@@ -365,34 +338,27 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
-    Automated Threat Intelligence:
+    Community Threat Intelligence Sharing:
       uuid: e5f6g7h8-i9j0-1234-efgh-567890123456
-      description: |
-        Advanced automation of threat intelligence operations including:
-        - Automated OSINT collection from multiple sources simultaneously
-        - Machine learning-based threat classification and scoring
-        - Dynamic IOC generation from malware analysis sandboxes
-        - Automated attribution analysis using behavior clustering
-        - Real-time threat landscape monitoring and alerting
-        - Intelligent threat hunting based on predictive analytics
-      risk: Manual threat intelligence processes create operational bottlenecks, introduce human error, and cannot scale to address the volume of modern threat data, resulting in delayed threat detection and response.
-      measure: |
-        Deploy enterprise threat intelligence platforms with:
-        - Multi-source automated data collection and normalization
-        - Machine learning algorithms for threat pattern recognition
-        - Automated indicator extraction and validation workflows
-        - Integration with SOAR platforms for response automation
-        - Predictive threat modeling based on historical attack patterns
-        - Automated reporting and briefing generation for stakeholders
+      risk: >-
+        Isolated threat intelligence limits organizational defensive capabilities
+        and prevents contribution to broader cybersecurity community resilience.
+      measure: >-
+        Establish automated threat intelligence sharing with trusted partners,
+        industry groups, and security communities using standardized formats
+        integrated with development security workflows.
+      description: >-
+        STIX/TAXII implementation for automated threat sharing, bidirectional intelligence exchange,
+        and community-driven threat validation within DevSecOps pipeline.
+        Command: `taxii2-client --collection-url https://community.misp-project.org/taxii2/ --poll`
       difficultyOfImplementation:
-        knowledge: 5
-        time: 4
-        resources: 4
-      usefulness: 5
+        knowledge: 4
+        time: 3
+        resources: 3
+      usefulness: 3
       level: 5
       dependsOn:
-        - Threat Intelligence Integration
-        - Correlation of security events
+        - d4e5f6g7-h8i9-0123-defg-456789012345 # DevSecOps Threat Intelligence Integration
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
@@ -407,24 +373,18 @@ Information Gathering:
       evidence: ""
       comments: ""
   Incident Response:
-    Incident Response Plan:
+    OSINT-Enhanced IR Documentation:
       uuid: f6g7h8i9-j0k1-2345-fghi-678901234567
       description: |
-        Comprehensive incident response plan incorporating OSINT-driven intelligence gathering:
-        - Pre-defined incident classification matrix with response procedures
-        - OSINT collection protocols for threat actor attribution and campaign analysis
-        - Integration with threat intelligence platforms for context enrichment
-        - Communication templates for internal teams and external stakeholders
-        - Legal and regulatory compliance requirements for different incident types
-        - Evidence preservation procedures for digital forensics and legal proceedings
-      risk: Without a documented incident response plan that includes intelligence gathering procedures, organizations respond reactively, miss attribution opportunities, and fail to understand the broader threat landscape context.
+        Structured IR documentation with technical procedures: domain analysis via
+        `dig +trace $domain`, IP geolocation using `curl ipinfo.io/$ip`, 
+        and automated evidence collection scripts with legal compliance frameworks.
+      risk: Without documented incident response procedures that include intelligence gathering, organizations respond reactively and miss critical attribution opportunities.
       measure: |
-        Develop comprehensive incident response documentation including:
-        - Playbooks for common incident types with OSINT collection steps
-        - Role-based access controls and escalation procedures
-        - Integration points with threat intelligence and OSINT tools
-        - Regular plan testing through tabletop exercises and simulations
-        - Post-incident review processes for continuous improvement
+        Create technical IR documentation with OSINT collection procedures,
+        automated evidence preservation scripts,
+        legal compliance checklists for evidence handling,
+        and structured templates for threat actor attribution.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
@@ -445,34 +405,24 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
-    Incident Detection and Classification:
+    Real-time Threat Enrichment:
       uuid: g7h8i9j0-k1l2-3456-ghij-789012345678
       description: |
-        Advanced incident detection enhanced with OSINT capabilities:
-        - Multi-source indicator correlation from internal logs and external intelligence
-        - Automated enrichment of security alerts with threat context
-        - Social media monitoring for brand mentions and potential targeting
-        - Dark web monitoring for organization-specific threats and leaked data
-        - Threat actor tracking to identify campaign patterns and attribution
-        - Geolocation analysis of attack sources and infrastructure
-      risk: Basic incident detection without external intelligence context results in missed sophisticated attacks, delayed attribution, and inability to understand attack campaigns targeting the organization.
+        Live SIEM enrichment with external threat feeds: Splunk lookup 
+        `| lookup threat_intel domain as query_domain OUTPUT confidence score`
+        for real-time IOC validation and automated alert prioritization.
+      risk: Incidents detected without external threat context result in delayed response and missed attribution of sophisticated attack campaigns.
       measure: |
-        Deploy enhanced detection capabilities with:
-        - SIEM integration with multiple threat intelligence feeds
-        - Automated OSINT enrichment of security alerts and indicators
-        - Social media and dark web monitoring for early threat detection
-        - Machine learning algorithms for anomaly detection and pattern recognition
-        - Threat hunting programs guided by external intelligence and industry reports
+        Deploy SIEM enrichment with real-time threat intelligence APIs,
+        automated IOC validation against multiple sources,
+        confidence scoring for threat indicators,
+        and contextual alert enhancement with threat actor profiles.
       difficultyOfImplementation:
         knowledge: 4
         time: 3
         resources: 3
       usefulness: 5
       level: 2
-      dependsOn:
-        - Incident Response Plan
-        - Correlation of security events
-        - Alerting
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ghunt
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sherlock
@@ -487,27 +437,24 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
-    Incident Containment and Eradication:
+    Infrastructure Mapping and Takedown:
       uuid: h8i9j0k1-l2m3-4567-hijk-890123456789
       description: |
-        OSINT-enhanced containment and eradication procedures:
-        - Threat infrastructure mapping using passive DNS and certificate analysis
-        - Attack campaign tracking to identify additional compromised systems
-        - IOC generation and sharing for community defense
-        - Attribution analysis to understand threat actor methods and motivations
-        - Infrastructure takedown coordination with hosting providers and registrars
-        - Real-time threat landscape monitoring during incident response
+        Passive DNS analysis: `dig +short -x $ip` for reverse lookups,
+        certificate transparency monitoring via crt.sh API,
+        automated hosting provider coordination for infrastructure takedown.
       risk: Containment efforts without external intelligence context may miss related infrastructure, fail to prevent reinfection, and allow threat actors to continue operations against other targets.
-      measure: Establish procedures to contain security incidents, eliminate the root cause, and remove malicious artifacts while preserving evidence for investigation.
+      measure: 
+        Deploy OSINT-enhanced containment with threat infrastructure mapping,
+        attack campaign tracking via shared IOCs,
+        automated takedown coordination scripts,
+        and evidence preservation workflows.
       difficultyOfImplementation:
         knowledge: 4
         time: 4
         resources: 3
       usefulness: 5
       level: 3
-      dependsOn:
-        - Incident Detection and Classification
-        - Threat Intelligence Integration
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
@@ -521,26 +468,24 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
-    Incident Recovery and Post-Incident Analysis:
+    Attribution Analysis and IOC Sharing:
       uuid: i9j0k1l2-m3n4-5678-ijkl-901234567890
       description: |
-        Intelligence-driven recovery and analysis processes:
-        - Threat landscape analysis to identify ongoing risks and similar campaigns
-        - Attribution reporting with indicators for threat intelligence sharing
-        - Vulnerability assessment based on attack methods and exploitation techniques
-        - Industry threat briefings to warn of similar attacks against peer organizations
-        - Long-term monitoring for threat actor return or infrastructure reuse
-        - Integration of lessons learned into threat detection and prevention systems
+        Threat landscape analysis with MITRE ATT&CK mapping: `attack-navigator --layer techniques.json`
+        for TTP visualization, automated attribution reporting via REST APIs,
+        and vulnerability assessment integration with attack vector analysis.
       risk: Recovery efforts without comprehensive threat analysis leave organizations vulnerable to similar attacks and fail to contribute to community defense through intelligence sharing.
-      measure: Implement recovery procedures to restore normal operations and conduct post-incident analysis to identify lessons learned and implement improvements to prevent similar incidents.
+      measure: 
+        Deploy recovery workflows with threat landscape analysis tools,
+        attribution reporting with IOC generation for community sharing,
+        vulnerability assessment based on attack TTPs,
+        and long-term threat actor monitoring.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
         resources: 2
       usefulness: 4
       level: 3
-      dependsOn:
-        - Incident Containment and Eradication
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
       references:
@@ -555,27 +500,24 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
-    Incident Response Training and Testing:
+    Tactical OSINT Training Program:
       uuid: j0k1l2m3-n4o5-6789-jklm-012345678901
       description: |
-        Comprehensive training program incorporating OSINT and threat intelligence:
-        - Hands-on OSINT training for incident responders and analysts
-        - Threat intelligence platform training for indicator enrichment and analysis
-        - Tabletop exercises based on real-world attack campaigns and threat actor TTPs
-        - Red team exercises incorporating current threat intelligence and attack methods
-        - Cross-functional training between security operations and threat intelligence teams
-        - Regular updates on emerging threats, tools, and investigation techniques
-      risk: Training programs that don't incorporate current threat intelligence and OSINT capabilities leave teams unprepared for sophisticated attacks and limit their ability to conduct effective threat attribution and campaign analysis.
-      measure: Conduct regular incident response training for team members and perform tabletop exercises, simulations, and drills to test and improve incident response procedures.
+        Skills-based OSINT training: `recon-ng -w domain_enum -m recon/domains-hosts/brute_hosts`
+        for reconnaissance techniques, threat hunt simulation exercises,
+        and cross-team collaboration workshops with scenario-based learning.
+      risk: Teams without current OSINT skills cannot effectively investigate incidents, conduct threat attribution, or leverage external intelligence for proactive defense.
+      measure: 
+        Conduct technical OSINT training with hands-on tool usage,
+        threat hunting simulation exercises,
+        incident response tabletop scenarios,
+        and skills assessment with certification tracking.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
         resources: 3
       usefulness: 4
       level: 4
-      dependsOn:
-        - Incident Response Plan
-        - Incident Recovery and Post-Incident Analysis
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ghunt
