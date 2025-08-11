@@ -195,3 +195,340 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
+  Threat Intelligence:
+    Basic OSINT Collection Integration:
+      uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      risk: >-
+        Development teams lack external threat context about technologies and dependencies they use,
+        leading to uninformed security decisions and reactive incident response.
+      measure: >-
+        Integrate basic OSINT collection into development workflows using automated tools
+        to gather threat intelligence about used technologies, domains, and dependencies.
+        Implement simple API calls to threat intelligence sources during CI/CD processes.
+      description: >-
+        Basic threat intelligence collection using API calls to public sources like VirusTotal, Shodan.
+        Example: `curl -H "API-Key: $VT_KEY" https://www.virustotal.com/vtapi/v2/domain/report?domain=$DOMAIN`
+        Automated checks during deployment for known malicious domains or IPs in configuration.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 1
+      dependsOn: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/virustotal
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/shodan
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/urlscan-io
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/censys
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/theharvester
+      references:
+        samm2:
+          - O-IM-1-A
+        iso27001-2017:
+          - 16.1.2
+        iso27001-2022:
+          - 5.25
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Automated Threat Intelligence Pipeline:
+      uuid: b2c3d4e5-f6g7-8901-bcde-f23456789012
+      risk: >-
+        Manual threat intelligence processes cannot scale with development velocity,
+        resulting in delayed threat awareness and inadequate security posture.
+      measure: >-
+        Deploy automated threat intelligence pipeline integrated with development tools
+        to continuously monitor threat landscape and automatically enrich security data
+        used by development and operations teams.
+      description: >-
+        Automated OSINT collection system with scheduled jobs querying multiple threat sources.
+        Integration with CI/CD pipelines for dependency threat scoring.
+        Command: `python3 osint_collector.py --sources shodan,virustotal --format stix --output /var/log/threats/`
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 2
+      dependsOn:
+        - a1b2c3d4-e5f6-7890-abcd-ef1234567890 # Basic OSINT Collection Integration
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/virustotal
+      references:
+        samm2:
+          - O-IM-2-A
+        iso27001-2017:
+          - 16.1.2
+        iso27001-2022:
+          - 5.25
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Advanced Threat Intelligence Platform:
+      uuid: c3d4e5f6-g7h8-9012-cdef-345678901234
+      risk: >-
+        Isolated threat intelligence leads to fragmented security decision-making
+        across development teams and reduces organizational threat detection capabilities.
+      measure: >-
+        Implement centralized threat intelligence platform with automated enrichment,
+        correlation, and distribution capabilities integrated into all DevSecOps processes
+        and development team workflows.
+      description: >-
+        Enterprise threat intelligence platform with MISP integration, automated YARA generation,
+        MITRE ATT&CK mapping, and API integration with development tools.
+        Command: `misp-modules -l 0.0.0.0 -s --enrichment` for automated threat enrichment.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 3
+      usefulness: 5
+      level: 3
+      dependsOn:
+        - b2c3d4e5-f6g7-8901-bcde-f23456789012 # Automated Threat Intelligence Pipeline
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
+      references:
+        samm2:
+          - O-IM-2-A
+          - O-IM-3-A
+        iso27001-2017:
+          - 16.1.2
+        iso27001-2022:
+          - 5.25
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    DevSecOps Threat Intelligence Integration:
+      uuid: d4e5f6g7-h8i9-0123-defg-456789012345
+      risk: >-
+        Threat intelligence isolated from development processes fails to inform
+        secure coding practices and technology selection decisions in DevSecOps workflows.
+      measure: >-
+        Integrate threat intelligence directly into development pipelines to inform
+        dependency selection, security testing priorities, and deployment decisions
+        based on current threat landscape.
+      description: >-
+        CI/CD pipeline integration with threat intelligence APIs for dependency threat scoring,
+        automated vulnerability prioritization based on active campaigns,
+        and security gate decisions informed by current IOCs.
+        Command: `curl -X POST /api/threat-score -d '{"dependencies": ["library@1.0.0"]}'`
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 4
+      dependsOn:
+        - c3d4e5f6-g7h8-9012-cdef-345678901234 # Advanced Threat Intelligence Platform
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+      references:
+        samm2:
+          - O-IM-3-A
+        iso27001-2017:
+          - 16.1.2
+          - 16.1.3
+        iso27001-2022:
+          - 5.25
+          - 5.26
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Community Threat Intelligence Sharing:
+      uuid: e5f6g7h8-i9j0-1234-efgh-567890123456
+      risk: >-
+        Isolated threat intelligence limits organizational defensive capabilities
+        and prevents contribution to broader cybersecurity community resilience.
+      measure: >-
+        Establish automated threat intelligence sharing with trusted partners,
+        industry groups, and security communities using standardized formats
+        integrated with development security workflows.
+      description: >-
+        STIX/TAXII implementation for automated threat sharing, bidirectional intelligence exchange,
+        and community-driven threat validation within DevSecOps pipeline.
+        Command: `taxii2-client --collection-url https://community.misp-project.org/taxii2/ --poll`
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 3
+      usefulness: 3
+      level: 5
+      dependsOn:
+        - d4e5f6g7-h8i9-0123-defg-456789012345 # DevSecOps Threat Intelligence Integration
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+      references:
+        samm2:
+          - O-IM-2-A
+        iso27001-2017:
+          - 16.1.2
+        iso27001-2022:
+          - 5.25
+      isImplemented: false
+      evidence: ""
+      comments: ""
+  Incident Response:
+    OSINT-Enhanced IR Documentation:
+      uuid: f6g7h8i9-j0k1-2345-fghi-678901234567
+      description: |
+        Structured IR documentation with technical procedures: domain analysis via
+        `dig +trace $domain`, IP geolocation using `curl ipinfo.io/$ip`, 
+        and automated evidence collection scripts with legal compliance frameworks.
+      risk: Without documented incident response procedures that include intelligence gathering, organizations respond reactively and miss critical attribution opportunities.
+      measure: |
+        Create technical IR documentation with OSINT collection procedures,
+        automated evidence preservation scripts,
+        legal compliance checklists for evidence handling,
+        and structured templates for threat actor attribution.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 5
+      level: 1
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+      references:
+        samm2:
+          - O-IM-3-A
+        iso27001-2017:
+          - 16.1.1
+          - 16.1.5
+        iso27001-2022:
+          - 5.24
+          - 5.28
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Real-time Threat Enrichment:
+      uuid: g7h8i9j0-k1l2-3456-ghij-789012345678
+      description: |
+        Live SIEM enrichment with external threat feeds: Splunk lookup 
+        `| lookup threat_intel domain as query_domain OUTPUT confidence score`
+        for real-time IOC validation and automated alert prioritization.
+      risk: Incidents detected without external threat context result in delayed response and missed attribution of sophisticated attack campaigns.
+      measure: |
+        Deploy SIEM enrichment with real-time threat intelligence APIs,
+        automated IOC validation against multiple sources,
+        confidence scoring for threat indicators,
+        and contextual alert enhancement with threat actor profiles.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 3
+      usefulness: 5
+      level: 2
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ghunt
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sherlock
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+      references:
+        samm2:
+          - O-IM-3-A
+        iso27001-2017:
+          - 16.1.4
+        iso27001-2022:
+          - 5.27
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Infrastructure Mapping and Takedown:
+      uuid: h8i9j0k1-l2m3-4567-hijk-890123456789
+      description: |
+        Passive DNS analysis: `dig +short -x $ip` for reverse lookups,
+        certificate transparency monitoring via crt.sh API,
+        automated hosting provider coordination for infrastructure takedown.
+      risk: Containment efforts without external intelligence context may miss related infrastructure, fail to prevent reinfection, and allow threat actors to continue operations against other targets.
+      measure: 
+        Deploy OSINT-enhanced containment with threat infrastructure mapping,
+        attack campaign tracking via shared IOCs,
+        automated takedown coordination scripts,
+        and evidence preservation workflows.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 3
+      usefulness: 5
+      level: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
+      references:
+        samm2:
+          - O-IM-3-A
+        iso27001-2017:
+          - 16.1.5
+        iso27001-2022:
+          - 5.28
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Attribution Analysis and IOC Sharing:
+      uuid: i9j0k1l2-m3n4-5678-ijkl-901234567890
+      description: |
+        Threat landscape analysis with MITRE ATT&CK mapping: `attack-navigator --layer techniques.json`
+        for TTP visualization, automated attribution reporting via REST APIs,
+        and vulnerability assessment integration with attack vector analysis.
+      risk: Recovery efforts without comprehensive threat analysis leave organizations vulnerable to similar attacks and fail to contribute to community defense through intelligence sharing.
+      measure: 
+        Deploy recovery workflows with threat landscape analysis tools,
+        attribution reporting with IOC generation for community sharing,
+        vulnerability assessment based on attack TTPs,
+        and long-term threat actor monitoring.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+      references:
+        samm2:
+          - O-IM-3-A
+        iso27001-2017:
+          - 16.1.6
+          - 16.1.7
+        iso27001-2022:
+          - 5.29
+          - 5.30
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Tactical OSINT Training Program:
+      uuid: j0k1l2m3-n4o5-6789-jklm-012345678901
+      description: |
+        Skills-based OSINT training: `recon-ng -w domain_enum -m recon/domains-hosts/brute_hosts`
+        for reconnaissance techniques, threat hunt simulation exercises,
+        and cross-team collaboration workshops with scenario-based learning.
+      risk: Teams without current OSINT skills cannot effectively investigate incidents, conduct threat attribution, or leverage external intelligence for proactive defense.
+      measure: 
+        Conduct technical OSINT training with hands-on tool usage,
+        threat hunting simulation exercises,
+        incident response tabletop scenarios,
+        and skills assessment with certification tracking.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 4
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ghunt
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sherlock
+      references:
+        samm2:
+          - O-IM-3-A
+        iso27001-2017:
+          - 16.1.1
+        iso27001-2022:
+          - 5.24
+      isImplemented: false
+      evidence: ""
+      comments: ""

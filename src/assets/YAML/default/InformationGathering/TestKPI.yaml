@@ -90,7 +90,7 @@ Information Gathering:
       usefulness: 3
       level: 2
       dependsOn:
-        - uuid:8ae0b92c-10e0-4602-ba22-7524d6aed488 #Automated PRs for patches
+        - 8ae0b92c-10e0-4602-ba22-7524d6aed488 #Automated PRs for patches
       implementation: []
       references:
         samm2:
@@ -151,8 +151,8 @@ Information Gathering:
       usefulness: 3
       level: 4
       dependsOn:
-        - uuid:86d490b9-d798-4a5b-a011-ab9688014c46 # Patching mean time to resolution via PR
-        - uuid:8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
+        - 86d490b9-d798-4a5b-a011-ab9688014c46 # Patching mean time to resolution via PR
+        - 8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
       implementation: []
       references:
         samm2:
@@ -175,7 +175,7 @@ Information Gathering:
         resources: 1
       usefulness: 3
       dependsOn:
-        - Usage of a vulnerability management system
+        - 4a7b6c5d-8e9f-1234-5678-abcdef123456 # Usage of a vulnerability management system
       level: 3
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
@@ -227,4 +227,92 @@ Information Gathering:
         - vulnerability-mgmt
         - metrics
         - vmm-measurements
+    OSINT Threat Intelligence Coverage:
+      uuid: e4f3g2h1-i0j9-8765-4321-098765fedcba
+      risk: |-
+        Without measuring OSINT threat intelligence coverage, organizations lack visibility into external threat landscape affecting their assets, leading to blind spots in threat awareness.
+      measure: |-
+        Track percentage of organizational assets (domains, IPs, applications) covered by OSINT threat intelligence feeds and monitoring tools. Measure weekly.
+      description: |-
+        Implement KPIs for OSINT coverage using tools like Shodan for infrastructure exposure, VirusTotal for domain/IP reputation, and URLScan.io for web application threats.
+        Command: `curl -H "API-Key: $VT_KEY" "https://www.virustotal.com/vtapi/v2/domain/report?domain=$DOMAIN" | jq '.detected_urls | length'`
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 2
+      dependsOn: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/shodan
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/virustotal
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/urlscan
+      references:
+        samm2:
+          - I-DM-1-A
+        iso27001-2022:
+          - 5.23
+          - 5.25
+      tags:
+        - osint
+        - threat-intelligence
+        - metrics
+    OSINT Data Quality Score:
+      uuid: f5g4h3i2-j1k0-9876-5432-109876edcbaf
+      risk: |-
+        Poor quality OSINT data leads to false positives, missed threats, and inefficient security operations, undermining threat detection capabilities.
+      measure: |-
+        Calculate OSINT data quality score based on accuracy, timeliness, and relevance of collected intelligence. Measure data source reliability monthly.
+      description: |-
+        Evaluate OSINT sources for false positive rates, time-to-detection metrics, and threat relevance scoring using automated validation.
+        Flow: Data Collection → Validation → Scoring → Quality Metrics → Remediation
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 3
+      level: 3
+      dependsOn: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
+      references:
+        samm2:
+          - I-DM-2-A
+        iso27001-2022:
+          - 5.12
+          - 5.25
+      tags:
+        - osint
+        - data-quality
+        - metrics
+    OSINT Response Time Metrics:
+      uuid: g6h5i4j3-k2l1-0987-6543-210987fedcba
+      risk: |-
+        Slow response to OSINT-identified threats increases exposure window and potential for successful attacks against organizational assets.
+      measure: |-
+        Measure time from OSINT threat detection to initial response action. Track mean time to response (MTTR) for different threat severities weekly.
+      description: |-
+        Implement automated workflows measuring time between OSINT alert generation and security team response using SIEM integration.
+        Metrics: Detection Time + Analysis Time + Response Time = Total MTTR
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 2
+      dependsOn: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/theharvester
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sherlock
+      references:
+        samm2:
+          - I-DM-3-A
+        iso27001-2022:
+          - 5.24
+          - 5.26
+      tags:
+        - osint
+        - incident-response
+        - metrics
 

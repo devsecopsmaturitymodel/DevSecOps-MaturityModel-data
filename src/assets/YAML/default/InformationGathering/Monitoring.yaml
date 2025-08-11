@@ -432,3 +432,99 @@ Information Gathering:
       isImplemented: false
       evidence: ""
       comments: ""
+    OSINT Feed Integration Monitoring:
+      uuid: a9b8c7d6-e5f4-3210-9876-543210fedcba
+      description: |
+        Monitor threat intelligence feed health: `curl -s $FEED_URL | jq '.status'`
+        for feed availability, API rate limit tracking, and data freshness validation
+        with automated alerting on stale indicators or feed failures.
+      risk: Unreliable threat intelligence feeds result in outdated IOCs, missed threats, and degraded security posture without visibility into feed health.
+      measure: |
+        Deploy monitoring for threat feed availability, API quota usage,
+        data freshness validation, IOC update frequency,
+        and automated alerting on feed degradation or stale intelligence.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/shodan
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/virustotal
+      references:
+        samm2:
+          - O-IM-2-A
+        iso27001-2017:
+          - 12.1.3
+          - 16.1.2
+        iso27001-2022:
+          - 8.6
+          - 5.25
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    Threat Actor Tracking Metrics:
+      uuid: b8c7d6e5-f4g3-2109-8765-432109edcbaf
+      description: |
+        Campaign attribution metrics with geolocation tracking: `geoiplookup $attacker_ip`
+        for source analysis, TTPs frequency mapping, and infrastructure reuse patterns
+        with MITRE ATT&CK technique correlation and timeline analysis.
+      risk: Without threat actor tracking metrics, organizations cannot identify persistent threats, campaign patterns, or attribution links to previous attacks.
+      measure: |
+        Implement metrics for threat actor campaign tracking,
+        geographic attack pattern analysis, TTP frequency mapping,
+        infrastructure reuse detection, and attribution confidence scoring
+        with trend analysis and early warning indicators.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 4
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maltego
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
+      references:
+        samm2:
+          - O-IM-2-A
+        iso27001-2017:
+          - 16.1.2
+          - 16.1.4
+        iso27001-2022:
+          - 5.25
+          - 5.27
+      isImplemented: false
+      evidence: ""
+      comments: ""
+    OSINT Collection Performance Metrics:
+      uuid: c7d6e5f4-g3h2-1098-7654-321098dcbaef
+      description: |
+        OSINT tool performance monitoring: `time theHarvester -d $domain -b all`
+        for collection speed, data quality scoring, source coverage analysis,
+        and automated performance benchmarking with SLA compliance tracking.
+      risk: Poor OSINT collection performance leads to incomplete intelligence gathering, delayed threat detection, and reduced incident response effectiveness.
+      measure: |
+        Deploy performance monitoring for OSINT collection tools,
+        data quality scoring mechanisms, source coverage analysis,
+        collection speed benchmarking, and automated SLA compliance
+        tracking with performance optimization recommendations.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 3
+      level: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/theharvester
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spiderfoot
+      references:
+        samm2:
+          - O-IM-2-A
+        iso27001-2017:
+          - 12.1.3
+        iso27001-2022:
+          - 8.6
+      isImplemented: false
+      evidence: ""
+      comments: ""
