@@ -95,6 +95,7 @@ Information Gathering:
       references:
         samm2:
           - O-IM-2-A
+          - I-DM-3-A
         iso27001-2017:
           - 16.1.2
           - 16.1.4
@@ -399,6 +400,7 @@ Information Gathering:
       references:
         samm2:
           - O-IM-2-A
+          - I-DM-3-A
         iso27001-2017:
           - Not explicitly covered by ISO 27001 - too specific
           - 16.1.5
