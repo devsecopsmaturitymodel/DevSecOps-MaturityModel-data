@@ -20,7 +20,7 @@ Build and Deployment:
         - Smoke Test
       references:
         samm2:
-          - TODO
+          - I-SD-2-A
         iso27001-2017:
           - 17.2.1 # Availability of information processing facilities
           - 12.1.1 # Documented operational procedures
@@ -350,7 +350,8 @@ Build and Deployment:
       dependsOn:
         - Same artifact for environments
       references:
-        samm2: []
+        samm2:
+          - I-SD-2-A
         iso27001-2017:
           - 14.3.1
           - 14.2.8

@@ -144,7 +144,8 @@ Build and Deployment:
       level: 2
       implementation: []
       references:
-        samm2: []
+        samm2:
+          - I-SB-1-A
         iso27001-2017:
           - 8.1
           - 8.2
