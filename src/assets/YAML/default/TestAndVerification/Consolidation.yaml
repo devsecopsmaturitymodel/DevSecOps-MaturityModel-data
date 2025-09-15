@@ -28,6 +28,7 @@ Test and Verification:
       references:
         samm2:
           - I-DM-3-B
+          - I-SB-3-B
         iso27001-2017:
           - 16.1.4
           - 8.2.1
@@ -122,6 +123,7 @@ Test and Verification:
       references:
         samm2:
           - I-DM-2-B
+          - I-SB-3-B
         iso27001-2017:
           - 16.1.4
           - 8.2.1
@@ -205,6 +207,7 @@ Test and Verification:
         samm2:
           - I-DM-2-A
           - I-DM-2-B
+          - I-SB-3-B
         iso27001-2017:
           - 16.1.4
           - 16.1.6
@@ -260,6 +263,7 @@ Test and Verification:
       references:
         samm2:
           - I-DM-2-B
+          - I-SB-3-B
         iso27001-2017:
           - 16.1.4
           - 12.6.1
@@ -307,6 +311,7 @@ Test and Verification:
       references:
         samm2:
           - I-DM-2-B
+          - I-SB-3-B
         iso27001-2017:
           - 16.1.4
           - 12.6.1
@@ -347,6 +352,7 @@ Test and Verification:
         samm2:
           - I-DM-2-B
           - I-DM-3-A
+          - I-SB-3-B
         iso27001-2017:
           - 16.1.3
           - 16.1.4
@@ -386,6 +392,8 @@ Test and Verification:
       references:
         samm2:
           - I-DM-1-B
+          - I-SB-2-B
+          - I-SB-3-B
         iso27001-2017:
           - 12.6.1
           - 16.1.3

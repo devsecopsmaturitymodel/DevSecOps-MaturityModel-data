@@ -196,7 +196,9 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/image-metadata-collector
       references:
         samm2:
-          - I-SD-2-A
+          - I-SB-3-B
+          - I-SB-2-B
+          - I-SB-1-B
         iso27001-2017:
           - 8.1
           - 8.2
@@ -228,7 +230,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/image-metadata-collector
       references:
         samm2:
-          - I-SD-2-A
+          - I-SB-1-B
         iso27001-2017:
           - 8.1
           - 8.2
@@ -259,7 +261,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/image-metadata-collector
       references:
         samm2:
-          - I-SD-2-A
+          - I-SB-1-B
         iso27001-2017:
           - 8.1
           - 8.2

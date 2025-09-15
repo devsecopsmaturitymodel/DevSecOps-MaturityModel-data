@@ -139,6 +139,7 @@ Test and Verification:
       references:
         samm2:
           - I-SB-3-A
+          - V-ST-3-A
         iso27001-2017:
           - 14.2.3
           - 14.2.8
