@@ -10,8 +10,8 @@ RUN cd /var/www/html/yaml-generation && composer install \
 --prefer-dist
 
 RUN pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml
-RUN curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/refs/heads/master/src/assets/YAML/meta.yaml -o /var/www/html/src/assets/YAML/meta.yaml
+RUN curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/refs/heads/main/src/assets/YAML/meta.yaml -o /var/www/html/src/assets/YAML/meta.yaml
+RUN echo "test" ; cat /var/www/html/src/assets/YAML/meta.yaml 
 RUN cd /var/www/html && php yaml-generation/generateDimensions.php
-RUN curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/refs/heads/master/src/assets/YAML/meta.yaml -o /var/www/html/src/assets/YAML/meta.yaml
 workdir /var/www/html
 CMD php yaml-generation/generateDimensions.php
