@@ -2,27 +2,6 @@
 ---
 Test and Verification:
   Static depth for infrastructure:
-    Analyze logs:
-      uuid: b217c8bb-5d61-4b41-a675-1083993f83b1
-      risk: Not aware of attacks happening.
-      measure: Check logs for keywords.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 2
-      usefulness: 3
-      level: 3
-      implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sigmahq
-      references:
-        samm2: []
-        iso27001-2017:
-          - ISO 27001:2017 mapping is missing
-        iso27001-2022:
-          - ISO 27001:2022 mapping is missing
-      isImplemented: false
-      evidence: ""
-      comments: ""
     Test for image lifetime:
       uuid: ddfe7c3c-b7a4-4cba-9041-b044d4a34e5b
       risk:
@@ -185,7 +164,7 @@ Test and Verification:
           - 8.24
       isImplemented: false
       evidence: ""
-      comments: "" 
+      comments: ""
     Test for stored secrets in build artifacts:
       uuid: d5e6303c-d5c6-4d59-b258-a3b9de38a07f
       risk:

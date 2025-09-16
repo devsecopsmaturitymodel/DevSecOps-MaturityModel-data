@@ -78,7 +78,8 @@ Culture and Organization:
       level: 1
       implementation: []
       references:
-        samm2: []
+        samm2:
+          - O-IM-2-B
         iso27001-2017:
           - 17.1.1
         iso27001-2022:
@@ -110,7 +111,8 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:
         samm2:
-          - I-DM-3-B
+          - O-OM-2-A
+          - G-PC-2-B
         iso27001-2022:
           - 5.25
           - 5.12

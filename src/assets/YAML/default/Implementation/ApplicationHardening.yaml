@@ -42,7 +42,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/apimaturity
       references:
         samm2:
-          - D-SR-1-A
+          - D-SR-2-A
         iso27001-2017:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 13.1.3
@@ -65,7 +65,7 @@ Implementation:
         <a href="{{bad_data}}">Click me</a>
         <script>var x = '{{bad_data}}';</script>
         <script>/** Comment {{bad_data}} */</script>
-        ```                
+        ```
       risk:
         If an attacker manages to slip though your input validation, the attacker may gain control over the user session or execute arbitrary actions.
       measure: |
@@ -107,7 +107,7 @@ Implementation:
         Systems vulnerable to injections may lead to data breaches, loss of data, 
         unauthorized alteration of data, or complete database compromise or downtime.
 
-        This applies to SQL, NoSql, LDAP, XPath, email headers OS commands, etc. 
+        This applies to SQL, NoSql, LDAP, XPath, email headers OS commands, etc.
       measure: |
         * Identify which of the types your application is using. Check that you use:
           * Use _parametrized queries_ (or _prepared statements_)
@@ -120,7 +120,7 @@ Implementation:
         resources: 1
       usefulness: 3
       level: 1
-      implementation: 
+      implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-parameterization-cheats
       references:
         samm2:
@@ -174,7 +174,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/apimaturity
       references:
         samm2:
-          - D-SR-1-A
+          - D-SR-3-A
         iso27001-2017:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 13.1.3
@@ -204,7 +204,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-masvs
       references:
         samm2:
-          - D-SR-2-A
+          - D-SR-3-A
         iso27001-2017:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 13.1.3
@@ -319,7 +319,7 @@ Implementation:
           - Referrer-Policy: Control information in the Referrer header
       references:
         samm2:
-          - D-SR-3-A
+          - O-EM-2-A
         iso27001-2017:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 13.1.3
