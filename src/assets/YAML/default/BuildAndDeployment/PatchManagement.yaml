@@ -17,7 +17,7 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-          - O-EM-1-B
+          - O-EM-B-1
         iso27001-2017:
           - 12.6.1
           - 12.5.1
@@ -58,7 +58,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/renovate
       references:
         samm2:
-          - O-EM-1-B
+          - O-EM-B-1
         iso27001-2017:
           - 12.6.1
           - 14.2.5
@@ -93,7 +93,7 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-          - O-EM-2-B
+          - O-EM-B-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -129,7 +129,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/distroless-usage
       references:
         samm2:
-          - I-SB-2-B
+          - I-SB-B-2
         iso27001-2017:
           - hardening is missing in ISO 27001
           - 14.2.1
@@ -169,7 +169,7 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-          - O-EM-1-B
+          - O-EM-B-1
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -204,7 +204,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sample-concept-1
       references:
         samm2:
-          - O-EM-2-B
+          - O-EM-B-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -237,7 +237,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/renovate
       references:
         samm2:
-          - O-EM-2-B
+          - O-EM-B-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
