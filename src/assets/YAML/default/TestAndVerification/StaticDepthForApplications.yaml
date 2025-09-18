@@ -18,7 +18,7 @@ Test and Verification:
         - Defined build process
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001 - too specific
           - 14.2.1
@@ -121,7 +121,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
       references:
         samm2:
-          - V-ST-1-A
+          - V-ST-A-1
         iso27001-2017:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 13.1.3
@@ -149,7 +149,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker
       references:
         samm2:
-          - V-ST-1-A
+          - V-ST-A-1
         iso27001-2017:
           - 14.2.1
           - 14.2.5
@@ -177,8 +177,8 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-3-B
+          - V-ST-A-2
+          - I-SB-B-3
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -212,8 +212,8 @@ Test and Verification:
         - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-3-B
+          - V-ST-A-2
+          - I-SB-B-3
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -247,7 +247,7 @@ Test and Verification:
         - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -280,8 +280,8 @@ Test and Verification:
         - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-3-B
+          - V-ST-A-2
+          - I-SB-B-3
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -308,7 +308,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-super-linter
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 12.6.1
           - 14.2.1
@@ -338,8 +338,8 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/epss
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-3-B
+          - V-ST-A-2
+          - I-SB-B-3
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -365,8 +365,8 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-dependabot
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-2-B
+          - V-ST-A-2
+          - I-SB-B-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -399,8 +399,8 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-2-B
+          - V-ST-A-2
+          - I-SB-B-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -426,7 +426,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-ST-3-A
+          - V-ST-A-3
         iso27001-2017:
           - 12.6.1
           - 14.2.1

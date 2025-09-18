@@ -19,7 +19,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-ST-3-B
+          - V-RT-B-3
         iso27001-2017:
           - 14.2.3
           - 14.2.8
@@ -45,7 +45,7 @@ Test and Verification:
       level: 3
       references:
         samm2:
-          - V-ST-3-B
+          - V-RT-A-3
         iso27001-2017:
           - 14.2.3
           - 14.2.8
@@ -75,7 +75,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/karma
       references:
         samm2:
-          - V-ST-3-B
+          - V-RT-A-3
         iso27001-2017:
           - 14.2.3
           - 14.2.8
@@ -103,7 +103,7 @@ Test and Verification:
         - Defined deployment process
       references:
         samm2:
-          - V-ST-3-B
+          - V-RT-A-3
         iso27001-2017:
           - 14.2.3
           - 14.2.8
