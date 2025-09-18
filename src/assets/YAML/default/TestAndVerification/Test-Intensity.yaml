@@ -19,7 +19,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 14.2.2
           - 14.2.3
@@ -53,7 +53,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 12.6.1
           - 14.2.1
@@ -80,7 +80,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-ST-1-A
+          - V-ST-A-1
         iso27001-2017:
           - 12.6.1
           - 14.2.1
@@ -109,7 +109,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 12.6.1
           - 14.2.1
@@ -138,8 +138,8 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - I-SB-3-A
-          - V-ST-3-A
+          - I-SB-A-3
+          - V-ST-A-3
         iso27001-2017:
           - 14.2.3
           - 14.2.8

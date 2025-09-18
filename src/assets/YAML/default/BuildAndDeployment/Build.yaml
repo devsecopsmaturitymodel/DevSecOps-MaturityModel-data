@@ -31,7 +31,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
       references:
         samm2:
-          - I-SB-2-A
+          - I-SB-A-2
         iso27001-2017:
           - 14.2.6
         iso27001-2022:
@@ -72,7 +72,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
       references:
         samm2:
-          - I-SB-1-A
+          - I-SB-A-1
         iso27001-2017:
           - 12.1.1
           - 14.2.2
@@ -114,7 +114,7 @@ Build and Deployment:
         - Defined build process
       references:
         samm2:
-          - I-SB-1-B
+          - I-SB-B-1
         iso27001-2017:
           - 14.2.6
         iso27001-2022:
@@ -147,8 +147,8 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-          - I-SB-1-B
-          - D-TA-1-A
+          - I-SB-B-1
+          - D-TA-A-1
         iso27001-2017:
           - 8.1
           - 8.2
@@ -186,7 +186,7 @@ Build and Deployment:
         - Pinning of artifacts
       references:
         samm2:
-          - I-SB-1-A
+          - I-SB-A-1
         iso27001-2017:
           - 14.2.6
         iso27001-2022:
@@ -213,7 +213,7 @@ Build and Deployment:
         - Defined build process
       references:
         samm2:
-          - I-SB-2-A
+          - I-SB-A-2
         iso27001-2017:
           - 14.2.6
         iso27001-2022:

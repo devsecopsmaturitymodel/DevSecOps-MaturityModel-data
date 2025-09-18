@@ -36,7 +36,7 @@ Build and Deployment:
         url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
       references:
         samm2:
-        - I-SB-2-A
+        - I-SB-A-2
         iso27001-2017:
         - 14.2.6
         iso27001-2022:
@@ -86,7 +86,7 @@ Build and Deployment:
         url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
       references:
         samm2:
-        - I-SB-1-A
+        - I-SB-A-1
         iso27001-2017:
         - 12.1.1
         - 14.2.2
@@ -148,7 +148,7 @@ Build and Deployment:
       - Defined build process
       references:
         samm2:
-        - I-SB-1-B
+        - I-SB-B-1
         iso27001-2017:
         - 14.2.6
         iso27001-2022:
@@ -183,8 +183,8 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-        - I-SB-1-B
-        - D-TA-1-A
+        - I-SB-B-1
+        - D-TA-A-1
         iso27001-2017:
         - 8.1
         - 8.2
@@ -239,7 +239,7 @@ Build and Deployment:
       - Pinning of artifacts
       references:
         samm2:
-        - I-SB-1-A
+        - I-SB-A-1
         iso27001-2017:
         - 14.2.6
         iso27001-2022:
@@ -282,7 +282,7 @@ Build and Deployment:
       - Defined build process
       references:
         samm2:
-        - I-SB-2-A
+        - I-SB-A-2
         iso27001-2017:
         - 14.2.6
         iso27001-2022:
@@ -318,7 +318,7 @@ Build and Deployment:
       - Smoke Test
       references:
         samm2:
-        - I-SD-3-A
+        - I-SD-A-3
         iso27001-2017:
         - 17.2.1
         - 12.1.1
@@ -363,7 +363,7 @@ Build and Deployment:
       level: 2
       references:
         samm2:
-        - O-OM-2-B
+        - O-OM-B-2
         iso27001-2017:
         - 11.2.7
         iso27001-2022:
@@ -404,7 +404,7 @@ Build and Deployment:
         tags: []
       references:
         samm2:
-        - I-SD-1-A
+        - I-SD-A-1
         iso27001-2017:
         - 12.1.1
         - 14.2.2
@@ -446,7 +446,7 @@ Build and Deployment:
           A tool for secrets management, encryption as a service, and privileged access management.
       references:
         samm2:
-        - I-SD-1-B
+        - I-SD-B-1
         iso27001-2017:
         - 9.4.5
         - 14.2.6
@@ -497,7 +497,7 @@ Build and Deployment:
           Packj is a tool to detect software supply chain attacks. It can detect malicious, vulnerable, abandoned, typo-squatting, and other "risky" packages from popular open-source package registries, such as NPM, RubyGems, and PyPI.
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 14.2.1
@@ -534,7 +534,7 @@ Build and Deployment:
       - Environment depending configuration parameters (secrets)
       references:
         samm2:
-        - I-SD-2-B
+        - I-SD-B-2
         iso27001-2017:
         - 14.1.3
         - 13.1.3
@@ -606,8 +606,8 @@ Build and Deployment:
           Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
       references:
         samm2:
-        - I-SB-1-B
-        - D-TA-1-B
+        - I-SB-B-1
+        - D-TA-B-1
         iso27001-2017:
         - 8.1
         - 8.2
@@ -670,8 +670,8 @@ Build and Deployment:
           Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
       references:
         samm2:
-        - I-SB-1-B
-        - D-TA-1-B
+        - I-SB-B-1
+        - D-TA-B-1
         iso27001-2017:
         - 8.1
         - 8.2
@@ -735,9 +735,9 @@ Build and Deployment:
           Collects namespaces and namespaces including responsible team and contact info through annotations/labels from Kubernetes clusters. Results are available in JSON and can be uploaded to S3, github and an API.
       references:
         samm2:
-        - I-SB-3-B
-        - I-SB-2-B
-        - I-SB-1-B
+        - I-SB-B-3
+        - I-SB-B-2
+        - I-SB-B-1
         iso27001-2017:
         - 8.1
         - 8.2
@@ -780,8 +780,8 @@ Build and Deployment:
       - Defined deployment process
       references:
         samm2:
-        - I-SD-2-A
-        - I-SD-3-A
+        - I-SD-A-2
+        - I-SD-A-3
         iso27001-2017:
         - 12.5.1
         - 14.2.2
@@ -820,8 +820,8 @@ Build and Deployment:
       - Defined build process
       references:
         samm2:
-        - I-SD-2-A
-        - I-SD-3-A
+        - I-SD-A-2
+        - I-SD-A-3
         iso27001-2017:
         - 14.3.1
         - 14.2.8
@@ -869,7 +869,7 @@ Build and Deployment:
       - Same artifact for environments
       references:
         samm2:
-        - I-SD-2-A
+        - I-SD-A-2
         iso27001-2017:
         - 14.3.1
         - 14.2.8
@@ -905,7 +905,7 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-        - O-EM-1-B
+        - O-EM-B-1
         iso27001-2017:
         - 12.6.1
         - 12.5.1
@@ -963,7 +963,7 @@ Build and Deployment:
         url: https://github.com/renovatebot/renovate
       references:
         samm2:
-        - O-EM-1-B
+        - O-EM-B-1
         iso27001-2017:
         - 12.6.1
         - 14.2.5
@@ -1011,7 +1011,7 @@ Build and Deployment:
         url: https://argo-cd.readthedocs.io/en/stable/
       references:
         samm2:
-        - O-EM-2-B
+        - O-EM-B-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -1057,7 +1057,7 @@ Build and Deployment:
         url: https://github.com/renovatebot/renovate
       references:
         samm2:
-        - O-EM-2-B
+        - O-EM-B-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -1095,7 +1095,7 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-        - O-EM-2-B
+        - O-EM-B-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -1187,7 +1187,7 @@ Build and Deployment:
       implementation: []
       references:
         samm2:
-        - O-EM-1-B
+        - O-EM-B-1
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -1240,7 +1240,7 @@ Build and Deployment:
           is being used and not the buggy newer one."
       references:
         samm2:
-        - O-EM-2-B
+        - O-EM-B-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -1338,7 +1338,7 @@ Culture and Organization:
         - kubernetes
       references:
         samm2:
-        - D-TA-2-B
+        - D-TA-B-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001
         - May be part of risk assessment
@@ -1373,8 +1373,8 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - D-TA-1-B
-        - D-TA-2-A
+        - D-TA-B-1
+        - D-TA-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001
         - May be part of risk assessment
@@ -1498,7 +1498,7 @@ Culture and Organization:
         Source: OWASP Project Integration Project
       references:
         samm2:
-        - D-TA-2-B
+        - D-TA-B-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001
         - May be part of risk assessment
@@ -1542,7 +1542,7 @@ Culture and Organization:
           Environments](https://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)'
       references:
         samm2:
-        - D-TA-2-B
+        - D-TA-B-2
         - V-RT-B-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001
@@ -1589,7 +1589,7 @@ Culture and Organization:
       - Creation of threat modeling processes and standards
       references:
         samm2:
-        - D-TA-2-B
+        - D-TA-B-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001
         - May be part of project management
@@ -1644,8 +1644,8 @@ Culture and Organization:
       - Conduction of simple threat modeling on technical level
       references:
         samm2:
-        - D-TA-3-B
-        - D-TA-2-B
+        - D-TA-B-3
+        - D-TA-B-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001
         - May be part of risk assessment
@@ -1681,7 +1681,7 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - G-SM-2-A
+        - G-SM-A-2
         iso27001-2017:
         - 5.1.1
         - 7.2.1
@@ -1727,7 +1727,7 @@ Culture and Organization:
         url: https://cheatsheetseries.owasp.org/
       references:
         samm2:
-        - G-EG-1-A
+        - G-EG-A-1
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
@@ -1762,7 +1762,7 @@ Culture and Organization:
       level: 4
       references:
         samm2:
-        - G-EG-3-B
+        - G-EG-B-3
         iso27001-2017:
         - 7.1.1
         iso27001-2022:
@@ -1798,7 +1798,7 @@ Culture and Organization:
         url: https://builditbreakit.org/
       references:
         samm2:
-        - G-EG-2-A
+        - G-EG-A-2
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
@@ -1829,8 +1829,8 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - G-EG-2-A
-        - G-EG-2-B
+        - G-EG-A-2
+        - G-EG-B-2
         iso27001-2017:
         - Mutual review of source code is not explicitly required in ISO 27001 may
           be
@@ -1867,8 +1867,8 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - G-EG-1-A
-        - G-EG-2-A
+        - G-EG-A-1
+        - G-EG-A-2
         iso27001-2017:
         - Mutual security testing is not explicitly required in ISO 27001 may be
         - 7.2.2
@@ -1900,7 +1900,7 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - G-EG-2-A
+        - G-EG-A-2
         - O-IM-B-2
         iso27001-2017:
         - War games are not explicitly required in ISO 27001 may be
@@ -1948,8 +1948,8 @@ Culture and Organization:
         url: https://github.com/c0rdis/security-champions-playbook
       references:
         samm2:
-        - G-EG-1-B
-        - G-EG-2-B
+        - G-EG-B-1
+        - G-EG-B-2
         iso27001-2017:
         - Security champions are missing in ISO 27001 most likely
         - 7.2.1
@@ -1983,7 +1983,7 @@ Culture and Organization:
       implementation: ~
       references:
         samm2:
-        - G-EG-1-A
+        - G-EG-A-1
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
@@ -2032,7 +2032,7 @@ Culture and Organization:
         url: https://cheatsheetseries.owasp.org/
       references:
         samm2:
-        - G-EG-1-A
+        - G-EG-A-1
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
@@ -2074,7 +2074,7 @@ Culture and Organization:
         url: https://cheatsheetseries.owasp.org/
       references:
         samm2:
-        - G-EG-2-A
+        - G-EG-A-2
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
@@ -2113,8 +2113,8 @@ Culture and Organization:
       - Each team has a security champion
       references:
         samm2:
-        - D-TA-2-B
-        - G-EG-1-A
+        - D-TA-B-2
+        - G-EG-A-1
         iso27001-2017:
         - Security champions are missing in ISO 27001
         - 7.2.2
@@ -2161,7 +2161,7 @@ Culture and Organization:
         url: https://owaspsamm.org/presentations/OWASP_Top_10_Maturity_Categories_for_Security_Champions.pptx
       references:
         samm2:
-        - G-EG-1-B
+        - G-EG-B-1
         iso27001-2017:
         - not required by ISO 27001
         - interestingly enough A7.2.3 is requiring a process to handle misconduct
@@ -2203,7 +2203,7 @@ Culture and Organization:
       level: 3
       references:
         samm2:
-        - G-EG-3-B
+        - G-EG-B-3
         iso27001-2017:
         - 7.1.1
         iso27001-2022:
@@ -2253,7 +2253,7 @@ Culture and Organization:
         AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       references:
         samm2:
-        - V-ST-1-B
+        - V-ST-B-1
         iso27001-2017:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
@@ -2289,8 +2289,8 @@ Culture and Organization:
         url: https://cheatsheetseries.owasp.org/
       references:
         samm2:
-        - G-EG-1-A
-        - G-EG-1-B
+        - G-EG-A-1
+        - G-EG-B-1
         iso27001-2017:
         - security consulting is missing in ISO 27001 may be
         - 6.1.1
@@ -2326,8 +2326,8 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - G-EG-3-B
-        - O-IM-3-B
+        - G-EG-B-3
+        - O-IM-B-3
         iso27001-2017:
         - 16.1.6
         iso27001-2022:
@@ -2384,7 +2384,7 @@ Culture and Organization:
         description: Simple Application with intended vulnerabilities. HTML based.
       references:
         samm2:
-        - G-EG-2-A
+        - G-EG-A-2
         iso27001-2017:
         - 7.2.2
         iso27001-2022:
@@ -2485,7 +2485,7 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-        - O-IM-2-B
+        - O-IM-B-2
         iso27001-2017:
         - 17.1.1
         iso27001-2022:
@@ -2548,8 +2548,8 @@ Culture and Organization:
           This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.
       references:
         samm2:
-        - O-OM-2-A
-        - G-PC-2-B
+        - O-OM-A-2
+        - G-PC-B-2
         iso27001-2022:
         - 5.25
         - 5.12
@@ -2618,7 +2618,7 @@ Implementation:
         url: https://curity.io/resources/learn/the-api-security-maturity-model/
       references:
         samm2:
-        - D-SR-3-A
+        - D-SR-A-3
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -2684,7 +2684,7 @@ Implementation:
         url: https://curity.io/resources/learn/the-api-security-maturity-model/
       references:
         samm2:
-        - D-SR-2-A
+        - D-SR-A-2
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -2728,7 +2728,7 @@ Implementation:
         url: https://github.com/OWASP/owasp-masvs
       references:
         samm2:
-        - D-SR-2-A
+        - D-SR-A-2
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -2774,7 +2774,7 @@ Implementation:
         url: https://github.com/OWASP/owasp-masvs
       references:
         samm2:
-        - D-SR-3-A
+        - D-SR-A-3
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -2820,7 +2820,7 @@ Implementation:
         url: https://github.com/OWASP/owasp-masvs
       references:
         samm2:
-        - D-SR-3-A
+        - D-SR-A-3
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -2885,7 +2885,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -2937,7 +2937,7 @@ Implementation:
         url: https://cwe.mitre.org/data/definitions/838.html
       references:
         samm2:
-        - D-SR-1-A
+        - D-SR-A-1
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -2988,7 +2988,7 @@ Implementation:
         tags: []
       references:
         samm2:
-        - D-SR-1-A
+        - D-SR-A-1
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -3056,7 +3056,7 @@ Implementation:
           - Referrer-Policy: Control information in the Referrer header
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -3087,7 +3087,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.1.1
@@ -3139,7 +3139,7 @@ Implementation:
         - scm
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - 6.1.2
         - 14.2.1
@@ -3191,7 +3191,7 @@ Implementation:
         description: Usage of branch protection rules
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 6.1.2
@@ -3235,7 +3235,7 @@ Implementation:
         - linting
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
@@ -3280,7 +3280,7 @@ Implementation:
         - scm
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 6.1.2
@@ -3333,7 +3333,7 @@ Implementation:
         description: Usage of branch protection rules
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - 6.1.2
         - 14.2.1
@@ -3366,7 +3366,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         - I-SB-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
@@ -3401,7 +3401,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -3513,7 +3513,7 @@ Implementation:
         - kubernetes
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - system hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -3552,7 +3552,7 @@ Implementation:
         url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -3624,7 +3624,7 @@ Implementation:
         - kubernetes
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -3659,7 +3659,7 @@ Implementation:
         tags: []
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 17.2.1
@@ -3712,7 +3712,7 @@ Implementation:
         url: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.1.1
@@ -3760,7 +3760,7 @@ Implementation:
         url: https://d3fend.mitre.org/dao/artifact/d3f:Firewall/
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -3809,7 +3809,7 @@ Implementation:
           Falco makes it easy to consume kernel events, and enrich those events with information from Kubernetes and the rest of the cloud native stack.
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - System hardening is not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
@@ -3856,7 +3856,7 @@ Implementation:
         url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - 9.2.4
         - 6.1.2
@@ -3907,7 +3907,7 @@ Implementation:
         url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - 9.2.4
         - 6.1.2
@@ -3949,7 +3949,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - 12.1.4
         - 17.2.1
@@ -3992,7 +3992,7 @@ Implementation:
       - Defined build process
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - 9.4.1
         iso27001-2022:
@@ -4030,7 +4030,7 @@ Implementation:
         url: https://d3fend.mitre.org/dao/artifact/d3f:VPN/
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - 9.4.1
         iso27001-2022:
@@ -4072,7 +4072,7 @@ Implementation:
           resilient services.
       references:
         samm2:
-        - O-EM-3-A
+        - O-EM-A-3
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 17.1.3
@@ -4104,7 +4104,7 @@ Implementation:
       implementation: ""
       references:
         samm2:
-        - I-SD-2-B
+        - I-SD-B-2
         iso27001-2017:
         - 10.1
         iso27001-2022:
@@ -4137,7 +4137,7 @@ Implementation:
       implementation: ""
       references:
         samm2:
-        - I-SD-2-B
+        - I-SD-B-2
         iso27001-2017:
         - 10.1
         iso27001-2022:
@@ -4167,7 +4167,7 @@ Implementation:
       implementation: ""
       references:
         samm2:
-        - I-SD-2-B
+        - I-SD-B-2
         iso27001-2017:
         - 10.1
         iso27001-2022:
@@ -4198,7 +4198,7 @@ Implementation:
       implementation: ""
       references:
         samm2:
-        - I-SD-2-B
+        - I-SD-B-2
         iso27001-2017:
         - 10.1
         iso27001-2022:
@@ -4244,7 +4244,7 @@ Implementation:
       - Defined build process
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
@@ -4275,7 +4275,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.1.4
@@ -4311,7 +4311,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 12.1.3
@@ -4366,7 +4366,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -4411,7 +4411,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-1-A
+        - O-EM-A-1
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -4455,7 +4455,7 @@ Implementation:
       implementation: []
       references:
         samm2:
-        - O-EM-2-A
+        - O-EM-A-2
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -4491,7 +4491,7 @@ Information Gathering:
         url: https://github.com/SigmaHQ/sigma
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
@@ -4522,7 +4522,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -4565,7 +4565,7 @@ Information Gathering:
         - logging
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -4599,7 +4599,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -4663,7 +4663,7 @@ Information Gathering:
         - documentation
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - 12.4.1
         iso27001-2022:
@@ -4716,7 +4716,7 @@ Information Gathering:
         url: https://www.gnu.org/software/bash/
       references:
         samm2:
-        - O-OM-1-A
+        - O-OM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -4758,7 +4758,7 @@ Information Gathering:
         url: https://www.elastic.co/elk-stack
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.4.1
@@ -4792,7 +4792,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -4823,7 +4823,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - 12.1.3
         iso27001-2022:
@@ -4853,8 +4853,8 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
-        - I-DM-3-A
+        - O-IM-A-2
+        - I-DM-A-3
         iso27001-2017:
         - 16.1.2
         - 16.1.4
@@ -4896,7 +4896,7 @@ Information Gathering:
           Falco makes it easy to consume kernel events, and enrich those events with information from Kubernetes and the rest of the cloud native stack.
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -4936,7 +4936,7 @@ Information Gathering:
         description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
@@ -4965,7 +4965,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.1.3
@@ -5000,7 +5000,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - 12.4.1
         - 13.1.1
@@ -5029,7 +5029,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 12.1.3
@@ -5060,7 +5060,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - not explicitly covered by ISO 27001
         iso27001-2022:
@@ -5093,7 +5093,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - 12.1.3
         iso27001-2022:
@@ -5123,7 +5123,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 16.1.5
@@ -5168,7 +5168,7 @@ Information Gathering:
         url: https://prometheus.io/
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - 12.4.1
         iso27001-2022:
@@ -5200,7 +5200,7 @@ Information Gathering:
         tags: []
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - 12.1.3
         iso27001-2022:
@@ -5235,7 +5235,7 @@ Information Gathering:
         tags: []
       references:
         samm2:
-        - O-IM-1-A
+        - O-IM-A-1
         iso27001-2017:
         - 12.1.3
         iso27001-2022:
@@ -5266,8 +5266,8 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
-        - I-DM-3-A
+        - O-IM-A-2
+        - I-DM-A-3
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 16.1.5
@@ -5299,7 +5299,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - O-IM-2-A
+        - O-IM-A-2
         iso27001-2017:
         - 12.1.3
         iso27001-2022:
@@ -5363,7 +5363,7 @@ Information Gathering:
           This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.
       references:
         samm2:
-        - I-DM-2-B
+        - I-DM-B-2
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5427,8 +5427,8 @@ Information Gathering:
           This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.
       references:
         samm2:
-        - I-DM-2-B
-        - I-SB-3-B
+        - I-DM-B-2
+        - I-SB-B-3
         iso27001-2017:
         - 16.1.4
         - 8.2.3
@@ -5468,7 +5468,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - I-DM-2-B
+        - I-DM-B-2
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5517,7 +5517,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - I-DM-2-B
+        - I-DM-B-2
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5558,7 +5558,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - I-DM-2-B
+        - I-DM-B-2
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5596,7 +5596,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-        - I-DM-2-B
+        - I-DM-B-2
         iso27001-2017:
         - 16.1.4
         iso27001-2022:
@@ -5662,7 +5662,7 @@ Information Gathering:
           This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.
       references:
         samm2:
-        - I-DM-2-B
+        - I-DM-B-2
         iso27001-2022:
         - 5.25
         - 5.12
@@ -5696,7 +5696,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-RT-3-B
+        - V-RT-B-3
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -5727,7 +5727,7 @@ Test and Verification:
       level: 3
       references:
         samm2:
-        - V-RT-3-A
+        - V-RT-A-3
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -5770,7 +5770,7 @@ Test and Verification:
         url: https://karma-runner.github.io
       references:
         samm2:
-        - V-RT-3-A
+        - V-RT-A-3
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -5803,7 +5803,7 @@ Test and Verification:
       - Defined deployment process
       references:
         samm2:
-        - V-RT-3-A
+        - V-RT-A-3
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -5857,7 +5857,7 @@ Test and Verification:
         - vulnerability management system
       references:
         samm2:
-        - I-DM-3-A
+        - I-DM-A-3
         iso27001-2017:
         - 16.1.4
         - 8.2.1
@@ -5930,9 +5930,9 @@ Test and Verification:
         - inventory
       references:
         samm2:
-        - I-DM-2-A
-        - I-DM-2-B
-        - I-SB-3-B
+        - I-DM-A-2
+        - I-DM-B-2
+        - I-SB-B-3
         iso27001-2017:
         - 16.1.4
         - 16.1.6
@@ -5972,7 +5972,7 @@ Test and Verification:
       implementation: ~
       references:
         samm2:
-        - I-DM-3-A
+        - I-DM-A-3
         iso27001-2017:
         - 16.1.4
         - 8.2.1
@@ -6018,9 +6018,9 @@ Test and Verification:
       implementation: ~
       references:
         samm2:
-        - I-DM-2-B
-        - I-DM-3-A
-        - I-SB-3-B
+        - I-DM-B-2
+        - I-DM-A-3
+        - I-SB-B-3
         iso27001-2017:
         - 16.1.3
         - 16.1.4
@@ -6106,7 +6106,7 @@ Test and Verification:
           This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.
       references:
         samm2:
-        - I-DM-2-A
+        - I-DM-A-2
         iso27001-2022:
         - 5.25
         - 5.12
@@ -6149,7 +6149,7 @@ Test and Verification:
         url: https://d3fend.mitre.org/dao/artifact/d3f:DynamicAnalysisTool/
       references:
         samm2:
-        - I-DM-2-A
+        - I-DM-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 16.1.4
@@ -6185,7 +6185,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - I-DM-2-A
+        - I-DM-A-2
         iso27001-2017:
         - 16.1.4
         - 8.2.1
@@ -6245,7 +6245,7 @@ Test and Verification:
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       references:
         samm2:
-        - I-DM-1-A
+        - I-DM-A-1
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 16.1.6
@@ -6313,7 +6313,7 @@ Test and Verification:
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       references:
         samm2:
-        - I-DM-2-A
+        - I-DM-A-2
         iso27001-2017:
         - 16.1.4
         - 8.2.1
@@ -6346,7 +6346,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - I-DM-2-A
+        - I-DM-A-2
         iso27001-2017:
         - 16.1.4
         - 12.6.1
@@ -6418,7 +6418,7 @@ Test and Verification:
           This projects contains the DefectDojo upload client and statistics client. It is for example used within the ClusterImageScanner.
       references:
         samm2:
-        - I-DM-2-A
+        - I-DM-A-2
         iso27001-2022:
         - 5.25
         - 5.12
@@ -6448,7 +6448,7 @@ Test and Verification:
       comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
-        - I-DM-2-A
+        - I-DM-A-2
         iso27001-2017:
         - 16.1.4
         - 12.6.1
@@ -6478,7 +6478,7 @@ Test and Verification:
       comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
-        - I-DM-2-A
+        - I-DM-A-2
         iso27001-2017:
         - 16.1.4
         - 12.6.1
@@ -6542,7 +6542,7 @@ Test and Verification:
           The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
       references:
         samm2:
-        - I-DM-3-A
+        - I-DM-A-3
         iso27001-2017:
         - 12.6.1
         - 16.1.3
@@ -6589,7 +6589,7 @@ Test and Verification:
           Code coverage measurement for Python
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - part of periodic review, PDCA
@@ -6622,7 +6622,7 @@ Test and Verification:
       - Usage of different roles
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -6685,7 +6685,7 @@ Test and Verification:
       - Usage of different roles
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
@@ -6717,7 +6717,7 @@ Test and Verification:
       - Usage of different roles
       references:
         samm2:
-        - V-RT-1-B
+        - V-RT-B-1
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
@@ -6763,7 +6763,7 @@ Test and Verification:
       - Usage of different roles
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 14.2.8
         - 14.2.3
@@ -6794,7 +6794,7 @@ Test and Verification:
       - Simple Scan
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -6850,7 +6850,7 @@ Test and Verification:
         url: https://github.com/Arachni/arachni
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - 14.2.3
         - 14.2.8
@@ -6882,7 +6882,7 @@ Test and Verification:
       - Simple Scan
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - not explicitly covered by ISO 27001 - too specific
         - 14.2.3
@@ -6934,7 +6934,7 @@ Test and Verification:
           secureCodeBox is a kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box.
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 12.6.1
         - 14.2.5
@@ -6967,7 +6967,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-RT-1-AB
+        - V-RT-AB-1
         iso27001-2017:
         - 12.1.3
         - 14.2.3
@@ -7013,7 +7013,7 @@ Test and Verification:
         url: https://github.com/OWASP/Amass
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - 13.1.3
         - 14.2.3
@@ -7095,7 +7095,7 @@ Test and Verification:
           Hunt Unused Resources In Kubernetes.
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - 13.1.3
         - 14.2.3
@@ -7135,7 +7135,7 @@ Test and Verification:
       - Isolated networks for virtual environments
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 13.1.3
         - 14.2.3
@@ -7226,7 +7226,7 @@ Test and Verification:
         url: https://www.htc-cs.com/en/products/htc-hydra/
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 9.4.3
         iso27001-2022:
@@ -7278,7 +7278,7 @@ Test and Verification:
           on API best practices.
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - 14.2.1
         - 14.2.5
@@ -7316,7 +7316,7 @@ Test and Verification:
       - Defined build process
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 14.2.1
@@ -7353,7 +7353,7 @@ Test and Verification:
       - Defined build process
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 14.2.1
@@ -7402,8 +7402,8 @@ Test and Verification:
           exploited.
       references:
         samm2:
-        - V-ST-2-A
-        - I-SB-3-B
+        - V-ST-A-2
+        - I-SB-B-3
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7460,7 +7460,7 @@ Test and Verification:
         - pre-commit
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 13.1.3
@@ -7525,8 +7525,8 @@ Test and Verification:
           Dependabot creates pull requests to keep your dependencies secure and up-to-date.
       references:
         samm2:
-        - V-ST-2-A
-        - I-SB-2-B
+        - V-ST-A-2
+        - I-SB-B-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7602,8 +7602,8 @@ Test and Verification:
         url: https://github.com/aquasecurity/trivy
       references:
         samm2:
-        - V-ST-2-A
-        - I-SB-2-B
+        - V-ST-A-2
+        - I-SB-B-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7634,8 +7634,8 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-ST-2-A
-        - I-SB-3-B
+        - V-ST-A-2
+        - I-SB-B-3
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7698,8 +7698,8 @@ Test and Verification:
       - Inventory of production components
       references:
         samm2:
-        - V-ST-2-A
-        - I-SB-3-B
+        - V-ST-A-2
+        - I-SB-B-3
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7766,7 +7766,7 @@ Test and Verification:
       - Inventory of production components
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7828,8 +7828,8 @@ Test and Verification:
       - Inventory of production components
       references:
         samm2:
-        - V-ST-2-A
-        - I-SB-3-B
+        - V-ST-A-2
+        - I-SB-B-3
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -7881,7 +7881,7 @@ Test and Verification:
           Lint code bases to catch common errors and enforce code style
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 12.6.1
         - 14.2.1
@@ -7922,7 +7922,7 @@ Test and Verification:
       - Defined build process
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 14.2.1
@@ -7975,7 +7975,7 @@ Test and Verification:
       - Automated PRs for patches
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 14.2.1
@@ -8022,7 +8022,7 @@ Test and Verification:
       - Defined build process
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - Not explicitly covered by ISO 27001 - too specific
         - 14.2.1
@@ -8063,7 +8063,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-ST-3-A
+        - V-ST-A-3
         iso27001-2017:
         - 12.6.1
         - 14.2.1
@@ -8114,7 +8114,7 @@ Test and Verification:
         url: https://github.com/future-architect/vuls
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - 12.6.1
         - 14.2.1
@@ -8170,7 +8170,7 @@ Test and Verification:
         - inventory
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 12.6.1
         iso27001-2022:
@@ -8204,7 +8204,7 @@ Test and Verification:
         url: https://kubesec.io
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - System hardening is not explicitly covered by ISO 27001 - too specific
         - 12.6.1
@@ -8252,7 +8252,7 @@ Test and Verification:
           in production environments.
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - 12.6.1
         - 14.2.5
@@ -8298,7 +8298,7 @@ Test and Verification:
           in production environments.
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 12.2.1
         iso27001-2022:
@@ -8326,7 +8326,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 12.6.1
         - 14.2.5
@@ -8367,7 +8367,7 @@ Test and Verification:
         url: https://github.com/nccgroup/go-pillage-registries
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 9.4.3
@@ -8408,7 +8408,7 @@ Test and Verification:
         url: https://github.com/nccgroup/go-pillage-registries
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 9.4.3
@@ -8462,7 +8462,7 @@ Test and Verification:
         url: https://github.com/future-architect/vuls
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - 12.6.1
         - 14.2.1
@@ -8510,7 +8510,7 @@ Test and Verification:
           in production environments.
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
@@ -8544,7 +8544,7 @@ Test and Verification:
         url: https://github.com/aquasecurity/kube-bench
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - System hardening is not explicitly covered by ISO 27001 - too specific
         - 12.6.1
@@ -8599,7 +8599,7 @@ Test and Verification:
           looks for common traps, mistakes and helps enforce best practices.
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - System hardening, virtual environments are not explicitly covered by ISO
           27001 - too specific
@@ -8640,7 +8640,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 14.2.2
         - 14.2.3
@@ -8678,7 +8678,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 12.6.1
         - 14.2.1
@@ -8710,7 +8710,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-ST-1-A
+        - V-ST-A-1
         iso27001-2017:
         - 12.6.1
         - 14.2.1
@@ -8743,7 +8743,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - V-ST-2-A
+        - V-ST-A-2
         iso27001-2017:
         - 12.6.1
         - 14.2.1
@@ -8776,8 +8776,8 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-        - I-SB-3-A
-        - V-ST-3-A
+        - I-SB-A-3
+        - V-ST-A-3
         iso27001-2017:
         - 14.2.3
         - 14.2.8

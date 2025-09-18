@@ -19,7 +19,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-RT-1-AB
+          - V-RT-AB-1
         iso27001-2017:
           - 12.1.3
           - 14.2.3
@@ -54,7 +54,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-amass
       references:
         samm2:
-          - V-ST-1-A
+          - V-ST-A-1
         iso27001-2017:
           - 13.1.3
           - 14.2.3
@@ -113,7 +113,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/k8spurger
       references:
         samm2:
-          - V-ST-1-A
+          - V-ST-A-1
         iso27001-2017:
           - 13.1.3
           - 14.2.3
@@ -145,7 +145,7 @@ Test and Verification:
         - uuid:4ce24abd-8ba6-494c-828d-4d193e28e4a1 # Isolated networks for virtual environments
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 13.1.3
           - 14.2.3
@@ -206,7 +206,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/htc-hydra
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 9.4.3
         iso27001-2022:
