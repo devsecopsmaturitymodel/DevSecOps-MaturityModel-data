@@ -71,7 +71,8 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-          - D-TA-2-B
+          - D-TA-1-B
+          - D-TA-2-A
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of risk assessment
@@ -185,6 +186,7 @@ Culture and Organization:
       references:
         samm2:
           - D-TA-2-B
+          - V-RT-B-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of project management
@@ -257,6 +259,7 @@ Culture and Organization:
       references:
         samm2:
           - D-TA-3-B
+          - D-TA-2-B
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of risk assessment
@@ -288,7 +291,7 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-          - G-PS-2
+          - G-SM-2-A
         iso27001-2017:
           - 5.1.1
           - 7.2.1

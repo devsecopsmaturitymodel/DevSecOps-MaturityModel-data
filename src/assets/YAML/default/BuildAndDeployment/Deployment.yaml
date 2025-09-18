@@ -20,7 +20,7 @@ Build and Deployment:
         - Smoke Test
       references:
         samm2:
-          - I-SD-2-A
+          - I-SD-3-A
         iso27001-2017:
           - 17.2.1 # Availability of information processing facilities
           - 12.1.1 # Documented operational procedures
@@ -231,6 +231,7 @@ Build and Deployment:
       references:
         samm2:
           - I-SB-1-B
+          - D-TA-1-B
         iso27001-2017:
           - 8.1
           - 8.2
@@ -262,6 +263,7 @@ Build and Deployment:
       references:
         samm2:
           - I-SB-1-B
+          - D-TA-1-B
         iso27001-2017:
           - 8.1
           - 8.2
@@ -288,7 +290,8 @@ Build and Deployment:
         - Defined deployment process
       references:
         samm2:
-          - I-SD-1-A
+          - I-SD-2-A
+          - I-SD-3-A
         iso27001-2017:
           - 12.5.1
           - 14.2.2
@@ -321,6 +324,7 @@ Build and Deployment:
       references:
         samm2:
           - I-SD-2-A
+          - I-SD-3-A
         iso27001-2017:
           - 14.3.1
           - 14.2.8
