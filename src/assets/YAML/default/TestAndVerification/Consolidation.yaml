@@ -139,10 +139,17 @@ Test and Verification:
       comments: ""
     Simple false positive treatment:
       uuid: c1acc8af-312e-4503-a817-a26220c993a0
-      risk:
-        As false positive occur during each test, all vulnerabilities might be
-        ignored. Specially, if tests are automated an run daily.
-      measure: |-
+      description: |
+        Security tests may produce false positives—findings that are incorrectly identified as vulnerabilities.
+
+        It is important distinguish these from true vulnerabilities to avoid wasting time and resources on non-issues.
+
+        False positive treatment ensures that findings from security tests are triaged and documented, allowing teams to distinguish between real vulnerabilities and false positives. This reduces unnecessary work and helps maintain focus on true risks.
+
+        Some positive findings might be considered an accepted risk by the organization. This must also be documented.
+      risk: |
+        If false positives are not managed, teams may ignore all findings, leading to real vulnerabilities being overlooked and increasing the risk of exploitation. Specially, if tests are automated an run daily.
+      measure: |
         Findings from security tests must be triaged and outcomes persisted/documented to:
           - Prevent re-analysis of known issues in subsequent test runs
           - Track accepted risks vs false positives
@@ -154,12 +161,14 @@ Test and Verification:
           - [OWASP Dependency Check](https://jeremylong.github.io/DependencyCheck/general/suppression.html)
           - [Kubescape with VEX](https://kubescape.io/blog/2023/12/07/kubescape-support-for-vex-generation/)
           - [OWASP DefectDojo Risk Acceptance](https://docs.defectdojo.com/en/working_with_findings/findings_workflows/risk_acceptances/) and [False Positive Handling](https://docs.defectdojo.com/en/working_with_findings/intro_to_findings/#triage-vulnerabilities-using-finding-status)
+      assessment: |
+        The organization has a process for triaging and documenting false positives and accepted risks
+      level: 1
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
@@ -274,17 +283,23 @@ Test and Verification:
       comments: ""
     Treatment of defects with severity high or higher:
       uuid: 44f2c8a9-4aaa-4c72-942d-63f78b89f385
-      risk: Vulnerabilities with severity high or higher are not visible.
-      measure:
-        Vulnerabilities with severity high or higher are added to the quality
-        gate.
+      description: |
+        All security problems that are rated as "high" or "critical" must be fixed before the software can be released or used in production. This means that if a serious vulnerability is found, it cannot be ignored or postponed.
+      risk: |
+        If serious security problems are not fixed, attackers could exploit them to steal data, disrupt services, or cause other harm. Ignoring these issues puts the organization, its customers, and its reputation at risk.
+      measure: |
+        - Make it a rule that all high or critical security findings must be fixed before the software is approved for release or use.
+        - Track these issues and make sure they are resolved quickly.
+        - Pay extra attention to Known Exploited Vulnerabilities (KEV) from CISA and EPSS scores when prioritizing fixes.
+      assessment: |
+        There is clear evidence that all high or critical security issues are tracked and fixed before release. No high or critical issues remain open in production systems.
+      comments: False positive analysis, specially for static analysis, is time consuming.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 1
       usefulness: 4
-      level: 1
-      comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
           - I-DM-2-B
@@ -294,7 +309,10 @@ Test and Verification:
         iso27001-2022:
           - 8.8
           - 5.25
-      implementation: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cisa-kev
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/grype
       tags: ["vuln-action", "defect-management"]
       evidence: ""
     Treatment of defects with severity middle:

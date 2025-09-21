@@ -710,6 +710,11 @@ implementations:
     name: https://github.com/aquasecurity/trivy
     tags: []
     url: https://github.com/aquasecurity/trivy
+  grype:
+    uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
+    name: Grype
+    tags: [sbom, dependency, vulnerability]
+    url: https://github.com/anchore/grype
   registries-like-quay:
     uuid: 8737c6c0-4e90-400a-bf9a-f8e399913b57
     name: Registries like quay
