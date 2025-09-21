@@ -87,25 +87,6 @@ Culture and Organization:
       comments: ""
     Conduction of simple threat modeling on technical level:
       uuid: 47419324-e263-415b-815d-e7161b6b905e
-      risk:
-        Technical related threats are discovered too late in the development and
-        deployment process.
-      measure:
-        Threat modeling of technical features is performed during the product
-        sprint planning.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 3
-        resources: 1
-      usefulness: 3
-      level: 1
-      implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/whiteboard
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/miro-or-any-other-c
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/draw-io
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
       description: |
         # OWASP SAMM Description
         Threat modeling is a structured activity for identifying, evaluating, and managing system threats, architectural design flaws, and recommended security mitigations. It is typically done as part of the design phase or as part of a security assessment.
@@ -149,6 +130,26 @@ Culture and Organization:
         GraphQL queries are dynamically translated to SQL, Elasticsearch and NoSQL queries. Access to data is protected with basic auth set to _1234:1234_ for development purposes.
 
         Source: OWASP Project Integration Project
+      risk:
+        Technical related threats are discovered too late in the development and deployment process.
+      measure: |
+        Perform threat modeling of technical features during product sprint planning using simple checklists and diagrams. Document identified threats and mitigations for new or changed functionality.
+      assessment: |
+        - Evidence of threat modeling activities exists for high-risk applications, including annotated diagrams and documented threats/mitigations.
+        - Activities are performed during sprint planning and involve relevant stakeholders. Outcomes are recorded and accessible for review.
+      level: 1
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 1
+      usefulness: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/whiteboard
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/miro-or-any-other-c
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/draw-io
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
       references:
         samm2:
           - D-TA-2-B
