@@ -295,8 +295,11 @@ Information Gathering:
       comments: ""
     Simple application metrics:
       uuid: e9a6d403-a467-445e-b98a-74f0c29da0b1
-      risk: Attacks on an application are not recognized.
-      measure: |-
+      description: |
+        Collecting basic operational data from applications, such as authentication attempts, transaction volumes, and resource usage, will help detect abnormal patterns that may indicate security incidents or system issues.
+      risk: |
+        Without monitoring application metrics, attacks or abnormal behaviors may go undetected, increasing the risk of successful exploitation, data breaches, and delayed incident response.
+      measure: |
         Gathering of application metrics helps to identify incidents like brute force attacks, login/logout patterns, and unusual spikes in activity. Key metrics to monitor include:
           - Authentication attempts (successful/failed logins)
           - Transaction volumes and patterns (e.g. orders, payments)
@@ -307,14 +310,16 @@ Information Gathering:
         Example: An e-commerce application normally processes 100 orders per hour. A sudden spike to 1000 orders per hour could indicate either:
          - A legitimate event (unannounced marketing campaign, viral social media post)
          - A security incident (automated bulk purchase bots, credential stuffing attack)
-        
+
         By monitoring these basic metrics, teams can quickly investigate abnormal patterns and determine if they represent security incidents requiring response.
+      assessment: |
+        - Basic application metrics are collected and reviewed.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
       usefulness: 5
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/prometheus
       references:
@@ -327,18 +332,21 @@ Information Gathering:
       comments: ""
     Simple budget metrics:
       uuid: f08a3219-6941-43ec-8762-4aff739f4664
-      risk:
-        Not getting notified about reaching the end of the budget (e.g. due to
-        a denial of service) creates unexpected costs.
-      measure:
-        Cloud providers often provide insight into budgets. A threshold and
-        alarming for the budget is set.
+      description: |
+        Monitoring resource usage and costs to prevent unexpected expenses. This is especially important in cloud environments where resource consumption can quickly exceed planned budgets.
+      risk: |
+        Failure to monitor budget metrics can result in unexpected costs, financial loss, and potential service disruption due to resource exhaustion or denial-of-service attacks.
+      measure: |
+        Set up budget monitoring and alerting for all critical resources. Use provider tools to track spending and configure alerts when thresholds are reached. Implement hard limits where possible to prevent budget overruns.
+      assessment: |
+        - The organization regularly monitors budget metrics
+        - Alerting outside given thresholds are implemented
+      level: 1
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 5
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/collected
       references:
@@ -353,21 +361,21 @@ Information Gathering:
       comments: ""
     Simple system metrics:
       uuid: 3d1f4c3b-f713-46d9-933a-54a014a26c03
-      risk:
-        Without simple metrics analysis of incidents are hard. In case an application
-        uses a lot of CPU from time to time, it is hard for a developer to find out
-        the source with Linux commands.
-      measure:
-        Gathering of system metrics helps to identify incidents and specially
-        bottlenecks like in CPU usage, memory usage and hard disk usage.
+      description: |
+        Monitoring basic system performance data, such as CPU, memory, and disk usage, will help identify performance bottlenecks and potential security incidents.
+      risk: |
+        Without monitoring system metrics, it is difficult to detect incidents or performance issues, leading to delayed response, reduced availability, and increased risk of undetected attacks.
+      measure: |
+        Collect and monitor key system metrics, including CPU, memory, and disk usage. Set up alerts for abnormal resource consumption or patterns that may indicate incidents or attacks.
+      assessment: |
+        - Basic system metrics are monitored and reviewed regularly
+        - Alerting outside given thresholds are implemented
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
       usefulness: 5
-      assessment: |
-        Are system metrics gathered?
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/collected
       references:
