@@ -69,19 +69,21 @@ Build and Deployment:
       comments: ""
     Defined deployment process:
       uuid: 74938a3f-1269-49b9-9d0f-c43a79a1985a
+      description: |
+        A defined deployment process is a documented and automated set of steps for releasing software into production. It ensures that deployments are consistent, secure, and auditable, reducing the risk of errors and unauthorized changes. This process should include validation, approval, and rollback mechanisms.
       risk: >-
-        Deployment of insecure or malfunctioning artifacts.
+        Deployment based human routines are error prone, and of insecure or malfunctioning artifacts.
       measure: >-
         Defining a deployment process ensures that there are
         established criteria in terms of functionalities,
         security, compliance, and performance,
         and that the artifacts meet them.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 1
       usefulness: 4
-      level: 1
       dependsOn:
         - uuid:f6f7737f-25a9-4317-8de2-09bf59f29b5b # Def. Build Process
       implementation:
@@ -96,6 +98,12 @@ Build and Deployment:
         iso27001-2022:
           - 5.37
           - 8.32
+      assessment: |
+        - Deployment process is documented and available to relevant staff
+        - All deployment steps are automated and version-controlled
+        - Approvals and access controls are enforced for production deployments
+        - Rollback procedures are defined and tested
+        - Deployment logs and evidence are retained for audit purposes
       isImplemented: false
       evidence: ""
       comments: ""
@@ -211,6 +219,8 @@ Build and Deployment:
         - sbom
     Inventory of production components:
       uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f
+      description: |
+        An inventory of production components is a complete, up-to-date list of all applications and services running in production. This enables effective vulnerability management, incident response, and compliance. Without it, organizations risk running unmaintained or unauthorized software.
       risk: |-
         An organization is unaware of components like applications in production. Not knowing existing applications in production leads to not assessing it.
       measure: |-
@@ -218,12 +228,12 @@ Build and Deployment:
         In a kubernetes cluster, namespaces can be automatically gathered and documented, e.g. in a JSON in a S3 bucket/git repository, dependency track.
       dependsOn:
         - Defined deployment process
+      level: 1
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 4
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/backstage
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
@@ -237,6 +247,12 @@ Build and Deployment:
         iso27001-2022:
           - 5.9
           - 5.12
+      assessment: |
+        - Inventory of all production components exists and is regularly updated
+        - Inventory includes key metadata (e.g., version, owner, deployment date)
+        - Inventory is accessible to security and operations teams
+        - There is a process for adding, updating, and removing components
+        - Inventory reviews are performed and documented
       tags:
         - inventory
     Inventory of production artifacts:

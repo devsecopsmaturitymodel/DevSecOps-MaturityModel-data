@@ -37,7 +37,7 @@ implementations:
     name: API Security Maturity Model for Authorization
     tags: [api]
     url: https://curity.io/resources/learn/the-api-security-maturity-model/
-  container-technologi:
+  container-technology:
     uuid: ed6b6340-6c7f-4e13-8937-f560d3f5db11
     name: Container technologies and orchestration like Docker, Kubernetes
     tags: []

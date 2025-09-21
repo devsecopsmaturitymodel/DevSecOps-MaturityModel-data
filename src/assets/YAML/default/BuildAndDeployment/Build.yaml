@@ -28,7 +28,7 @@ Build and Deployment:
       level: 2
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
       references:
         samm2:
           - I-SB-2-A
@@ -42,37 +42,42 @@ Build and Deployment:
     Defined build process:
       uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
       description: |
-        A *build process* include more than just compiling your source code. 
-        It also includes steps such as managing (third party) dependencies, 
-        environment configuration, running the unit tests, etc. 
-        
-        A *defined build process* has automated these steps to ensure consistency.
+        A *build process* includes more than just compiling your source code. It also covers:
+        - Managing (third party) dependencies
+        - Environment configuration
+        - Running unit and integration tests
+        - Security scanning and compliance checks
+        - Artifact creation and storage
+        - Deployment preparation
 
-        This can be done with a Jenkinsfile, Maven, or similar tools.
+        A *defined build process* automates these steps to ensure consistency, reproducibility, and security. Automation reduces human error and enforces security controls. Use tools such as Jenkins, GitHub Actions, GitLab CI, or Maven to codify the process.
       risk:
-        Performing builds without a defined process is error prone; for example,
-        as a result of incorrect security related configuration.
+        Performing builds without a defined and automated process is error-prone and increases the risk of security misconfigurations, unauthorized changes, and supply chain attacks.
       measure:
-        A well defined build process lowers the possibility of errors during
-        the build process.
+        A well-defined, automated, and auditable build process lowers the possibility of errors and unauthorized changes during the build process. It also enables traceability and rapid response to incidents.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 3
         resources: 2
       usefulness: 4
-      level: 1
       assessment: |
-        - Show your build pipeline and an exemplary job (build + test).
-        - Show that every team member has access.
-        - Show that failed jobs are fixed.
+        - Show your build pipeline configuration (e.g., Jenkinsfile, GitHub Actions workflow) and an exemplary job (build + test + security scan).
+        - Demonstrate that every team member has appropriate access (least privilege).
+        - Show that failed jobs are investigated and fixed promptly.
+        - Provide audit logs or evidence of build runs and changes.
+        - Document how security controls are enforced in the build process.
 
         Credits: AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
       references:
         samm2:
           - I-SB-1-A
+        nist-csf:
+          - PR.IP-1
+          - PR.DS-1
         iso27001-2017:
           - 12.1.1
           - 14.2.2

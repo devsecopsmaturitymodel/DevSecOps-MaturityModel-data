@@ -4,16 +4,23 @@ Build and Deployment:
   Patch Management:
     A patch policy is defined:
       uuid: 99415139-6b50-441b-89e1-0aa59accd43d
-      risk: Vulnerabilities in running artifacts stay for long and might get exploited.
+      description: |
+        A patch policy defines how and when software components, images, and dependencies are updated. A patch policy ensures that all these artifacts are regularly reviewed and updated, reducing the window of exposure to known threats. The policy should specify the frequency, responsibilities, and documentation requirements for patching.
+      risk: Vulnerabilities in running artifacts may persist for a long time and might be exploited.
       measure:
-        A patch policy for all artifacts (e.g. in images) is defined. How often
+        Define a patch policy for all artifacts (e.g. in images) is defined. How often
         is an image rebuilt?
+      assessment: |
+        - Patch policy is documented and accessible to relevant staff.
+        - The policy defines patch frequency and responsible roles.
+        - Patch actions and exceptions are logged and reviewed.
+        - Evidence of regular patching and policy review is available.
+      level: 1
       difficultyOfImplementation:
         knowledge: 3
         time: 1
         resources: 2
       usefulness: 4
-      level: 1
       implementation: []
       references:
         samm2:
@@ -33,23 +40,27 @@ Build and Deployment:
         - patching
     Automated PRs for patches:
       uuid: 8ae0b92c-10e0-4602-ba22-7524d6aed488
-      risk:
-        Components with known (or unknown) vulnerabilities might stay for long and get exploited,
-        even when a patch is available.
-      measure:
-        Fast patching of third party component is needed. The DevOps way is
-        to have an automated pull request for new components. This includes
-
+      description: |
+        Automated PRs for patches ensure that updates for outdated or vulnerable dependencies are created and proposed without manual intervention. Tools continuously monitor for new versions or security advisories and immediately generate pull requests to update affected components in code, container images, or infrastructure. This process ensures that available patches are quickly visible to developers and can be reviewed and merged with minimal delay, reducing the risk window for known vulnerabilities.
+      risk: |
+        Components with known (or unknown) vulnerabilities might persist for a long time and be exploited, even when a patch is available.
+      measure: |
+        Fast patching of third-party components is needed. The DevOps way is to have an automated pull request for new components. This includes:
         * Applications
-        * Virtualized operating system components (e.g. container images)
-        * Operating Systems
-        * Infrastructure as Code/GitOps (e.g. argocd based on a git repository or terraform)
+        * Virtualized operating system components (e.g., container images)
+        * Operating systems
+        * Infrastructure as Code/GitOps (e.g., ArgoCD based on a git repository or Terraform)
+      assessment: |
+        - Automated PR tooling is enabled for all relevant repositories.
+        - PRs are created automatically for outdated or vulnerable dependencies.
+        - PRs are reviewed and merged in a timely manner.
+        - Evidence of automated PRs and patching activity is available.
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
       usefulness: 4
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jenkins
