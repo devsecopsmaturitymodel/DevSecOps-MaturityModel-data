@@ -147,7 +147,9 @@ Build and Deployment:
         resources: 3
       usefulness: 3
       level: 2
-      implementation: []
+      implementation: 
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/syft
       references:
         samm2:
           - I-SB-1-A
