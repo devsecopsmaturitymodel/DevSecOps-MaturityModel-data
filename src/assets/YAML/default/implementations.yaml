@@ -179,7 +179,7 @@ implementations:
     url: https://www.owasp.org/index.php/Agile_Software_Development
     description:
       "[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
-      \ and [Practical Security Stories and Security Tasks for Agile Development Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
+      \ and [Practical Security Stories and Security Tasks for Agile Development Environments](https://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
   libyear:
     uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
     name: libyear
