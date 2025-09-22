@@ -355,14 +355,9 @@ implementations:
     uuid: cc55cba1-ea0a-466e-99c5-337c9da2b00e
     name: Plugins
     tags: []
-  smartcard:
-    uuid: e76a395a-8d6a-4e25-a175-6cf25409b755
-    name: Smartcard
-    tags: []
-    url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
   yubikey:
     uuid: d5981117-9bc2-45ed-b4a4-383135dc13d8
-    name: YubiKey
+    name: YubiKey - Smartcard
     tags: []
     url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
   sms:
