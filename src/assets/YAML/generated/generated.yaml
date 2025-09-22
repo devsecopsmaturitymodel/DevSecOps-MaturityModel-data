@@ -96,9 +96,6 @@ Build and Deployment:
       references:
         samm2:
         - I-SB-1-A
-        nist-csf:
-        - PR.IP-1
-        - PR.DS-1
         iso27001-2017:
         - 12.1.1
         - 14.2.2
@@ -5944,7 +5941,7 @@ Test and Verification:
       usefulness: 3
       level: 2
       dependsOn:
-      - Simple false positive treatment
+      - c1acc8af-312e-4503-a817-a26220c993a0
       implementation:
       - uuid: 227d786c-dd76-4b81-b0b2-62389ab8f0fb
         name: OWASP DefectDojo

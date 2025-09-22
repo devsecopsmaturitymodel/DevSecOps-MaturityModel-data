@@ -75,9 +75,6 @@ Build and Deployment:
       references:
         samm2:
           - I-SB-1-A
-        nist-csf:
-          - PR.IP-1
-          - PR.DS-1
         iso27001-2017:
           - 12.1.1
           - 14.2.2
