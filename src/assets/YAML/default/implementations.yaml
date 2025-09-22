@@ -249,16 +249,16 @@ implementations:
     name: OWASP MASVS
     tags: []
     url: https://github.com/OWASP/owasp-masvs
-  cis-kubernetes-bench:
+  cis-kubernetes-benchmark:
     uuid: edaec98d-dac7-4dfd-8ab3-42c471d5b9ff
-    name: CIS Kubernetes Bench for Security
+    name: CIS Kubernetes Benchmark for Security
     tags: []
-    url: https://www.cisecurity.org/cis-benchmarks/
-  cis-docker-bench-for:
+    url: https://www.cisecurity.org/benchmark/kubernetes
+  cis-docker-benchmark:
     uuid: 4dd23c4a-5a7e-4917-82cf-d00e0f04482f
-    name: CIS Docker Bench for Security
+    name: CIS Docker Benchmark for Security
     tags: []
-    url: https://www.cisecurity.org/cis-benchmarks/
+    url: https://www.cisecurity.org/benchmark/docker
   for-example-for-cont:
     uuid: f4d7c796-8574-4a88-ab00-98d245a115ef
     name: For example for Cont
