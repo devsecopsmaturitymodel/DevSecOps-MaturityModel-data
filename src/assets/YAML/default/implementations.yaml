@@ -179,7 +179,7 @@ implementations:
     url: https://www.owasp.org/index.php/Agile_Software_Development
     description:
       "[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
-      \ and [Practical Security Stories and Security Tasks for Agile Development Environments](http://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
+      \ and [Practical Security Stories and Security Tasks for Agile Development Environments](https://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
   libyear:
     uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
     name: libyear
@@ -249,16 +249,16 @@ implementations:
     name: OWASP MASVS
     tags: []
     url: https://github.com/OWASP/owasp-masvs
-  cis-kubernetes-bench:
+  cis-kubernetes-benchmark:
     uuid: edaec98d-dac7-4dfd-8ab3-42c471d5b9ff
-    name: CIS Kubernetes Bench for Security
+    name: CIS Kubernetes Benchmark for Security
     tags: []
-    url: https://www.cisecurity.org/cis-benchmarks/
-  cis-docker-bench-for:
+    url: https://www.cisecurity.org/benchmark/kubernetes
+  cis-docker-benchmark:
     uuid: 4dd23c4a-5a7e-4917-82cf-d00e0f04482f
-    name: CIS Docker Bench for Security
+    name: CIS Docker Benchmark for Security
     tags: []
-    url: https://www.cisecurity.org/cis-benchmarks/
+    url: https://www.cisecurity.org/benchmark/docker
   for-example-for-cont:
     uuid: f4d7c796-8574-4a88-ab00-98d245a115ef
     name: For example for Cont
@@ -355,14 +355,9 @@ implementations:
     uuid: cc55cba1-ea0a-466e-99c5-337c9da2b00e
     name: Plugins
     tags: []
-  smartcard:
-    uuid: e76a395a-8d6a-4e25-a175-6cf25409b755
-    name: Smartcard
-    tags: []
-    url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
   yubikey:
     uuid: d5981117-9bc2-45ed-b4a4-383135dc13d8
-    name: YubiKey
+    name: YubiKey - Smartcard
     tags: []
     url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
   sms:

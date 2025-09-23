@@ -17,7 +17,6 @@ Implementation:
       usefulness: 4
       level: 1
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/smartcard
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/yubikey
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sms
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/totp
@@ -54,7 +53,6 @@ Implementation:
       dependsOn:
         - MFA for admins
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/smartcard
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/yubikey
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sms
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/totp
@@ -402,8 +400,8 @@ Implementation:
       usefulness: 4
       level: 2
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-kubernetes-bench
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-docker-bench-for
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-kubernetes-benchmark
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-docker-benchmark
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/for-example-for-cont
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-cloud
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-containers
@@ -435,8 +433,8 @@ Implementation:
       usefulness: 3
       level: 4
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-kubernetes-bench
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-docker-bench-for
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-kubernetes-benchmark
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cis-docker-benchmark
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/for-example-for-cont
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-cloud
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/attack-matrix-containers
