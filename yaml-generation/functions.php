@@ -319,6 +319,16 @@ function getReferences($references) {
 
 }
 
+/**
+ * Push item to array at key, creating array if needed.
+ */
+function array_push_item_to(array &$array, $key, $value) {
+    if (!isset($array[$key])) {
+        $array[$key] = [];
+    }
+    array_push($array[$key], $value);
+}
+
 
 // TODO create testcases
 
