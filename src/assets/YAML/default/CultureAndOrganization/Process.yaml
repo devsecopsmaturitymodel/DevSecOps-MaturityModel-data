@@ -66,7 +66,7 @@ Culture and Organization:
       measure: |
         Develop, document, and communicate a BCDR plan for all critical components. The plan must define roles and responsibilities, Service Level Agreements (SLAs), Recovery Point Objectives (RPOs), Recovery Time Objectives (RTOs), and failover procedures. Ensure all relevant personnel are trained and the plan is reviewed and updated regularly.
       assessment: |
-        - The organization has a documented BCDR plan covering all critical components.
+        - There is a documented BCDR plan covering all critical components of the application(s).
         - The plan clearly defines responsibilities, SLAs, RPOs, RTOs, and failover steps. 
         - Relevant staff are aware of the plan, and evidence of regular review and testing is available.
       level: 1

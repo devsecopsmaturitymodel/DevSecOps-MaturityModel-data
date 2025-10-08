@@ -111,9 +111,14 @@ implementations:
     name: Jenkins
     tags: []
     url: https://www.jenkins.io/
+  maven:
+    uuid: eb6de6b9-e060-4902-ae6f-604ffc386b63
+    name: Maven
+    tags: []
+    url: https://maven.apache.org/
   sample-concept-1:
     uuid: 1a463242-b480-46f6-a912-b51ec1c1558d
-    name: "Sample concept:  \n(1"
+    name: "Sample concept"
     tags: []
     description:
       "Sample concept:  \n(1) each container has a set lifetime and is\
@@ -716,7 +721,7 @@ implementations:
     tags: [sbom, dependency]
     url: https://github.com/anchore/syft
   grype:
-    uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
+    uuid: 7970af6e-a7d3-4359-a6ea-301d26b16329
     name: Grype
     tags: [sbom, dependency, vulnerability]
     url: https://github.com/anchore/grype

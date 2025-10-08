@@ -43,7 +43,7 @@ Build and Deployment:
       description: |
         Automated PRs for patches ensure that updates for outdated or vulnerable dependencies are created and proposed without manual intervention. Tools continuously monitor for new versions or security advisories and immediately generate pull requests to update affected components in code, container images, or infrastructure. This process ensures that available patches are quickly visible to developers and can be reviewed and merged with minimal delay, reducing the risk window for known vulnerabilities.
       risk: |
-        Components with known (or unknown) vulnerabilities might persist for a long time and be exploited, even when a patch is available.
+        Components with known vulnerabilities might persist for a long time and be exploited, even when a patch is available.
       measure: |
         Fast patching of third-party components is needed. The DevOps way is to have an automated pull request for new components. This includes:
         * Applications
@@ -53,7 +53,7 @@ Build and Deployment:
       assessment: |
         - Automated PR tooling is enabled for all relevant repositories.
         - PRs are created automatically for outdated or vulnerable dependencies.
-        - PRs are reviewed and merged in a timely manner.
+        - PRs are reviewed and merged according to the defined patch policy.
         - Evidence of automated PRs and patching activity is available.
       level: 1
       difficultyOfImplementation:

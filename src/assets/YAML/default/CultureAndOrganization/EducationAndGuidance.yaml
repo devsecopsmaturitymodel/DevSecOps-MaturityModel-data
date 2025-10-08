@@ -12,7 +12,6 @@ Culture and Organization:
         Provide security awareness training for all personnel involved in software development on an ad-hoc basis, ensuring that relevant topics are covered when new risks or needs are identified.
       assessment: |
         - Conduct security training for developers and relevant personnel
-        - Participants can identify common software security risks addressed in the training
         - Training materials are available
         - Attendance records are available
       level: 1

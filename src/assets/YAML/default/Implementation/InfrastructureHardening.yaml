@@ -366,6 +366,8 @@ Implementation:
       uuid: 82e499d1-f463-4a4b-be90-68812a874af6
       risk: Attackers a gaining access to internal systems and application interfaces
       measure: All internal systems are using simple authentication
+      assessment: |
+        - Demonstrate that every team member has appropriate access (least privilege).        
       difficultyOfImplementation:
         knowledge: 3
         time: 3

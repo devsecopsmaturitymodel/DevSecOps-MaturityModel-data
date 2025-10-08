@@ -100,10 +100,9 @@ Build and Deployment:
           - 8.32
       assessment: |
         - Deployment process is documented and available to relevant staff
-        - All deployment steps are automated and version-controlled
-        - Approvals and access controls are enforced for production deployments
-        - Rollback procedures are defined and tested
-        - Deployment logs and evidence are retained for audit purposes
+        - All deployment steps are automated
+        - Rollback procedures are defined and tested [Keep??? Delete???]
+        - Provide audit logs or evidence of deployments
       isImplemented: false
       evidence: ""
       comments: ""
@@ -220,12 +219,15 @@ Build and Deployment:
     Inventory of production components:
       uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f
       description: |
-        An inventory of production components is a complete, up-to-date list of all applications and services running in production. This enables effective vulnerability management, incident response, and compliance. Without it, organizations risk running unmaintained or unauthorized software.
+        An inventory of production components is a complete, up-to-date list of all applications running in production. This enables effective vulnerability management, incident response, and compliance. Without it, organizations risk running unmaintained or unauthorized software.
       risk: |-
         An organization is unaware of components like applications in production. Not knowing existing applications in production leads to not assessing it.
       measure: |-
         A documented inventory of components in production exists (gathered manually or automatically). For example a manually created document with applications in production.
         In a kubernetes cluster, namespaces can be automatically gathered and documented, e.g. in a JSON in a S3 bucket/git repository, dependency track.
+      assessment: |
+        - Inventory of all production applications with application name, owner, and date of last review
+        - Inventory is accessible to development, security and operations teams
       dependsOn:
         - Defined deployment process
       level: 1
@@ -247,12 +249,6 @@ Build and Deployment:
         iso27001-2022:
           - 5.9
           - 5.12
-      assessment: |
-        - Inventory of all production components exists and is regularly updated
-        - Inventory includes key metadata (e.g., version, owner, deployment date)
-        - Inventory is accessible to security and operations teams
-        - There is a process for adding, updating, and removing components
-        - Inventory reviews are performed and documented
       tags:
         - inventory
     Inventory of production artifacts:

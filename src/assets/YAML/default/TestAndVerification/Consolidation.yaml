@@ -162,7 +162,7 @@ Test and Verification:
           - [Kubescape with VEX](https://kubescape.io/blog/2023/12/07/kubescape-support-for-vex-generation/)
           - [OWASP DefectDojo Risk Acceptance](https://docs.defectdojo.com/en/working_with_findings/findings_workflows/risk_acceptances/) and [False Positive Handling](https://docs.defectdojo.com/en/working_with_findings/intro_to_findings/#triage-vulnerabilities-using-finding-status)
       assessment: |
-        The organization has a process for triaging and documenting false positives and accepted risks
+        A process is defined for triaging and documenting false positives and accepted risks
       level: 1
       difficultyOfImplementation:
         knowledge: 1
