@@ -87,9 +87,10 @@ Implementation:
     Versioning:
       uuid: 066084c6-1135-4635-9cc5-9e75c7c5459f
       risk: Deployment of untracked artifacts.
+      description: Use a version control system platform like Github, Gitlab, Bitbucket, gittea,... to version your code.
       measure: >-
         Version artifacts in order to identify deployed features and issues.
-        This includes application and infrastructure code, jenkins configuration, container and virtual machine images.
+        This includes application and infrastructure code, jenkins configuration, container and virtual machine images definitions.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
