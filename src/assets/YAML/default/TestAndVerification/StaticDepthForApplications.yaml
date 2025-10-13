@@ -324,7 +324,8 @@ Test and Verification:
       uuid: f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
       risk: |-
         Without proper prioritization, organizations may waste time and effort on low-risk vulnerabilities while neglecting critical ones.
-      measure: Estimate the likelihood of exploitation by using data (CISA KEV) from the past or prediction models (EPSS).
+      measure: Estimate the likelihood of exploitation by using data (CISA KEV) from the past or prediction models (e.g. Exploit Prediction Scoring System, EPSS).
+      description: Severity-based vulnerability triage alone generates a lot false positives, requiring a more refined approach.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
