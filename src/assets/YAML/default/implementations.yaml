@@ -786,7 +786,9 @@ implementations:
     tags: [pre-commit]
   dependencyTrack:
     uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-    name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
+    name: Dependency-Track
+    description: |
+      Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
     url: https://github.com/DependencyTrack/dependency-track
     tags: [sca, inventory, OpenSource, "Supply Chain", vulnerability, inventory]
   hashicorp-vault:
