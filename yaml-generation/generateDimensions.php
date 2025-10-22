@@ -114,7 +114,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 );
             if (!array_key_exists("openCRE", $activity["references"])) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
-                $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/" . $subdimension . "/" . $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = buildOpenCreUrl($dimension, $subdimension, $activityName);
             }
             // can be removed in 2025
             if (array_key_exists("isImplemented", $activity)) {
@@ -241,7 +241,14 @@ fwrite($graphFile, "```\n");
 fclose($graphFile);
 echo "\nSaved dependency graph '$graphFilename'\n\n";
 
-
+function buildOpenCreUrl($dimension, $subdimension, $activityName) {
+    $baseUrl = "https://www.opencre.org/node/standard/";
+    $DSOMM = "DevSecOps Maturity Model (DSOMM)";
+    $url = $baseUrl . rawurlencode($DSOMM) . 
+        "/section/" . rawurlencode($subdimension) .
+        "/subsection/" . rawurlencode($activityName);
+    return $url;
+}
 
 function assertUniqueRefs($all_references, &$errorMsg) {
     foreach ($all_references as $references) {
