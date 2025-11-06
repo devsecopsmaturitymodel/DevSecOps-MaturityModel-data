@@ -27,8 +27,7 @@ Test and Verification:
       implementation:
       references:
         samm2:
-          - I-DM-3-B
-          - I-SB-3-B
+          - I-DM-A-3
         iso27001-2017:
           - 16.1.4
           - 8.2.1
@@ -58,7 +57,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
       references:
         samm2:
-          - I-DM-3-B
+          - I-DM-A-3
         iso27001-2017:
           - 16.1.4
           - 8.2.1
@@ -90,7 +89,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dast
       references:
         samm2:
-          - I-DM-2-B
+          - I-DM-A-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001 - too specific
           - 16.1.4
@@ -122,8 +121,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - I-DM-2-B
-          - I-SB-3-B
+          - I-DM-A-2
         iso27001-2017:
           - 16.1.4
           - 8.2.1
@@ -165,7 +163,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
       references:
         samm2:
-          - I-DM-2-A
+          - I-DM-A-1
         iso27001-2017:
           - Not explicitly covered by ISO 27001 - too specific
           - 16.1.6
@@ -205,9 +203,9 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
       references:
         samm2:
-          - I-DM-2-A
-          - I-DM-2-B
-          - I-SB-3-B
+          - I-DM-A-2
+          - I-DM-B-2
+          - I-SB-B-3
         iso27001-2017:
           - 16.1.4
           - 16.1.6
@@ -235,7 +233,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
       references:
         samm2:
-          - I-DM-1-B
+          - I-DM-A-2
         iso27001-2017:
           - 16.1.4
           - 8.2.1
@@ -262,8 +260,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - I-DM-2-B
-          - I-SB-3-B
+          - I-DM-A-2
         iso27001-2017:
           - 16.1.4
           - 12.6.1
@@ -287,7 +284,7 @@ Test and Verification:
       comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
-          - I-DM-2-B
+          - I-DM-A-2
         iso27001-2017:
           - 16.1.4
           - 12.6.1
@@ -310,8 +307,7 @@ Test and Verification:
       comments: False positive analysis, specially for static analysis, is time consuming.
       references:
         samm2:
-          - I-DM-2-B
-          - I-SB-3-B
+          - I-DM-A-2
         iso27001-2017:
           - 16.1.4
           - 12.6.1
@@ -350,9 +346,9 @@ Test and Verification:
       implementation:
       references:
         samm2:
-          - I-DM-2-B
-          - I-DM-3-A
-          - I-SB-3-B
+          - I-DM-B-2
+          - I-DM-A-3
+          - I-SB-B-3
         iso27001-2017:
           - 16.1.3
           - 16.1.4
@@ -391,9 +387,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/SecObserve
       references:
         samm2:
-          - I-DM-1-B
-          - I-SB-2-B
-          - I-SB-3-B
+          - I-DM-A-3
         iso27001-2017:
           - 12.6.1
           - 16.1.3
@@ -444,7 +438,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:
         samm2:
-          - I-DM-3-B
+          - I-DM-A-2
         iso27001-2022:
           - 5.25
           - 5.12
@@ -482,7 +476,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:
         samm2:
-          - I-DM-3-B
+          - I-DM-A-2
         iso27001-2022:
           - 5.25
           - 5.12

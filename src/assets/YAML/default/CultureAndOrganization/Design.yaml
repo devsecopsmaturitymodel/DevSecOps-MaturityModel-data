@@ -40,7 +40,7 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
       references:
         samm2:
-          - D-TA-2-B
+          - D-TA-B-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of risk assessment
@@ -71,7 +71,8 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-          - D-TA-2-B
+          - D-TA-B-1
+          - D-TA-A-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of risk assessment
@@ -151,7 +152,7 @@ Culture and Organization:
         Source: OWASP Project Integration Project
       references:
         samm2:
-          - D-TA-2-B
+          - D-TA-B-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of risk assessment
@@ -184,7 +185,8 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-user-stories
       references:
         samm2:
-          - D-TA-2-B
+          - D-TA-B-2
+          - V-RT-B-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of project management
@@ -219,7 +221,7 @@ Culture and Organization:
         - Creation of threat modeling processes and standards
       references:
         samm2:
-          - D-TA-2-B
+          - D-TA-B-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of project management
@@ -256,7 +258,8 @@ Culture and Organization:
         - Conduction of simple threat modeling on technical level
       references:
         samm2:
-          - D-TA-3-B
+          - D-TA-B-3
+          - D-TA-B-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001
           - May be part of risk assessment
@@ -288,7 +291,7 @@ Culture and Organization:
       implementation: []
       references:
         samm2:
-          - G-PS-2
+          - G-SM-A-2
         iso27001-2017:
           - 5.1.1
           - 7.2.1
