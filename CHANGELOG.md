@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.17.0...v1.18.0) (2025-11-06)
+
+
+### Features
+
+* update SAMM mapping based on arams feedback ([532bb72](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/532bb72debcd93f98f07dc7d4b28d799da6e155d))
+
 # [1.17.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.16.0...v1.17.0) (2025-09-15)
 
 
