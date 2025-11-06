@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.16.0...v1.17.0) (2025-09-15)
+
+
+### Features
+
+* adjust mappings for SAMM Secure Build ([471c7fc](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/471c7fce17e02ef63675047a6620beaf5aa96d2c))
+
 # [1.16.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.15.3...v1.16.0) (2025-06-04)
 
 

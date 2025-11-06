@@ -7,7 +7,7 @@ To test changes to the yaml-files, please run:
 docker run -ti -v $(pwd)/src/assets/YAML/default:/var/www/html/src/assets/YAML/default -v $(pwd)/src/assets/YAML/generated:/var/www/html/src/assets/YAML/generated -v $(pwd)/src/assets/YAML/schema:/var/www/html/src/assets/YAML/schema wurstbrot/dsomm-yaml-generation
 
 # Afterwards, you can use the generated.yaml in a container
-docker  run -v $(pwd)/src/assets/YAML/generated/generated.yaml:/usr/share/nginx/html/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
+docker  run -v $(pwd)/src/assets/YAML/generated/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
 ```
 
 ## Credits

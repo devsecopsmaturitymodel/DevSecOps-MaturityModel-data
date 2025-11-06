@@ -16,7 +16,7 @@ Information Gathering:
         time: 1
         resources: 1
       usefulness: 5
-      level: 3
+      level: 2
       dependsOn:
         - Alerting
       implementation: []
@@ -177,7 +177,7 @@ Information Gathering:
         time: 3
         resources: 3
       usefulness: 4
-      level: 2
+      level: 3
       dependsOn:
         - Centralized system logging
         - Centralized application logging

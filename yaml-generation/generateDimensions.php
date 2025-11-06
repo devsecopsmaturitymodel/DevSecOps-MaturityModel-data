@@ -51,6 +51,8 @@ if (sizeof($files) > 0) {
     $dimensionsAggregated = $dimensions;
 }
 
+$dependencies = array();
+$activityIndex = array();
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     ksort($subdimensions);
     foreach ($subdimensions as $subdimension => $elements) {
@@ -68,7 +70,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 array_push($errorMsg,"Missing 'level' attribute in activity: $activityName");
 	        }
 	    
-            echo "$subdimension | $activityName\n";
+            // echo "$subdimension | $activityName\n";
             if (!array_key_exists("uuid", $activity)) {
                 array_push($errorMsg, "$activityName is missing an uuid in $dimension");
             } else {
@@ -147,6 +149,16 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                             array_push($errorMsg,"DependsOn non-existing activity: '$dependsOn' (in activity: $activityName)");
                         }
                     }
+
+                    // Build dependency graph
+                    if (!array_key_exists($activityName, $activityIndex)) {
+                        $activityIndex[$activityName] = count($activityIndex);
+                    }
+                    if (!array_key_exists($dependsOn, $activityIndex)) {
+                        $activityIndex[$dependsOn] = count($activityIndex);
+                    }
+                    array_push_item_to($dependencies, $activityIndex[$dependsOn], $activityIndex[$activityName]);
+
                 }
             }
         }
@@ -186,6 +198,48 @@ $dimensionsString = yaml_emit($dimensionsAggregated);
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $dimensionsString);
+
+
+// Store dependency graph
+$graphFilename = getcwd() . "/src/assets/YAML/generated/dependency-tree.md";
+$graphFile = fopen($graphFilename, "w");
+fwrite($graphFile, "```mermaid\n\n");
+fwrite($graphFile, "graph LR\n\n");
+// List all nodes
+foreach ($activityIndex as $activityName => $key) {
+    $level = getActivityByActivityName($activityName,  $dimensionsAggregated)["level"];
+    $activityName = "L$level $activityName";
+    $activityName = str_replace('(', '', $activityName);
+    $activityName = str_replace(')', '', $activityName);
+    fwrite($graphFile, "$key($activityName)\n");
+}
+// Add links between nodes
+fwrite($graphFile, "\n\n");
+foreach ($dependencies as $dad => $children) {
+    foreach ($children as $child) {
+        fwrite($graphFile, "$dad --> $child\n");
+    }
+}
+// Tie all orphans to a common start node
+fwrite($graphFile, "\n");
+foreach ($activityIndex as $activityName => $key) {
+    $isOrphan = true;
+    foreach ($dependencies as $dad => $children) {
+        if ($dad == $key) continue;
+        if (in_array($key, $children)) {
+            $isOrphan = false;
+            break;
+        }
+    }
+    if ($isOrphan) {
+        fwrite($graphFile, "O --> $key\n");
+    }
+}
+
+// Close the file
+fwrite($graphFile, "```\n");
+fclose($graphFile);
+echo "\nSaved dependency graph '$graphFilename'\n\n";
 
 
 
