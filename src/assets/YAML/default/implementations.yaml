@@ -482,7 +482,7 @@ implementations:
     tags: [vulnerability management system]
     url: https://github.com/SecObserve/SecObserve
     description: |
-      SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates easily into CI/CD pipelines.
+      SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
   sast:
     uuid: aaad322e-806e-4c51-b78d-6551f7dc376a
     name: SAST
