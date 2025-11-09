@@ -6531,9 +6531,9 @@ Test and Verification:
         name: SecObserve
         tags:
         - vulnerability management system
-        url: https://github.com/MaibornWolff/SecObserve
+        url: https://github.com/SecObserve/SecObserve
         description: |
-          The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
+          SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
       references:
         samm2:
         - I-DM-A-3
