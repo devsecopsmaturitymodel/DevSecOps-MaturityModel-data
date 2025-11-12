@@ -193,12 +193,33 @@ if (count($errorMsg) > 0) {
 }
 
 
-// Store generated data
+// Store generated data with meta document first
+$metaDocument = array(
+    'meta' => array(
+        'version' => '__VERSION_PLACEHOLDER__',
+        'released' => date('Y-m-d'),
+        'publisher' => 'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/'
+    )
+);
+
+$metaString = yaml_emit($metaDocument);
 $dimensionsString = yaml_emit($dimensionsAggregated);
+
+// Combine both documents with proper YAML document separators
+// Remove trailing ... from meta document and add proper separator
+$metaString = rtrim($metaString);
+if (substr($metaString, -3) === '...') {
+    $metaString = substr($metaString, 0, -3);
+}
+
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $dimensionsString);
 
+$combinedYaml = $metaString . $dimensionsString;
+$targetGeneratedFile = getcwd() . "/src/assets/YAML/activities.yaml";
+echo "\nStoring to $targetGeneratedFile\n";
+file_put_contents($targetGeneratedFile, $combinedYaml);
 
 // Store dependency graph
 $graphFilename = getcwd() . "/src/assets/YAML/generated/dependency-tree.md";

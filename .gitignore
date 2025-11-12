@@ -43,5 +43,11 @@ testem.log
 .DS_Store  
 Thumbs.db 
 /yaml-generation/vendor/
-# Generated YAML
+
+/src/assets/YAML/teams.yaml
+/src/assets/YAML/meta.yaml
+
+# Generated
 /src/assets/YAML/generated/generated.yaml
+/src/assets/YAML/activities.yaml
+src/assets/YAML/generated/dependency-tree.md
