@@ -182,7 +182,7 @@ Build and Deployment:
         A documented inventory of dependencies used in artifacts like container images and containers
         exists.
       dependsOn:
-        - uuid:83057028-0b77-4d2e-8135-40969768ae88 # Inventory of production artifacts
+        - 83057028-0b77-4d2e-8135-40969768ae88 # Inventory of production artifacts
         - SBOM of components
       difficultyOfImplementation:
         knowledge: 2
@@ -249,7 +249,7 @@ Build and Deployment:
       measure: A documented inventory of artifacts in production like container images exists (gathered manually or automatically).
       dependsOn:
         - Defined deployment process
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       difficultyOfImplementation:
         knowledge: 2
         time: 2

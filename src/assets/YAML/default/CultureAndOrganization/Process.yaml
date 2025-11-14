@@ -103,7 +103,7 @@ Culture and Organization:
       usefulness: 3
       level: 2
       dependsOn:
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
