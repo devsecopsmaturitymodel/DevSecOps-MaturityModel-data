@@ -4,16 +4,6 @@ require_once "functions.php";
 
 $errorMsg = array();
 $implementationReferenceFile = "src/assets/YAML/default/implementations.yaml";
-$metadata = readYaml("src/assets/YAML/meta.yaml");
-
-$teams = $metadata["teams"];
-if (sizeof($teams) == 0) {
-    echo "Warning: No teams defined";
-}
-$teamsImplemented = array();
-foreach ($teams as $team) {
-    $teamsImplemented[$team] = false;
-}
 
 $files = glob("src/assets/YAML/default/*/*.yaml");
 $dimensions = array();
@@ -89,29 +79,6 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
             if (!array_key_exists("tags", $activity)) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = ["none"];
             }
-            if (!array_key_exists("teamsImplemented", $activity)) {
-                $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] = array();
-            }
-            $evidenceImplemented = array();
-            if (array_key_exists("teamsEvidence", $activity) && is_array($activity["teamsEvidence"]) && IS_IMPLEMENTED_WHEN_EVIDENCE) {
-                foreach ($activity["teamsEvidence"] as $team => $evidenceForTeam) {
-                    if(!is_string($activity["teamsEvidence"][$team])) {
-                        echo "teamsEvidence for team $team in $activityName is not a string, ignoring";
-                        continue;
-                    }
-                    if (strlen($activity["teamsEvidence"][$team]) > 0) {
-                        $evidenceImplemented[$team] = true;
-                    } else {
-                        echo "Warning: '$activityName -> evidence -> $team' has no evidence set but should have";
-                    }
-                }
-            }
-            $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] =
-                array_merge(
-                    $teamsImplemented,
-                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"],
-                    $evidenceImplemented
-                );
             if (!array_key_exists("openCRE", $activity["references"])) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/" . $subdimension . "/" . $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
@@ -193,12 +160,33 @@ if (count($errorMsg) > 0) {
 }
 
 
-// Store generated data
+// Store generated data with meta document first
+$metaDocument = array(
+    'meta' => array(
+        'version' => '__VERSION_PLACEHOLDER__',
+        'released' => date('Y-m-d'),
+        'publisher' => 'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/'
+    )
+);
+
+$metaString = yaml_emit($metaDocument);
 $dimensionsString = yaml_emit($dimensionsAggregated);
+
+// Combine both documents with proper YAML document separators
+// Remove trailing ... from meta document and add proper separator
+$metaString = rtrim($metaString);
+if (substr($metaString, -3) === '...') {
+    $metaString = substr($metaString, 0, -3);
+}
+
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $dimensionsString);
 
+$combinedYaml = $metaString . $dimensionsString;
+$targetGeneratedFile = getcwd() . "/src/assets/YAML/activities.yaml";
+echo "\nStoring to $targetGeneratedFile\n";
+file_put_contents($targetGeneratedFile, $combinedYaml);
 
 // Store dependency graph
 $graphFilename = getcwd() . "/src/assets/YAML/generated/dependency-tree.md";

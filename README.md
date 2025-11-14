@@ -10,6 +10,12 @@ docker run -ti -v $(pwd)/src/assets/YAML/default:/var/www/html/src/assets/YAML/d
 docker  run -v $(pwd)/src/assets/YAML/generated/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
 ```
 
+## Development
+cd yaml-generation
+docker run --rm -v $(pwd):/app composer install
+cd ..
+docker run   -ti -v $(pwd)/yaml-generation:/var/www/html/yaml-generation  -v $(pwd)/src/assets/YAML/:/var/www/html/src/assets/YAML/ wurstbrot/dsomm-yaml-generation
+
 ## Credits
 
 * The dimension _Test and Verification_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
