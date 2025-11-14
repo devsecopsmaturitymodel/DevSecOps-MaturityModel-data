@@ -4,16 +4,6 @@ require_once "functions.php";
 
 $errorMsg = array();
 $implementationReferenceFile = "src/assets/YAML/default/implementations.yaml";
-$metadata = readYaml("src/assets/YAML/meta.yaml");
-
-$teams = $metadata["teams"];
-if (sizeof($teams) == 0) {
-    echo "Warning: No teams defined";
-}
-$teamsImplemented = array();
-foreach ($teams as $team) {
-    $teamsImplemented[$team] = false;
-}
 
 $files = glob("src/assets/YAML/default/*/*.yaml");
 $dimensions = array();
@@ -89,29 +79,6 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
             if (!array_key_exists("tags", $activity)) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = ["none"];
             }
-            if (!array_key_exists("teamsImplemented", $activity)) {
-                $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] = array();
-            }
-            $evidenceImplemented = array();
-            if (array_key_exists("teamsEvidence", $activity) && is_array($activity["teamsEvidence"]) && IS_IMPLEMENTED_WHEN_EVIDENCE) {
-                foreach ($activity["teamsEvidence"] as $team => $evidenceForTeam) {
-                    if(!is_string($activity["teamsEvidence"][$team])) {
-                        echo "teamsEvidence for team $team in $activityName is not a string, ignoring";
-                        continue;
-                    }
-                    if (strlen($activity["teamsEvidence"][$team]) > 0) {
-                        $evidenceImplemented[$team] = true;
-                    } else {
-                        echo "Warning: '$activityName -> evidence -> $team' has no evidence set but should have";
-                    }
-                }
-            }
-            $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] =
-                array_merge(
-                    $teamsImplemented,
-                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"],
-                    $evidenceImplemented
-                );
             if (!array_key_exists("openCRE", $activity["references"])) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/" . $subdimension . "/" . $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
