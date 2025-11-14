@@ -86,40 +86,40 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
             }
             if (array_key_exists("dependsOn", $activity)) {
-                foreach($activity['dependsOn'] as $index => $dependsOn) {
-                    if(!is_string($dependsOn)) {
-                        array_push($errorMsg, "The 'dependsOn' is not a string '" . json_encode($dependsOn) . "' (in $activityName)");
+                foreach($activity['dependsOn'] as $index => $dependsOnName) {
+                    if(!is_string($dependsOnName)) {
+                        array_push($errorMsg, "The 'dependsOn' is not a string '" . json_encode($dependsOnName) . "' (in $activityName)");
                         continue;
                     } 
 
-                    // Swap uuids with activity name
+                    // Load dependsOnName and dependsOnUuid, depending on actual content
                     $uuidRegExp = "/(uuid:)?\s*([0-9a-f]{6,}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{6,})/";
-                    if (preg_match($uuidRegExp, $dependsOn, $matches)) {
+                    if (preg_match($uuidRegExp, $dependsOnName, $matches)) {
                         $dependsOnUuid = $matches[2];
-                        $dependsOn = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
-                        if (is_null($dependsOn)) {
+                        $dependsOnName = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
+                        if (is_null($dependsOnName)) {
                             array_push($errorMsg,"DependsOn non-existing activity uuid: $dependsOnUuid  (in activity: '$activityName')");
                         } else if ($matches[1] != "") {
                             echo "WARNING: DependsOn is prefixed by deprecated 'uuid:' for $dependsOnUuid (in activity: '$activityName'). Use activity name, or the uuid only\n";
-                        } 
-                        
-                        // Trick emit_yaml() to have uuid plus a comment in a string. Removed in post-processing below.
-                        $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{ $dependsOnUuid  # $dependsOn }";
-                        
+                        }                         
                     } else {
-                        if (is_null(getUuidByActivityName($dependsOn, $dimensionsAggregated))) {
-                            array_push($errorMsg,"DependsOn non-existing activity: '$dependsOn' (in activity: $activityName)");
+                        $dependsOnUuid = getUuidByActivityName($dependsOnName, $dimensionsAggregated);
+                        if (is_null(getUuidByActivityName($dependsOnName, $dimensionsAggregated))) {
+                            array_push($errorMsg,"DependsOn non-existing activity: '$dependsOnName' (in activity: $activityName)");
                         }
                     }
+                    // Trick emit_yaml() to have uuid plus a comment in a string. Removed in post-processing below.
+                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{ $dependsOnUuid  # $dependsOnName }";
+                    
 
                     // Build dependency graph
                     if (!array_key_exists($activityName, $activityIndex)) {
                         $activityIndex[$activityName] = count($activityIndex);
                     }
-                    if (!array_key_exists($dependsOn, $activityIndex)) {
-                        $activityIndex[$dependsOn] = count($activityIndex);
+                    if (!array_key_exists($dependsOnName, $activityIndex)) {
+                        $activityIndex[$dependsOnName] = count($activityIndex);
                     }
-                    array_push_item_to($dependencies, $activityIndex[$dependsOn], $activityIndex[$activityName]);
+                    array_push_item_to($dependencies, $activityIndex[$dependsOnName], $activityIndex[$activityName]);
 
                 }
             }
