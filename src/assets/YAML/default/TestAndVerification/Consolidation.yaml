@@ -21,9 +21,9 @@ Test and Verification:
           - The number of network hops required to reach the asset (recommended)
           - Authentication requirements for access (recommended)
       dependsOn:
-        - uuid:44f2c8a9-4aaa-4c72-942d-63f78b89f385 # Treatment of defects with severity high or higher:
-        #- uuid:3260a15f-2df0-4173-8790-f11de2cb525a # Access applications accessibility TODO
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - 44f2c8a9-4aaa-4c72-942d-63f78b89f385 # Treatment of defects with severity high or higher:
+        #- 3260a15f-2df0-4173-8790-f11de2cb525a # Access applications accessibility TODO
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
       references:
         samm2:
@@ -372,9 +372,9 @@ Test and Verification:
         resources: 2
       usefulness: 2
       dependsOn:
-        - uuid:f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
-        - uuid:6217fe11-5ed7-4cf4-9de4-555bcfa6fe87 # Each team has a security champion
-        - uuid:185d5a74-19dc-4422-be07-44ea35226783 # Office Hours
+        - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
+        - 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87 # Each team has a security champion
+        - 185d5a74-19dc-4422-be07-44ea35226783 # Office Hours
       level: 3
       description: |-
         For known vulnerabilities a processes to estimate the exploit ability of a vulnerability is recommended.

@@ -68,7 +68,7 @@ Implementation:
       usefulness: 4
       level: 3
       dependsOn:
-        - uuid:e7598ac4-b082-4e56-b7df-e2c6b426a5e2 # Require a PR before merging
+        - e7598ac4-b082-4e56-b7df-e2c6b426a5e2 # Require a PR before merging
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/azuredevops
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-policies
@@ -150,7 +150,7 @@ Implementation:
       usefulness: 4
       level: 3
       dependsOn:
-        - uuid:e7598ac4-b082-4e56-b7df-e2c6b426a5e2
+        - e7598ac4-b082-4e56-b7df-e2c6b426a5e2
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/azuredevops
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-policies
@@ -182,7 +182,7 @@ Implementation:
       usefulness: 3
       level: 3
       dependsOn:
-        - uuid:e7598ac4-b082-4e56-b7df-e2c6b426a5e2
+        - e7598ac4-b082-4e56-b7df-e2c6b426a5e2
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/azuredevops
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-policies

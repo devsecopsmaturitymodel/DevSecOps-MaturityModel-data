@@ -142,7 +142,7 @@ Test and Verification:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/netassert
       dependsOn:
-        - uuid:4ce24abd-8ba6-494c-828d-4d193e28e4a1 # Isolated networks for virtual environments
+        - 4ce24abd-8ba6-494c-828d-4d193e28e4a1 # Isolated networks for virtual environments
       references:
         samm2:
           - V-ST-A-2
