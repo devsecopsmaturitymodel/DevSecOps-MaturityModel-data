@@ -54,9 +54,7 @@ To test all URLs referenced by `implementations.yaml` and save results to `url-t
 
 ### Using Podman instead of Docker
 
-If you prefer Podman over Docker, edit the script and set the `DOCKER` variable to `podman`. For example:
- - Linux: `DOCKER=podman` 
- - Windows: `set DOCKER=podman`
+If you prefer Podman over Docker, set the environement variable `DOCKER_CMD` to `podman`, or edit the script for you operating system.
 
 
 ## Credits
