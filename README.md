@@ -1,21 +1,74 @@
 # OWASP DevSecOps Maturity Model Data
-Data for the OWASP DevSecOps Maturity Model.
+
+This GitHub project ([DevSecOps-MaturityModel-data](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data)) contains the source for the model itself, used by the DSOMM applciation [DevSecOps-MaturityModel](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel). 
+
+The source files include dimensions, activities, descriptions, measures, and other model data used by the application.
+
+
+## Contribution
+
+Contributions that improve the DSOMM model are welcome. Please edit the source files under `src/assets/YAML/default/*` and open a pull request.
+
+
+### Testing
+
+After making changes, generate a new `activities.yaml` and use it in a local DSOMM application to verify there are no technical issues.
+
 
 ## Usage
-To test changes to the yaml-files, please run:
-```bash
-docker run -ti -v $(pwd)/src/assets/YAML/default:/var/www/html/src/assets/YAML/default -v $(pwd)/src/assets/YAML/generated:/var/www/html/src/assets/YAML/generated -v $(pwd)/src/assets/YAML/schema:/var/www/html/src/assets/YAML/schema wurstbrot/dsomm-yaml-generation
 
-# Afterwards, you can use the generated.yaml in a container
-docker  run -v $(pwd)/src/assets/YAML/generated/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
-```
+The script is executed using `docker` (or alternatively `podman`).
+Depending on your platform use either `generateDimensions.bash` (Linux) or `generateDimensions.bat` (Windows). 
+
+1. Clone the repo:
+
+   `git clone https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data.git`
+
+2. Change directory:
+
+   `cd yaml-generation`
+
+3. Install dependencies:
+
+   `./generateDimensions.bash --install`
+
+4. Generate `activities.yaml`:
+
+   `./generateDimensions.bash`
+
+
+
+### Starting a local DSOMM application
+
+To start a local DSOMM instance on http://localhost:8080, run:
+
+   `./generateDimensions.bash --start-dsomm`
+
+
+### Test referenced URLs
+
+To test all URLs referenced by `implementations.yaml` and save results to `url-test-results.txt`, run:
+
+   `./generateDimensions.bash --test-urls`
+
+
+### Using Podman instead of Docker
+
+If you prefer Podman over Docker, edit the script and set the `DOCKER` variable to `podman`. For example:
+ - Linux: `DOCKER=podman` 
+ - Windows: `set DOCKER=podman`
+
 
 ## Credits
 
-* The dimension _Test and Verification_ is based on Christian Schneiders [Security DevOps Maturity Model (SDOMM)](https://www.christian-schneider.net/SecurityDevOpsMaturityModel.html). _Application tests_ and _Infrastructure tests_ are added by Timo Pagel. Also, the sub-dimension _Static depth_ has been evaluated by security experts at [OWASP Stammtisch Hamburg](https://www.owasp.org/index.php/OWASP_German_Chapter_Stammtisch_Initiative/Hamburg).
-* The sub-dimension <i>Process</i> has been added after a discussion with [Francois Raynaud](https://www.linkedin.com/in/francoisraynaud/) that reactive activities are missing.
-* Enhancement of my basic translation is performed by [Claud Camerino](https://github.com/clazba).
-* Adding ISO 27001:2017 mapping, [Andre Baumeier](https://github.com/AndreBaumeier).
-* [OWASP Project Integration Project Writeup](https://github.com/OWASP/www-project-integration-standards/blob/master/writeups/owasp_in_sdlc/index.md) for providing documentation on different DevSecOps practices which are copied&pasted/ (and adopted) (https://github.com/northdpole, https://github.com/ThunderSon)
-* The requirements from [level 0](https://github.com/AppSecure-nrw/security-belts/blob/master/white/) are based on/copied from [AppSecure NRW](https://appsecure.nrw/)
-* The sub dimension _Test KPI_, _Triage_, _Dynamic depth for app/infra_, _Static depth for app/infra_ and some other vulnerability management activities are based/inspired by [Vulnerability Managment Maturity Model - Cheat Sheet V1.6](TODO FRANCESCO LINK)
+- The "Test and Verification" dimension is based on Christian Schneider's Security DevOps Maturity Model (SDOMM).
+- Application and infrastructure tests were added by Timo Pagel.
+- The "Process" sub-dimension was added after discussion with Francois Raynaud.
+- Translations and edits were contributed by Claud Camerino.
+- ISO 27001:2017 mapping by Andre Baumeier.
+- Other inspirations and contributions are acknowledged in the original README.
+
+
+## License
+
+See the `LICENSE` file in this repository for license details.
