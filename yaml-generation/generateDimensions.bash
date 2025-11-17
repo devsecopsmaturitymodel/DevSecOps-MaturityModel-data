@@ -1,6 +1,8 @@
 #!/bin/bash
 
 curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/refs/heads/master/src/assets/YAML/meta.yaml -o ../src/assets/YAML/meta.yaml
+docker run --rm -v $(pwd):/app composer install
+docker run -e IS_IMPLEMENTED_WHEN_EVIDENCE=true -ti --rm --volume ${PWD}/../:/app wurstbrot/dsomm-yaml-generation bash -c 'cd /app/ && php yaml-generation/generateDimensions.php'
 docker run -e IS_IMPLEMENTED_WHEN_EVIDENCE=true -ti --rm --volume ${PWD}/../:/app wurstbrot/dsomm-yaml-generation bash -c 'cd /app/ && php yaml-generation/generateDimensions.php'
 
 #docker run --rm --interactive --tty   --volume $PWD/:/app   --user $(id -u):$(id -g)   composer install \
