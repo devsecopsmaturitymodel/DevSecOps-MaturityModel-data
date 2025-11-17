@@ -14,11 +14,10 @@ if "%DOCKER_CMD%"=="" (
     set DOCKER_CMD=docker
 )
 
-if "%~1"=="--install" (
-    echo Installing composer dependencies...
-    %DOCKER_CMD% run -ti --rm --volume "%CD%:/app" wurstbrot/dsomm-yaml-generation bash -c "cd /app/yaml-generation && composer install --no-interaction --no-plugins --no-scripts --prefer-dist"
+echo Installing composer dependencies...
+%DOCKER_CMD% run -ti --rm --volume "%CD%:/app" wurstbrot/dsomm-yaml-generation bash -c "cd /app/yaml-generation && composer install --no-interaction --no-plugins --no-scripts --prefer-dist"
 
-) else if "%~1"=="--start-dsomm" (
+if "%~1"=="--start-dsomm" (
     echo Start local DSOMM application...
     %DOCKER_CMD% run -ti --rm --volume "%CD%/src/assets/YAML/generated/generated.yaml:/srv/assets/YAML/generated/generated.yaml" -p 8080:8080 wurstbrot/dsomm
 
