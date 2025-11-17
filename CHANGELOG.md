@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.18.0...v1.19.0) (2025-11-17)
+
+
+### Features
+
+* Improved start script ([18d6205](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/18d6205beb02b5c809b95dc15a76c9bcb803eb3d))
+
 # [1.18.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.17.0...v1.18.0) (2025-11-06)
 
 
