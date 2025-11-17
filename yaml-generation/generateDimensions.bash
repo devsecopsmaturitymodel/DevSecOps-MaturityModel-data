@@ -1,14 +1,32 @@
 #!/bin/bash
 
-curl https://raw.githubusercontent.com/devsecopsmaturitymodel/DevSecOps-MaturityModel/refs/heads/master/src/assets/YAML/meta.yaml -o ../src/assets/YAML/meta.yaml
-docker run -e IS_IMPLEMENTED_WHEN_EVIDENCE=true -ti --rm --volume ${PWD}/../:/app wurstbrot/dsomm-yaml-generation bash -c 'cd /app/ && php yaml-generation/generateDimensions.php'
+# Usage:
+#    ./generateDimensions.bash --install     First time, install composer dependencies
+#    ./generateDimensions.bash               Generate activities.yaml
+#    ./generateDimensions.bash --test-urls   Test URLs in implementations.yaml
 
-#docker run --rm --interactive --tty   --volume $PWD/:/app   --user $(id -u):$(id -g)   composer install \
-#    --ignore-platform-reqs \
-#    --no-interaction \
-#    --no-plugins \
-#    --no-scripts \
-#    --prefer-dist
-#
-#cd ..
-#docker run --rm --volume $PWD/:/app php:apache-buster bash -c 'apt-get update && apt-get -y dist-upgrade && apt-get -y install apt-utils libyaml-dev wget && pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml && cd /app/ && php yaml-generation/generateDimensions.php'
+cd "$(dirname "$0")"/..
+pwd 
+
+# Use: docker | podman
+if [ -z "${DOCKER_CMD}" ]; then
+    DOCKER_CMD=docker
+fi
+
+if [ "$1" = "--install" ]; then
+    echo Installing composer dependencies...
+    MSYS_NO_PATHCONV=1 $DOCKER_CMD run -ti --rm --volume ${PWD}:/app wurstbrot/dsomm-yaml-generation bash -c 'cd /app/yaml-generation && composer install --no-interaction --no-plugins --no-scripts --prefer-dist'
+
+elif [ "$1" = "--start-dsomm" ]; then
+    echo "Starting local DSOMM application..."
+    MSYS_NO_PATHCONV=1 $DOCKER_CMD run -ti --rm --volume $(pwd)/src/assets/YAML/generated/generated.yaml:/srv/assets/YAML/generated/generated.yaml -p 8080:8080 wurstbrot/dsomm
+
+elif [ "$1" = "--test-urls" ]; then
+    echo "Test URLs in implementations.yaml..."
+    MSYS_NO_PATHCONV=1 $DOCKER_CMD run -e TEST_REFERENCED_URLS=true -ti --rm --volume ${PWD}:/app wurstbrot/dsomm-yaml-generation bash -c 'cd /app/ && php yaml-generation/generateDimensions.php' | tee url-test-results.txt
+
+else
+    echo "Generating activities.yaml..."
+    MSYS_NO_PATHCONV=1 $DOCKER_CMD run -ti --rm --volume ${PWD}:/app wurstbrot/dsomm-yaml-generation bash -c 'cd /app/ && php yaml-generation/generateDimensions.php'
+
+fi
