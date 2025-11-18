@@ -1,3 +1,11 @@
+# [1.20.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.19.0...v1.20.0) (2025-11-18)
+
+
+### Features
+
+* adopt changes to bat file ([796e1d2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/796e1d27f682eb27b6de5c4b6c5969119caa5a2e))
+* install dep always ([0761ee3](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/0761ee35da67f843c68cbf413a04d365482ab879))
+
 # [1.19.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.18.0...v1.19.0) (2025-11-17)
 
 
