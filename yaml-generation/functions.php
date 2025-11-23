@@ -136,6 +136,21 @@ function getDimensions($filename = "data/generated/dimensions.yaml") {
     return $dimensions;
 }
 
+/**
+ * Sort activities by their 'level' attribute within each subdimension.
+ * The uasort() is stable, i.e. it will retain the original order, within each level.
+ */
+function sortActivitiesByLevel($dimensions) {
+    foreach ($dimensions as $dimension => $subdimensions) {
+        foreach ($subdimensions as $subdimension => $elements) {
+            uasort($elements, function($a, $b) {
+                return ($a['level'] ?? 0) <=> ($b['level'] ?? 0);
+            });
+            $dimensions[$dimension][$subdimension] = $elements;
+        }
+    }
+    return $dimensions;
+}   
 
 
 /**

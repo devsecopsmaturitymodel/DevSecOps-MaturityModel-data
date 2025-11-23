@@ -16,6 +16,7 @@ foreach ($files as $filename) {
     }
     $dimensions = array_merge_recursive($dimensions, $dimension);
 }
+$dimensions = sortActivitiesByLevel($dimensions);
 
 $files = glob("src/assets/YAML/custom/*/*.yaml");
 $dimensionsCustom = array();
