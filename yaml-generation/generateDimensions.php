@@ -57,12 +57,12 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
 
         foreach ($elements as $activityName => $activity) {
             if (!array_key_exists("level", $activity)) {
-                array_push($errorMsg,"Missing 'level' attribute in activity: $activityName");
+                array_push($errorMsg,"Missing 'level' attribute in activity: '$activityName'");
 	        }
 	    
             // echo "$subdimension | $activityName\n";
             if (!array_key_exists("uuid", $activity)) {
-                array_push($errorMsg, "$activityName is missing an uuid in $dimension");
+                array_push($errorMsg, "'$activityName' is missing an uuid in '$dimension'");
             } else {
                 $uuid = $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
                 $tmp_activityName = getActivityNameByUuid($uuid, $dimensionsAggregated);
@@ -91,40 +91,40 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
             }
             if (array_key_exists("dependsOn", $activity)) {
-                foreach($activity['dependsOn'] as $index => $dependsOn) {
-                    if(!is_string($dependsOn)) {
-                        array_push($errorMsg, "The 'dependsOn' is not a string '" . json_encode($dependsOn) . "' (in $activityName)");
+                foreach($activity['dependsOn'] as $index => $dependsOnName) {
+                    if(!is_string($dependsOnName)) {
+                        array_push($errorMsg, "The 'dependsOn' is not a string '" . json_encode($dependsOnName) . "' (in $activityName)");
                         continue;
                     } 
 
-                    // Swap uuids with activity name
+                    // Load dependsOnName and dependsOnUuid, depending on actual content
                     $uuidRegExp = "/(uuid:)?\s*([0-9a-f]{6,}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{6,})/";
-                    if (preg_match($uuidRegExp, $dependsOn, $matches)) {
+                    if (preg_match($uuidRegExp, $dependsOnName, $matches)) {
                         $dependsOnUuid = $matches[2];
-                        $dependsOn = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
-                        if (is_null($dependsOn)) {
-                            array_push($errorMsg,"DependsOn non-existing activity uuid: $dependsOnUuid  (in activity: $activityName)");
-                        } else if ($matches[1] == "") {
-                            echo "WARNING: DependsOn is not prefixed by 'uuid:' for $dependsOnUuid (in activity: $activityName)\n";
-                        } 
-                        
-                        // echo "exchanged $dependsOnUuid with name $dependsOnActivityName\n";
-                        $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOn;
-                        
+                        $dependsOnName = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
+                        if (is_null($dependsOnName)) {
+                            array_push($errorMsg,"DependsOn non-existing activity uuid: $dependsOnUuid  (in activity: '$activityName')");
+                        } else if ($matches[1] != "") {
+                            echo "WARNING: DependsOn is prefixed by deprecated 'uuid:' for $dependsOnUuid (in activity: '$activityName'). Use activity name, or the uuid only\n";
+                        }                         
                     } else {
-                        if (is_null(getUuidByActivityName($dependsOn, $dimensionsAggregated))) {
-                            array_push($errorMsg,"DependsOn non-existing activity: '$dependsOn' (in activity: $activityName)");
+                        $dependsOnUuid = getUuidByActivityName($dependsOnName, $dimensionsAggregated);
+                        if (is_null(getUuidByActivityName($dependsOnName, $dimensionsAggregated))) {
+                            array_push($errorMsg,"DependsOn non-existing activity: '$dependsOnName' (in activity: $activityName)");
                         }
                     }
+                    // Trick emit_yaml() to have uuid plus a comment in a string. Removed in post-processing below.
+                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{ $dependsOnUuid  # $dependsOnName }";
+                    
 
                     // Build dependency graph
                     if (!array_key_exists($activityName, $activityIndex)) {
                         $activityIndex[$activityName] = count($activityIndex);
                     }
-                    if (!array_key_exists($dependsOn, $activityIndex)) {
-                        $activityIndex[$dependsOn] = count($activityIndex);
+                    if (!array_key_exists($dependsOnName, $activityIndex)) {
+                        $activityIndex[$dependsOnName] = count($activityIndex);
                     }
-                    array_push_item_to($dependencies, $activityIndex[$dependsOn], $activityIndex[$activityName]);
+                    array_push_item_to($dependencies, $activityIndex[$dependsOnName], $activityIndex[$activityName]);
 
                 }
             }
@@ -178,6 +178,14 @@ $metaString = rtrim($metaString);
 if (substr($metaString, -3) === '...') {
     $metaString = substr($metaString, 0, -3);
 }
+
+// Post-process to convert quoted UUID comments to inline comments
+// Pattern: `- '{ uuid #comment }'` becomes: `- uuid #comment`
+$dimensionsString = preg_replace(
+    "/^(\s+- )'{\s*([0-9a-f-]+)\s+(#[^'}]*)\s*}'$/m",
+    "$1$2 $3",
+    $dimensionsString
+);
 
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
