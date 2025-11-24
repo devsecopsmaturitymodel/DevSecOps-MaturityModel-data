@@ -80,6 +80,11 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
             if (!array_key_exists("tags", $activity)) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = ["none"];
             }
+            if (!array_key_exists("openCRE", $activity["references"])) {
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
+                $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/" . $subdimension . "/" . $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
+            }
+            // can be removed in 2025
             if (array_key_exists("isImplemented", $activity)) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["isImplemented"]);
             }
@@ -156,8 +161,24 @@ if (count($errorMsg) > 0) {
 }
 
 
-// Store generated data
+// Store generated data with meta document first
+$metaDocument = array(
+    'meta' => array(
+        'version' => '__VERSION_PLACEHOLDER__',
+        'released' => date('Y-m-d'),
+        'publisher' => 'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/'
+    )
+);
+
+$metaString = yaml_emit($metaDocument);
 $dimensionsString = yaml_emit($dimensionsAggregated);
+
+// Combine both documents with proper YAML document separators
+// Remove trailing ... from meta document and add proper separator
+$metaString = rtrim($metaString);
+if (substr($metaString, -3) === '...') {
+    $metaString = substr($metaString, 0, -3);
+}
 
 // Post-process to convert quoted UUID comments to inline comments
 // Pattern: `- '{ uuid #comment }'` becomes: `- uuid #comment`
@@ -171,6 +192,10 @@ $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $dimensionsString);
 
+$combinedYaml = $metaString . $dimensionsString;
+$targetGeneratedFile = getcwd() . "/src/assets/YAML/activities.yaml";
+echo "\nStoring to $targetGeneratedFile\n";
+file_put_contents($targetGeneratedFile, $combinedYaml);
 
 // Store dependency graph
 $graphFilename = getcwd() . "/src/assets/YAML/generated/dependency-tree.md";

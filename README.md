@@ -57,6 +57,12 @@ To test all URLs referenced by `implementations.yaml` and save results to `url-t
 If you prefer Podman over Docker, set the environement variable `DOCKER_CMD` to `podman`, or edit the script for you operating system.
 
 
+## Development
+cd yaml-generation
+docker run --rm -v $(pwd):/app composer install
+cd ..
+docker run   -ti -v $(pwd)/yaml-generation:/var/www/html/yaml-generation  -v $(pwd)/src/assets/YAML/:/var/www/html/src/assets/YAML/ wurstbrot/dsomm-yaml-generation
+
 ## Credits
 
 - The "Test and Verification" dimension is based on Christian Schneider's Security DevOps Maturity Model (SDOMM).
