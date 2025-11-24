@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.20.0...v1.20.1) (2025-11-24)
+
+
+### Bug Fixes
+
+* Sort activities by level, within each sub-dimension ([e2aeba7](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/e2aeba77089d21f0e7c5ce5bf6612903efc1938f))
+
 # [1.20.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.19.0...v1.20.0) (2025-11-18)
 
 
