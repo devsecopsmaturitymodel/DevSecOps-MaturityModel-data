@@ -14,7 +14,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 define('NUMBER_LEVELS', 4);
-defineConstFromEnv("IS_IMPLEMENTED_WHEN_EVIDENCE");
 defineConstFromEnv("TEST_REFERENCED_URLS");
 
 
