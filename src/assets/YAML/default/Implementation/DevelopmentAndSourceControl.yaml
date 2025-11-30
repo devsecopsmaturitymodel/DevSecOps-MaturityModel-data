@@ -84,12 +84,17 @@ Implementation:
           - Peer review - four eyes principle is not explicitly required by ISO 27001
           - 5.3
           - 8.25
-    Versioning:
+    Version control:
       uuid: 066084c6-1135-4635-9cc5-9e75c7c5459f
-      risk: Deployment of untracked artifacts.
-      description: Use a version control system platform like Github, Gitlab, Bitbucket, gittea,... to version your code.
+      description: 
+        Use a _version control system_ like Github, Gitlab, Bitbucket, etc to version your source code.
+
+        Also known as _source control_, _revision control_, or _source code management_.
+      risk:
+        Without version control, it is challenging to track changes, collaborate effectively, and maintain a history of code modifications. 
+        Rollback to earlier versions is hard.
       measure: >-
-        Version artifacts in order to identify deployed features and issues.
+        Version your source code in order to identify deployed features and issues.
         This includes application and infrastructure code, jenkins configuration, container and virtual machine images definitions.
       difficultyOfImplementation:
         knowledge: 3
