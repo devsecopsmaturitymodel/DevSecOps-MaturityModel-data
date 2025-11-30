@@ -4,16 +4,6 @@ require_once "functions.php";
 
 $errorMsg = array();
 $implementationReferenceFile = "src/assets/YAML/default/implementations.yaml";
-$metadata = readYaml("src/assets/YAML/meta.yaml");
-
-$teams = $metadata["teams"];
-if (sizeof($teams) == 0) {
-    echo "Warning: No teams defined";
-}
-$teamsImplemented = array();
-foreach ($teams as $team) {
-    $teamsImplemented[$team] = false;
-}
 
 $files = glob("src/assets/YAML/default/*/*.yaml");
 $dimensions = array();
@@ -26,6 +16,7 @@ foreach ($files as $filename) {
     }
     $dimensions = array_merge_recursive($dimensions, $dimension);
 }
+$dimensions = sortActivitiesByLevel($dimensions);
 
 $files = glob("src/assets/YAML/custom/*/*.yaml");
 $dimensionsCustom = array();
@@ -51,6 +42,8 @@ if (sizeof($files) > 0) {
     $dimensionsAggregated = $dimensions;
 }
 
+$dependencies = array();
+$activityIndex = array();
 foreach ($dimensionsAggregated as $dimension => $subdimensions) {
     ksort($subdimensions);
     foreach ($subdimensions as $subdimension => $elements) {
@@ -65,12 +58,12 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
 
         foreach ($elements as $activityName => $activity) {
             if (!array_key_exists("level", $activity)) {
-                array_push($errorMsg,"Missing 'level' attribute in activity: $activityName");
+                array_push($errorMsg,"Missing 'level' attribute in activity: '$activityName'");
 	        }
 	    
-            echo "$subdimension | $activityName\n";
+            // echo "$subdimension | $activityName\n";
             if (!array_key_exists("uuid", $activity)) {
-                array_push($errorMsg, "$activityName is missing an uuid in $dimension");
+                array_push($errorMsg, "'$activityName' is missing an uuid in '$dimension'");
             } else {
                 $uuid = $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
                 $tmp_activityName = getActivityNameByUuid($uuid, $dimensionsAggregated);
@@ -87,34 +80,6 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
             if (!array_key_exists("tags", $activity)) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["tags"] = ["none"];
             }
-            if (!array_key_exists("teamsImplemented", $activity)) {
-                $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] = array();
-            }
-            $evidenceImplemented = array();
-            if (array_key_exists("teamsEvidence", $activity) && is_array($activity["teamsEvidence"]) && IS_IMPLEMENTED_WHEN_EVIDENCE) {
-                foreach ($activity["teamsEvidence"] as $team => $evidenceForTeam) {
-                    if(!is_string($activity["teamsEvidence"][$team])) {
-                        echo "teamsEvidence for team $team in $activityName is not a string, ignoring";
-                        continue;
-                    }
-                    if (strlen($activity["teamsEvidence"][$team]) > 0) {
-                        $evidenceImplemented[$team] = true;
-                    } else {
-                        echo "Warning: '$activityName -> evidence -> $team' has no evidence set but should have";
-                    }
-                }
-            }
-            $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"] =
-                array_merge(
-                    $teamsImplemented,
-                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["teamsImplemented"],
-                    $evidenceImplemented
-                );
-            if (!array_key_exists("openCRE", $activity["references"])) {
-                $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
-                $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/" . $subdimension . "/" . $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
-            }
-            // can be removed in 2025
             if (array_key_exists("isImplemented", $activity)) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["isImplemented"]);
             }
@@ -122,31 +87,41 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
             }
             if (array_key_exists("dependsOn", $activity)) {
-                foreach($activity['dependsOn'] as $index => $dependsOn) {
-                    if(!is_string($dependsOn)) {
-                        array_push($errorMsg, "The 'dependsOn' is not a string '" . json_encode($dependsOn) . "' (in $activityName)");
+                foreach($activity['dependsOn'] as $index => $dependsOnName) {
+                    if(!is_string($dependsOnName)) {
+                        array_push($errorMsg, "The 'dependsOn' is not a string '" . json_encode($dependsOnName) . "' (in $activityName)");
                         continue;
                     } 
 
-                    // Swap uuids with activity name
+                    // Load dependsOnName and dependsOnUuid, depending on actual content
                     $uuidRegExp = "/(uuid:)?\s*([0-9a-f]{6,}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{6,})/";
-                    if (preg_match($uuidRegExp, $dependsOn, $matches)) {
+                    if (preg_match($uuidRegExp, $dependsOnName, $matches)) {
                         $dependsOnUuid = $matches[2];
-                        $dependsOn = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
-                        if (is_null($dependsOn)) {
-                            array_push($errorMsg,"DependsOn non-existing activity uuid: $dependsOnUuid  (in activity: $activityName)");
-                        } else if ($matches[1] == "") {
-                            echo "WARNING: DependsOn is not prefixed by 'uuid:' for $dependsOnUuid (in activity: $activityName)\n";
-                        } 
-                        
-                        // echo "exchanged $dependsOnUuid with name $dependsOnActivityName\n";
-                        $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = $dependsOn;
-                        
+                        $dependsOnName = getActivityNameByUuid($dependsOnUuid, $dimensionsAggregated);
+                        if (is_null($dependsOnName)) {
+                            array_push($errorMsg,"DependsOn non-existing activity uuid: $dependsOnUuid  (in activity: '$activityName')");
+                        } else if ($matches[1] != "") {
+                            echo "WARNING: DependsOn is prefixed by deprecated 'uuid:' for $dependsOnUuid (in activity: '$activityName'). Use activity name, or the uuid only\n";
+                        }                         
                     } else {
-                        if (is_null(getUuidByActivityName($dependsOn, $dimensionsAggregated))) {
-                            array_push($errorMsg,"DependsOn non-existing activity: '$dependsOn' (in activity: $activityName)");
+                        $dependsOnUuid = getUuidByActivityName($dependsOnName, $dimensionsAggregated);
+                        if (is_null(getUuidByActivityName($dependsOnName, $dimensionsAggregated))) {
+                            array_push($errorMsg,"DependsOn non-existing activity: '$dependsOnName' (in activity: $activityName)");
                         }
                     }
+                    // Trick emit_yaml() to have uuid plus a comment in a string. Removed in post-processing below.
+                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{!$dependsOnUuid!}";
+                    
+
+                    // Build dependency graph
+                    if (!array_key_exists($activityName, $activityIndex)) {
+                        $activityIndex[$activityName] = count($activityIndex);
+                    }
+                    if (!array_key_exists($dependsOnName, $activityIndex)) {
+                        $activityIndex[$dependsOnName] = count($activityIndex);
+                    }
+                    array_push_item_to($dependencies, $activityIndex[$dependsOnName], $activityIndex[$activityName]);
+
                 }
             }
         }
@@ -181,11 +156,62 @@ if (count($errorMsg) > 0) {
 }
 
 
-// Store generated data
+// Post-process to add activity name as comment for `dependsOn`
 $dimensionsString = yaml_emit($dimensionsAggregated);
+preg_match_all('/\{!([0-9a-z-]{30,})!\}/', $dimensionsString, $matches);
+$uuids = array_unique($matches[1]);
+foreach ($uuids as $uuid) {
+    $name = getActivityNameByUuid($uuid, $dimensionsAggregated);
+    // echo "Adding dependsOn-comment for $uuid: $name\n";
+    $dimensionsString = str_replace("'{!$uuid!}'", "$uuid # $name", $dimensionsString);
+}
+
+// Store generated data
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $dimensionsString);
+
+
+// Store dependency graph
+$graphFilename = getcwd() . "/src/assets/YAML/generated/dependency-tree.md";
+$graphFile = fopen($graphFilename, "w");
+fwrite($graphFile, "```mermaid\n\n");
+fwrite($graphFile, "graph LR\n\n");
+// List all nodes
+foreach ($activityIndex as $activityName => $key) {
+    $level = getActivityByActivityName($activityName,  $dimensionsAggregated)["level"];
+    $activityName = "L$level $activityName";
+    $activityName = str_replace('(', '', $activityName);
+    $activityName = str_replace(')', '', $activityName);
+    fwrite($graphFile, "$key($activityName)\n");
+}
+// Add links between nodes
+fwrite($graphFile, "\n\n");
+foreach ($dependencies as $dad => $children) {
+    foreach ($children as $child) {
+        fwrite($graphFile, "$dad --> $child\n");
+    }
+}
+// Tie all orphans to a common start node
+fwrite($graphFile, "\n");
+foreach ($activityIndex as $activityName => $key) {
+    $isOrphan = true;
+    foreach ($dependencies as $dad => $children) {
+        if ($dad == $key) continue;
+        if (in_array($key, $children)) {
+            $isOrphan = false;
+            break;
+        }
+    }
+    if ($isOrphan) {
+        fwrite($graphFile, "O --> $key\n");
+    }
+}
+
+// Close the file
+fwrite($graphFile, "```\n");
+fclose($graphFile);
+echo "\nSaved dependency graph '$graphFilename'\n\n";
 
 
 

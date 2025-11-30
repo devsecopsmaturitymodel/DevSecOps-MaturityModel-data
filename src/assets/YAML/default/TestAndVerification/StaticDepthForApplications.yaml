@@ -18,7 +18,7 @@ Test and Verification:
         - Defined build process
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - Not explicitly covered by ISO 27001 - too specific
           - 14.2.1
@@ -121,7 +121,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pre-commit-synopsis
       references:
         samm2:
-          - V-ST-1-A
+          - V-ST-A-1
         iso27001-2017:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 13.1.3
@@ -149,7 +149,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-oas-checker
       references:
         samm2:
-          - V-ST-1-A
+          - V-ST-A-1
         iso27001-2017:
           - 14.2.1
           - 14.2.5
@@ -159,7 +159,7 @@ Test and Verification:
           - 8.28 # Secure coding
       isImplemented: false
       dependsOn:
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
     Static analysis for all components/libraries:
       uuid: f4ff841d-3b2a-45d9-853e-5ec7ecbcb054
       risk: Used components like libraries and legacy applications might have vulnerabilities
@@ -173,12 +173,12 @@ Test and Verification:
       dependsOn:
         - Static analysis for important client side components
         - Static analysis for important server side components
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation: []
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-3-B
+          - V-ST-A-2
+          - I-SB-B-3
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -209,11 +209,11 @@ Test and Verification:
       dependsOn:
         - Static analysis for important client side components
         - Static analysis for important server side components
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-3-B
+          - V-ST-A-2
+          - I-SB-B-3
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -244,10 +244,10 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       dependsOn:
         - Defined build process
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -277,11 +277,11 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       dependsOn:
         - Defined build process
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-3-B
+          - V-ST-A-2
+          - I-SB-B-3
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -308,7 +308,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-super-linter
       references:
         samm2:
-          - V-ST-2-A
+          - V-ST-A-2
         iso27001-2017:
           - 12.6.1
           - 14.2.1
@@ -324,7 +324,8 @@ Test and Verification:
       uuid: f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
       risk: |-
         Without proper prioritization, organizations may waste time and effort on low-risk vulnerabilities while neglecting critical ones.
-      measure: Estimate the likelihood of exploitation by using data (CISA KEV) from the past or prediction models (EPSS).
+      measure: Estimate the likelihood of exploitation by using data (CISA KEV) from the past or prediction models (e.g. Exploit Prediction Scoring System, EPSS).
+      description: Severity-based vulnerability triage alone generates a lot false positives, requiring a more refined approach.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -332,14 +333,14 @@ Test and Verification:
       usefulness: 4
       level: 3
       dependsOn:
-        - uuid:d918cd44-a972-43e9-a974-eff3f4a5dcfe # SCA for server
+        - d918cd44-a972-43e9-a974-eff3f4a5dcfe # SCA for server
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cisa-kev
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/epss
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-3-B
+          - V-ST-A-2
+          - I-SB-B-3
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -356,8 +357,8 @@ Test and Verification:
       level: 3
       dependsOn:
         - Defined build process
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
-        - uuid:f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/retire-js
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/npm-audit
@@ -365,8 +366,8 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-dependabot
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-2-B
+          - V-ST-A-2
+          - I-SB-B-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -389,7 +390,7 @@ Test and Verification:
       level: 2
       dependsOn:
         - Defined build process
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-dependency-che
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
@@ -399,8 +400,8 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
       references:
         samm2:
-          - V-ST-2-A
-          - I-SB-2-B
+          - V-ST-A-2
+          - I-SB-B-2
         iso27001-2017:
           - 12.6.1
         iso27001-2022:
@@ -426,7 +427,7 @@ Test and Verification:
       implementation: []
       references:
         samm2:
-          - V-ST-3-A
+          - V-ST-A-3
         iso27001-2017:
           - 12.6.1
           - 14.2.1

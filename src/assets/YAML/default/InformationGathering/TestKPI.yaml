@@ -23,8 +23,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-          - I-DM-3-B
-          - I-SB-3-B
+          - I-DM-B-2
         iso27001-2022:
           - 5.25
           - 5.12
@@ -64,8 +63,7 @@ Information Gathering:
       implementation: []
       references:
         samm2:
-          - I-DM-3-B
-          - I-SB-3-B
+          - I-DM-B-2
         iso27001-2022:
           - 5.25
           - 5.12
@@ -92,11 +90,11 @@ Information Gathering:
       usefulness: 3
       level: 2
       dependsOn:
-        - uuid:8ae0b92c-10e0-4602-ba22-7524d6aed488 #Automated PRs for patches
+        - 8ae0b92c-10e0-4602-ba22-7524d6aed488 #Automated PRs for patches
       implementation: []
       references:
         samm2:
-          - I-DM-3-B
+          - I-DM-B-2
         iso27001-2022:
           - 5.25
           - 5.12
@@ -129,8 +127,7 @@ Information Gathering:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:
         samm2:
-          - I-DM-3-B
-          - I-SB-3-B
+          - I-DM-B-2
         iso27001-2022:
           - 5.25
           - 5.12
@@ -154,12 +151,12 @@ Information Gathering:
       usefulness: 3
       level: 4
       dependsOn:
-        - uuid:86d490b9-d798-4a5b-a011-ab9688014c46 # Patching mean time to resolution via PR
-        - uuid:8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
+        - 86d490b9-d798-4a5b-a011-ab9688014c46 # Patching mean time to resolution via PR
+        - 8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
       implementation: []
       references:
         samm2:
-          - I-DM-3-B
+          - I-DM-B-2
         iso27001-2017:
           - 16.1.4
         iso27001-2022:
@@ -187,8 +184,8 @@ Information Gathering:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:
         samm2:
-          - I-DM-2-B
-          - I-SB-3-B
+          - I-DM-B-2
+          - I-SB-B-3
         iso27001-2017:
           - 16.1.4
           - 8.2.3
@@ -221,8 +218,7 @@ Information Gathering:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:
         samm2:
-          - I-DM-3-B
-          - I-SB-3-B
+          - I-DM-B-2
         iso27001-2022:
           - 5.25
           - 5.12
