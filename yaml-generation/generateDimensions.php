@@ -16,6 +16,7 @@ foreach ($files as $filename) {
     }
     $dimensions = array_merge_recursive($dimensions, $dimension);
 }
+$dimensions = sortActivitiesByLevel($dimensions);
 
 $files = glob("src/assets/YAML/custom/*/*.yaml");
 $dimensionsCustom = array();
@@ -114,7 +115,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                         }
                     }
                     // Trick emit_yaml() to have uuid plus a comment in a string. Removed in post-processing below.
-                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{ $dependsOnUuid  # $dependsOnName }";
+                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{!$dependsOnUuid!}";
                     
 
                     // Build dependency graph
@@ -160,6 +161,17 @@ if (count($errorMsg) > 0) {
 }
 
 
+
+// Post-process to add activity name as comment for `dependsOn`
+$dimensionsString = yaml_emit($dimensionsAggregated);
+preg_match_all('/\{!([0-9a-z-]{30,})!\}/', $dimensionsString, $matches);
+$uuids = array_unique($matches[1]);
+foreach ($uuids as $uuid) {
+    $name = getActivityNameByUuid($uuid, $dimensionsAggregated);
+    // echo "Adding dependsOn-comment for $uuid: $name\n";
+    $dimensionsString = str_replace("'{!$uuid!}'", "$uuid # $name", $dimensionsString);
+}
+
 // Store generated data with meta document first
 $metaDocument = array(
     'meta' => array(
@@ -168,30 +180,17 @@ $metaDocument = array(
         'publisher' => 'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/'
     )
 );
-
 $metaString = yaml_emit($metaDocument);
-$dimensionsString = yaml_emit($dimensionsAggregated);
 
 // Combine both documents with proper YAML document separators
-// Remove trailing ... from meta document and add proper separator
-$metaString = rtrim($metaString);
-if (substr($metaString, -3) === '...') {
-    $metaString = substr($metaString, 0, -3);
+if (substr(rtrim($metaString), -3) === '...') {
+    // Remove trailing ... from meta document and add proper separator
+    $metaString = substr(rtrim($metaString), 0, -3);
 }
-
-// Post-process to convert quoted UUID comments to inline comments
-// Pattern: `- '{ uuid #comment }'` becomes: `- uuid #comment`
-$dimensionsString = preg_replace(
-    "/^(\s+- )'{\s*([0-9a-f-]+)\s+(#[^'}]*)\s*}'$/m",
-    "$1$2 $3",
-    $dimensionsString
-);
-
-$targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
-echo "\nStoring to $targetGeneratedFile\n";
-file_put_contents($targetGeneratedFile, $dimensionsString);
-
 $combinedYaml = $metaString . $dimensionsString;
+
+
+// Store generated data
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/activities.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $combinedYaml);
