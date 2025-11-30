@@ -322,16 +322,21 @@ Test and Verification:
       comments: ""
     Exploit likelihood estimation:
       uuid: f2f0f274-c1a0-4501-92fe-7fc4452bc8ad
-      risk: |-
+      description: |
+        Severity-based vulnerability triage alone generates a lot false positives, requiring a more refined approach.
+        
+        Use the likelihood of exploitation by using *known exploited vulnerabilities* (CISA KEV), or prediction models such as 
+        *Exploit Prediction Scoring System* (EPSS).
+      risk: |
         Without proper prioritization, organizations may waste time and effort on low-risk vulnerabilities while neglecting critical ones.
-      measure: Estimate the likelihood of exploitation by using data (CISA KEV) from the past or prediction models (e.g. Exploit Prediction Scoring System, EPSS).
-      description: Severity-based vulnerability triage alone generates a lot false positives, requiring a more refined approach.
+      measure: |
+        Use CISA KEV and EPSS to prioritize vulnerabilities that are more likely to be exploited.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
       usefulness: 4
-      level: 3
+      level: 2
       dependsOn:
         - d918cd44-a972-43e9-a974-eff3f4a5dcfe # SCA for server
       implementation:

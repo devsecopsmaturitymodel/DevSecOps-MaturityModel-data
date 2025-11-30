@@ -366,10 +366,9 @@ Information Gathering:
       risk: |
         Without monitoring system metrics, it is difficult to detect incidents or performance issues, leading to delayed response, reduced availability, and increased risk of undetected attacks.
       measure: |
-        Collect and monitor key system metrics, including CPU, memory, and disk usage. Set up alerts for abnormal resource consumption or patterns that may indicate incidents or attacks.
+        Collect and monitor key system metrics, including CPU, memory, and disk usage.
       assessment: |
         - Basic system metrics are monitored and reviewed regularly
-        - Alerting outside given thresholds are implemented
       level: 1
       difficultyOfImplementation:
         knowledge: 2

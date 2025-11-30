@@ -420,7 +420,8 @@ Culture and Organization:
       measure: |
         Make security consulting available to teams on request, ensuring that expert advice is accessible when needed to address security concerns during development.
       assessment: |
-        Records show that teams have access to security consulting services and have used them when needed. Documentation of consultations and resulting actions is available for review.
+        - Show evidence that an it security expert is available for questions at least quarterly.
+        - Documentation of consultations and resulting actions is available for review.
       difficultyOfImplementation:
         knowledge: 3
         time: 1

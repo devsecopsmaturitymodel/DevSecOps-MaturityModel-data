@@ -138,13 +138,13 @@ Test and Verification:
     Simple false positive treatment:
       uuid: c1acc8af-312e-4503-a817-a26220c993a0
       description: |
-        Security tests may produce false positives—findings that are incorrectly identified as vulnerabilities.
+        Security tests may produce false positives (or _"false alarms"_), findings that are incorrectly identified as vulnerabilities.
 
-        It is important distinguish these from true vulnerabilities to avoid wasting time and resources on non-issues.
+        It is important distinguish these from true positive vulnerabilities to avoid wasting time and resources on non-issues.
 
         False positive treatment ensures that findings from security tests are triaged and documented, allowing teams to distinguish between real vulnerabilities and false positives. This reduces unnecessary work and helps maintain focus on true risks.
 
-        Some positive findings might be considered an accepted risk by the organization. This must also be documented.
+        Some positive findings might be considered an _accepted risk_ by the organization. This must also be documented.
       risk: |
         If false positives are not managed, teams may ignore all findings, leading to real vulnerabilities being overlooked and increasing the risk of exploitation. Specially, if tests are automated an run daily.
       measure: |
@@ -278,18 +278,17 @@ Test and Verification:
           - 5.25
       tags: ["vuln-action", "defect-management"]
       comments: ""
-    Treatment of defects with severity high or higher:
+    Treatment of defects with high or critical severity:
       uuid: 44f2c8a9-4aaa-4c72-942d-63f78b89f385
       description: |
         All security problems that are rated as "high" or "critical" must be fixed before the software can be released or used in production. This means that if a serious vulnerability is found, it cannot be ignored or postponed.
       risk: |
         If serious security problems are not fixed, attackers could exploit them to steal data, disrupt services, or cause other harm. Ignoring these issues puts the organization, its customers, and its reputation at risk.
       measure: |
-        - Make it a rule that all high or critical security findings must be fixed before the software is approved for release or use.
+        - Make it a rule that all _high_ or _critical_ security findings must be fixed before the software is approved for release or use.
         - Track these issues and make sure they are resolved quickly.
-        - Pay extra attention to Known Exploited Vulnerabilities (KEV) from CISA and EPSS scores when prioritizing fixes.
       assessment: |
-        There is clear evidence that all high or critical security issues are tracked and fixed before release. No high or critical issues remain open in production systems.
+        - Provide evidence that vulnerabilities are treated within the defined time frame in production. For example via the DSOMM activity [Number of vulnerabilities/severity](./activity-description?uuid=bc548cba-cb82-4f76-bd4b-325d9d256279) or [Patching mean time to resolution via PR](./activity-description?uuid=86d490b9-d798-4a5b-a011-ab9688014c46) with extra deployment statistics.
       comments: False positive analysis, specially for static analysis, is time consuming.
       level: 1
       difficultyOfImplementation:
@@ -307,12 +306,11 @@ Test and Verification:
           - 8.8
           - 5.25
       implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/cisa-kev
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/grype
       tags: ["vuln-action", "defect-management"]
       evidence: ""
-    Treatment of defects with severity middle:
+    Treatment of defects with medium severity:
       uuid: 9cac3341-fe83-4079-bef2-bfc4279eb594
       risk: Vulnerabilities with severity middle are not visible.
       measure: Vulnerabilities with severity middle are added to the quality gate.

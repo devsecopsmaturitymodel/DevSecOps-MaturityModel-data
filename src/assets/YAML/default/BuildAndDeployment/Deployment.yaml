@@ -70,14 +70,15 @@ Build and Deployment:
     Defined deployment process:
       uuid: 74938a3f-1269-49b9-9d0f-c43a79a1985a
       description: |
-        A defined deployment process is a documented and automated set of steps for releasing software into production. It ensures that deployments are consistent, secure, and auditable, reducing the risk of errors and unauthorized changes. This process should include validation, approval, and rollback mechanisms.
+        A defined deployment process is a documented and automated set of steps for releasing software into production. It ensures that deployments are consistent, secure, and auditable, reducing the risk of errors and unauthorized changes.
       risk: >-
         Deployment based human routines are error prone, and of insecure or malfunctioning artifacts.
       measure: >-
-        Defining a deployment process ensures that there are
-        established criteria in terms of functionalities,
-        security, compliance, and performance,
-        and that the artifacts meet them.
+        Defining a deployment process ensures that there are established criteria in terms of functionalities, security, compliance, and performance, and that the artifacts meet them.
+      assessment: |
+        - Deployment process is documented and available to relevant staff
+        - All deployment steps are automated
+        - Provide audit logs or evidence of deployments
       level: 1
       difficultyOfImplementation:
         knowledge: 2
@@ -98,11 +99,6 @@ Build and Deployment:
         iso27001-2022:
           - 5.37
           - 8.32
-      assessment: |
-        - Deployment process is documented and available to relevant staff
-        - All deployment steps are automated
-        - Rollback procedures are defined and tested [Keep??? Delete???]
-        - Provide audit logs or evidence of deployments
       isImplemented: false
       evidence: ""
       comments: ""
