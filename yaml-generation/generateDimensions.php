@@ -110,7 +110,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                         }
                     }
                     // Trick emit_yaml() to have uuid plus a comment in a string. Removed in post-processing below.
-                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{ $dependsOnUuid  # $dependsOnName }";
+                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{!$dependsOnUuid!}";
                     
 
                     // Build dependency graph
@@ -156,17 +156,17 @@ if (count($errorMsg) > 0) {
 }
 
 
-// Store generated data
+// Post-process to add activity name as comment for `dependsOn`
 $dimensionsString = yaml_emit($dimensionsAggregated);
+preg_match_all('/\{!([0-9a-z-]{30,})!\}/', $dimensionsString, $matches);
+$uuids = array_unique($matches[1]);
+foreach ($uuids as $uuid) {
+    $name = getActivityNameByUuid($uuid, $dimensionsAggregated);
+    // echo "Adding dependsOn-comment for $uuid: $name\n";
+    $dimensionsString = str_replace("'{!$uuid!}'", "$uuid # $name", $dimensionsString);
+}
 
-// Post-process to convert quoted UUID comments to inline comments
-// Pattern: `- '{ uuid #comment }'` becomes: `- uuid #comment`
-$dimensionsString = preg_replace(
-    "/^(\s+- )'{\s*([0-9a-f-]+)\s+(#[^'}]*)\s*}'$/m",
-    "$1$2 $3",
-    $dimensionsString
-);
-
+// Store generated data
 $targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
 echo "\nStoring to $targetGeneratedFile\n";
 file_put_contents($targetGeneratedFile, $dimensionsString);
