@@ -44,10 +44,9 @@ testem.log
 Thumbs.db 
 /yaml-generation/vendor/
 
-/src/assets/YAML/teams.yaml
-/src/assets/YAML/meta.yaml
 
 # Generated
 /src/assets/YAML/generated/generated.yaml
-/src/assets/YAML/activities.yaml
-src/assets/YAML/generated/dependency-tree.md
+/generated/model.yaml
+dependency-tree.md
+url-test-results.txt

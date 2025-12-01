@@ -53,12 +53,11 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }},wurstbrot/dsomm-yaml-generation:latest
-      - name: Extract generated.yaml and activities.yaml
+      - name: Extract generated files from docker image
         run: |
           docker run -d --name=yaml --entrypoint="/bin/sleep" wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }} 60 
-          docker cp yaml:/var/www/html/src/assets/YAML/generated/generated.yaml src/assets/YAML/generated/generated.yaml # TODO: Remove
-          docker cp yaml:/var/www/html/src/assets/YAML/activities.yaml src/assets/YAML/activities.yaml
-          
+          docker cp yaml:/var/www/html/generated/model.yaml generated/model.yaml 
+          docker cp yaml:/var/www/html/generated/dependency-tree.md generated/dependency-tree.md           
       - name: Replace version placeholder in activities.yaml
         run: |
           sed -i "s/__VERSION_PLACEHOLDER__/${{ steps.get-version.outputs.version }}/g" src/assets/YAML/activities.yaml

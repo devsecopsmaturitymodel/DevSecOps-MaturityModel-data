@@ -3,21 +3,25 @@
 require_once "functions.php";
 
 $errorMsg = array();
-$implementationReferenceFile = "src/assets/YAML/default/implementations.yaml";
+$targetFolder = "generated";
+$inputFolder = "src/assets/YAML";
+$implementationReferenceFile = "$inputFolder/default/implementations.yaml";
 
-$files = glob("src/assets/YAML/default/*/*.yaml");
+$files = glob("$inputFolder/default/*/*.yaml");
 $dimensions = array();
 foreach ($files as $filename) {
     echo "Reading $filename\n";
     if (preg_match("/_meta.yaml/", $filename)) continue;
+
     $dimension = getDimensions($filename);
     if (array_key_exists("_yaml_references", $dimension)) {
         unset($dimension['_yaml_references']);
     }
     $dimensions = array_merge_recursive($dimensions, $dimension);
 }
+$dimensions = sortActivitiesByLevel($dimensions);
 
-$files = glob("src/assets/YAML/custom/*/*.yaml");
+$files = glob("$inputFolder/custom/*/*.yaml");
 $dimensionsCustom = array();
 $dimensionsAggregated = array();
 foreach ($files as $filename) {
@@ -83,13 +87,6 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"] = array();
                 $dimensionsAggregated[$dimension][$subdimension][$activityName]["references"]["openCRE"][] = "https://www.opencre.org/rest/v1/standard/DevSecOps+Maturity+Model+(DSOMM)/" . $subdimension . "/" . $dimensionsAggregated[$dimension][$subdimension][$activityName]["uuid"];
             }
-            // can be removed in 2025
-            if (array_key_exists("isImplemented", $activity)) {
-                unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["isImplemented"]);
-            }
-            if (array_key_exists("evidence", $activity)) {
-                unset($dimensionsAggregated[$dimension][$subdimension][$activityName]["evidence"]);
-            }
             if (array_key_exists("dependsOn", $activity)) {
                 foreach($activity['dependsOn'] as $index => $dependsOnName) {
                     if(!is_string($dependsOnName)) {
@@ -114,7 +111,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                         }
                     }
                     // Trick emit_yaml() to have uuid plus a comment in a string. Removed in post-processing below.
-                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{ $dependsOnUuid  # $dependsOnName }";
+                    $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{!$dependsOnUuid!}";
                     
 
                     // Build dependency graph
@@ -160,6 +157,17 @@ if (count($errorMsg) > 0) {
 }
 
 
+
+// Post-process to add activity name as comment for `dependsOn`
+$dimensionsString = yaml_emit($dimensionsAggregated);
+preg_match_all('/\{!([0-9a-z-]{30,})!\}/', $dimensionsString, $matches);
+$uuids = array_unique($matches[1]);
+foreach ($uuids as $uuid) {
+    $name = getActivityNameByUuid($uuid, $dimensionsAggregated);
+    // echo "Adding dependsOn-comment for $uuid: $name\n";
+    $dimensionsString = str_replace("'{!$uuid!}'", "$uuid # $name", $dimensionsString);
+}
+
 // Store generated data with meta document first
 $metaDocument = array(
     'meta' => array(
@@ -168,38 +176,28 @@ $metaDocument = array(
         'publisher' => 'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/'
     )
 );
+$modelString = yaml_emit_with_header($metaDocument, $dimensionsAggregated);
 
-$metaString = yaml_emit($metaDocument);
-$dimensionsString = yaml_emit($dimensionsAggregated);
-
-// Combine both documents with proper YAML document separators
-// Remove trailing ... from meta document and add proper separator
-$metaString = rtrim($metaString);
-if (substr($metaString, -3) === '...') {
-    $metaString = substr($metaString, 0, -3);
+// Post-process to add activity name as comment for `dependsOn`
+preg_match_all('/\{!([0-9a-z-]{30,})!\}/', $modelString, $matches);
+$uuids = array_unique($matches[1]);
+foreach ($uuids as $uuid) {
+    $name = getActivityNameByUuid($uuid, $dimensionsAggregated);
+    // echo "Adding dependsOn-comment for $uuid: $name\n";
+    $modelString = str_replace("'{!$uuid!}'", "$uuid # $name", $modelString);
 }
 
-// Post-process to convert quoted UUID comments to inline comments
-// Pattern: `- '{ uuid #comment }'` becomes: `- uuid #comment`
-$dimensionsString = preg_replace(
-    "/^(\s+- )'{\s*([0-9a-f-]+)\s+(#[^'}]*)\s*}'$/m",
-    "$1$2 $3",
-    $dimensionsString
-);
+$targetGeneratedFile = getcwd() . "/$targetFolder/model.yaml";
+echo "\nSaved generated model: '$targetGeneratedFile'\n";
+file_put_contents($targetGeneratedFile, $modelString);
 
-$targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
-echo "\nStoring to $targetGeneratedFile\n";
-file_put_contents($targetGeneratedFile, $dimensionsString);
-
-$combinedYaml = $metaString . $dimensionsString;
-$targetGeneratedFile = getcwd() . "/src/assets/YAML/activities.yaml";
-echo "\nStoring to $targetGeneratedFile\n";
-file_put_contents($targetGeneratedFile, $combinedYaml);
 
 // Store dependency graph
-$graphFilename = getcwd() . "/src/assets/YAML/generated/dependency-tree.md";
+$graphFilename = getcwd() . "/$targetFolder/dependency-tree.md";
 $graphFile = fopen($graphFilename, "w");
-fwrite($graphFile, "```mermaid\n\n");
+$graphIntro = "## DSOMM Activity Dependencies\n\nThe activities in this DSOMM Model have the following dependencies.";
+fwrite($graphFile, $graphIntro."\n\n");
+fwrite($graphFile, "```mermaid\n");
 fwrite($graphFile, "graph LR\n\n");
 // List all nodes
 foreach ($activityIndex as $activityName => $key) {
@@ -235,7 +233,7 @@ foreach ($activityIndex as $activityName => $key) {
 // Close the file
 fwrite($graphFile, "```\n");
 fclose($graphFile);
-echo "\nSaved dependency graph '$graphFilename'\n\n";
+echo "Saved dependency graph: '$graphFilename'\n\n";
 
 
 
@@ -358,12 +356,30 @@ function isActivityExisting($dimensions, $activityName)
     return false;
 }
 
+/**
+ *  Creates a yaml string from $metaDocument plus $document separated with '---'
+ */
+function yaml_emit_with_header($metaDocument, $document) {
+    $metaString = yaml_emit($metaDocument);
+    $documentString = yaml_emit($document);
+
+    // Combine both documents with proper YAML document separation
+    if (substr(rtrim($metaString), -3) === '...') {
+        // Remove trailing ... from meta document
+        $metaString = substr(rtrim($metaString), 0, -3);
+    }
+    
+    return $metaString . $documentString;
+}
+
 
 /**
+ * Merges two arrays recursively (just like the standard `array_merge_recursive()`),
+ * but will not create duplicates if the keys are numeric.
  *
  * @param array $array1
  * @param array $array2
- * @return unknown
+ * @return merged array
  */
 function array_merge_recursive_ex(array $array1, array $array2)
 {
@@ -386,7 +402,7 @@ function array_merge_recursive_ex(array $array1, array $array2)
 
 
 /*
-* Traverse an array in-place and replaces yaml pointers.
+ * Traverse an array in-place and replaces yaml pointers.
  */
 function resolveYamlReferences(&$data, $references, &$errorMsg)
 {
