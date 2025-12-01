@@ -480,9 +480,9 @@ implementations:
     uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
     name: SecObserve
     tags: [vulnerability management system]
-    url: https://github.com/MaibornWolff/SecObserve
+    url: https://github.com/SecObserve/SecObserve
     description: |
-      The aim of SecObserve is to make vulnerability scanning and vulnerability management as easy as possible for software development projects using open source tools.
+      SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
   sast:
     uuid: aaad322e-806e-4c51-b78d-6551f7dc376a
     name: SAST
@@ -786,7 +786,9 @@ implementations:
     tags: [pre-commit]
   dependencyTrack:
     uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-    name: Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
+    name: Dependency-Track
+    description: |
+      Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
     url: https://github.com/DependencyTrack/dependency-track
     tags: [sca, inventory, OpenSource, "Supply Chain", vulnerability, inventory]
   hashicorp-vault:

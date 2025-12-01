@@ -78,7 +78,8 @@ Culture and Organization:
       level: 1
       implementation: []
       references:
-        samm2: []
+        samm2:
+          - O-IM-B-2
         iso27001-2017:
           - 17.1.1
         iso27001-2022:
@@ -102,7 +103,7 @@ Culture and Organization:
       usefulness: 3
       level: 2
       dependsOn:
-        - uuid:2a44b708-734f-4463-b0cb-86dc46344b2f # inventory of production components
+        - 2a44b708-734f-4463-b0cb-86dc46344b2f # inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
@@ -110,7 +111,8 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:
         samm2:
-          - I-DM-3-B
+          - O-OM-A-2
+          - G-PC-B-2
         iso27001-2022:
           - 5.25
           - 5.12
