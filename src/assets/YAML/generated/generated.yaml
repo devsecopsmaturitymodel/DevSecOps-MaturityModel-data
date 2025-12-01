@@ -44,6 +44,10 @@ Build and Deployment:
         iso27001-2022:
         - 5.37
         - 8.32
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Build/subsection/Defined%20build%20process
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -87,6 +91,10 @@ Build and Deployment:
         - 14.2.6
         iso27001-2022:
         - 8.31
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Build/subsection/Building%20and%20testing%20of%20artifacts%20in%20virtual%20environments
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -141,6 +149,10 @@ Build and Deployment:
         - 14.2.6
         iso27001-2022:
         - 8.31
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Build/subsection/Pinning%20of%20artifacts
+      isImplemented: false
+      evidence: ""
       comments: ""
     SBOM of components:
       uuid: 2858ac12-0179-40d9-9acf-1b839c030473
@@ -173,6 +185,10 @@ Build and Deployment:
         iso27001-2022:
         - 5.9
         - 5.12
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Build/subsection/SBOM%20of%20components
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -210,6 +226,10 @@ Build and Deployment:
         - 14.2.6
         iso27001-2022:
         - 8.31
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Build/subsection/Signing%20of%20code
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -257,6 +277,10 @@ Build and Deployment:
         - 14.2.6
         iso27001-2022:
         - 8.31
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Build/subsection/Signing%20of%20artifacts
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -295,6 +319,10 @@ Build and Deployment:
         iso27001-2022:
         - 5.37
         - 8.32
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Defined%20deployment%20process
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -353,6 +381,8 @@ Build and Deployment:
         iso27001-2022:
         - 5.9
         - 5.12
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Inventory%20of%20production%20components
       tags:
       - inventory
     Defined decommissioning process:
@@ -381,6 +411,10 @@ Build and Deployment:
         - 11.2.7
         iso27001-2022:
         - 7.14
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Defined%20decommissioning%20process
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -419,6 +453,9 @@ Build and Deployment:
         - 8.31
         d3f:
         - ApplicationConfigurationHardening
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Environment%20depending%20configuration%20parameters%20%28secrets%29
+      isImplemented: false
       tags:
       - secret
     Evaluation of the trust of used components:
@@ -464,6 +501,10 @@ Build and Deployment:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Evaluation%20of%20the%20trust%20of%20used%20components
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -523,6 +564,8 @@ Build and Deployment:
         iso27001-2022:
         - 5.9
         - 5.12
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Inventory%20of%20production%20artifacts
       tags:
       - inventory
     Handover of confidential parameters:
@@ -559,6 +602,9 @@ Build and Deployment:
         - 8.24
         d3f:
         - ApplicationConfigurationHardening
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Handover%20of%20confidential%20parameters
+      isImplemented: false
       tags:
       - secret
     Inventory of production dependencies:
@@ -618,6 +664,8 @@ Build and Deployment:
         iso27001-2022:
         - 5.9
         - 5.12
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Inventory%20of%20production%20dependencies
       comments: ""
       tags:
       - inventory
@@ -658,6 +706,10 @@ Build and Deployment:
         - 8.19
         - 8.32
         - 8.14
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Rolling%20update%20on%20deployment
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -692,6 +744,10 @@ Build and Deployment:
         - 8.33
         - 8.29
         - 8.31
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Same%20artifact%20for%20environments
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -737,6 +793,10 @@ Build and Deployment:
         - 8.31
         d3f:
         - ApplicationConfigurationHardening
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Usage%20of%20feature%20toggles
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -776,6 +836,10 @@ Build and Deployment:
         - 8.32
         - 8.19
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Blue%2FGreen%20Deployment
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -803,6 +867,10 @@ Build and Deployment:
         - 8.8
         - 8.19
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Patch%20Management/subsection/A%20patch%20policy%20is%20defined
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - patching
@@ -852,6 +920,8 @@ Build and Deployment:
         iso27001-2022:
         - "8.8"
         - "8.27"
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Patch%20Management/subsection/Automated%20PRs%20for%20patches
       comments: ""
       tags:
       - patching
@@ -891,6 +961,8 @@ Build and Deployment:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Patch%20Management/subsection/Automated%20merge%20of%20automated%20PRs
       comments: ""
       tags:
       - patching
@@ -922,6 +994,10 @@ Build and Deployment:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Patch%20Management/subsection/Nightly%20build%20of%20images%20%28base%20images%29
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - patching
@@ -964,6 +1040,9 @@ Build and Deployment:
         - 14.2.1
         iso27001-2022:
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Patch%20Management/subsection/Reduction%20of%20the%20attack%20surface
+      evidence: ""
       comments: ""
       tags:
       - patching
@@ -1000,6 +1079,9 @@ Build and Deployment:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Patch%20Management/subsection/Usage%20of%20a%20maximum%20lifetime%20for%20images
+      evidence: ""
       comments: ""
       tags:
       - patching
@@ -1039,6 +1121,8 @@ Build and Deployment:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Patch%20Management/subsection/Automated%20deployment%20of%20automated%20PRs
       comments: ""
       tags:
       - patching
@@ -1085,6 +1169,10 @@ Build and Deployment:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Patch%20Management/subsection/Usage%20of%20a%20short%20maximum%20lifetime%20for%20images
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - patching
@@ -1205,6 +1293,10 @@ Culture and Organization:
         - May be part of risk assessment
         - 5.12
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Design/subsection/Conduction%20of%20simple%20threat%20modeling%20on%20technical%20level
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1231,6 +1323,10 @@ Culture and Organization:
         iso27001-2022:
         - 5.1
         - 5.4
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Design/subsection/Information%20security%20targets%20are%20communicated
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1261,6 +1357,10 @@ Culture and Organization:
         - May be part of risk assessment
         - 5.12
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Design/subsection/Conduction%20of%20simple%20threat%20modeling%20on%20business%20level
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1301,6 +1401,10 @@ Culture and Organization:
         - 5.8
         - May be part of risk assessment
         - 5.9
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Design/subsection/Creation%20of%20simple%20abuse%20stories
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1349,6 +1453,10 @@ Culture and Organization:
         - May be part of risk assessment
         - 5.12
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Design/subsection/Creation%20of%20threat%20modeling%20processes%20and%20standards
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1444,6 +1552,10 @@ Culture and Organization:
         - May be part of risk assessment
         - 5.12
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Design/subsection/Conduction%20of%20advanced%20threat%20modeling
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1485,6 +1597,10 @@ Culture and Organization:
         - 5.8
         - May be part of risk assessment
         - 5.9
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Design/subsection/Creation%20of%20advanced%20abuse%20stories
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1523,6 +1639,8 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Ad-Hoc%20Security%20trainings%20for%20software%20developers
       tags:
       - none
     Security consulting on request:
@@ -1558,6 +1676,10 @@ Culture and Organization:
         - 5.2
         - 5.6
         - 5.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Security%20consulting%20on%20request
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1597,6 +1719,10 @@ Culture and Organization:
         - Security champions are missing in ISO 27001 most likely
         - 5.4
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Each%20team%20has%20a%20security%20champion
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1640,6 +1766,10 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Regular%20security%20training%20for%20all
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1675,6 +1805,10 @@ Culture and Organization:
         iso27001-2022:
         - Security champions are missing in ISO 27001
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Regular%20security%20training%20of%20security%20champions
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1715,6 +1849,10 @@ Culture and Organization:
           but nothing to promote good behavior.
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Reward%20of%20good%20communication
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1758,6 +1896,10 @@ Culture and Organization:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Security%20code%20review
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1787,6 +1929,10 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Conduction%20of%20build-it%2C%20break-it%2C%20fix-it%20contests
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1810,6 +1956,8 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Office%20Hours
       tags:
       - none
     Security Coaching:
@@ -1842,6 +1990,10 @@ Culture and Organization:
         - 7.1.1
         iso27001-2022:
         - 6.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Security%20Coaching
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1866,6 +2018,10 @@ Culture and Organization:
         - 16.1.6
         iso27001-2022:
         - 5.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Security-Lessoned-Learned
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1916,6 +2072,10 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Simple%20mob%20hacking
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1945,6 +2105,10 @@ Culture and Organization:
         - 7.1.1
         iso27001-2022:
         - 6.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Aligning%20security%20in%20teams
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -1970,6 +2134,10 @@ Culture and Organization:
         iso27001-2022:
         - Mutual security testing is not explicitly required in ISO 27001 may be
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Conduction%20of%20collaborative%20team%20security%20checks
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -2000,6 +2168,10 @@ Culture and Organization:
         - 6.3
         - 5.24
         - 5.26
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Conduction%20of%20war%20games
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -2035,6 +2207,10 @@ Culture and Organization:
         - 7.2.2
         iso27001-2022:
         - 6.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Regular%20security%20training%20for%20externals
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -2068,6 +2244,10 @@ Culture and Organization:
         - 6.3
         - 8.8
         - 8.34
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Education%20and%20Guidance/subsection/Conduction%20of%20collaborative%20security%20checks%20with%20developers%20and%20system%20administrators
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -2099,6 +2279,8 @@ Culture and Organization:
         - 17.1.1
         iso27001-2022:
         - 5.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Process/subsection/Definition%20of%20simple%20BCDR%20practices%20for%20critical%20components
       tags:
       - none
     Determining the protection requirement:
@@ -2158,6 +2340,8 @@ Culture and Organization:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Process/subsection/Determining%20the%20protection%20requirement
       tags:
       - vulnerability-mgmt
       - metrics
@@ -2186,6 +2370,10 @@ Culture and Organization:
         - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 5.3
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Process/subsection/Approval%20by%20reviewing%20any%20new%20version
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -2210,6 +2398,10 @@ Culture and Organization:
         iso27001-2022:
         - 8.32
         - 8.15
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Process/subsection/Definition%20of%20a%20change%20management%20process
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -2271,6 +2463,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20Hardening/subsection/App.%20Hardening%20Level%201%20%2850%25%29
       comments: ""
       tags:
       - none
@@ -2317,6 +2511,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20Hardening/subsection/Context-aware%20output%20encoding
       comments: ""
       tags:
       - none
@@ -2361,6 +2557,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20Hardening/subsection/Parametrization
       comments: ""
       tags:
       - none
@@ -2422,6 +2620,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20Hardening/subsection/App.%20Hardening%20Level%201
       comments: ""
       tags:
       - none
@@ -2479,6 +2679,8 @@ Implementation:
         iso27001-2022:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20Hardening/subsection/Containers%20are%20running%20as%20non-root
       tags:
       - none
     App. Hardening Level 2 (75%):
@@ -2515,6 +2717,9 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20Hardening/subsection/App.%20Hardening%20Level%202%20%2875%25%29
+      isImplemented: false
       comments: ""
       dependsOn:
       - cf819225-30cb-4702-8e32-60225eedc33d # App. Hardening Level 1
@@ -2616,6 +2821,9 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20Hardening/subsection/App.%20Hardening%20Level%202
+      isImplemented: false
       comments: ""
       dependsOn:
       - 03643ca2-03c2-472b-8e19-956bf02fe9b7 # App. Hardening Level 2 (75%)
@@ -2655,6 +2863,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20Hardening/subsection/App.%20Hardening%20Level%203
       dependsOn:
       - ffe86caf-2fec-4630-b514-2db83983984d # App. Hardening Level 2
       tags:
@@ -2690,6 +2900,8 @@ Implementation:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.37
         - 8.32
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/Versioning
       tags:
       - none
     Require a PR before merging:
@@ -2731,6 +2943,8 @@ Implementation:
         - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 5.3
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/Require%20a%20PR%20before%20merging
       tags:
       - none
     Block force pushes:
@@ -2773,6 +2987,8 @@ Implementation:
         iso27001-2022:
         - 5.3
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/Block%20force%20pushes
       tags:
       - none
     Dismiss stale PR approvals:
@@ -2820,6 +3036,8 @@ Implementation:
         - Peer review - four eyes principle is not explicitly required by ISO 27001
         - 5.3
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/Dismiss%20stale%20PR%20approvals
       tags:
       - none
     Require status checks to pass:
@@ -2864,6 +3082,8 @@ Implementation:
         iso27001-2022:
         - 5.3
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/Require%20status%20checks%20to%20pass
       tags:
       - none
     .gitignore:
@@ -2891,6 +3111,8 @@ Implementation:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.37
         - 8.32
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/.gitignore
       tags:
       - none
     Local development linting & style checks performed:
@@ -2924,6 +3146,10 @@ Implementation:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/Local%20development%20linting%20%26%20style%20checks%20performed
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -2965,6 +3191,10 @@ Implementation:
         - 8.25
         d3f:
         - Multi-factorAuthentication
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/MFA%20for%20admins
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -2996,6 +3226,10 @@ Implementation:
         - 9.4.1
         iso27001-2022:
         - 8.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Simple%20access%20control%20for%20systems
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3022,6 +3256,10 @@ Implementation:
         - 10.1
         iso27001-2022:
         - 8.24
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Usage%20of%20edge%20encryption%20at%20transit
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3046,6 +3284,8 @@ Implementation:
         iso27001-2022:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Applications%20are%20running%20in%20virtualized%20environments
       comments: ""
       tags:
       - none
@@ -3079,6 +3319,10 @@ Implementation:
         iso27001-2022:
         - 8.13
         - 8.31
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Backup
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3143,6 +3387,10 @@ Implementation:
         - 13.1.3
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Baseline%20Hardening%20of%20the%20environment
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3182,6 +3430,10 @@ Implementation:
         iso27001-2022:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Isolated%20networks%20for%20virtual%20environments
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3224,6 +3476,10 @@ Implementation:
         - 8.25
         d3f:
         - Multi-factorAuthentication
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/MFA
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3247,6 +3503,10 @@ Implementation:
         - 10.1
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Usage%20of%20an%20security%20account
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3270,6 +3530,10 @@ Implementation:
         - 10.1
         iso27001-2022:
         - 8.24
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Usage%20of%20encryption%20at%20rest
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3298,6 +3562,10 @@ Implementation:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.31
         - 8.14
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Usage%20of%20test%20and%20production%20environments
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3329,6 +3597,10 @@ Implementation:
         - 8.6
         - 8.22
         - 8.14
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Virtual%20environments%20are%20limited
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3362,6 +3634,10 @@ Implementation:
         iso27001-2022:
         - Virtual environments are not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Filter%20outgoing%20traffic
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3390,6 +3666,10 @@ Implementation:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.14
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Immutable%20infrastructure
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3438,6 +3718,10 @@ Implementation:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.37
         - 8.32
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Infrastructure%20as%20Code
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3478,6 +3762,10 @@ Implementation:
         - System hardening is not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Limitation%20of%20system%20events
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3512,6 +3800,10 @@ Implementation:
         - 9.4.1
         iso27001-2022:
         - 8.3
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Role%20based%20authentication%20and%20authorization
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3536,6 +3828,10 @@ Implementation:
         - 10.1
         iso27001-2022:
         - 8.24
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Usage%20of%20internal%20encryption%20at%20transit
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3575,6 +3871,10 @@ Implementation:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Usage%20of%20security%20by%20default%20for%20components
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3613,6 +3913,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/WAF%20baseline
       comments: ~
       tags:
       - none
@@ -3678,6 +3980,10 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Hardening%20of%20the%20Environment
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3709,6 +4015,10 @@ Implementation:
         iso27001-2022:
         - 8.31
         - 8.14
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Production%20near%20environments%20are%20used%20by%20developers
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3746,6 +4056,10 @@ Implementation:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Usage%20of%20a%20chaos%20technology
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3783,6 +4097,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/WAF%20medium
       comments: ~
       tags:
       - none
@@ -3827,6 +4143,8 @@ Implementation:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/WAF%20Advanced
       comments: ~
       tags:
       - none
@@ -3867,6 +4185,10 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Logging/subsection/Centralized%20system%20logging
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3895,6 +4217,8 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Logging/subsection/Centralized%20application%20logging
       tags:
       - none
     Logging of security events:
@@ -3950,9 +4274,13 @@ Information Gathering:
         - 12.4.1
         iso27001-2022:
         - 8.15
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Logging/subsection/Logging%20of%20security%20events
       risk: |-
         * No track of security-relevant events makes it harder to analyze an incident.
         * Security incident analysis takes significantly less time with proper security events, such that an attack can be stopped before the attacker reaches his goal.
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -3978,6 +4306,8 @@ Information Gathering:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Logging/subsection/Analyze%20logs
       tags:
       - none
     Visualized logging:
@@ -4011,6 +4341,10 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Logging/subsection/Visualized%20logging
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4039,6 +4373,10 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Logging/subsection/Correlation%20of%20security%20events
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4087,6 +4425,10 @@ Information Gathering:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.15
         - 5.31
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Logging/subsection/PII%20logging%20concept
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4125,6 +4467,8 @@ Information Gathering:
         - 12.4.1
         iso27001-2022:
         - 8.15
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Simple%20application%20metrics
       comments: ""
       tags:
       - none
@@ -4151,6 +4495,10 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Simple%20budget%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4180,6 +4528,10 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Simple%20system%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4209,6 +4561,10 @@ Information Gathering:
         - 6.8
         - 5.25
         - 8.31
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Alerting
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4236,6 +4592,10 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Monitoring%20of%20costs
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4260,6 +4620,10 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Visualized%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4285,6 +4649,10 @@ Information Gathering:
         - 12.1.3
         iso27001-2022:
         - 8.6
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Advanced%20availability%20and%20stability%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4317,6 +4685,10 @@ Information Gathering:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Audit%20of%20system%20events
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4342,6 +4714,10 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.6
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Deactivation%20of%20unused%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4365,6 +4741,10 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.6
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Grouping%20of%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4393,6 +4773,10 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.26
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Targeted%20alerting
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4418,6 +4802,10 @@ Information Gathering:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Advanced%20app.%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4452,6 +4840,10 @@ Information Gathering:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Coverage%20and%20control%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4481,6 +4873,10 @@ Information Gathering:
         iso27001-2022:
         - 8.15
         - 8.2
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Defense%20metrics
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4507,6 +4903,8 @@ Information Gathering:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.26
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Screens%20with%20metric%20visualization
       comments: ""
       tags:
       - none
@@ -4530,6 +4928,10 @@ Information Gathering:
         - not explicitly covered by ISO 27001
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Monitoring/subsection/Metrics%20are%20combined%20with%20tests
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4559,6 +4961,8 @@ Information Gathering:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test%20KPI/subsection/Number%20of%20vulnerabilities%2Fseverity
       tags:
       - vulnerability-mgmt
       - metrics
@@ -4601,6 +5005,8 @@ Information Gathering:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test%20KPI/subsection/Number%20of%20vulnerabilities%2Fseverity%2Flayer
       tags:
       - vulnerability-mgmt
       - metrics
@@ -4635,6 +5041,8 @@ Information Gathering:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test%20KPI/subsection/Patching%20mean%20time%20to%20resolution%20via%20PR
       tags:
       - patching
       - metrics
@@ -4694,6 +5102,8 @@ Information Gathering:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test%20KPI/subsection/Fix%20rate%20per%20repo%2Fproduct
       tags:
       - vulnerability-mgmt
       - metrics
@@ -4753,6 +5163,8 @@ Information Gathering:
         iso27001-2022:
         - 5.25
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test%20KPI/subsection/Generation%20of%20response%20statistics
       tags:
       - vulnerability-mgmt
       - metrics
@@ -4816,6 +5228,8 @@ Information Gathering:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test%20KPI/subsection/SLA%20per%20criticality
       tags:
       - vulnerability-mgmt
       - metrics
@@ -4846,6 +5260,8 @@ Information Gathering:
         - 16.1.4
         iso27001-2022:
         - 5.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test%20KPI/subsection/Patching%20mean%20time%20to%20resolution%20via%20production
       tags:
       - patching
       - metrics
@@ -4885,6 +5301,10 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20tests/subsection/Security%20unit%20tests%20for%20important%20components
+      isImplemented: false
+      evidence: ""
       tags:
       - none
     Security integration tests for important components:
@@ -4908,6 +5328,10 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20tests/subsection/Security%20integration%20tests%20for%20important%20components
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4935,6 +5359,10 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20tests/subsection/Smoke%20Test
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -4960,6 +5388,10 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Application%20tests/subsection/High%20coverage%20of%20security%20related%20module%20and%20integration%20tests
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5011,6 +5443,10 @@ Test and Verification:
         iso27001-2022:
         - Not explicitly covered by ISO 27001 - too specific
         - 5.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Simple%20false%20positive%20treatment
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5035,10 +5471,13 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 5.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Treatment%20of%20defects%20with%20severity%20high%20or%20higher
       implementation: []
       tags:
       - vuln-action
       - defect-management
+      evidence: ""
     Artifact-based false positive treatment:
       uuid: 8f2b4d5a-3c1e-4b7a-9d8f-2e6c4a1b5d7f
       risk: Without artifact-specific false positive handling, teams must repeatedly
@@ -5100,6 +5539,8 @@ Test and Verification:
         iso27001-2022:
         - 5.25
         - 5.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Artifact-based%20false%20positive%20treatment
       tags:
       - false-positive
       - defect-management
@@ -5165,6 +5606,10 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Simple%20visualization%20of%20defects
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5203,6 +5648,8 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Fix%20based%20on%20accessibility
       tags:
       - vuln-action
       - defect-management
@@ -5243,6 +5690,8 @@ Test and Verification:
         - 6.8
         - 5.25
         - 5.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Global%20false%20positive%20treatment
       tags:
       - false-positive
       - defect-management
@@ -5320,6 +5769,8 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Integration%20in%20development%20process
       tags:
       - vulnerability-mgmt
       - vmm-measurements
@@ -5362,6 +5813,10 @@ Test and Verification:
         - 5.25
         - 5.26
         - 5.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Integration%20of%20vulnerability%20issues%20into%20the%20development%20process
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5426,6 +5881,8 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Treatment%20of%20defects%20per%20protection%20requirement
       tags:
       - vulnerability-mgmt
       - metrics
@@ -5450,6 +5907,8 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 5.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Treatment%20of%20defects%20with%20severity%20middle
       implementation: []
       tags:
       - vuln-action
@@ -5514,6 +5973,8 @@ Test and Verification:
         - 5.25
         - 5.26
         - 5.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Usage%20of%20a%20vulnerability%20management%20system
       tags:
       - none
     Advanced visualization of defects:
@@ -5563,6 +6024,10 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Advanced%20visualization%20of%20defects
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5593,6 +6058,10 @@ Test and Verification:
         - 5.12
         - 5.13
         - 5.1
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Reproducible%20defect%20tickets
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5616,6 +6085,8 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 5.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Consolidation/subsection/Treatment%20of%20all%20defects
       tags:
       - vuln-action
       - defect-management
@@ -5645,11 +6116,15 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Coverage%20of%20client%20side%20dynamic%20components
       implementation:
       - uuid: 6583fd5f-4314-4b39-9265-de72f861c8cb
         name: Ajax Spider
         tags: []
         url: https://www.zaproxy.org/docs/desktop/addons/ajax-spider/
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5690,6 +6165,10 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Simple%20Scan
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5716,6 +6195,8 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Usage%20of%20different%20roles
       implementation:
       - uuid: 7eb37566-02d5-4fff-8dcf-8fcd1c8197f3
         name: Zest
@@ -5724,7 +6205,9 @@ Test and Verification:
         - zap
         description: |
           Zest is an experimental specialized scripting language (also known as a domain-specific language) originally developed by the Mozilla security team and is intended to be used in web oriented security tools.
+      isImplemented: false
       assessment: For REST APIs, multiple OAuth2 scopes are used.
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5774,6 +6257,10 @@ Test and Verification:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Coverage%20of%20hidden%20endpoints
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5799,6 +6286,8 @@ Test and Verification:
         - not explicitly covered by ISO 27001 - too specific
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Coverage%20of%20more%20input%20vectors
       implementation:
       - uuid: c9bbecf2-567b-4422-b29a-67b16385f32b
         name: Schemathesis
@@ -5809,6 +6298,8 @@ Test and Verification:
         url: https://github.com/schemathesis/schemathesis
         description: |
           Schemathesis is a tool for testing web applications and services by sending requests based on the Open API / Swagger schema.
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5840,6 +6331,10 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Coverage%20of%20sequential%20operations
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5875,6 +6370,10 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Usage%20of%20multiple%20scanners
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5909,6 +6408,10 @@ Test and Verification:
         - part of periodic review, PDCA
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Coverage%20analysis
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5933,6 +6436,8 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20applications/subsection/Coverage%20of%20service%20to%20service%20communication
       implementation:
       - uuid: 000b55f9-e6fd-4649-8290-27876a0409e2
         name: Citrus Fresh Integration Testing
@@ -5942,6 +6447,8 @@ Test and Verification:
         url: https://citrusframework.org/
         description: Integration Test framework with focus on messaging applications
           and Microservices.
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -5982,6 +6489,10 @@ Test and Verification:
         - 8.22
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20infrastructure/subsection/Test%20for%20exposed%20services
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6015,6 +6526,8 @@ Test and Verification:
         - 8.22
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20infrastructure/subsection/Test%20network%20segmentation
       comments: ""
       tags:
       - none
@@ -6060,6 +6573,10 @@ Test and Verification:
         - 8.8
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20infrastructure/subsection/Test%20of%20the%20configuration%20of%20cloud%20environments
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6090,6 +6607,10 @@ Test and Verification:
         iso27001-2022:
         - 8.19
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20infrastructure/subsection/Test%20for%20unauthorized%20installation
+      isImplemented: false
+      evidence: ""
       dependsOn:
       - 0de465a6-55a7-4343-af79-948bb5ff10ba # Evaluation of the trust of used components
       tags:
@@ -6119,6 +6640,10 @@ Test and Verification:
         - 9.4.3
         iso27001-2022:
         - 5.17
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20infrastructure/subsection/Weak%20password%20test
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6146,6 +6671,10 @@ Test and Verification:
         - 8.6
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20infrastructure/subsection/Load%20tests
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6183,6 +6712,10 @@ Test and Verification:
         - 8.22
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Dynamic%20depth%20for%20infrastructure/subsection/Test%20for%20unused%20Resources
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6253,6 +6786,8 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Software%20Composition%20Analysis%20%28server%20side%29
       tags:
       - vmm-testing
     Test for Time to Patch:
@@ -6294,6 +6829,8 @@ Test and Verification:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Test%20for%20Time%20to%20Patch
       comments: ""
       meta:
         implementationGuide: Usage of a version control platform API (e.g. github
@@ -6334,6 +6871,8 @@ Test and Verification:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Test%20libyear
       comments: ""
       meta:
         implementationGuide: |
@@ -6385,6 +6924,9 @@ Test and Verification:
         - 8.25
         - 8.27
         - 8.28
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/API%20design%20validation
+      isImplemented: false
       dependsOn:
       - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       tags:
@@ -6427,6 +6969,8 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Exploit%20likelihood%20estimation
       tags:
       - none
     Local development security checks performed:
@@ -6479,6 +7023,10 @@ Test and Verification:
         iso27001-2022:
         - Hardening is not explicitly covered by ISO 27001 - too specific
         - 8.22
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Local%20development%20security%20checks%20performed
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6535,6 +7083,10 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Software%20Composition%20Analysis%20%28client%20side%29
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6595,6 +7147,10 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Static%20analysis%20for%20important%20client%20side%20components
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6651,6 +7207,10 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Static%20analysis%20for%20important%20server%20side%20components
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6685,6 +7245,8 @@ Test and Verification:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Test%20for%20Patch%20Deployment%20Time
       comments: ""
       meta:
         implementationGuide: Self implementation. This activity is not repeated in
@@ -6746,6 +7308,10 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Static%20analysis%20for%20all%20self%20written%20components
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6776,6 +7342,10 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Usage%20of%20multiple%20analyzers
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6807,6 +7377,8 @@ Test and Verification:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Dead%20code%20elimination
       comments: ""
       tags:
       - none
@@ -6837,6 +7409,8 @@ Test and Verification:
         - Not explicitly covered by ISO 27001 - too specific
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Exclusion%20of%20source%20code%20duplicates
       comments: ""
       tags:
       - none
@@ -6863,6 +7437,10 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Static%20analysis%20for%20all%20components%2Flibraries
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6912,6 +7490,10 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20applications/subsection/Stylistic%20analysis
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6947,6 +7529,10 @@ Test and Verification:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 5.17
         - 8.24
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20for%20stored%20secrets%20in%20build%20artifacts
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -6981,6 +7567,10 @@ Test and Verification:
         - vcs usage is not explicitly covered by ISO 27001 - too specific
         - 5.17
         - 8.24
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20for%20stored%20secrets%20in%20code
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7014,6 +7604,10 @@ Test and Verification:
         - 8.8
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20cluster%20deployment%20resources
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7051,6 +7645,10 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20for%20image%20lifetime
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7090,6 +7688,10 @@ Test and Verification:
         - ISO 27001:2017 mapping is missing
         iso27001-2022:
         - ISO 27001:2022 mapping is missing
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20of%20virtualized%20environments
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7123,6 +7725,10 @@ Test and Verification:
         - 8.8
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20the%20cloud%20configuration
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7175,6 +7781,9 @@ Test and Verification:
         - 8.32
         - 8.29
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20the%20definition%20of%20virtualized%20environments
+      isImplemented: false
       tags:
       - none
     Test for malware:
@@ -7211,6 +7820,10 @@ Test and Verification:
         - 12.2.1
         iso27001-2022:
         - 8.7
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20for%20malware
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7236,6 +7849,10 @@ Test and Verification:
         - 8.8
         - 8.7
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20for%20new%20image%20version
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7277,6 +7894,10 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Correlate%20known%20vulnerabilities%20in%20infrastructure%20with%20new%20image%20versions
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7323,6 +7944,10 @@ Test and Verification:
         - 12.6.1
         iso27001-2022:
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Software%20Composition%20Analysis
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7368,6 +7993,10 @@ Test and Verification:
         iso27001-2022:
         - 8.8
         - 8.25
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Static%20depth%20for%20infrastructure/subsection/Test%20of%20infrastructure%20components%20for%20known%20vulnerabilities
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7395,6 +8024,10 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test-Intensity/subsection/Default%20settings%20for%20intensity
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7422,6 +8055,10 @@ Test and Verification:
         iso27001-2022:
         - 8.32
         - 8.29
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test-Intensity/subsection/Regular%20automated%20tests
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7451,6 +8088,10 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test-Intensity/subsection/Deactivating%20of%20unneeded%20tests
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7478,6 +8119,10 @@ Test and Verification:
         - 8.8
         - 8.25
         - 8.27
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test-Intensity/subsection/High%20test%20intensity
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
@@ -7509,6 +8154,10 @@ Test and Verification:
         - 8.32
         - 8.27
         - 8.8
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Test-Intensity/subsection/Creation%20and%20application%20of%20a%20testing%20concept
+      isImplemented: false
+      evidence: ""
       comments: ""
       tags:
       - none
