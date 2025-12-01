@@ -323,10 +323,9 @@ Build and Deployment:
         description: |
           Backstage is an open-source platform designed to create developer portals. At its core is a centralized software catalog that brings organization to your microservices and infrastructure.
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-        name: Dependency-Track is an intelligent Component Analysis platform that
-          allows organizations to identify and reduce risk in the software supply
-          chain. Dependency-Track takes a unique and highly beneficial approach by
-          leveraging the capabilities of Software Bill of Materials (SBOM).
+        name: Dependency-Track
+        description: |
+          Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
         url: https://github.com/DependencyTrack/dependency-track
         tags:
         - sca
@@ -494,10 +493,9 @@ Build and Deployment:
         description: |
           Backstage is an open-source platform designed to create developer portals. At its core is a centralized software catalog that brings organization to your microservices and infrastructure.
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-        name: Dependency-Track is an intelligent Component Analysis platform that
-          allows organizations to identify and reduce risk in the software supply
-          chain. Dependency-Track takes a unique and highly beneficial approach by
-          leveraging the capabilities of Software Bill of Materials (SBOM).
+        name: Dependency-Track
+        description: |
+          Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
         url: https://github.com/DependencyTrack/dependency-track
         tags:
         - sca
@@ -589,10 +587,9 @@ Build and Deployment:
         description: |
           Backstage is an open-source platform designed to create developer portals. At its core is a centralized software catalog that brings organization to your microservices and infrastructure.
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-        name: Dependency-Track is an intelligent Component Analysis platform that
-          allows organizations to identify and reduce risk in the software supply
-          chain. Dependency-Track takes a unique and highly beneficial approach by
-          leveraging the capabilities of Software Bill of Materials (SBOM).
+        name: Dependency-Track
+        description: |
+          Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
         url: https://github.com/DependencyTrack/dependency-track
         tags:
         - sca
@@ -5081,10 +5078,9 @@ Test and Verification:
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-        name: Dependency-Track is an intelligent Component Analysis platform that
-          allows organizations to identify and reduce risk in the software supply
-          chain. Dependency-Track takes a unique and highly beneficial approach by
-          leveraging the capabilities of Software Bill of Materials (SBOM).
+        name: Dependency-Track
+        description: |
+          Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
         url: https://github.com/DependencyTrack/dependency-track
         tags:
         - sca
@@ -5127,10 +5123,9 @@ Test and Verification:
         - vulnerability
         url: https://owasp.org/www-project-dependency-check/
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-        name: Dependency-Track is an intelligent Component Analysis platform that
-          allows organizations to identify and reduce risk in the software supply
-          chain. Dependency-Track takes a unique and highly beneficial approach by
-          leveraging the capabilities of Software Bill of Materials (SBOM).
+        name: Dependency-Track
+        description: |
+          Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
         url: https://github.com/DependencyTrack/dependency-track
         tags:
         - sca
@@ -6218,10 +6213,9 @@ Test and Verification:
         - vulnerability
         url: https://owasp.org/www-project-dependency-check/
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-        name: Dependency-Track is an intelligent Component Analysis platform that
-          allows organizations to identify and reduce risk in the software supply
-          chain. Dependency-Track takes a unique and highly beneficial approach by
-          leveraging the capabilities of Software Bill of Materials (SBOM).
+        name: Dependency-Track
+        description: |
+          Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
         url: https://github.com/DependencyTrack/dependency-track
         tags:
         - sca
@@ -6513,10 +6507,9 @@ Test and Verification:
         tags: []
         url: https://docs.npmjs.com/cli/audit
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-        name: Dependency-Track is an intelligent Component Analysis platform that
-          allows organizations to identify and reduce risk in the software supply
-          chain. Dependency-Track takes a unique and highly beneficial approach by
-          leveraging the capabilities of Software Bill of Materials (SBOM).
+        name: Dependency-Track
+        description: |
+          Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
         url: https://github.com/DependencyTrack/dependency-track
         tags:
         - sca
@@ -7312,10 +7305,9 @@ Test and Verification:
         description: Registries like quay, dockerhub provide (commercial) offerings,
           often not suitable for distroless images
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
-        name: Dependency-Track is an intelligent Component Analysis platform that
-          allows organizations to identify and reduce risk in the software supply
-          chain. Dependency-Track takes a unique and highly beneficial approach by
-          leveraging the capabilities of Software Bill of Materials (SBOM).
+        name: Dependency-Track
+        description: |
+          Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain. Dependency-Track takes a unique and highly beneficial approach by leveraging the capabilities of Software Bill of Materials (SBOM).
         url: https://github.com/DependencyTrack/dependency-track
         tags:
         - sca
