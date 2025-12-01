@@ -86,6 +86,7 @@ Build and Deployment:
       usefulness: 4
       dependsOn:
         - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Def. Build Process
+        - 066084c6-1135-4635-9cc5-9e75c7c5459f # Version control
       implementation:
       references:
         samm2:
@@ -253,7 +254,7 @@ Build and Deployment:
         - Inventory of all production applications with application name, owner, and date of last review
         - Inventory is accessible to development, security and operations teams
       dependsOn:
-        - Defined deployment process
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
       level: 1
       difficultyOfImplementation:
         knowledge: 1
@@ -284,7 +285,7 @@ Build and Deployment:
         is deployed.
       measure: A documented inventory of artifacts in production like container images exists (gathered manually or automatically).
       dependsOn:
-        - Defined deployment process
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
         - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       difficultyOfImplementation:
         knowledge: 2
@@ -323,7 +324,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/webserver
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/rolling-update
       dependsOn:
-        - Defined deployment process
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
       references:
         samm2:
           - I-SD-A-2

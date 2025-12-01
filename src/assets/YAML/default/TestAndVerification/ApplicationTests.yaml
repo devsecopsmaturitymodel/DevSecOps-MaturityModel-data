@@ -100,7 +100,7 @@ Test and Verification:
       level: 4
       implementation: []
       dependsOn:
-        - Defined deployment process
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
       references:
         samm2:
           - V-RT-A-3

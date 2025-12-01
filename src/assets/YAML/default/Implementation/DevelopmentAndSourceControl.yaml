@@ -97,8 +97,6 @@ Implementation:
         resources: 3
       usefulness: 5
       level: 1
-      dependsOn:
-        - Defined deployment process
       implementation: []
       references:
         samm2:
