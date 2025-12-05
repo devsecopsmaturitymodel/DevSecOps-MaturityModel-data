@@ -113,7 +113,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/a-complete-backup-of
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/a-point-in-time-reco
       dependsOn:
-        - Defined deployment process
+        - 74938a3f-1269-49b9-9d0f-c43a79a1985a # Defined deployment process
       references:
         samm2:
           - TODO
@@ -292,7 +292,7 @@ Implementation:
       usefulness: 4
       level: 4
       dependsOn:
-        - Defined deployment process
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
         - Infrastructure as Code
       implementation: []
       references:
@@ -314,7 +314,7 @@ Implementation:
         or to modify information unauthorized on systems.
       measure:
         The usage of a (role based) access control helps to restrict system
-        access to authorized users. And enhancement is to use attribute based access control.
+        access to authorized users. And enhancement is to use *attribute based access control*.
       difficultyOfImplementation:
         knowledge: 2
         time: 3
@@ -324,9 +324,6 @@ Implementation:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/directory-service
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/plugins
-      dependsOn:
-        - Defined deployment process
-        - Defined build process
       references:
         samm2:
           - O-EM-A-2
@@ -349,8 +346,6 @@ Implementation:
         resources: 3
       usefulness: 5
       level: 1
-      dependsOn:
-        - Defined deployment process
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/http-basic-authentic
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/vpn
@@ -605,7 +600,7 @@ Implementation:
       usefulness: 4
       level: 2
       dependsOn:
-        - Defined deployment process
+        - 74938a3f-1269-49b9-9d0f-c43a79a1985a # Defined deployment process
       implementation: []
       references:
         samm2:

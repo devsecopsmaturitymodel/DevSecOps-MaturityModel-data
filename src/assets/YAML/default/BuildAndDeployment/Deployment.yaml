@@ -70,11 +70,41 @@ Build and Deployment:
     Defined deployment process:
       uuid: 74938a3f-1269-49b9-9d0f-c43a79a1985a
       description: |
-        A defined deployment process is a documented and automated set of steps for releasing software into production. It ensures that deployments are consistent, secure, and auditable, reducing the risk of errors and unauthorized changes.
+        A *defined deployment process* is a documented and standardized procedure for releasing software into production, ensuring consistency and reducing the risk of errors.
       risk: >-
-        Deployment based human routines are error prone, and of insecure or malfunctioning artifacts.
+        Deployments relying on human memory are prone to errors, making experienced long-ter staff critical.
       measure: >-
-        Defining a deployment process ensures that there are established criteria in terms of functionalities, security, compliance, and performance, and that the artifacts meet them.
+        Establish a written deployment process documented in README files, wikis, or implemented as executable scripts and automated steps.
+      assessment: |
+        - Deployment process is documented and available to relevant staff
+        - Logs of deployments are documented and availabe to relevant staff
+      level: 1
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 1
+      usefulness: 1
+      dependsOn:
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Def. Build Process
+        - 066084c6-1135-4635-9cc5-9e75c7c5459f # Version control
+      implementation:
+      references:
+        samm2:
+          - I-SD-A-1
+        iso27001-2017:
+          - 12.1.1
+          - 14.2.2
+        iso27001-2022:
+          - 5.37
+          - 8.32
+    Automated deployment process:
+      uuid: 67e1a9aa-9fbf-4ec5-a2de-400f01960c51
+      description: |
+        An *automated deployment process* implements the defined deployment steps using automation tools, ensuring consistency, auditability, and minimizing the risk of human errors or unauthorized changes.
+      risk: >-
+        Deployments relying on manual routines increase the risk of errors, insecure configurations, or deploying malfunctioning artifacts.
+      measure: >-
+        Automating the deployment process enforces predefined criteria for security, compliance, and performance, ensuring reliable artifact delivery.
       assessment: |
         - Deployment process is documented and available to relevant staff
         - All deployment steps are automated
@@ -83,12 +113,14 @@ Build and Deployment:
       difficultyOfImplementation:
         knowledge: 2
         time: 2
-        resources: 1
+        resources: 2
       usefulness: 4
       dependsOn:
         - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Def. Build Process
+        - 74938a3f-1269-49b9-9d0f-c43a79a1985a # Def. Deployment Process
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jenkins
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
       references:
         samm2:
@@ -99,9 +131,6 @@ Build and Deployment:
         iso27001-2022:
           - 5.37
           - 8.32
-      isImplemented: false
-      evidence: ""
-      comments: ""
     Environment depending configuration parameters (secrets):
       uuid: df428c9d-efa0-4226-9f47-a15bb53f822b
       risk: >-
@@ -225,7 +254,7 @@ Build and Deployment:
         - Inventory of all production applications with application name, owner, and date of last review
         - Inventory is accessible to development, security and operations teams
       dependsOn:
-        - Defined deployment process
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
       level: 1
       difficultyOfImplementation:
         knowledge: 1
@@ -256,7 +285,7 @@ Build and Deployment:
         is deployed.
       measure: A documented inventory of artifacts in production like container images exists (gathered manually or automatically).
       dependsOn:
-        - Defined deployment process
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
         - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       difficultyOfImplementation:
         knowledge: 2
@@ -295,7 +324,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/webserver
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/rolling-update
       dependsOn:
-        - Defined deployment process
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
       references:
         samm2:
           - I-SD-A-2
