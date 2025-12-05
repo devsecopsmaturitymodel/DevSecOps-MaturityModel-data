@@ -4,19 +4,22 @@ Culture and Organization:
   Education and Guidance:
     Ad-Hoc Security trainings for software developers:
       uuid: 12c90cc6-3d58-4d9b-82ff-d469d2a0c298
-      risk:
-        Understanding security is hard and personnel needs to be trained on it.
-        Otherwise, flaws like an SQL Injection might be introduced into the software
-        which might get exploited.
-      measure:
-        Provide security awareness training for all personnel involved in software
-        development Ad-Hoc.
+      description: |
+        Ad-hoc security training provides basic awareness of software security risks and best practices to developers and other personnel involved in software development. These trainings are delivered as needed, without a fixed schedule, to address immediate knowledge gaps or respond to emerging threats.
+      risk: |
+        Without any security training, personnel may lack awareness of common software vulnerabilities (such as SQL Injection and vulnerable dependencies), increasing the risk of introducing exploitable flaws into applications.
+      measure: |
+        Provide security awareness training for all personnel involved in software development on an ad-hoc basis, ensuring that relevant topics are covered when new risks or needs are identified.
+      assessment: |
+        - Conduct security training for developers and relevant personnel
+        - Training materials are available
+        - Attendance records are available
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 1
         resources: 1
       usefulness: 3
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-juice-shop
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
@@ -409,18 +412,21 @@ Culture and Organization:
       comments: ""
     Security consulting on request:
       uuid: 0b28367b-75a0-4bae-a926-3725c1bf9bb0
-      risk:
-        Not asking a security expert when questions regarding security appear
-        might lead to flaws.
-      measure:
-        Security consulting to teams is given on request. The security consultants
-        can be internal or external.
+      level: 1
+      description: |
+        Security consulting on request allows teams to seek expert advice on security-related questions or challenges as they arise. This support can be provided by internal or external security consultants and helps address specific concerns during software development.
+      risk: |
+        If teams do not consult security experts when questions arise, security flaws may be introduced or remain undetected, increasing the risk of vulnerabilities in the software.
+      measure: |
+        Make security consulting available to teams on request, ensuring that expert advice is accessible when needed to address security concerns during development.
+      assessment: |
+        - Show evidence that an it security expert is available for questions at least quarterly.
+        - Documentation of consultations and resulting actions is available for review.
       difficultyOfImplementation:
         knowledge: 3
         time: 1
         resources: 1
       usefulness: 3
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
       references:
