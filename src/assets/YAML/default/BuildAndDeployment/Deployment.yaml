@@ -80,10 +80,10 @@ Build and Deployment:
         - Logs of deployments are documented and availabe to relevant staff
       level: 1
       difficultyOfImplementation:
-        knowledge: 2
-        time: 2
+        knowledge: 1
+        time: 1
         resources: 1
-      usefulness: 4
+      usefulness: 1
       dependsOn:
         - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Def. Build Process
         - 066084c6-1135-4635-9cc5-9e75c7c5459f # Version control
@@ -113,7 +113,7 @@ Build and Deployment:
       difficultyOfImplementation:
         knowledge: 2
         time: 2
-        resources: 1
+        resources: 2
       usefulness: 4
       dependsOn:
         - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Def. Build Process

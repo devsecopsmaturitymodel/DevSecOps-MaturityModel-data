@@ -324,9 +324,6 @@ Implementation:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/directory-service
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/plugins
-      dependsOn:
-        - Defined deployment process # Does RBAC require a defined build and deployment process?
-        - Defined build process
       references:
         samm2:
           - O-EM-A-2
@@ -349,8 +346,6 @@ Implementation:
         resources: 3
       usefulness: 5
       level: 1
-      dependsOn:
-        - Defined deployment process # Does simple access control require a defined deployment process?
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/http-basic-authentic
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/vpn
