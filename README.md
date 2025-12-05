@@ -1,6 +1,6 @@
 # OWASP DevSecOps Maturity Model Data
 
-This GitHub project ([DevSecOps-MaturityModel-data](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data)) contains the source for the model itself, used by the DSOMM applciation [DevSecOps-MaturityModel](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel). 
+This GitHub project ([DevSecOps-MaturityModel-data](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data)) contains the source for the DSOMM *model*. The model is used by the DSOMM applciation [DevSecOps-MaturityModel](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel). 
 
 The source files include dimensions, activities, descriptions, measures, and other model data used by the application.
 
@@ -12,7 +12,7 @@ Contributions that improve the DSOMM model are welcome. Please edit the source f
 
 ### Testing
 
-After making changes, generate a new `activities.yaml` and use it in a local DSOMM application to verify there are no technical issues.
+After making changes, generate a new `model.yaml` and use it in a local DSOMM application to verify there are no technical issues.
 
 
 ## Usage
@@ -28,11 +28,7 @@ Depending on your platform use either `generateDimensions.bash` (Linux) or `gene
 
    `cd yaml-generation`
 
-3. Install dependencies:
-
-   `./generateDimensions.bash --install`
-
-4. Generate `activities.yaml`:
+3. Generate `model.yaml`:
 
    `./generateDimensions.bash`
 
@@ -42,26 +38,20 @@ Depending on your platform use either `generateDimensions.bash` (Linux) or `gene
 
 To start a local DSOMM instance on http://localhost:8080, run:
 
-   `./generateDimensions.bash --start-dsomm`
+  - `./generateDimensions.bash --start-dsomm`
 
 
 ### Test referenced URLs
 
 To test all URLs referenced by `implementations.yaml` and save results to `url-test-results.txt`, run:
 
-   `./generateDimensions.bash --test-urls`
+  - `./generateDimensions.bash --test-urls`
 
 
 ### Using Podman instead of Docker
 
 If you prefer Podman over Docker, set the environement variable `DOCKER_CMD` to `podman`, or edit the script for you operating system.
 
-
-## Development
-cd yaml-generation
-docker run --rm -v $(pwd):/app composer install
-cd ..
-docker run   -ti -v $(pwd)/yaml-generation:/var/www/html/yaml-generation  -v $(pwd)/src/assets/YAML/:/var/www/html/src/assets/YAML/ wurstbrot/dsomm-yaml-generation
 
 ## Credits
 

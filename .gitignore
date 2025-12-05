@@ -48,5 +48,5 @@ Thumbs.db
 # Generated
 /src/assets/YAML/generated/generated.yaml
 /generated/model.yaml
-dependency-tree.md
+/generated/dependency-tree.md
 url-test-results.txt
