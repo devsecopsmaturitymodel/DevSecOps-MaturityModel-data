@@ -58,9 +58,9 @@ jobs:
           docker run -d --name=yaml --entrypoint="/bin/sleep" wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }} 60 
           docker cp yaml:/var/www/html/generated/model.yaml generated/model.yaml 
           docker cp yaml:/var/www/html/generated/dependency-tree.md generated/dependency-tree.md           
-      - name: Replace version placeholder in activities.yaml
+      - name: Replace version placeholder in model.yaml
         run: |
-          sed -i "s/__VERSION_PLACEHOLDER__/${{ steps.get-version.outputs.version }}/g" src/assets/YAML/activities.yaml
+          sed -i "s/__VERSION_PLACEHOLDER__/${{ steps.get-version.outputs.version }}/g" src/assets/YAML/model.yaml
       - name: Commit all changed files back to the repository
         uses: planetscale/ghcommit-action@v0.1.6
         with:
