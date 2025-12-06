@@ -25,5 +25,5 @@ elif [ "$1" = "--test-urls" ]; then
 
 else
     echo "Generating model.yaml..."
-    MSYS_NO_PATHCONV=1 $DOCKER_CMD run -ti --rm --volume "${PWD}:/app" wurstbrot/dsomm-yaml-generation bash -c 'cd /app/ && php yaml-generation/generateDimensions.php'
+    MSYS_NO_PATHCONV=1 $DOCKER_CMD run -e USERNAME=${USER:-$USERNAME} -ti --rm --volume "${PWD}:/app" wurstbrot/dsomm-yaml-generation bash -c 'cd /app/ && php yaml-generation/generateDimensions.php'
 fi

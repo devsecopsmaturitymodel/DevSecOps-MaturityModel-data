@@ -27,7 +27,7 @@ if "%~1"=="--start-dsomm" (
 
 ) else (
     echo Generate model.yaml...
-    %DOCKER_CMD% run -e %argument% -ti --rm --volume "%CD%:/app" wurstbrot/dsomm-yaml-generation bash -c "cd /app/ && php yaml-generation/generateDimensions.php"
+    %DOCKER_CMD% run -e USERNAME=%USERNAME% -ti --rm --volume "%CD%:/app" wurstbrot/dsomm-yaml-generation bash -c "cd /app/ && php yaml-generation/generateDimensions.php"
     
 )
 

@@ -7,6 +7,12 @@ $targetFolder = "generated";
 $inputFolder = "src/assets/YAML";
 $implementationReferenceFile = "$inputFolder/default/implementations.yaml";
 
+if (getenv('GITHUB_ACTIONS')) {
+    $publisher = 'https://github.com/' . getenv('GITHUB_REPOSITORY');
+} else {
+    $publisher = getenv('USERNAME');
+}
+
 $files = glob("$inputFolder/default/*/*.yaml");
 $dimensions = array();
 foreach ($files as $filename) {
@@ -157,7 +163,6 @@ if (count($errorMsg) > 0) {
 }
 
 
-
 // Post-process to add activity name as comment for `dependsOn`
 $dimensionsString = yaml_emit($dimensionsAggregated);
 preg_match_all('/\{!([0-9a-z-]{30,})!\}/', $dimensionsString, $matches);
@@ -173,7 +178,7 @@ $metaDocument = array(
     'meta' => array(
         'version' => '__VERSION_PLACEHOLDER__',
         'released' => date('Y-m-d'),
-        'publisher' => 'https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/'
+        'publisher' => $publisher
     )
 );
 $modelString = yaml_emit_with_header($metaDocument, $dimensionsAggregated);
