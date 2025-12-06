@@ -675,7 +675,8 @@ Implementation:
       level: 3
       dependsOn:
         - Context-aware output encoding
-      implementation: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:
         samm2:
           - O-EM-A-1
@@ -713,7 +714,8 @@ Implementation:
       level: 4
       dependsOn:
         - WAF baseline
-      implementation: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:
         samm2:
           - O-EM-A-2
@@ -756,7 +758,8 @@ Implementation:
       level: 5
       dependsOn:
         - WAF medium
-      implementation: []
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:
         samm2:
           - O-EM-A-2

@@ -16,7 +16,8 @@ Implementation:
       description: ""
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stylecop
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube-lint
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/eslint
       references:
         samm2:
           - V-ST-A-1

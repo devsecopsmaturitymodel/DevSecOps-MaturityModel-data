@@ -304,7 +304,8 @@ Test and Verification:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pmd
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/stylecop
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/eslint
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sonarqube-lint
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-super-linter
       references:
         samm2:
