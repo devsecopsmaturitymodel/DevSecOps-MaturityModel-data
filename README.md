@@ -12,7 +12,7 @@ Contributions that improve the DSOMM model are welcome. Please edit the source f
 
 ### Testing
 
-After making changes, generate a new `model.yaml` and use it in a local DSOMM application to verify there are no technical issues.
+After making changes, generate a new `model.yaml` and start a local DSOMM application to verify there are no technical issues. (See below.)
 
 
 ## Usage
@@ -39,6 +39,8 @@ Depending on your platform use either `generateDimensions.bash` (Linux) or `gene
 To start a local DSOMM instance on http://localhost:8080, run:
 
   - `./generateDimensions.bash --start-dsomm`
+
+  This will down the latest DSOMM docker image and spin it up as a docker container.
 
 
 ### Test referenced URLs

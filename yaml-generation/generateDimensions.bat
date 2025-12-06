@@ -1,9 +1,9 @@
 @echo off
 
 REM Usage:
-REM    ./generateDimensions.bash --install     First time, install composer dependencies
-REM    ./generateDimensions.bash               Generate model.yaml
-REM    ./generateDimensions.bash --test-urls   Test URLs in implementations.yaml
+REM    ./generateDimensions.bash                 Generate model.yaml
+REM    ./generateDimensions.bash --test-urls     Test URLs in implementations.yaml
+REM    ./generateDimensions.bash --start-dsomm   Run local DSOMM with generated model.yaml
 
 setlocal
 REM Change working directory to the project root
@@ -19,7 +19,7 @@ echo Installing composer dependencies...
 
 if "%~1"=="--start-dsomm" (
     echo Start local DSOMM application...
-    %DOCKER_CMD% run -ti --rm --volume "%CD%/generated/model.yaml:/generated/model.yaml" -p 8080:8080 wurstbrot/dsomm
+    %DOCKER_CMD% run -ti --rm --volume "%CD%/generated/model.yaml:/srv/assets/YAML/default/model.yaml" -p 8080:8080 wurstbrot/dsomm
 
 ) else if "%~1"=="--test-urls" (
     echo Test URLs in implementations.yaml...
