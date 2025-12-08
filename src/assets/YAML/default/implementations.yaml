@@ -402,7 +402,7 @@ implementations:
     uuid: ba6bd46c-2069-4f4d-b26c-7334a7553339
     name: authentication
     tags: []
-    url: https://d3fend.mitre.org/dao/artifact/d3f:Authentication/ ### ???
+    url: https://d3fend.mitre.org/dao/artifact/d3f:AuthenticationServer/
   rsyslog:
     uuid: 79f88310-d63e-471d-8e63-8c77f2281b66
     name: rsyslog
@@ -443,12 +443,6 @@ implementations:
     name: ELK-Stack
     tags: []
     url: https://www.elastic.co/elastic-stack/
-  https-ht-transpare:
-    uuid: 84ef86ea-ada4-4e10-ae4f-a5bb77dcae5d
-    name: https://ht.transpare ### ???
-    tags: []
-    url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
-    description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
   prometheus:
     uuid: ddf221df-3517-42e4-b23d-c1d9a162744c
     name: Prometheus
@@ -574,7 +568,7 @@ implementations:
     uuid: b99c9d52-dd1a-4aef-8699-65173cf978ce
     name: HTC Hydra
     tags: [password]
-    url: https://www.htc-cs.com/en/products/htc-hydra/ ### ???
+    url: https://github.com/vanhauser-thc/thc-hydra
   netassert:
     uuid: fffa6fb9-1fae-4852-88dc-c7086961330c
     name: netassert

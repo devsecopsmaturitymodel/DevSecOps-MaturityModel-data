@@ -127,8 +127,7 @@ Information Gathering:
       level: 4
       dependsOn:
         - Visualized metrics
-      implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/https-ht-transpare
+      implementation: []
       references:
         samm2:
           - O-IM-A-2
