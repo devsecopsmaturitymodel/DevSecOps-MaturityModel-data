@@ -234,7 +234,7 @@ function assertUniqueRefByKey($references, $keyToAssert, &$errorMsg) {
             $value = $reference[$keyToAssert];
             // echo "$key: $value\n";
             if (array_key_exists($value, $all_values)) {
-                array_push($errorMsg, "Duplicate '$keyToAssert' in reference file: " . $all_values[$value] . " and $key: $printable_keyToAssert='$value'");
+                array_push($errorMsg, "Duplicate '$keyToAssert' in reference file: '" . $all_values[$value] . "' and '$key': $printable_keyToAssert='$value'");
             } else {
                 $all_values[$value] = $key;
             }
@@ -267,7 +267,7 @@ function assertLiveUrlsInRefs($all_references, &$errorMsg) {
                 if (array_key_exists('url', $reference)) {
                     $url = $reference['url'];
                     echo "  $key: $url\n";
-                    $err = assertLiveUrl($reference['url']);
+                    $err = assertLiveUrl($reference['url'], $reference['test-url-expects'] ?? []);
                     if ($err) {
                         echo "    # $err\n";
                         array_push($errorMsg, "Dead ref URL ($key): $err");
@@ -280,11 +280,12 @@ function assertLiveUrlsInRefs($all_references, &$errorMsg) {
 }
 
 
-function assertLiveUrl($url):string {
+function assertLiveUrl($url, $expectedStatusCodes = []):string {
     $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0';
 
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_USERAGENT, $useragent);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Accept-Language: en-US,en']);
     curl_setopt($curl, CURLOPT_NOBODY, true);
     curl_setopt($curl, CURLOPT_HEADER, true);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
@@ -305,13 +306,26 @@ function assertLiveUrl($url):string {
 
     curl_close($curl);
 
-    if ($statusCode == 200) {   
+    if (isExpectedStatusCode($statusCode, $expectedStatusCodes)) {   
         return "";
     }
     if ($statusCode == 301 || $statusCode == 302) {   
         return "Status code $statusCode redirects to: $redirectUrl";
     }
     return "Status code: $statusCode: $url";
+}
+
+function isExpectedStatusCode($statusCode, $expectedStatusCodes) {
+    if (count($expectedStatusCodes) == 0) {
+        return $statusCode == 200;
+    }
+
+    foreach ($expectedStatusCodes as $expectedStatusCode) {
+        if ($statusCode == $expectedStatusCode) {
+            return true;
+        }
+    }
+    return false;
 }
 
 
