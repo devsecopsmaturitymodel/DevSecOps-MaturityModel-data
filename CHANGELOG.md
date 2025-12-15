@@ -1,3 +1,13 @@
+# [1.25.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.24.0...v1.25.0) (2025-12-15)
+
+
+* feat!: new structure ([2766a0a](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/2766a0ac2ced849735e5d63f351bc85d5137a0af))
+
+
+### BREAKING CHANGES
+
+* generated moved to root with model.yaml instead of generated.yaml
+
 # [1.24.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.23.1...v1.24.0) (2025-12-15)
 
 
