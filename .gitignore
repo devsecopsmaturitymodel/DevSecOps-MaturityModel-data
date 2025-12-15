@@ -43,5 +43,10 @@ testem.log
 .DS_Store  
 Thumbs.db 
 /yaml-generation/vendor/
-# Generated YAML
+
+
+# Generated
 /src/assets/YAML/generated/generated.yaml
+/generated/model.yaml
+/generated/dependency-tree.md
+url-test-results.txt

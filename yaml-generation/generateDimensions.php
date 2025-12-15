@@ -3,13 +3,22 @@
 require_once "functions.php";
 
 $errorMsg = array();
-$implementationReferenceFile = "src/assets/YAML/default/implementations.yaml";
+$targetFolder = "generated";
+$inputFolder = "src/assets/YAML";
+$implementationReferenceFile = "$inputFolder/default/implementations.yaml";
 
-$files = glob("src/assets/YAML/default/*/*.yaml");
+if (getenv('GITHUB_ACTIONS')) {
+    $publisher = 'https://github.com/' . getenv('GITHUB_REPOSITORY');
+} else {
+    $publisher = getenv('USERNAME');
+}
+
+$files = glob("$inputFolder/default/*/*.yaml");
 $dimensions = array();
 foreach ($files as $filename) {
     echo "Reading $filename\n";
     if (preg_match("/_meta.yaml/", $filename)) continue;
+
     $dimension = getDimensions($filename);
     if (array_key_exists("_yaml_references", $dimension)) {
         unset($dimension['_yaml_references']);
@@ -18,7 +27,7 @@ foreach ($files as $filename) {
 }
 $dimensions = sortActivitiesByLevel($dimensions);
 
-$files = glob("src/assets/YAML/custom/*/*.yaml");
+$files = glob("$inputFolder/custom/*/*.yaml");
 $dimensionsCustom = array();
 $dimensionsAggregated = array();
 foreach ($files as $filename) {
@@ -164,16 +173,36 @@ foreach ($uuids as $uuid) {
     $dimensionsString = str_replace("'{!$uuid!}'", "$uuid # $name", $dimensionsString);
 }
 
-// Store generated data
-$targetGeneratedFile = getcwd() . "/src/assets/YAML/generated/generated.yaml";
-echo "\nStoring to $targetGeneratedFile\n";
-file_put_contents($targetGeneratedFile, $dimensionsString);
+// Store generated data with meta document first
+$metaDocument = array(
+    'meta' => array(
+        'version' => '__VERSION_PLACEHOLDER__',
+        'released' => date('Y-m-d'),
+        'publisher' => $publisher
+    )
+);
+$modelString = yaml_emit_with_header($metaDocument, $dimensionsAggregated);
+
+// Post-process to add activity name as comment for `dependsOn`
+preg_match_all('/\{!([0-9a-z-]{30,})!\}/', $modelString, $matches);
+$uuids = array_unique($matches[1]);
+foreach ($uuids as $uuid) {
+    $name = getActivityNameByUuid($uuid, $dimensionsAggregated);
+    // echo "Adding dependsOn-comment for $uuid: $name\n";
+    $modelString = str_replace("'{!$uuid!}'", "$uuid # $name", $modelString);
+}
+
+$targetGeneratedFile = getcwd() . "/$targetFolder/model.yaml";
+echo "\nSaved generated model: '$targetGeneratedFile'\n";
+file_put_contents($targetGeneratedFile, $modelString);
 
 
 // Store dependency graph
-$graphFilename = getcwd() . "/src/assets/YAML/generated/dependency-tree.md";
+$graphFilename = getcwd() . "/$targetFolder/dependency-tree.md";
 $graphFile = fopen($graphFilename, "w");
-fwrite($graphFile, "```mermaid\n\n");
+$graphIntro = "## DSOMM Activity Dependencies\n\nThe activities in this DSOMM Model have the following dependencies.";
+fwrite($graphFile, $graphIntro."\n\n");
+fwrite($graphFile, "```mermaid\n");
 fwrite($graphFile, "graph LR\n\n");
 // List all nodes
 foreach ($activityIndex as $activityName => $key) {
@@ -209,7 +238,7 @@ foreach ($activityIndex as $activityName => $key) {
 // Close the file
 fwrite($graphFile, "```\n");
 fclose($graphFile);
-echo "\nSaved dependency graph '$graphFilename'\n\n";
+echo "Saved dependency graph: '$graphFilename'\n\n";
 
 function buildOpenCreUrl($dimension, $subdimension, $activityName) {
     $baseUrl = "https://www.opencre.org/node/standard/";
@@ -339,12 +368,30 @@ function isActivityExisting($dimensions, $activityName)
     return false;
 }
 
+/**
+ *  Creates a yaml string from $metaDocument plus $document separated with '---'
+ */
+function yaml_emit_with_header($metaDocument, $document) {
+    $metaString = yaml_emit($metaDocument);
+    $documentString = yaml_emit($document);
+
+    // Combine both documents with proper YAML document separation
+    if (substr(rtrim($metaString), -3) === '...') {
+        // Remove trailing ... from meta document
+        $metaString = substr(rtrim($metaString), 0, -3);
+    }
+    
+    return $metaString . $documentString;
+}
+
 
 /**
+ * Merges two arrays recursively (just like the standard `array_merge_recursive()`),
+ * but will not create duplicates if the keys are numeric.
  *
  * @param array $array1
  * @param array $array2
- * @return unknown
+ * @return merged array
  */
 function array_merge_recursive_ex(array $array1, array $array2)
 {
@@ -367,7 +414,7 @@ function array_merge_recursive_ex(array $array1, array $array2)
 
 
 /*
-* Traverse an array in-place and replaces yaml pointers.
+ * Traverse an array in-place and replaces yaml pointers.
  */
 function resolveYamlReferences(&$data, $references, &$errorMsg)
 {
