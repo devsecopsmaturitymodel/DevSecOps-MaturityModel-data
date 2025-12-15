@@ -1,39 +1,3 @@
-## [1.23.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.23.0...v1.23.1) (2025-12-15)
-
-
-### Bug Fixes
-
-* use correct GitHub repository context in workflow ([7493262](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/74932622e77448f48e5b17f1ffdb8cc312286e59))
-
-# [1.23.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.22.0...v1.23.0) (2025-12-15)
-
-
-### Features
-
-* new structure\n\nBREAKING CHANGE: generated moved to root with model.yaml instead of generated.yaml ([dff5ba4](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/dff5ba435305ea73ac731e7e28c52f1d1c495d6d))
-
-# [1.22.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.2...v1.22.0) (2025-12-15)
-
-
-### Bug Fixes
-
-* GIT_REPO includey ([0fe4f11](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/0fe4f11e02e177ec885b41df41b336c615477769))
-
-
-### Features
-
-* new structure\n\nBREAKING CHANGE: generated moved to root with model.yaml instead of generated.yaml ([02edcf5](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/02edcf582c0e102038eda2bf52603519a6ceea5a))
-
-## [1.21.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.1...v1.21.2) (2025-12-15)
-
-
-### Bug Fixes
-
-* new structure ([133646e](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/133646e2aa2f58faf926d96dbd665a3fc0ec41da))
-
-## [1.21.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.0...v1.21.1) (2025-12-15)
-
-
 ### Bug Fixes
 
 * Modify YAML generation to include version placeholder ([37958b5](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/37958b54e20b80b4401980a28b07616c964f35d5))
