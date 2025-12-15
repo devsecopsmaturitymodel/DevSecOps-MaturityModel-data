@@ -1,3 +1,13 @@
+# [1.24.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.23.1...v1.24.0) (2025-12-15)
+
+
+* feat!: new structure ([4fc201f](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/4fc201f9e7e6c8210670cad65d37d8b3d82b9c9c))
+
+
+### BREAKING CHANGES
+
+* generated moved to root with model.yaml instead of generated.yaml
+
 ### Bug Fixes
 
 * Modify YAML generation to include version placeholder ([37958b5](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/37958b54e20b80b4401980a28b07616c964f35d5))
