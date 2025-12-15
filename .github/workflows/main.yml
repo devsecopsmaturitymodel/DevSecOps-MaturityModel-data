@@ -55,7 +55,7 @@ jobs:
           tags: wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }},wurstbrot/dsomm-yaml-generation:latest
           build-args: |
             DSOMM_VERSION=${{ steps.get-version.outputs.version }}
-            GITHUB_REPOSITORY=${{ GITHUB_REPOSITORY }}
+            GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
       - name: Extract generated files from docker image
         run: |
           docker run -d --name=yaml --entrypoint="/bin/sleep" wurstbrot/dsomm-yaml-generation:${{ steps.get-version.outputs.version }} 60 
