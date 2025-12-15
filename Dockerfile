@@ -1,6 +1,7 @@
 FROM php:apache-bullseye
 
 ARG DSOMM_VERSION=dev
+ARG GITHUB_REPOSITORY=DevSecOpsMaturityModel-data
 
 RUN  apt-get update && apt-get -y install apt-utils libyaml-dev wget unzip && wget -O composer-setup.php https://getcomposer.org/installer && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 COPY yaml-generation /var/www/html/yaml-generation
