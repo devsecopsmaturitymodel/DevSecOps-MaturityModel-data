@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.0...v1.21.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* Modify YAML generation to include version placeholder ([37958b5](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/37958b54e20b80b4401980a28b07616c964f35d5))
+
 ## [1.20.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.20.0...v1.20.1) (2025-11-24)
 
 
