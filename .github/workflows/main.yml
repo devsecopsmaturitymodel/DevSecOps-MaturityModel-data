@@ -66,7 +66,7 @@ jobs:
       - name: Commit all changed files back to the repository
         uses: planetscale/ghcommit-action@v0.1.6
         with:
-          commit_message: "🤖 fmt"
+          commit_message: "🤖 push ${{ steps.get-version.outputs.version }}"
           repo: ${{ github.repository }}
           branch: ${{ github.head_ref || github.ref_name }}
         env:
