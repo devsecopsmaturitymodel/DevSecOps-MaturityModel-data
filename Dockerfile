@@ -11,6 +11,6 @@ RUN cd /var/www/html/yaml-generation && composer install \
 --prefer-dist
 
 RUN pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml
-RUN cd /var/www/html && php yaml-generation/generateDimensions.php
+RUN cd /var/www/html && php yaml-generation/generateDimensions.php && sed -i "s/__VERSION_PLACEHOLDER__/{VERSION}/g" /var/www/html/generated/model.yaml
 workdir /var/www/html
 CMD php yaml-generation/generateDimensions.php
