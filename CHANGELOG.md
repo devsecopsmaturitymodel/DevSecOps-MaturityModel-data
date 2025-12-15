@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.22.0...v1.23.0) (2025-12-15)
+
+
+### Features
+
+* new structure\n\nBREAKING CHANGE: generated moved to root with model.yaml instead of generated.yaml ([dff5ba4](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/dff5ba435305ea73ac731e7e28c52f1d1c495d6d))
+
 # [1.22.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.2...v1.22.0) (2025-12-15)
 
 
