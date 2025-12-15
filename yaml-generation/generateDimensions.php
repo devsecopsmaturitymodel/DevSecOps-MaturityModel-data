@@ -7,7 +7,7 @@ $targetFolder = "generated";
 $inputFolder = "src/assets/YAML";
 $implementationReferenceFile = "$inputFolder/default/implementations.yaml";
 
-if (getenv('GITHUB_ACTIONS')) {
+if (getenv('DSOMM_VERSION')) { // version comes as an arg to Dockerfile
     $publisher = 'https://github.com/' . getenv('GITHUB_REPOSITORY');
 } else {
     $publisher = getenv('USERNAME');
@@ -69,7 +69,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
             if (!array_key_exists("level", $activity)) {
                 array_push($errorMsg,"Missing 'level' attribute in activity: '$activityName'");
 	        }
-	    
+
             // echo "$subdimension | $activityName\n";
             if (!array_key_exists("uuid", $activity)) {
                 array_push($errorMsg, "'$activityName' is missing an uuid in '$dimension'");
@@ -98,7 +98,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                     if(!is_string($dependsOnName)) {
                         array_push($errorMsg, "The 'dependsOn' is not a string '" . json_encode($dependsOnName) . "' (in $activityName)");
                         continue;
-                    } 
+                    }
 
                     // Load dependsOnName and dependsOnUuid, depending on actual content
                     $uuidRegExp = "/(uuid:)?\s*([0-9a-f]{6,}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{6,})/";
@@ -109,7 +109,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                             array_push($errorMsg,"DependsOn non-existing activity uuid: $dependsOnUuid  (in activity: '$activityName')");
                         } else if ($matches[1] != "") {
                             echo "WARNING: DependsOn is prefixed by deprecated 'uuid:' for $dependsOnUuid (in activity: '$activityName'). Use activity name, or the uuid only\n";
-                        }                         
+                        }
                     } else {
                         $dependsOnUuid = getUuidByActivityName($dependsOnName, $dimensionsAggregated);
                         if (is_null(getUuidByActivityName($dependsOnName, $dimensionsAggregated))) {
@@ -118,7 +118,7 @@ foreach ($dimensionsAggregated as $dimension => $subdimensions) {
                     }
                     // Trick emit_yaml() to have uuid plus a comment in a string. Removed in post-processing below.
                     $dimensionsAggregated[$dimension][$subdimension][$activityName]["dependsOn"][$index] = "{!$dependsOnUuid!}";
-                    
+
 
                     // Build dependency graph
                     if (!array_key_exists($activityName, $activityIndex)) {
@@ -243,7 +243,7 @@ echo "Saved dependency graph: '$graphFilename'\n\n";
 function buildOpenCreUrl($dimension, $subdimension, $activityName) {
     $baseUrl = "https://www.opencre.org/node/standard/";
     $DSOMM = "DevSecOps Maturity Model (DSOMM)";
-    $url = $baseUrl . rawurlencode($DSOMM) . 
+    $url = $baseUrl . rawurlencode($DSOMM) .
         "/section/" . rawurlencode($subdimension) .
         "/subsection/" . rawurlencode($activityName);
     return $url;
@@ -280,7 +280,7 @@ function assertUniqueRefByKey($references, $keyToAssert, &$errorMsg) {
 function assertSecureUrlsInRefs($all_references, &$errorMsg) {
     foreach ($all_references as $references) {
         foreach ($references as $id => $reference) {
-            foreach ($reference as $key => $value) {   
+            foreach ($reference as $key => $value) {
                 if (is_string($value)) {
                     // echo "KEY: $key VAL: " . var_dump($value) . "\n";
                     if (str_contains($value,'http://')) {
@@ -326,23 +326,23 @@ function assertLiveUrl($url):string {
     curl_setopt($curl, CURLOPT_TIMEOUT, 5);
     curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
     $response = curl_exec($curl);
-    
+
     if (curl_errno($curl)) {
         echo curl_error($curl);
         curl_close($curl);
         return "No reply";
     }
-    
+
     // Extract header info
     $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     $redirectUrl = curl_getinfo($curl,  CURLINFO_REDIRECT_URL );
 
     curl_close($curl);
 
-    if ($statusCode == 200) {   
+    if ($statusCode == 200) {
         return "";
     }
-    if ($statusCode == 301 || $statusCode == 302) {   
+    if ($statusCode == 301 || $statusCode == 302) {
         return "Status code $statusCode redirects to: $redirectUrl";
     }
     return "Status code: $statusCode: $url";
@@ -380,7 +380,7 @@ function yaml_emit_with_header($metaDocument, $document) {
         // Remove trailing ... from meta document
         $metaString = substr(rtrim($metaString), 0, -3);
     }
-    
+
     return $metaString . $documentString;
 }
 
