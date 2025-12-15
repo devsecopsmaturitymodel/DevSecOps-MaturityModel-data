@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.23.0...v1.23.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* use correct GitHub repository context in workflow ([7493262](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/74932622e77448f48e5b17f1ffdb8cc312286e59))
+
 # [1.23.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.22.0...v1.23.0) (2025-12-15)
 
 
