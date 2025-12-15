@@ -1,3 +1,10 @@
+## [1.21.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.1...v1.21.2) (2025-12-15)
+
+
+### Bug Fixes
+
+* new structure ([133646e](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/133646e2aa2f58faf926d96dbd665a3fc0ec41da))
+
 ## [1.21.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.0...v1.21.1) (2025-12-15)
 
 
