@@ -1,3 +1,15 @@
+# [1.22.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.2...v1.22.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* GIT_REPO includey ([0fe4f11](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/0fe4f11e02e177ec885b41df41b336c615477769))
+
+
+### Features
+
+* new structure\n\nBREAKING CHANGE: generated moved to root with model.yaml instead of generated.yaml ([02edcf5](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/02edcf582c0e102038eda2bf52603519a6ceea5a))
+
 ## [1.21.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.21.1...v1.21.2) (2025-12-15)
 
 
