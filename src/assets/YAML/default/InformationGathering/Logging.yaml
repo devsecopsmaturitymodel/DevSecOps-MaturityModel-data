@@ -37,7 +37,7 @@ Information Gathering:
         Locally stored system logs can be manipulated by attackers unauthorized or might be corrupt or lost after an incident. In addition, it is hard to perform aggregation of logs.
       measure: |
         - Implement a centralized logging solution for all critical systems.
-        - System logs must be securely transmitted and stored in a central repository, protected from unauthorized access and modification.
+        - System logs must be stored in a central repository, protected from unauthorized access and modification.
         - Ensure that log collection is automated and covers all relevant system events.
       level: 1
       difficultyOfImplementation:

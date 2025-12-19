@@ -379,6 +379,7 @@ Test and Verification:
         iso27001-2022:
           - 8.8
       isImplemented: false
+      tags: ["defect-management", "sca"]
       evidence: ""
       comments: ""
     Software Composition Analysis (server side):
@@ -414,6 +415,7 @@ Test and Verification:
           - 8.8
       tags:
         - vmm-testing
+      tags: ["false-positive", "defect-management", "scanning", "sca", "sats", "dast"]
     Usage of multiple analyzers:
       uuid: 297be001-8d94-41ee-ab29-207020d423c0
       risk:

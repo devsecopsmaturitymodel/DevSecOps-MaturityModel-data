@@ -180,6 +180,7 @@ Test and Verification:
           - Not explicitly covered by ISO 27001 - too specific
           - 5.27
       isImplemented: false
+      tags: ["false-positive", "defect-management", "scanning", "sca", "sats", "dast"]
       evidence: ""
       comments: ""
     Artifact-based false positive treatment:
@@ -221,7 +222,7 @@ Test and Verification:
         iso27001-2022:
           - 5.25
           - 5.27
-      tags: ["false-positive", "defect-management"]
+      tags: ["false-positive", "defect-management", "scanning", "sca", "sats", "dast"]
     Simple visualization of defects:
       uuid: 55f4c916-3a34-474d-ad96-9a9f7a4f6a83
       risk:

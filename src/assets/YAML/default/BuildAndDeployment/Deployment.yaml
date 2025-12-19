@@ -241,6 +241,8 @@ Build and Deployment:
       tags:
         - inventory
         - sbom
+        - scanning
+        - sca
     Inventory of production components:
       uuid: 2a44b708-734f-4463-b0cb-86dc46344b2f
       description: |

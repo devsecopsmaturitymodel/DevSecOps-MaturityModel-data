@@ -225,7 +225,7 @@ Build and Deployment:
       comments: ""
       tags:
         - patching
-    Automated merge of automated PRs: &automerge-PR
+    Automated merge of automated PRs:
       uuid: f2594f8f-1cd6-45f9-af29-eaf3315698eb
       description: |-
         Automated merges of automated created PRs for outdated dependencies.

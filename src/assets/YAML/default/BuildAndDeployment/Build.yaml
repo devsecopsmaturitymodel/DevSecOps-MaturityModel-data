@@ -160,6 +160,7 @@ Build and Deployment:
           - 5.9
           - 5.12
       isImplemented: false
+      tags: ["inventory", "scanning", "sca"]
       evidence: ""
       comments: ""
     Signing of artifacts:
