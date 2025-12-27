@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=../../schemas/dsomm-schema-test-and-verification.json
 ---
 Test and Verification:
-  Test-Intensity:
+  Test Intensity:
     Creation and application of a testing concept:
       uuid: 79ef8103-e1ed-4055-8df8-fd2b2015bebe
       risk: Scans might use a too small or too high test intensity.

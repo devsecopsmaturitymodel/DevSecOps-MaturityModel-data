@@ -40,6 +40,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-asvs
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-masvs
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/apimaturity
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:
         samm2:
           - D-SR-A-2
@@ -172,6 +173,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-asvs
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-masvs
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/apimaturity
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:
         samm2:
           - D-SR-A-3
@@ -202,6 +204,7 @@ Implementation:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-asvs
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-masvs
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:
         samm2:
           - D-SR-A-3

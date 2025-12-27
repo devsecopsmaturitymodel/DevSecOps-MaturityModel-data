@@ -31,19 +31,20 @@ Information Gathering:
           - 8.15
     Centralized system logging:
       uuid: 4eced38a-7904-4c45-adb0-50b663065540
-      risk:
-        Local stored system logs can be unauthorized manipulated by attackers
-        or might be corrupt after an incident. In addition, it is hard to perform
-        a aggregation of logs.
-      measure:
-        By using centralized logging logs are protected against unauthorized
-        modification.
+      description: |
+        Centralized system logging involves collecting and storing system logs from multiple sources in a secure, central location. This approach improves log integrity, simplifies monitoring, and enables efficient incident response.
+      risk: |
+        Locally stored system logs can be manipulated by attackers unauthorized or might be corrupt or lost after an incident. In addition, it is hard to perform aggregation of logs.
+      measure: |
+        - Implement a centralized logging solution for all critical systems.
+        - System logs must be stored in a central repository, protected from unauthorized access and modification.
+        - Ensure that log collection is automated and covers all relevant system events.
+      level: 1
       difficultyOfImplementation:
         knowledge: 1
         time: 1
         resources: 1
       usefulness: 2
-      level: 1
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/rsyslog
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logstash
