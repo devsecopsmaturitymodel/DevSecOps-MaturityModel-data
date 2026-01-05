@@ -1,3 +1,22 @@
+# [1.26.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.25.0...v1.26.0) (2026-01-05)
+
+
+* fix\!: build ([b9eef67](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/b9eef67f450590e89d7b8763e453a712fb954075))
+
+
+### Bug Fixes
+
+* generated folder ([fd323eb](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/fd323ebfd1ef5483006ae2577e8d5742607aa7eb))
+
+
+### BREAKING CHANGES
+
+* Updated Docker build process and YAML generation structure
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+
 # [1.25.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.24.0...v1.25.0) (2025-12-15)
 
 
