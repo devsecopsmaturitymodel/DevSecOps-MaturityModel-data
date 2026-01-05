@@ -10,6 +10,6 @@ RUN cd /var/www/html/yaml-generation && composer install \
 --prefer-dist
 
 RUN pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml
-RUN cd /var/www/html && php yaml-generation/generateDimensions.php
-workdir /var/www/html
-CMD php yaml-generation/generateDimensions.php
+RUN cd /var/www/html && mkdir /var/www/html/generated && php /var/www/html/yaml-generation/generateDimensions.php
+WORKDIR /var/www/html
+CMD [ "php", "yaml-generation/generateDimensions.php" ]
