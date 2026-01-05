@@ -53,6 +53,7 @@ Test and Verification:
         iso27001-2022:
           - 8.8
       isImplemented: false
+      tags: ["scanning", "sca"]
       evidence: ""
       comments: ""
     Test for malware:

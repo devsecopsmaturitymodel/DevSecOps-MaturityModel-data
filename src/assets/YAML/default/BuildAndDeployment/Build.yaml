@@ -28,7 +28,7 @@ Build and Deployment:
       level: 2
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
       references:
         samm2:
           - I-SB-A-2
@@ -42,34 +42,36 @@ Build and Deployment:
     Defined build process:
       uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
       description: |
-        A *build process* include more than just compiling your source code. 
-        It also includes steps such as managing (third party) dependencies, 
-        environment configuration, running the unit tests, etc. 
-        
-        A *defined build process* has automated these steps to ensure consistency.
+        A *build process* includes more than just compiling your source code. It also covers:
+        - Managing (third party) dependencies
+        - Environment configuration
+        - Running unit and integration tests
+        - Security scanning and compliance checks
+        - Artifact creation and storage
+        - Deployment preparation
 
-        This can be done with a Jenkinsfile, Maven, or similar tools.
+        Basing the build process on human memory may lead to inconsistencies and security misconfigurations.
+
+        A *defined build process* can automate these steps to ensure consistency, avoiding accidental omissions or misconfigurations. Use tools such as Jenkins, GitHub Actions, GitLab CI, or Maven to codify the process.
+
+        A simplified, but still a *defined build process*, may be a checklist of the steps to be performed.
       risk:
-        Performing builds without a defined process is error prone; for example,
-        as a result of incorrect security related configuration.
+        Without a defined and automated build process the risk increase for accidental mistakes, forgetting test activities, and insecure misconfigurations.
       measure:
-        A well defined build process lowers the possibility of errors during
-        the build process.
+        Find a tool that suits your environment. Add your manual build steps, include steps for running tests, scanning and preparation for deployment.
+      assessment: |
+        - Show your build pipeline configuration (e.g., Jenkinsfile, GitHub Actions workflow) and an exemplary job (build + test + security scan).
+      level: 1
       difficultyOfImplementation:
         knowledge: 2
         time: 3
         resources: 2
       usefulness: 4
-      level: 1
-      assessment: |
-        - Show your build pipeline and an exemplary job (build + test).
-        - Show that every team member has access.
-        - Show that failed jobs are fixed.
-
-        Credits: AppSecure-nrw [Security Belts](https://github.com/AppSecure-nrw/security-belts/)
       implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jenkins
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/maven
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technologi
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
       references:
         samm2:
           - I-SB-A-1
@@ -144,7 +146,9 @@ Build and Deployment:
         resources: 3
       usefulness: 3
       level: 2
-      implementation: []
+      implementation: 
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trivy
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/syft
       references:
         samm2:
           - I-SB-B-1
@@ -156,6 +160,7 @@ Build and Deployment:
           - 5.9
           - 5.12
       isImplemented: false
+      tags: ["inventory", "scanning", "sca"]
       evidence: ""
       comments: ""
     Signing of artifacts:
