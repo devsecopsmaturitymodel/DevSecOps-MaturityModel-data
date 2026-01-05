@@ -1,3 +1,13 @@
+# [4.0.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.25.0...v1.26.0) (2026-01-05)
+
+
+* enhance version number to 4
+
+
+### Bug Fixes
+
+* generated folder ([fd323eb](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/fd323ebfd1ef5483006ae2577e8d5742607aa7eb))
+
 # [1.26.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.25.0...v1.26.0) (2026-01-05)
 
 
