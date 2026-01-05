@@ -15,7 +15,7 @@ RUN cd /var/www/html/yaml-generation && composer install \
 --prefer-dist
 
 RUN pecl channel-update pecl.php.net && pecl install yaml && docker-php-ext-enable yaml
-RUN cd /var/www/html && GITHUB_REPOSITORY="${GITHUB_REPOSITORY}" php yaml-generation/generateDimensions.php && sed -i "s/__VERSION_PLACEHOLDER__/${DSOMM_VERSION}/g" /var/www/html/generated/model.yaml
-workdir /var/www/html
-CMD php yaml-generation/generateDimensions.ph
+RUN cd /var/www/html && GITHUB_REPOSITORY="${GITHUB_REPOSITORY}" php /var/www/html/yaml-generation/generateDimensions.php && sed -i "s/__VERSION_PLACEHOLDER__/${DSOMM_VERSION}/g" /var/www/html/generated/model.yaml
+WORKDIR /var/www/html
 
+CMD [ "php", "yaml-generation/generateDimensions.php" ]
