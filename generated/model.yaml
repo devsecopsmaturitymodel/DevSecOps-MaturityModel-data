@@ -3140,7 +3140,7 @@ Implementation:
         - linting
       - uuid: aa5ded61-5380-4da6-9474-afc36a397682
         name: In-Depth Linting of Your TypeScript While Coding
-        url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
+        url: https://medium.com/@elenavilchik/in-depth-linting-of-your-typescript-while-coding-1d084affbf0
         tags:
         - ide
         - linting
@@ -7472,7 +7472,7 @@ Test and Verification:
         - linting
       - uuid: aa5ded61-5380-4da6-9474-afc36a397682
         name: In-Depth Linting of Your TypeScript While Coding
-        url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
+        url: https://medium.com/@elenavilchik/in-depth-linting-of-your-typescript-while-coding-1d084affbf0
         tags:
         - ide
         - linting
