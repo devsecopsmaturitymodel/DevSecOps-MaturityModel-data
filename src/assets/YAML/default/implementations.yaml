@@ -752,7 +752,7 @@ implementations:
   sonarqube:
     uuid: aa5ded61-5380-4da6-9474-afc36a397682
     name: In-Depth Linting of Your TypeScript While Coding
-    url: https://blog.sonarsource.com/in-depth-linting-of-your-typescript-while-coding
+    url: https://medium.com/@elenavilchik/in-depth-linting-of-your-typescript-while-coding-1d084affbf0
     tags: [ide, linting]
   stylecop:
     uuid: 0b7ec352-0c36-4de1-8912-617fc6c608fe
