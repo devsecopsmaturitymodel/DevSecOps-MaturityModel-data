@@ -336,10 +336,12 @@ Implementation:
       comments: ""
     Simple access control for systems:
       uuid: 82e499d1-f463-4a4b-be90-68812a874af6
-      risk: Attackers a gaining access to internal systems and application interfaces
+      description: Basic access control for internal systems is implemented.
+      risk: Attackers a gaining access to other internal systems and application interfaces is one breach occurs.
       measure: All internal systems are using simple authentication
       assessment: |
-        - Demonstrate that every team member has appropriate access (least privilege).        
+        - Presenting the documentation of the review of all user privileges yearly. 
+        - Presenting the admin count and validating that there are less than 5 admins per system.
       difficultyOfImplementation:
         knowledge: 3
         time: 3
