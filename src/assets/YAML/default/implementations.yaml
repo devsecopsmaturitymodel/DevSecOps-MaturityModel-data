@@ -9,7 +9,7 @@ implementations:
     uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
     name: Enforcement of commit signing
     tags: [signing]
-    url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
+    url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule
     description: |-
       Usage of branch protection rules
   signing-of-commits:
@@ -37,7 +37,7 @@ implementations:
     name: API Security Maturity Model for Authorization
     tags: [api]
     url: https://curity.io/resources/learn/the-api-security-maturity-model/
-  container-technologi:
+  container-technology:
     uuid: ed6b6340-6c7f-4e13-8937-f560d3f5db11
     name: Container technologies and orchestration like Docker, Kubernetes
     tags: []
@@ -92,15 +92,15 @@ implementations:
   kubernetes-admission:
     uuid: 2a76300f-6b1f-4a51-b925-134c36b723af
     name:
-      Kubernetes Admission Controller can whitelist registries and/or whitelist
-      a signing key.
+      Kubernetes Admission Controller can whitelist registries and/or whitelist a signing key.
     tags: []
     url: https://medium.com/slalom-technology/build-a-kubernetes-dynamic-admission-controller-for-container-registry-whitelisting-b46fe020e22d
+    test-url-expects: [403]
   dependabot:
     uuid: d6292c7d-aab7-43d3-a7c6-1e443b5c1aa4
     name: dependabot
     tags: ["auto-pr", "patching"]
-    url: https://dependabot.com/
+    url: https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide
   renovate:
     uuid: 8228266e-e04f-40ba-94c8-bfadc5310920
     name: renovate
@@ -111,9 +111,14 @@ implementations:
     name: Jenkins
     tags: []
     url: https://www.jenkins.io/
+  maven:
+    uuid: eb6de6b9-e060-4902-ae6f-604ffc386b63
+    name: Maven
+    tags: []
+    url: https://maven.apache.org/
   sample-concept-1:
     uuid: 1a463242-b480-46f6-a912-b51ec1c1558d
-    name: "Sample concept:  \n(1"
+    name: "Sample concept"
     tags: []
     description:
       "Sample concept:  \n(1) each container has a set lifetime and is\
@@ -136,12 +141,13 @@ implementations:
     uuid: be757cb3-63d6-4a63-9c4e-e10b746fd47a
     name: Fedora CoreOS
     tags: []
-    url: https://getfedora.org/coreos
+    url: https://fedoraproject.org/coreos/
   distroless-usage:
     uuid: a92c4f8f-a918-406a-b1e5-70acfc0477bd
     name: Distroless or Alpine
     tags: []
     url: https://itnext.io/which-container-images-to-use-distroless-or-alpine-96e3dab43a22
+    test-url-expects: [403]
   threat-modeling-play:
     uuid: fd0f282b-a065-4464-beed-770c604a5f52
     name: Threat Modeling Playbook
@@ -176,10 +182,10 @@ implementations:
     uuid: bb5b8988-021b-452a-a914-bd36887b6860
     name: "Don't Forget EVIL User stories"
     tags: []
-    url: https://www.owasp.org/index.php/Agile_Software_Development
+    url: https://medium.com/serious-scrum/evil-user-storys-story-telling-for-it-security-e4a9ec94193c
+    test-url-expects: [403]
     description:
-      "[Do not Forget EVIL User Stories](https://www.owasp.org/index.php/Agile_Software_Development:_Don%27t_Forget_EVIL_User_Stories)\
-      \ and [Practical Security Stories and Security Tasks for Agile Development Environments](https://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
+      "Do not Forget _Evil_ User Stories and [Practical Security Stories and Security Tasks for Agile Development Environments](https://safecode.org/publication/SAFECode_Agile_Dev_Security0712.pdf)"
   libyear:
     uuid: 2fff917f-205e-4eab-2e0e-1fab8c04bf33
     name: libyear
@@ -191,7 +197,7 @@ implementations:
     uuid: 1fff917f-205e-4eab-ae0e-1fab8c04bf3a
     name: OWASP Juice Shop
     tags: [training]
-    url: https://github.com/bkimminich/juice-shop
+    url: https://github.com/juice-shop/juice-shop
     description: |-
       In case you do not have the budget to hire an external security expert, an option is to use the OWASP JuiceShop on a "hacking Friday"
   owasp-cheatsheet-series:
@@ -248,7 +254,7 @@ implementations:
     uuid: 7bf90650-a53a-4581-a214-1afd5de3a059
     name: OWASP MASVS
     tags: []
-    url: https://github.com/OWASP/owasp-masvs
+    url: https://github.com/OWASP/masvs
   cis-kubernetes-benchmark:
     uuid: edaec98d-dac7-4dfd-8ab3-42c471d5b9ff
     name: CIS Kubernetes Benchmark for Security
@@ -285,7 +291,7 @@ implementations:
     uuid: 9fbc47ad-82bc-46d1-bba9-66815ab79935
     name: Attack Matrix Kubernetes
     tags: [mitre]
-    url: https://www.microsoft.com/security/blog/2020/04/02/attack-matrix-kubernetes/
+    url: https://www.microsoft.com/en-US/security/blog/2020/04/02/attack-matrix-kubernetes/
     description: |-
       Attack matrix for kubernetes
   istio:
@@ -373,12 +379,12 @@ implementations:
     uuid: 41fda224-2980-443c-bfd4-0a1d4b520cb9
     name: HTTP-Basic Authentication
     tags: []
-    url: https://d3fend.mitre.org/dao/artifact/d3f:WebAuthentication/
+    url: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Authentication
   vpn:
     uuid: e506f60b-747b-44b1-8fe8-f67ccd8f290e
     name: VPN
     tags: []
-    url: https://d3fend.mitre.org/dao/artifact/d3f:VPN/
+    url: https://d3fend.mitre.org/dao/artifact/d3f:VPNServer/
   for-applications-ch:
     uuid: d7fb1f5a-05e3-49f7-ae67-00bfb8f8410c
     name: "For applications: Check default encoding"
@@ -396,7 +402,7 @@ implementations:
     uuid: ba6bd46c-2069-4f4d-b26c-7334a7553339
     name: authentication
     tags: []
-    url: https://d3fend.mitre.org/dao/artifact/d3f:Authentication/
+    url: https://d3fend.mitre.org/dao/artifact/d3f:AuthenticationServer/
   rsyslog:
     uuid: 79f88310-d63e-471d-8e63-8c77f2281b66
     name: rsyslog
@@ -405,7 +411,7 @@ implementations:
   logstash:
     uuid: 7a8fad2e-d642-4972-8501-74591b23feab
     name: logstash
-    url: https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
+    url: https://www.elastic.co/docs/reference/logstash/getting-started-with-logstash
     tags: [tool, logging]
   fluentd:
     uuid: f5da3a20-ab64-4ecf-b4e1-660c80036e45
@@ -436,13 +442,7 @@ implementations:
     uuid: 38fe9d00-df8b-44b6-910d-ca0f02b5c5d3
     name: ELK-Stack
     tags: []
-    url: https://www.elastic.co/elk-stack
-  https-ht-transpare:
-    uuid: 84ef86ea-ada4-4e10-ae4f-a5bb77dcae5d
-    name: https://ht.transpare
-    tags: []
-    url: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD
-    description: https://ht.transparencytoolkit.org/FileServer/FileServer/OLD%20Fileserver/books/SICUREZZA/Addison.Wesley.Security.Metrics.Mar.2007.pdf
+    url: https://www.elastic.co/elastic-stack/
   prometheus:
     uuid: ddf221df-3517-42e4-b23d-c1d9a162744c
     name: Prometheus
@@ -456,7 +456,7 @@ implementations:
     uuid: cc2eec82-f3a7-4ae5-9ccb-3d75352b2e4d
     name: JUnit
     tags: [unittest]
-    url: https://junit.org/junit5/
+    url: https://junit.org/
   karma:
     uuid: fd56720a-ad4b-487c-b4c3-897a688672c4
     name: Karma
@@ -513,7 +513,7 @@ implementations:
     uuid: 7063cf8c-cd98-480f-8ef7-11cf241d2366
     name: OWASP Code Pulse
     tags: []
-    url: https://www.owasp.org/index.php/OWASP_Code_Pulse
+    url: https://owasp.org/www-project-code-pulse/
   ajax-spider:
     uuid: 6583fd5f-4314-4b39-9265-de72f861c8cb
     name: Ajax Spider
@@ -568,7 +568,7 @@ implementations:
     uuid: b99c9d52-dd1a-4aef-8699-65173cf978ce
     name: HTC Hydra
     tags: [password]
-    url: https://www.htc-cs.com/en/products/htc-hydra/
+    url: https://github.com/vanhauser-thc/thc-hydra
   netassert:
     uuid: fffa6fb9-1fae-4852-88dc-c7086961330c
     name: netassert
@@ -583,7 +583,7 @@ implementations:
     uuid: f085295e-46a3-4c8d-bbc3-1ac6b9dfcf2a
     name: OWASP Amass
     tags: []
-    url: https://github.com/OWASP/Amass
+    url: https://github.com/owasp-amass/amass
   k8spurger:
     uuid: 8fea20ad-e332-4aa8-b1f1-aa9deb635dc1
     name: K8sPurger
@@ -625,6 +625,7 @@ implementations:
     name: npm audit
     tags: []
     url: https://docs.npmjs.com/cli/audit
+    test-url-expects: [301]
   sigmahq:
     uuid: 1adf1ac0-8572-407b-a358-3976d9a225e2
     name: SigmaHQ
@@ -636,7 +637,7 @@ implementations:
     tags: []
     url: https://github.com/wagoodman/dive
   clusterscanner:
-    url: https://github.com/SDA-SE/clusterscanner
+    url: https://github.com/SDA-SE/cluster-image-scanner
     uuid: 3c9ac78c-0fd4-43f4-8211-c915f9ef685f
     name: ClusterScanner
     tags:
@@ -694,7 +695,7 @@ implementations:
     uuid: d90fefc9-4e5d-420f-ac87-eeb165bf0ee6
     name: truffleHog
     tags: []
-    url: https://github.com/dxa4481/truffleHog
+    url: https://github.com/trufflesecurity/trufflehog
   go-pillage-registrie:
     uuid: 382873e2-8604-4410-ae5e-b0f5ccdee835
     name: go-pillage-registries
@@ -702,9 +703,19 @@ implementations:
     url: https://github.com/nccgroup/go-pillage-registries
   trivy:
     uuid: 7f500e95-2110-44c4-a1f8-cd7ef5d9eb6b
-    name: https://github.com/aquasecurity/trivy
+    name: Trivy
     tags: []
     url: https://github.com/aquasecurity/trivy
+  syft:
+    uuid: 7543a6f2-3850-47a9-bb2f-0987e2af6f6a
+    name: Syft
+    tags: [sbom, dependency]
+    url: https://github.com/anchore/syft
+  grype:
+    uuid: 7970af6e-a7d3-4359-a6ea-301d26b16329
+    name: Grype
+    tags: [sbom, dependency, vulnerability]
+    url: https://github.com/anchore/grype
   registries-like-quay:
     uuid: 8737c6c0-4e90-400a-bf9a-f8e399913b57
     name: Registries like quay
@@ -721,38 +732,40 @@ implementations:
   threat-matrix-for-storage:
     uuid: 1c56dbea-e067-44e2-8d3b-0a1205a70617
     name: Threat Matrix for Storage
-    url: https://www.microsoft.com/security/blog/2021/04/08/threat-matrix-for-storage/
+    url: https://www.microsoft.com/en-US/security/blog/2021/04/08/threat-matrix-for-storage/
     tags: [documentation, storage, cluster, kubernetes]
   defend-the-core-kubernetes:
     uuid: b7a92886-aec9-4bf4-94c4-07cc191a97af
     name: Defend the core kubernetes security at every layer
-    url: https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
+    url:  https://thenewstack.io/defend-the-core-kubernetes-security-at-every-layer/
     tags: [documentation, cluster, kubernetes]
   business-friendly-vulnerability-metrics:
     uuid: 3b99799c-e875-4cc2-aad7-5ce4564a1cde
     name: Business friendly vulnerability management metrics
     url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
+    test-url-expects: [403]
     tags: [documentation, vulnerability, vulnerability management system]
   kubescape:
     uuid: 893d9f37-2142-4490-996c-e43b55064d3d
     name: kubescape
-    url: https://github.com/armosec/kubescape
+    url: https://github.com/kubescape/kubescape
     tags: [kubernetes, vulnerability, misconfiguration]
     description: _Testing if Kubernetes is deployed securely as defined in Kubernetes Hardening Guidance by to NSA and CISA_
   azuredevops:
     uuid: b1b88bc5-5a22-4888-a27b-acce3d9fe29a
     name: Improve code quality with branch policies
-    url: https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops
+    url:  https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops
     tags: [source-code-protection, scm]
   github-policies:
     uuid: 99211481-de9c-4358-880e-628366416a27
     name: About protected branches
-    url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches
+    url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
     tags: [source-code-protection, scm]
-  sonarqube:
+  sonarqube-lint:
     uuid: aa5ded61-5380-4da6-9474-afc36a397682
     name: In-Depth Linting of Your TypeScript While Coding
     url: https://medium.com/@elenavilchik/in-depth-linting-of-your-typescript-while-coding-1d084affbf0
+    test-url-expects: [403]
     tags: [ide, linting]
   stylecop:
     uuid: 0b7ec352-0c36-4de1-8912-617fc6c608fe
@@ -763,26 +776,29 @@ implementations:
     uuid: 5b52a841-c281-45fd-b68f-0a93aa6fa398
     name: Fortify Extension for Visual Studio Code
     url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-extension-for-vs-code
+    test-url-expects: [404]
     tags: [ide, sast]
   appscan-vscode-extension:
     uuid: 3f5a493d-12d0-4468-b9fa-c3e4eae89ffb
     name: HCL AppScan CodeSweep
     url: https://marketplace.visualstudio.com/items?itemName=HCLTechnologies.hclappscancodesweep
+    test-url-expects: [404]
     tags: [ide, sast]
   checkmarx-vscode-extension:
     uuid: cf1213fd-8bfa-4a97-bf8b-937c93f31005
     name: Setting Up the Visual Studio Code Extension Plugin
     url: https://checkmarx.atlassian.net/wiki/spaces/SD/pages/1759216424/Setting+Up+the+Visual+Studio+Code+Extension+Plugin
+    test-url-expects: [302]
     tags: [ide, sast]
   pre-commit-microsoft:
     uuid: 58ac9dea-b6c7-4698-904e-df89a9451c82
     name: DevSecOps control Pre-commit
-    url: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/secure/devsecops-controls#plan-and-develop
+    url: https://learn.microsoft.com/en-us/security/zero-trust/develop/secure-devops-environments-zero-trust
     tags: [pre-commit]
   pre-commit-synopsis:
     uuid: 8da8d115-0f4e-40f0-a3ce-484a49e845fb
     name: Building your DevSecOps pipeline 5 essential activities
-    url: https://www.synopsys.com/blogs/software-security/devsecops-pipeline-checklist/
+    url: https://www.blackduck.com/blog/devsecops-pipeline-checklist/
     tags: [pre-commit]
   dependencyTrack:
     uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
@@ -818,7 +834,7 @@ implementations:
     uuid: f011de6e-ab7c-4ec7-af55-03427271ab32
     name: Coverage.py
     tags: [testing, coverage]
-    url: https://github.com/nedbat/coveragepy
+    url: https://github.com/coveragepy/coveragepy
     description: |
       Code coverage measurement for Python
   github-dependabot:
@@ -875,6 +891,7 @@ implementations:
     name: terraform
     tags: [IaC]
     url: https://www.terraform.io/
+    test-url-expects: [308]
     description: |
       Terraform enables infrastructure automation for provisioning, compliance, and management of any cloud, datacenter, and service.
   packj:
@@ -884,7 +901,7 @@ implementations:
     url: https://github.com/ossillate-inc/packj
     description: |
       Packj is a tool to detect software supply chain attacks. It can detect malicious, vulnerable, abandoned, typo-squatting, and other "risky" packages from popular open-source package registries, such as NPM, RubyGems, and PyPI.
-  apiMyth:
+  api-myths:
     uuid: 6150533e-58ca-4b52-a9b2-6226545d9ea0
     name: Top 5 API Security Myths That Are Crushing Your Business
     tags: [documentation, waf]
