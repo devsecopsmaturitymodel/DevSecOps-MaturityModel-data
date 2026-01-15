@@ -68,4 +68,3 @@ If you prefer Podman over Docker, set the environement variable `DOCKER_CMD` to 
 ## License
 
 See the `LICENSE` file in this repository for license details.
-
