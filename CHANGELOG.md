@@ -1,10 +1,3 @@
-# [1.27.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.26.0...v1.27.0) (2026-01-15)
-
-
-### Features
-
-* trigger release ([58af872](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/58af8725a98bbafd045250ebee0520d1488b9246))
-
 # [4.0.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v1.25.0...v1.26.0) (2026-01-05)
 
 
