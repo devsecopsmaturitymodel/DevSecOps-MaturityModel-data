@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.1.0...v4.2.0) (2026-01-28)
+
+
+### Features
+
+* new version ([b971cb0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/b971cb0d326ffe2630e932a915ff5288771dabb5))
+
 # [4.1.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.0.0...v4.1.0) (2026-01-15)
 
 
