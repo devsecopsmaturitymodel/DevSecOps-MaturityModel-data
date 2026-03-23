@@ -163,16 +163,6 @@ if (count($errorMsg) > 0) {
 }
 
 
-// Post-process to add activity name as comment for `dependsOn`
-$dimensionsString = yaml_emit($dimensionsAggregated);
-preg_match_all('/\{!([0-9a-z-]{30,})!\}/', $dimensionsString, $matches);
-$uuids = array_unique($matches[1]);
-foreach ($uuids as $uuid) {
-    $name = getActivityNameByUuid($uuid, $dimensionsAggregated);
-    // echo "Adding dependsOn-comment for $uuid: $name\n";
-    $dimensionsString = str_replace("'{!$uuid!}'", "$uuid # $name", $dimensionsString);
-}
-
 // Store generated data with meta document first
 $metaDocument = array(
     'meta' => array(
