@@ -159,7 +159,8 @@ if (count($errorMsg) > 0) {
     foreach ($errorMsg as $e) {
         echo "ERROR: $e\n";
     }
-    exit("Please fix the errors");
+    fwrite(STDERR, "Please fix the errors\n");
+    exit(1);
 }
 
 
