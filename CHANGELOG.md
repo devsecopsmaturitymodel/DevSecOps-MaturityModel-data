@@ -1,3 +1,10 @@
+## [4.3.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.3.0...v4.3.1) (2026-04-27)
+
+
+### Bug Fixes
+
+* correct typo in blue-green-deployment implementation key ([dc6af16](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/dc6af16d6aa497563c2f27110ed4308c20c363d7)), closes [#76](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/issues/76)
+
 # [4.3.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.2.0...v4.3.0) (2026-04-27)
 
 
