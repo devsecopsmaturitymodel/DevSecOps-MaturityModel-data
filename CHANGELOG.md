@@ -1,3 +1,10 @@
+# [4.3.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.2.0...v4.3.0) (2026-04-27)
+
+
+### Features
+
+* add Canary deployment activity to Deployment dimension ([f889bca](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/f889bca3e8485a9bc67302d42b41d4ba4bbf1b23))
+
 # [4.2.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.1.0...v4.2.0) (2026-01-28)
 
 

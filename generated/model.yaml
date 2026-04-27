@@ -1,6 +1,6 @@
 ---
 meta:
-  version: 4.2.0
+  version: 4.3.0
   released: "2026-04-27"
   publisher: https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data
 ---
@@ -789,6 +789,77 @@ Build and Deployment:
         - 8.14
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Rolling%20update%20on%20deployment
+      isImplemented: false
+      evidence: ""
+      comments: ""
+      tags:
+      - none
+    Canary deployment:
+      uuid: c4204a32-2545-4424-b524-d1cc52b46abd
+      description: |-
+        A *canary deployment* gradually shifts a small fraction of production
+        traffic to a new artifact version while monitoring service-level
+        indicators and security signals. If error rates, latency, or security
+        scanners (such as DAST probes against the canary fleet) report
+        anomalies, traffic is rolled back automatically before the new
+        version reaches the broader production population.
+
+        Compared to *Blue/Green Deployment*, canary requires only a small
+        delta in infrastructure cost (commonly 5-10% additional capacity
+        rather than a doubled environment) but demands more sophisticated
+        traffic-control infrastructure such as a service mesh, an
+        application load balancer with weighted routing, or a feature-flag
+        platform.
+      risk: |-
+        A new artifact version can introduce regressions or security
+        issues. Promoting it to 100% of production traffic in one step
+        exposes the entire user population to those issues before they
+        can be detected.
+      measure: |-
+        Adopt a canary deployment strategy in which a small percentage of
+        production traffic (commonly 1-10%) is routed to the new artifact
+        version for a defined observation window. Promotion to higher
+        traffic percentages is gated on automated SLI checks (error rate,
+        latency, saturation) and security checks (DAST, runtime anomaly
+        detection). Rollback must be automated and triggered by gate
+        failure without human intervention.
+      assessment: |
+        - Canary stage exists in the deployment pipeline with a configured
+          initial traffic percentage and observation window.
+        - Automated promotion and rollback gates are defined based on SLIs
+          and security signals.
+        - Audit logs of canary deployments and their promotion or rollback
+          decisions are retained.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 3
+      level: 4
+      implementation:
+      - uuid: cd49f792-a158-4b93-ac55-fd773954b217
+        name: Canary release
+        tags: []
+        url: https://martinfowler.com/bliki/CanaryRelease.html
+      dependsOn:
+      - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
+      references:
+        samm2:
+        - I-SD-A-3
+        iso27001-2017:
+        - 12.1.2
+        - 12.5.1
+        - 14.2.2
+        - 14.2.9
+        - 17.2.1
+        iso27001-2022:
+        - 8.14
+        - 8.19
+        - 8.29
+        - 8.31
+        - 8.32
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Deployment/subsection/Canary%20deployment
       isImplemented: false
       evidence: ""
       comments: ""
