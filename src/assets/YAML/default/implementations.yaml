@@ -70,7 +70,7 @@ implementations:
     uuid: 9af7624e-0729-4eeb-b257-ebaf65f70355
     name: A Point in Time Recovery for databases should be implemented.
     tags: []
-  blue-green-deploymen:
+  blue-green-deployment:
     uuid: 4fb3d95c-07c0-4cbb-b396-5054aba751c2
     name: Blue/Green Deployments
     tags: []
