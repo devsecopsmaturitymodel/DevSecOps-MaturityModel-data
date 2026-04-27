@@ -75,6 +75,11 @@ implementations:
     name: Blue/Green Deployments
     tags: []
     url: https://martinfowler.com/bliki/BlueGreenDeployment.html
+  canary-deployment:
+    uuid: cd49f792-a158-4b93-ac55-fd773954b217
+    name: Canary release
+    tags: []
+    url: https://martinfowler.com/bliki/CanaryRelease.html
   docker:
     uuid: cc47b2e3-6ee5-4926-af3a-d418ef91c8ba
     name: Docker
