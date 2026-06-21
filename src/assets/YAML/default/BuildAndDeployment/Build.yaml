@@ -25,7 +25,7 @@ Build and Deployment:
         time: 2
         resources: 2
       usefulness: 2
-      level: 2
+      # level: 2 (removed to test exit code bug)
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
