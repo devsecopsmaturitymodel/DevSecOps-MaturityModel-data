@@ -33,8 +33,6 @@ Build and Deployment:
           - 8.8
           - 8.19
           - 8.27
-      isImplemented: false
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -109,8 +107,6 @@ Build and Deployment:
           - 12.6.1
         iso27001-2022:
           - 8.8
-      isImplemented: false
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -146,7 +142,6 @@ Build and Deployment:
           - 14.2.1
         iso27001-2022:
           - 8.25
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -185,7 +180,6 @@ Build and Deployment:
           - 12.6.1
         iso27001-2022:
           - 8.8
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -220,8 +214,6 @@ Build and Deployment:
           - 12.6.1
         iso27001-2022:
           - 8.8
-      isImplemented: false
-      evidence: ""
       comments: ""
       tags:
         - patching

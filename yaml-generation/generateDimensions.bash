@@ -17,7 +17,7 @@ MSYS_NO_PATHCONV=1 $DOCKER_CMD run -ti --rm --volume "${PWD}:/app" wurstbrot/dso
 
 if [ "$1" = "--start-dsomm" ]; then
     echo "Starting local DSOMM application..."
-    MSYS_NO_PATHCONV=1 $DOCKER_CMD run -ti --rm --volume "${PWD}/generated/model.yaml:/srv/assets/YAML/default/model.yaml" -p 8080:8080 wurstbrot/dsomm
+    MSYS_NO_PATHCONV=1 $DOCKER_CMD run -ti --rm --volume "${PWD}/generated/model.yaml:/srv/assets/YAML/default/model.yaml" -p 8081:8080 wurstbrot/dsomm
 
 elif [ "$1" = "--test-urls" ]; then
     echo "Test URLs in implementations.yaml..."

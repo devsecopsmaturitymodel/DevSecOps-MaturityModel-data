@@ -2,12 +2,16 @@
 ---
 Build and Deployment:
   Build:
-    Building and testing of artifacts in virtual environments:
+    Building and testing of artifacts in virtualized environments:
       uuid: a340f46b-6360-4cb8-847b-a0d3483d09d3
       description: |-
         While building and testing artifacts, third party systems, application frameworks
         and 3rd party libraries are used. These might be malicious as a result of
         vulnerable libraries or because they are altered during the delivery phase.
+
+        Depending on your environment, usage of virtual machines
+        or container technology is a good way. After the build, the filesystem should
+        not be used again in other builds.
       risk: |-
         While building and testing artifacts, third party systems, application frameworks
         and 3rd party libraries are used. These might be malicious as a result of
@@ -15,17 +19,14 @@ Build and Deployment:
       measure:
         Each step during within the build and testing phase is performed in
         a separate virtual environments, which is destroyed afterward.
-      meta:
-        implementationGuide:
-          Depending on your environment, usage of virtual machines
-          or container technology is a good way. After the build, the filesystem should
-          not be used again in other builds.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 2
       usefulness: 2
       level: 2
+      dependsOn:
+        - 3a94d55e-fd82-4996-9eb3-20d23ff2a873 # Applications are running in virtualized environments
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
@@ -36,8 +37,6 @@ Build and Deployment:
           - 14.2.6
         iso27001-2022:
           - 8.31
-      isImplemented: false
-      evidence: ""
       comments: ""
     Defined build process:
       uuid: f6f7737f-25a9-4317-8de2-09bf59f29b5b
@@ -81,11 +80,14 @@ Build and Deployment:
         iso27001-2022:
           - 5.37
           - 8.32
-      isImplemented: false
-      evidence: ""
       comments: ""
     Pinning of artifacts:
       uuid: f3c4971e-9f4d-4e59-8ed0-f0bdb6262477
+      description:
+        Pinning artifacts in Dockerfile refers to the practice of using specific,
+        immutable versions of base images and dependencies in your build process. Instead of using the
+        latest tag for your base image, select a specific version or digest. For example, replace FROM node:latest,
+        to FROM node@sha256:abcdef12.
       risk:
         Unauthorized manipulation of artifacts might be difficult to spot. For
         example, this may result in using images with malicious code. Also, intended
@@ -95,12 +97,6 @@ Build and Deployment:
       comment:
         The usage of pinning requires a good processes for patching. Therefore,
         choose this activity wisely.
-      meta:
-        implementationGuide:
-          Pinning artifacts in Dockerfile refers to the practice of using specific,
-          immutable versions of base images and dependencies in your build process. Instead of using the
-          latest tag for your base image, select a specific version or digest. For example, replace FROM node:latest,
-          to FROM node@sha256:abcdef12.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -121,8 +117,6 @@ Build and Deployment:
           - 14.2.6
         iso27001-2022:
           - 8.31
-      isImplemented: false
-      evidence: ""
       comments: ""
     SBOM of components:
       uuid: 2858ac12-0179-40d9-9acf-1b839c030473
@@ -159,9 +153,7 @@ Build and Deployment:
         iso27001-2022:
           - 5.9
           - 5.12
-      isImplemented: false
       tags: ["inventory", "scanning", "sca"]
-      evidence: ""
       comments: ""
     Signing of artifacts:
       uuid: 5786959d-0c6f-46a6-8e1c-a32ff1a50222
@@ -196,8 +188,6 @@ Build and Deployment:
           - 14.2.6
         iso27001-2022:
           - 8.31
-      isImplemented: false
-      evidence: ""
       comments: ""
     Signing of code:
       uuid: 9f107927-61e9-4574-85ad-3f2b4bca8665
@@ -223,6 +213,4 @@ Build and Deployment:
           - 14.2.6
         iso27001-2022:
           - 8.31
-      isImplemented: false
-      evidence: ""
       comments: ""

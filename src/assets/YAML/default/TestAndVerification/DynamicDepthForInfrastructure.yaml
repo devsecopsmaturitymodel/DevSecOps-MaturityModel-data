@@ -28,8 +28,6 @@ Test and Verification:
           - 8.6
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""
     Test for exposed services:
       uuid: a6c4cefb-a0b7-4787-8cc7-a0f96b4b00d8
@@ -63,8 +61,6 @@ Test and Verification:
           - 8.22
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""
     Test for unauthorized installation:
       uuid: dccf1949-b9a8-4ce8-b992-6a4a7f3a623a
@@ -92,8 +88,6 @@ Test and Verification:
         iso27001-2022:
           - 8.19
           - 8.8
-      isImplemented: false
-      evidence: ""
       dependsOn:
         - Evaluation of the trust of used components
     Test for unused Resources:
@@ -122,8 +116,6 @@ Test and Verification:
           - 8.22
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""
     Test network segmentation:
       uuid: 6d2c3ac6-8afc-4af6-a5e9-6188341aca01
@@ -185,8 +177,6 @@ Test and Verification:
           - 8.8
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""
     Weak password test:
       uuid: 61e10f9c-e126-4ffa-af12-fdbe0d0a831f
@@ -211,6 +201,4 @@ Test and Verification:
           - 9.4.3
         iso27001-2022:
           - 5.17
-      isImplemented: false
-      evidence: ""
       comments: ""

@@ -5,6 +5,15 @@ implementations:
     name: argoCD
     tags: [deployment]
     url: https://argo-cd.readthedocs.io/en/stable/
+  fluxcd:
+    uuid: 191b8b8d-1197-4c45-8af6-4e74feda4021
+    name: Flux CD
+    tags: [deployment]
+    url: https://fluxcd.io/
+    description: |-
+      GitOps controller for Kubernetes that continuously reconciles the
+      cluster state against the versioned desired state in Git. Out-of-band
+      changes are detected as drift and automatically reverted or reported.
   signing-of-commits-protection:
     uuid: 86c6bdba-73c0-4c99-bbda-81b85c9fe2a4
     name: Enforcement of commit signing
@@ -977,3 +986,610 @@ implementations:
     tags: [deployment, container, build]
     url: https://kubernetes.io/blog/2022/09/29/enforce-immutability-using-cel/#immutablility-after-first-modification
     description: Immutable images are an other way, e.g. by using a registry, which doesn't allow overriding of images.
+  owasp-llm-top-10:
+    uuid: 13aceaa9-f772-48e6-9134-d9c45650160d
+    name: OWASP Top 10 for Large Language Model Applications
+    tags: [ai, documentation, threat]
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    description: |-
+      A list of the most critical vulnerabilities of LLM-based applications, e.g.
+      prompt injection, insecure output handling and excessive agency. A good
+      baseline for manual AI red teaming.
+  owasp-ai-exchange:
+    uuid: 672695ce-e62d-4283-8676-ea630f544709
+    name: OWASP AI Exchange
+    tags: [ai, documentation, threat]
+    url: https://owaspai.org/
+    description: |-
+      Comprehensive open-source guidance on AI security: a threat matrix
+      across the lifecycle (development-time, runtime model use, runtime
+      infrastructure, supply chain) with matching controls for governance,
+      input and output handling, monitoring, rate limiting and model
+      robustness, plus chapters on AI security testing and AI privacy.
+      Feeds international standardization (ISO/IEC 27090).
+  aima:
+    uuid: 7bae85fe-adab-4279-ad8d-df842ab922cf
+    name: OWASP AI Maturity Assessment (AIMA)
+    tags: [ai, documentation]
+    url: https://owasp.org/www-project-ai-maturity-assessment/
+    description: |-
+      Maturity model for AI systems (v1.0, August 2025) in the style of the
+      OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+      responsible AI, governance, data management, privacy, design,
+      implementation, verification and operations. Each practice defines
+      three maturity levels with assessment worksheets, usable to assess
+      and plan the organizational maturity around the AI activities of this
+      dimension.
+  garak:
+    uuid: 51946a4b-c5bd-4126-9f47-81a8b8203b9b
+    name: garak
+    tags: [ai, red-teaming, testing]
+    url: https://github.com/NVIDIA/garak
+    description: |-
+      LLM vulnerability scanner which probes models and LLM-based applications for
+      prompt injection, jailbreaks, data leakage, toxic output and other weaknesses.
+  pyrit:
+    uuid: 1fe01551-0268-47fa-b108-d4228fc8655a
+    name: PyRIT
+    tags: [ai, red-teaming, testing]
+    url: https://github.com/Azure/PyRIT
+    description: |-
+      Python Risk Identification Tool for generative AI: a framework to automate
+      adversarial testing (red teaming) of LLM-based applications.
+  ai-security-rules:
+    uuid: 5b84d64a-a590-4684-8e33-3c5f1b198260
+    name: Secure Code Warrior AI Security Rules
+    tags: [ai, guidance, documentation]
+    url: https://github.com/SecureCodeWarrior/ai-security-rules
+    description: |-
+      Ready-to-use security rule sets for AI coding assistants (e.g. Cursor,
+      GitHub Copilot, Claude, Windsurf, Aider), covering general and
+      language/framework-specific secure coding guidance.
+  nemo-guardrails:
+    uuid: 9b4ca932-004e-4e1f-8589-770393765bd3
+    name: NVIDIA NeMo Guardrails
+    tags: [ai, guardrails, input-validation]
+    url: https://github.com/NVIDIA/NeMo-Guardrails
+    description: |-
+      Open-source toolkit for programmable guardrails on LLM applications:
+      input/output rails for prompt injection and jailbreak detection, topic
+      restrictions and policy enforcement around model calls.
+  guardrails-ai:
+    uuid: 504b5f6c-74e6-4ea7-9480-537284c00b57
+    name: Guardrails AI
+    tags: [ai, guardrails, output-validation]
+    url: https://github.com/guardrails-ai/guardrails
+    description: |-
+      Open-source framework that validates LLM output against schemas and
+      validators (e.g. no secrets/PII, valid JSON, policy compliance) and
+      triggers re-asks or corrective actions on violations.
+  langfuse:
+    uuid: 928b9c82-bf24-466b-a254-d8b775f7e0c8
+    name: Langfuse
+    tags: [ai, logging, monitoring]
+    url: https://github.com/langfuse/langfuse
+    description: |-
+      Open-source LLM observability platform: traces prompts, tool calls, model
+      versions and costs of AI applications and agents, providing the audit
+      trail needed for security monitoring of AI interactions.
+  eu-ai-act:
+    uuid: e1611a8a-4e7d-439a-b9fc-992674c02d53
+    name: EU AI Act
+    tags: [ai, documentation, compliance]
+    url: https://artificialintelligenceact.eu/
+    description: |-
+      European regulation for AI systems with risk-based obligations. Relevant
+      input for an organizational AI usage policy (risk categorization,
+      transparency and documentation duties).
+  google-saif:
+    uuid: d59c5afa-7af6-46c6-b78e-7e0e4e5a47ae
+    name: Google Secure AI Framework (SAIF)
+    tags: [ai, documentation, threat, framework]
+    url: https://saif.google/
+    description: |-
+      Google's framework for secure AI systems. SAIF 2.0 adds an agent security
+      map that decomposes an agent into components (perception, reasoning,
+      orchestration, response) with risks and controls per node, naming
+      agent-specific risks such as rogue actions and sensitive data disclosure;
+      risk data donated to the Coalition for Secure AI.
+  mcp-security-best-practices:
+    uuid: 322e62f0-fda2-4943-90cc-dd2d6679b1e3
+    name: MCP Security Best Practices
+    tags: [ai, documentation, mcp]
+    url: https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
+    description: |-
+      Official security best practices of the Model Context Protocol: attack
+      vectors and required controls for MCP clients, servers and proxies
+      (e.g. token audience validation, redirect URI exact matching, per-client
+      consent). MCP itself does not enforce security at the protocol level;
+      implementers must.
+  nist-ssdf-genai:
+    uuid: 66f319f1-bcff-4d1e-8d65-4cb2939dfc06
+    name: NIST SP 800-218A (SSDF Community Profile for Generative AI)
+    tags: [ai, documentation, compliance]
+    url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218A.pdf
+    description: |-
+      NIST's Secure Software Development Framework profile for generative AI
+      and dual-use foundation models: SSDF practices augmented with AI-specific
+      tasks and recommendations across the development lifecycle. Useful
+      compliance anchor for an organizational AI usage policy.
+  new-sdlc-vibe-coding:
+    uuid: 8077812b-e320-4435-9afb-e1e334314abf
+    name: "The New SDLC With Vibe Coding (Google whitepaper)"
+    tags: [ai, guidance, documentation]
+    url: https://addyosmani.com/blog/new-sdlc-vibe-coding/
+    description: |-
+      Google whitepaper (Osmani, Saboo, Kartakis) distinguishing vibe coding
+      from agentic engineering: specs, guardrails, evals and review as the
+      "harness" around the model, phase-specific context engineering, evals in
+      CI, traces of every agent run and scoped per-agent permissions as the
+      production substrate.
+  agntcy-agent-directory:
+    uuid: 1cd31e8c-63ff-48a5-b973-3048c9664394
+    name: AGNTCY Agent Directory
+    tags: [ai, supply-chain, inventory, signing]
+    url: https://dir.agntcy.org/latest/
+    description: |-
+      Open-source federated directory (Linux Foundation/AGNTCY) for publishing
+      and discovering agents, MCP servers and agent skills with cryptographic
+      signing, verification and provenance of records, usable as a verified
+      catalog when assessing and inventorying agent integrations.
+  gdm-ai-control-roadmap:
+    uuid: f2966f4c-38b2-4dbf-95a4-6f0a8fc15ae3
+    name: Google DeepMind AI Control Roadmap
+    tags: [ai, monitoring, threat, documentation]
+    url: https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/gdm-ai-control-roadmap.pdf
+    description: |-
+      Roadmap for controlling potentially misaligned AI agents. It treats
+      agents as untrusted principals and layers system-level defences: the
+      TRAIT&R threat taxonomy (based on MITRE ATT&CK),
+      action/chain-of-thought monitoring, pull-request monitoring, UEBA
+      anomaly detection, honeypots and tiered prevention/response up to
+      shutdown infrastructure.
+  aigf:
+    uuid: bbaf5f6a-0366-488b-a712-7f915e866135
+    name: Agent Identity Governance Framework (AIGF)
+    tags: [ai, isolation, permissions, logging, documentation]
+    url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
+    description: |-
+      Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+      access and content governance of autonomous AI agents along six axes:
+      identification (shadow agents), authentication, authorization,
+      audit/non-repudiation (structured audit log with mandatory fields for
+      the causal chain, correlation identifiers across multi-agent chains,
+      tamper evidence via hash chaining and write-once storage),
+      prompt injection prevention and data flow tracking. The framework is
+      mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
+  ncc-ai-coding-agent-security:
+    uuid: 0c01a64e-23d1-4c2e-a5c2-d728bcce0689
+    name: "NCC Group: An Introduction to AI Coding Agent Security"
+    tags: [ai, isolation, permissions, threat, documentation]
+    url: https://www.nccgroup.com/media/jtepwx1t/nccgroup_codingagentswhitepaper.pdf
+    description: |-
+      Whitepaper analyzing the security of AI coding agents (Claude Code,
+      Cursor, Codex): permission models and dangerous permission modes, sandbox
+      implementations and escalations, agent tools, configuration files/hooks
+      as attack surface, and untrusted/trusted workspace attack vectors.
+  agent-identity-access-model:
+    uuid: 181e9b98-7d4f-4fff-9181-9f4c4408022e
+    name: Anthropic Agent Identity and Access Model
+    tags: [ai, isolation, permissions, documentation]
+    url: https://claude.com/blog/agent-identity-access-model
+    description: |-
+      Reference architecture for agent identity: agents act under dedicated
+      workspace-level service accounts instead of user credentials, with scoped
+      per-channel permissions, credentials injected at the network boundary,
+      egress blocked to unapproved hosts and every agent action logged under
+      the agent identity in both platforms' audit logs.
+  biv-agent-skills:
+    uuid: 0425f6f0-817d-4447-9f81-a59b753b37cc
+    name: Behavioral Integrity Verification for AI Agent Skills
+    tags: [ai, supply-chain, documentation]
+    url: https://arxiv.org/abs/2605.11770
+    description: |-
+      Research paper formalizing the verification of agent skills: compare the
+      capabilities a skill declares with what its code and instructions actually
+      do. Found 80% of 49,943 registry skills deviating from declared behavior,
+      with 18.9% of the deviations tracing to adversarial intent and credential
+      theft as the largest adversarial category. This is the rationale for
+      reviewing skills before installation.
+  ai-coding-cli-permissions:
+    uuid: c4f17d85-4e64-45d9-93aa-59fbef85f8d6
+    name: "AI Coding Agent CLI design: Permissions & Sandboxed Execution"
+    tags: [ai, isolation, permissions, documentation]
+    url: https://system-design-interviews.com/book/interview.html#ai-coding-cli/safety
+    description: |-
+      System-design walkthrough of an AI coding agent CLI (Claude Code / Codex):
+      permission engine with blast-radius split, allow/deny rules, OS-level
+      sandbox with default-deny egress, and treating repo content (including
+      agent memory files) as untrusted data.
+  ai-coding-cli-verify:
+    uuid: 0acdc0ea-dbe2-4bcf-9a6c-34fb1c2989a5
+    name: "AI Coding Agent CLI design: Verify & Iterate"
+    tags: [ai, verification, testing, documentation]
+    url: https://system-design-interviews.com/book/interview.html#ai-coding-cli/verify
+    description: |-
+      System-design walkthrough of the agent verification loop: a dedicated
+      check runner executes the project's tests, typechecker, linter and build
+      in the sandbox, diffs against a baseline and iterates until green, with
+      git checkpoints and the reviewed diff as the human gate.
+  ai-coding-cli-cloud:
+    uuid: 415def4e-8562-45e3-a085-b7edd5eb4317
+    name: "AI Coding Agent CLI design: Background & Cloud Agents"
+    tags: [ai, isolation, logging, documentation]
+    url: https://system-design-interviews.com/book/interview.html#ai-coding-cli/cloud
+    description: |-
+      System-design walkthrough of headless cloud agents: ephemeral sandboxes
+      with short-lived single-repo tokens, deny-by-default egress, PR review as
+      the human gate, anomaly detection and per-tenant retention with secret
+      redaction.
+  grantguard:
+    uuid: 7d17275d-396b-4002-98af-def5770a2035
+    name: GrantGuard
+    tags: [ai, isolation, permissions, audit]
+    url: https://github.com/OpenVanta/GrantGuard
+    description: |-
+      Audits the accumulated permission allow-list of the Claude Code agent
+      (user- and project-level settings): classifies grants into risk categories
+      (e.g. destructive wildcards, credential-store access, unrestricted pushes)
+      and supports reviewing and removing unsafe permissions. Runs fully local.
+  claude-code-devcontainer:
+    uuid: 09d76871-83e2-424e-8210-a9aff332b4aa
+    name: Claude Code development container reference implementation
+    tags: [ai, isolation, container]
+    url: https://docs.claude.com/en/docs/claude-code/devcontainer
+    description: |-
+      Anthropic's reference devcontainer for running the Claude Code agent in an
+      isolated container, including an init-firewall.sh script that enforces
+      default-deny egress with a domain allow-list via iptables/ipset.
+  llm-guard:
+    uuid: 498456d3-815a-4f57-84c2-81dcb97a4cb8
+    name: LLM Guard
+    tags: [ai, data-protection, guardrails]
+    url: https://github.com/protectai/llm-guard
+    description: |-
+      Open-source toolkit that scans LLM prompts and outputs with pluggable
+      scanners, e.g. secrets detection, PII anonymization, prompt injection
+      detection and toxicity filtering.
+  presidio:
+    uuid: 240d6d9e-fcf7-422e-bbbb-ef9d820261da
+    name: Presidio
+    tags: [ai, data-protection, pii]
+    url: https://github.com/microsoft/presidio
+    description: |-
+      Open-source PII detection and de-identification: recognizes and redacts
+      personal data (names, credit cards, national IDs, custom entities) in text
+      before it is sent to external AI services.
+  litellm:
+    uuid: 47b4ba95-a6da-4493-94c2-829e9d47b612
+    name: LiteLLM Proxy (AI Gateway)
+    tags: [ai, data-protection, gateway]
+    url: https://github.com/BerriAI/litellm
+    description: |-
+      Open-source LLM gateway that routes all model traffic through one proxy
+      with per-team API keys, audit logging and guardrail hooks (e.g. Presidio
+      PII masking, secret detection) applied to every request.
+  tealtiger:
+    uuid: f38c23e3-adff-43a6-9b72-462f3ffcbad4
+    name: TealTiger
+    tags: [ai, guardrails, gateway]
+    url: https://github.com/agentguard-ai/tealtiger
+    description: |-
+      Open-source governance layer that wraps LLM clients in-process and
+      evaluates deterministic policies before and after every model call:
+      guardrails (prompt injection, personally identifiable information (PII)
+      and secret detection), cost budgets per request, session and day with
+      circuit breakers, behavioral baselines with kill switch, and a
+      tamper-evident audit trail with correlation identifiers.
+  nightfall-ai:
+    uuid: 0a7101ff-dc29-43b0-b9f0-ccbc75dd0f74
+    name: Nightfall AI
+    tags: [ai, data-protection, commercial]
+    url: https://www.nightfall.ai/
+    description: |-
+      Commercial AI-native DLP platform that detects and redacts secrets and
+      personal data in prompts and AI tool usage (e.g. browser plugins, APIs,
+      SaaS integrations).
+  prompt-security:
+    uuid: 6286d7cb-5c99-4cfb-8239-ff9860eaa148
+    name: Prompt Security
+    tags: [ai, data-protection, commercial]
+    url: https://www.prompt.security/
+    description: |-
+      Commercial platform that inspects employee and application AI traffic for
+      data leakage, prompt injection and shadow-AI usage.
+  lakera-guard:
+    uuid: cbcc6ee0-f7db-4fea-8eb5-d6526e97924e
+    name: Lakera Guard
+    tags: [ai, data-protection, guardrails, commercial]
+    url: https://www.lakera.ai/
+    description: |-
+      Commercial guardrail API that screens LLM inputs and outputs for prompt
+      injection, PII and data leakage in real time.
+  spec-kit:
+    uuid: 71db66a9-8b71-48e4-9b96-1695ed1062a2
+    name: GitHub Spec Kit
+    tags: [ai, guidance, framework]
+    url: https://github.com/github/spec-kit
+    description: |-
+      Toolkit for spec-driven development with AI coding assistants: work is
+      split into explicit specify, plan, tasks and implement steps, each with
+      its own instructions loaded into the model context.
+  aisvs-c01:
+    uuid: 3769fa07-ae91-4110-bdc1-48bb704461c1
+    name: "OWASP AISVS C01: Training Data Integrity and Traceability"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C01-Training-Data-Integrity-and-Traceability.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C01: Training Data Integrity and Traceability.
+  aisvs-c02:
+    uuid: 61e944f5-fa0d-4deb-92b9-c5e77d8fd27a
+    name: "OWASP AISVS C02: Input Validation"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C02-Input-Validation.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C02: Input Validation.
+  aisvs-c04:
+    uuid: 16d55730-74d6-47a5-b9bf-e5a5a3d9ed66
+    name: "OWASP AISVS C04: Infrastructure, Configuration and Deployment Security"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C04-Infrastructure.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C04: Infrastructure, Configuration and Deployment Security.
+  aisvs-c05:
+    uuid: b38adac8-123b-4183-b2b4-428f43b5d519
+    name: "OWASP AISVS C05: Access Control and Identity"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C05-Access-Control-and-Identity.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C05: Access Control and Identity.
+  aisvs-c06:
+    uuid: dc09e3c6-30af-4acc-8b8d-297078ce4298
+    name: "OWASP AISVS C06: Supply Chain Security"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C06-Supply-Chain.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C06: Supply Chain Security.
+  aisvs-c07:
+    uuid: fd952d90-dec8-4bbd-848d-9203b33c35d8
+    name: "OWASP AISVS C07: Model Behavior, Output Control and Safety Assurance"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C07-Model-Behavior.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C07: Model Behavior, Output Control and Safety Assurance.
+  aisvs-c08:
+    uuid: e72ce764-f9d1-401f-9a5e-2897314e4083
+    name: "OWASP AISVS C08: Memory, Embeddings and Vector Database Security"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C08-Memory-Embeddings-and-Vector-Database.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C08: Memory, Embeddings and Vector Database Security.
+  aisvs-c09:
+    uuid: 1234eb34-0f97-4ef2-ab64-adc3516a4d1e
+    name: "OWASP AISVS C09: Orchestration and Agentic Security"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C09-Orchestration-and-Agentic-Action.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C09: Orchestration and Agentic Security.
+  aisvs-c10:
+    uuid: a58ee72c-9c48-4a30-9b01-a54061cbfa99
+    name: "OWASP AISVS C10: Model Context Protocol (MCP) Security"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C10-MCP-Security.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C10: Model Context Protocol (MCP) Security.
+  aisvs-c11:
+    uuid: 814d5536-0dea-4a53-ae6b-cc7e4068a013
+    name: "OWASP AISVS C11: Adversarial Robustness"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C11-Adversarial-Robustness.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C11: Adversarial Robustness.
+  aisvs-c12:
+    uuid: 0d958256-b3ed-4a13-a3dc-d8b1f153c309
+    name: "OWASP AISVS C12: Monitoring, Logging and Anomaly Detection"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C12-Monitoring-and-Logging.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      category C12: Monitoring, Logging and Anomaly Detection.
+  aisvs-appc:
+    uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
+    name: "OWASP AISVS Appendix C: Appendix C AI for Code Generation"
+    tags: [ai, documentation, aisvs]
+    url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x92-Appendix-C_AI_for_Code_Generation.md
+    description: |-
+      OWASP Artificial Intelligence Security Verification Standard,
+      Appendix C: Appendix C AI for Code Generation.
+  owasp-agentic-top-10:
+    uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
+    name: OWASP Top 10 for Agentic Applications
+    tags: [ai, documentation, threat]
+    url: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+    description: |-
+      The ten most critical security risks of agentic AI systems (ASI01-ASI10),
+      e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
+      Usable as a threat catalog for threat modeling and red teaming of AI agents.
+  mitre-atlas:
+    uuid: 5481558b-8dd3-4b56-a904-bcc10d33d24f
+    name: MITRE ATLAS
+    tags: [ai, documentation, threat]
+    url: https://atlas.mitre.org/
+    description: |-
+      Knowledge base of adversary tactics and techniques against AI-enabled
+      systems, usable as a threat catalog during threat modeling of AI
+      applications.
+  csa-maestro:
+    uuid: 49f85de0-6280-454a-bc66-17e007b022bb
+    name: CSA MAESTRO
+    tags: [ai, documentation, threat]
+    url: https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro
+    description: |-
+      Threat modeling framework of the Cloud Security Alliance (CSA) for
+      agentic AI: MAESTRO (Multi-Agent Environment, Security, Threat, Risk and
+      Outcome) decomposes an agentic system into seven layers (from foundation
+      model to agent ecosystem) and models threats per layer and across
+      layer interactions.
+  threat-designer:
+    uuid: 38b95d1b-558d-4a04-9b68-34f9d57c4aae
+    name: Threat Designer
+    tags: [ai, threat, tool]
+    url: https://github.com/awslabs/threat-designer
+    description: |-
+      Open-source (Apache 2.0), AI-driven threat modeling application by AWS
+      Labs: agents analyze uploaded architecture diagrams, derive STRIDE-based
+      threat lists and attack trees, and support iterative refinement and
+      export of the resulting threat model.
+  apiiro-ai-threat-modeling:
+    uuid: bb842e92-ab33-4cd9-8b4e-a24faa23eda2
+    name: Apiiro AI Threat Modeling
+    tags: [ai, threat, commercial]
+    url: https://apiiro.com/blog/introducing-apiiro-ai-threat-modeling/
+    description: |-
+      Commercial capability that generates architecture-aware threat models
+      from feature tickets and design documents before code exists, re-runs
+      the analysis autonomously when new tickets arrive (e.g. in Jira or
+      GitHub) and compares the threat model against the implemented code to
+      surface drift between design intent and implementation.
+  fullstory-ai-threat-modeling:
+    uuid: 1d8c211c-7987-48c2-8bfc-1f77076516ec
+    name: "Rethinking Security: Why ML and AI Demand a New Approach to Threat Modeling"
+    tags: [ai, documentation, threat]
+    url: https://www.fullstory.com/blog/rethinking-security/
+    description: |-
+      Experience report on threat modeling machine learning (ML) and AI
+      systems in production: standard checklists miss AI-specific risks; a
+      data-centric approach following NIST SP 800-154 tracks the data from
+      user input through model context, inference and storage. References
+      Microsoft's guide "Threat Modeling AI/ML Systems and Dependencies" and
+      MITRE ATLAS.
+  tm-skills:
+    uuid: ec8c0aa5-e308-4d86-88ec-987537b7689a
+    name: tm_skills
+    tags: [ai, threat, tool]
+    url: https://github.com/izar/tm_skills
+    description: |-
+      Open-source (MIT) collection of agent skills for continuous threat
+      modeling by Izar Tarandach, maintainer of pytm: the skills let AI
+      coding agents such as Claude Code generate pytm-based threat models
+      with data flow diagrams from a codebase, evaluate user stories for
+      security-notable events and suggest mitigations, and provide rapid
+      security starting points for new systems or features.
+  anthropic-zero-trust-agents:
+    uuid: 7c0749f8-080d-46cf-a8bb-4c2f8a2c25f2
+    name: Zero Trust for AI Agents
+    tags: [ai, documentation]
+    url: https://claude.com/blog/zero-trust-for-ai-agents
+    description: |-
+      Free eBook by Anthropic applying Zero Trust principles (never trust,
+      always verify; assume breach; least privilege and least agency) to
+      agentic AI deployments: current threats to agentic systems, three
+      capability tiers for agent identity, access control, observability,
+      behavioral monitoring, input and output controls and recovery, an
+      eight-phase implementation workflow and defensive operations at the
+      speed of autonomous threats. Introduces the design test "does this
+      control make the attack impossible, or just tedious?".
+  visa-vvah:
+    uuid: 3466f3e2-7185-4e97-8799-314a9267f010
+    name: Visa Vulnerability Agentic Harness (VVAH)
+    tags: [ai, testing, sast]
+    url: https://github.com/visa/visa-vulnerability-agentic-harness
+    description: |-
+      Agentic static application security testing (SAST) pipeline that uses
+      frontier AI models for autonomous vulnerability discovery, remediation
+      and validation: threat modeling before analysis, multi-lens deep dives
+      with adversarial verification and multi-agent voting against false
+      positives, followed by proposed and validated fixes.
+  xbow:
+    uuid: e4c5a35b-532f-42b3-971a-7132f196fb78
+    name: XBOW
+    tags: [ai, testing, dast, commercial]
+    url: https://xbow.com/
+    description: |-
+      Commercial agentic penetration testing platform: AI agents explore a
+      running application autonomously, chain findings into attack paths and
+      validate exploitability before reporting.
+  pentestgpt:
+    uuid: cf897b24-b4d9-418f-a9b0-e110c52cf75e
+    name: PentestGPT
+    tags: [ai, testing, dast]
+    url: https://github.com/GreyDGL/PentestGPT
+    description: |-
+      Open-source large language model (LLM) assistant for penetration
+      testing that guides a human tester interactively through an
+      engagement: it keeps track of the test state, suggests next steps and
+      helps interpret tool output.
+  secure-rules-files:
+    uuid: 1e2ce094-e358-47a4-a469-11e0dd8bef26
+    name: Wiz Secure Rules Files
+    tags: [ai, guidance, documentation]
+    url: https://github.com/wiz-sec-public/secure-rules-files
+    description: |-
+      Curated secure-coding rules files for AI coding assistants (e.g. Cursor,
+      GitHub Copilot, Claude Code) per language, maintained by Wiz Research.
+  openssf-scorecard:
+    uuid: 4a5296a6-4d8f-4b97-902b-f04722438a66
+    name: OpenSSF Scorecard
+    tags: [supply-chain, sca, tool]
+    url: https://github.com/ossf/scorecard
+    description: |-
+      Automated rating of open source projects on supply chain security
+      practices (maintenance, code review, branch protection, dangerous
+      workflows, vulnerability handling). Usable as a policy gate: require a
+      minimum score before a new dependency may be adopted.
+  openssf-malicious-packages:
+    uuid: 70da74e9-806d-4db4-b3a7-9c5717060ed8
+    name: OpenSSF Malicious Packages
+    tags: [supply-chain, sca, documentation]
+    url: https://github.com/ossf/malicious-packages
+    description: |-
+      Open database of reported malicious and compromised open source
+      packages in OSV format. Usable as a blocklist feed for artifact
+      repositories and dependency scanners.
+  sonatype-repository-firewall:
+    uuid: e511975e-cad2-45e7-9b1e-9441da889407
+    name: Sonatype Repository Firewall
+    tags: [supply-chain, sca, commercial]
+    url: https://www.sonatype.com/products/sonatype-repository-firewall
+    description: |-
+      Policy engine in front of an artifact repository that quarantines
+      known-malicious, compromised and suspicious package versions before
+      they enter the internal repository.
+  ave-registry:
+    uuid: cfa3a117-76ec-4265-89e3-794b980854fe
+    name: "AVE: Behavioral classification registry"
+    tags: [ai, supply-chain, inventory]
+    url: https://ave.bawbel.io/
+    description: |-
+      Agentic Vulnerability Enumeration (AVE), a behavioral classification
+      registry for agentic AI components: stable identifiers, AIVSS scores
+      and behavioral fingerprints for skill files, MCP servers and agent
+      plugins, mapped to OWASP and MITRE ATLAS.
+  dompurify:
+    uuid: beeac1bd-49dd-43c8-b606-cdb9fa9cf5bc
+    name: DOMPurify
+    tags: [xss, sanitizer, library]
+    url: https://github.com/cure53/DOMPurify
+    description: |-
+      Allow-list based HTML sanitizer for the browser. Used to sanitize
+      rendered markdown (e.g. LLM responses in chat UIs) before insertion
+      into the DOM.
+  promptfoo:
+    uuid: c323c3c8-cc9c-4620-9ea7-dbc69c3112ca
+    name: promptfoo
+    tags: [ai, red-teaming, testing]
+    url: https://github.com/promptfoo/promptfoo
+    description: |-
+      Test framework for LLM applications with automated red teaming
+      (prompt injection, jailbreaks, PII leakage) and CI integration for
+      regression testing of prompts, models and guardrails.

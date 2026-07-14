@@ -25,17 +25,6 @@
                 "measure": {
                   "type": "string"
                 },
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "implementationGuide": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "implementationGuide"
-                  ]
-                },
                 "difficultyOfImplementation": {
                   "type": "object",
                   "properties": {

@@ -1,0 +1,763 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-ai.json
+---
+AI:
+  Guidance:
+    Static load of security rules:
+      uuid: 51ebc877-c4fd-4b50-9305-320152242ddf
+      description: |-
+        AI coding assistants follow instructions provided in rule files
+        (e.g. system prompts, repository instruction files such as CLAUDE.md,
+        AGENTS.md or .github/copilot-instructions.md). Providing an organization-wide
+        baseline of secure coding rules steers generated code towards secure defaults.
+
+        Adding a few rules to automated imported files like `CLAUDE.md` works. This might blow up the context.
+      risk: |-
+        Without explicit secure coding instructions, AI assistants reproduce insecure
+        patterns from their training data, e.g. string-concatenated SQL queries,
+        disabled certificate validation, hardcoded secrets or missing input validation.
+      measure: |-
+        Define and roll out a baseline secure coding rule set for AI assistants
+        covering topics like input validation, output encoding, parameterized queries,
+        secret handling and usage of evaluated components (e.g. images, libraries).
+      assessment: |
+        - Show the secure coding rule set for AI assistants.
+        - Show a sample of project that the rules are loaded automatically (e.g. via `CLAUDE.md`).        
+
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 1
+      tags:
+        - ai
+        - guidance
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-security-rules
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/secure-rules-files
+      references:
+        samm2:
+          - G-EG-A-1
+        iso27001-2017:
+          - 14.2.1
+        iso27001-2022:
+          - 8.28
+      comments: ""
+    Language and framework specific security rules:
+      uuid: ac152a8d-2628-4db1-a7d6-6d75031bb40e
+      description: |-
+        Generic secure coding rules do not cover technology-specific pitfalls.
+        Rule sets tailored to each language and framework in use (e.g. Spring,
+        Django, React, Kubernetes manifests) make AI-generated code follow the
+        organization's hardening guidelines for that technology.
+      risk: |-
+        AI assistants generate code that is generically "secure" but violates
+        framework-specific best practices, e.g. disabling CSRF protection in Spring,
+        unsafe deserialization in Python or dangerouslySetInnerHTML in React,
+        because no technology-specific guidance is provided.
+      measure: |-
+        Create and maintain secure coding rule sets for every language and framework
+        used in the organization and distribute them to all AI-assisted projects.
+        Review the rules regularly and after security incidents.
+        The rules are to be dynamically imported during the correct spec-driven
+        development phase.
+      dependsOn:
+        - 51ebc877-c4fd-4b50-9305-320152242ddf # Basic secure coding rules for AI assistants
+        - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      assessment: |
+        - Show the rule sets for the languages and frameworks.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - guidance
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-security-rules
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/secure-rules-files
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-asvs
+      references:
+        samm2:
+          - G-EG-A-2
+        iso27001-2017:
+          - 14.2.1
+        iso27001-2022:
+          - 8.28
+      comments: ""
+    Threat modeling rule:
+      uuid: 1caad69c-316c-422a-a56b-04ad6f6cc306
+      description: |-
+        Security starts before prompting: features are threat-modeled on a
+        lightweight level and security requirements are written down as acceptance
+        criteria in the user story, so they can be passed to the AI assistant as
+        part of the task instead of being an afterthought. The subject here is
+        the development process. AI is the tool, and the feature itself need
+        not involve AI at all. Threat modeling of applications that *contain*
+        AI components is covered by _Threat modeling of AI components_.
+      risk: |-
+        AI assistants implement exactly what they are asked for. If prompts contain
+        no security requirements, generated features miss authorization checks,
+        input validation and other controls that were never stated explicitly.
+      measure: |-
+        Perform lightweight, feature-level threat modeling before AI-assisted
+        implementation and add the resulting security requirements as acceptance
+        criteria to the user story and to the prompt/task given to the AI assistant.
+      dependsOn:
+        - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
+        - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      assessment: |
+        - Show user stories whose security acceptance criteria were passed into the AI task or prompt.
+        - Show the lightweight threat modeling notes for a recently implemented feature.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - guidance
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tm-skills
+      references:
+        samm2:
+          - D-SR-A-1
+        iso27001-2017:
+          - 14.1.1
+        iso27001-2022:
+          - 8.26
+      comments: ""
+    Spec-driven development:
+      uuid: 923a2a23-d63b-421c-926a-191d1dd5f570
+      description: |-
+        Spec-driven development splits AI-assisted work into explicit phases
+        (e.g. specify, plan, implement, review) with reviewable artifacts per
+        phase, instead of generating code directly from an ad-hoc prompt
+        ("vibe coding"). For security this structure is an enabler: requirements (including security requirements) 
+        are written down before code exists,
+        every phase produces an artifact a human can review, and the phases are
+        the anchor points where security context (rules, threat models,
+        checklists) can be loaded deliberately (see _Loading security rules at
+        the right development step_).
+      risk: |-
+        AI assistants generate code directly from vague prompts. Requirements
+        exist only implicitly in the developer's head, security requirements are
+        never stated, there is no intermediate artifact to review and no defined
+        step at which security guidance could be applied. Flaws surface only
+        after the code is written, if at all.
+      measure: |-
+        Establish a spec-driven workflow for AI-assisted development: specify
+        requirements and acceptance criteria first, derive a plan, implement
+        against the plan and review against the specification. Use tooling that
+        enforces the phases and keep the phase artifacts (specification, plan)
+        under version control.
+      dependsOn:
+        - 066084c6-1135-4635-9cc5-9e75c7c5459f # Version control
+      assessment: |
+        - Show the phase artifacts (specification, plan) of a recent AI-assisted change under version control.
+        - Demonstrate the tooling that enforces the phases (e.g. a spec-driven workflow tool).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 1
+      usefulness: 3
+      level: 2
+      tags:
+        - ai
+        - guidance
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spec-kit
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/new-sdlc-vibe-coding
+      references:
+        samm2:
+          - D-SR-A-1
+        iso27001-2017:
+          - 14.2.1
+        iso27001-2022:
+          - 8.25
+      comments: ""
+    Evaluation of the trust of used AI components:
+      uuid: 399c5b7f-1310-4841-89f7-16daff2fe3ef
+      description: |-
+        AI assistants and agents are extended with tools, external servers,
+        skills and models (e.g. MCP servers, plugins, IDE extensions, packaged
+        skills combining instructions and code, connected SaaS services,
+        self-hosted model weights). Each integration widens the attack surface:
+        it can read context data, execute actions and inject content into the
+        model context; model artifacts from public hubs can contain malicious
+        code or backdoored behavior. Registry-scale research on agent skills
+        ([Behavioral Integrity Verification for AI Agent
+        Skills](https://arxiv.org/abs/2605.11770)) found 80% of skills deviating
+        from their declared behavior, 18.9% of the deviations tracing to
+        adversarial intent.
+        What an extension claims to do and what its code and instructions
+        actually do are routinely different. The generic
+        trust evaluation of components is defined in _Evaluation of the trust
+        of used components_ (Build and Deployment); this activity adds the
+        AI-specific checks before a component is adopted. Compromise after
+        approval is covered by _Continuous detection of compromised AI
+        components_.
+      risk: |-
+        Unevaluated tool integrations exfiltrate context data (source code, secrets),
+        act as a prompt injection channel or execute malicious actions with the
+        agent's privileges. Unevaluated model artifacts execute code on load or
+        behave maliciously (supply chain attack on the AI toolchain). Skills
+        from public registries steal credentials or carry hidden instruction
+        payloads their description does not declare.
+      measure: |-
+        Evaluate and approve AI tool, server, skill and model integrations
+        before use: verify publisher and supply chain, review requested
+        permissions and data flows, verify that declared capabilities match
+        the actual code and instructions (behavioral integrity, e.g. via a
+        behavioral classification registry), use safe model formats (e.g.
+        safetensors instead of pickle), pin versions and maintain an
+        inventory of allowed integrations and models. For model artifacts,
+        record provenance, training data lineage and fine-tuning parameters
+        in an AI Bill of Materials (AI-BOM), e.g. based on OWASP's extension
+        of the CycloneDX machine learning bill of materials (ML-BOM), so
+        model components carry the same supply chain evidence as code
+        dependencies (see _SBOM of components_ in Build and Deployment).
+      dependsOn:
+        - a511a9a9-1b75-4dfd-8a4f-e516e8096150 # AI usage policy
+        - 0de465a6-55a7-4343-af79-948bb5ff10ba # Evaluation of the trust of used components
+      assessment: |
+        - Show the approval process and the inventory of allowed AI integrations (tools, MCP servers, skills, models) with pinned versions.
+        - Show the vetting record of a recently added integration (publisher, permissions, behavioral integrity check).
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - guidance
+        - inventory
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/mcp-security-best-practices
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/agntcy-agent-directory
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c06
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/biv-agent-skills
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ave-registry
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aima
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 15.1.1
+        iso27001-2022:
+          - 5.19
+      comments: ""
+    Inventory of AI agents:
+      uuid: c1f02ad7-e97e-4c87-b827-7542793ddb0a
+      description: |-
+        Classic IAM was built for humans; AI agents multiply faster than any
+        human workforce and are easy to spin up unnoticed. An inventory records
+        every AI agent and assistant in use (its identity, owner, purpose,
+        permissions and connected systems) and is the precondition for
+        governing them.
+      risk: |-
+        "Shadow agents" run without anyone being accountable: agents started by
+        individual developers or teams keep credentials and access long after
+        their purpose ended, and nobody can answer which agents exist, what they
+        may do and who owns them. This makes incident response and offboarding
+        impossible.
+      measure: |-
+        Maintain an inventory of all AI agents and assistants: identity/service
+        account, human owner, purpose, granted permissions and connected
+        systems. Review it periodically, decommission stale agents and detect
+        unregistered ones (e.g. via identity provider and audit log analysis).
+      dependsOn:
+        - a511a9a9-1b75-4dfd-8a4f-e516e8096150 # AI usage policy
+      assessment: |
+        - Show the inventory of AI agents with identity, human owner, purpose and granted permissions.
+        - Show the last periodic review and an example of a decommissioned agent.
+        - Explain how unregistered ("shadow") agents are detected, e.g. via identity provider or audit log analysis.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - guidance
+        - inventory
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/agntcy-agent-directory
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c05
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 8.1.1
+        iso27001-2022:
+          - 5.9
+      comments: ""
+    Audit logging of AI agent actions:
+      uuid: 84ba7525-857e-4849-98ba-5fada1a1454d
+      description: |-
+        AI agents act autonomously at machine speed and delegate work to other
+        agents. An audit log for agent actions records the causal chain of
+        every action: who or what triggered it, which data sources and tools
+        were used with which parameters, what was produced, which policy
+        decision allowed it and which human approved it. This keeps every
+        agent action attributable to a human principal, even across
+        multi-agent chains.
+      risk: |-
+        Agent actions cannot be reconstructed or attributed: when an agent (or
+        a chain of agents) performs a harmful action, neither the trigger, nor
+        the decision basis, nor the approval status can be determined.
+        Incident response, accountability and regulatory evidence (e.g. EU AI
+        Act logging obligations) fail, and an attacker or insider can modify
+        local logs unnoticed to cover their tracks.
+      measure: |-
+        Log every agent action in a structured audit log covering the causal
+        chain: initiator, request, used data sources, tool calls with
+        parameters, generated output, policy decision, delegation context and
+        human approval. Propagate correlation identifiers across agents and
+        systems (e.g. via OpenTelemetry traces) so multi-agent chains stay
+        reconstructable, store the log tamper-evident (e.g. hash chaining,
+        write-once storage) with a defined retention period, and protect the
+        log itself: it contains sensitive prompts and outputs, so restrict
+        access and redact where possible.
+      dependsOn:
+        - c1f02ad7-e97e-4c87-b827-7542793ddb0a # Inventory of AI agents
+        - fe875e17-ae4a-45f8-a359-244aa4fcbc04 # Centralized application logging
+      assessment: |
+        - Show the structured audit log entry of a recent agent action including initiator, tool calls with parameters, data sources and (where required) the human approval.
+        - Demonstrate that a multi-agent chain can be reconstructed end-to-end via correlation identifiers.
+        - Show the tamper protection (e.g. hash chain verification) and the retention configuration of the audit log.
+        - Show who has access to the audit log and how sensitive content in it is protected (e.g. redaction).
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - guidance
+        - logging
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/agent-identity-access-model
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c05
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aima
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tealtiger
+      references:
+        samm2:
+          - O-IM-A-1
+        iso27001-2017:
+          - 12.4.1
+          - 12.4.2
+        iso27001-2022:
+          - 8.15
+      comments: ""
+    Anomaly detection for AI agent behavior:
+      uuid: 99049c0a-400f-4c58-986c-ab448ca8e0fc
+      description: |-
+        Audit logs record what agents do; anomaly detection turns those
+        records into a signal while intervention is still possible. A
+        compromised (e.g. prompt-injected) or malfunctioning agent typically
+        stays within its granted permissions, so no single action is blocked.
+        What changes is the pattern: tool-call frequency, data access
+        volumes, targeted systems, activity times or failure rates deviate
+        from the agent's normal behavior. This activity builds on _Audit
+        logging of AI agent actions_ and feeds detections into the generic
+        _Alerting_ (Information Gathering).
+      risk: |-
+        A manipulated or malfunctioning agent operates unnoticed for days
+        within its permissions: it exfiltrates data in small portions, calls
+        tools at abnormal frequency or accesses systems it never touched
+        before. The audit log records everything, but nobody looks at it
+        until the damage is done.
+      measure: |-
+        Define an expected behavior profile per AI agent (used tools, data
+        volumes, action frequency, typical target systems) and detect
+        deviations from it: start with rule-based thresholds (e.g. tool-call
+        rate, data volume per time window, first-time access to a system),
+        extend towards statistical or learning-based detection. Route
+        detections into the existing alerting channel with a defined
+        response, e.g. pause the agent or revoke its credentials, then
+        investigate via the audit log.
+      dependsOn:
+        - 84ba7525-857e-4849-98ba-5fada1a1454d # Audit logging of AI agent actions
+        - 8a442d8e-0eb1-4793-a513-571aef982edd # Alerting
+      assessment: |
+        - Show the expected behavior profile of an AI agent and the detection rules or models derived from it.
+        - Demonstrate an alert for anomalous agent behavior (e.g. unusual tool-call frequency or first-time access to a system) and the defined response (e.g. pausing the agent, revoking credentials).
+        - Show how a past alert was investigated using the audit log.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 4
+      tags:
+        - ai
+        - guidance
+        - logging
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aima
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tealtiger
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anthropic-zero-trust-agents
+      references:
+        samm2:
+          - O-IM-A-2
+        iso27001-2017:
+          - 12.4.1
+        iso27001-2022:
+          - 8.16
+      comments: ""
+    Automated containment of anomalous AI agents:
+      uuid: 3bbd6dd9-0821-426c-8a19-41737ed61459
+      description: |-
+        _Anomaly detection for AI agent behavior_ raises the signal; this
+        activity determines how fast it is acted on. Compromised agents
+        operate at machine speed: by the time a human has read the alert, an
+        agent may have exfiltrated data in small portions or spread through
+        delegated tasks. Automated containment executes pre-approved,
+        narrowly scoped and reversible actions immediately, for example
+        pausing the agent, terminating its sessions, revoking its
+        short-lived credentials or reducing its privileges to a safe
+        baseline. Far-reaching decisions remain with humans. The guiding
+        principle: automate the bookkeeping (evidence collection,
+        correlation, documentation of the incident), not the decisions
+        (containment of business-critical systems, disclosure, customer
+        communication). In multi-agent systems, containment also has to
+        stop cascades: one faulty or compromised agent can trigger many
+        downstream agents in a short time (OWASP Top 10 for Agentic
+        Applications, ASI08).
+      risk: |-
+        An anomaly alert fires, but the response is manual: hours pass
+        between detection and containment while the compromised agent keeps
+        operating within its granted permissions. The damage window is
+        defined by human reaction time instead of detection time, and the
+        human spends that time collecting evidence instead of deciding.
+      measure: |-
+        Define an automated containment action per detection class and wire
+        it to the anomaly detection: pause the agent, terminate its
+        sessions, revoke its credentials or reduce its privileges. Keep the
+        actions reversible and graduated by confidence and severity, log
+        every automated action and notify a human immediately. Let an AI
+        assistant draft the triage context (timeline, affected systems,
+        collected evidence) so the notified human decides instead of
+        collecting, and test the containment path regularly like a fire
+        drill. Alert on cascade symptoms such as rapid fan-out (one
+        decision triggers many downstream agents or tasks) and oscillating
+        retry loops between agents, and place circuit breakers between
+        planning and execution so that a runaway plan stops instead of
+        propagating. Return a contained agent to production only after its
+        instructions, memory and dependencies have been verified against a
+        known-good state and a human has approved the reintegration.
+      dependsOn:
+        - 99049c0a-400f-4c58-986c-ab448ca8e0fc # Anomaly detection for AI agent behavior
+        - 45f722b2-25b4-472a-a743-f7207a77b5c9 # Least privilege on external systems for AI agents
+      assessment: |
+        - Show the mapping of detection classes to automated containment actions and their graduation by confidence and severity.
+        - Demonstrate in a test that an anomalously behaving agent is automatically paused or its credentials revoked, the action is logged and a human is notified.
+        - Show the drafted triage context of a past or simulated incident and the human decision based on it.
+        - Show the protocol of the last containment test.
+        - Show the cascade guardrails (fan-out alerts, circuit breakers between planning and execution) and the reintegration protocol of a contained agent.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 5
+      tags:
+        - ai
+        - guidance
+        - logging
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aima
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anthropic-zero-trust-agents
+      references:
+        samm2:
+          - O-IM-B-2
+        iso27001-2017:
+          - 16.1.5
+        iso27001-2022:
+          - 5.26
+      comments: ""
+    Decommissioning of AI agents:
+      uuid: 44a195ec-da9e-4fd4-be6d-a5a688852cf7
+      description: |-
+        The lifecycle of an AI agent does not end with switching it off.
+        During operation an agent accumulates an identity, credentials,
+        permissions, policies and integrations with other systems. Secure
+        decommissioning unwinds all of them and preserves the audit evidence.
+        The _Inventory of AI agents_ records what exists; this activity
+        ensures that what is retired actually loses all access.
+      risk: |-
+        Shut-down agents leave residual access behind: service accounts and
+        OAuth clients stay active, issued tokens remain valid, agent-specific
+        permissions and policies persist, and registrations in dependent
+        systems (message brokers, queues, caches, third-party software as a
+        service integrations) keep working. An attacker takes over such an
+        orphaned identity, and nobody notices because the agent is no
+        longer monitored. Deleting its audit logs too early additionally
+        destroys the evidence needed for investigations.
+      measure: |-
+        Define and enforce a decommissioning checklist that covers every
+        access path: set the agent status in the inventory, revoke the agent
+        identity and its certificates, deactivate associated service accounts
+        and OAuth clients, remove or deny agent-specific permissions and
+        policies, clean up dependent systems (broker registrations, message
+        queue subscriptions, caches, stored sessions, third-party
+        integrations, shadow credentials), archive the audit logs according
+        to the retention requirements and verify after completion that no
+        residual access remains.
+      dependsOn:
+        - c1f02ad7-e97e-4c87-b827-7542793ddb0a # Inventory of AI agents
+        - 45f722b2-25b4-472a-a743-f7207a77b5c9 # Least privilege on external systems for AI agents
+      assessment: |
+        - Show the decommissioning checklist and the completed protocol of a recently retired agent (timestamp, reason, approver).
+        - Demonstrate for a retired agent that its identity, credentials, permissions and registrations in dependent systems no longer grant access (zero residual access).
+        - Show that the audit logs of the retired agent are archived according to the retention requirements.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - guidance
+        - inventory
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c05
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 9.2.6
+        iso27001-2022:
+          - 5.18
+      comments: ""
+    Dynamic load of security rules:
+      uuid: 862d08a4-7299-4b2c-9d38-8fcaade66d3e
+      description: |-
+        In spec-driven development, AI-assisted work is split into explicit steps
+        (e.g. specify, plan, implement, review). Model context is limited: loading
+        all security guidance at once dilutes it, loading it at the wrong step
+        means it is absent when needed. Security artifacts are therefore assigned
+        to the step where they are effective: security requirements and abuse
+        cases during specification, threat model results during planning, secure
+        coding rules during implementation, review checklists during verification.
+
+        Two ways to bind security artifacts to workflow steps, using Spec Kit
+        with Claude Code as example:
+
+        1. **Extend the step templates**: add the security artifact references
+           directly to the phase templates (e.g. `.specify/templates/`). Simple,
+           but the changes live inside the tool's files and must be re-applied
+           after tool updates.
+        2. **Hook that detects the step command** (update-safe and automatic):
+           a `UserPromptSubmit` hook fires on every prompt, checks which
+           workflow command was invoked and injects the matching file as
+           `additionalContext`. The tool's templates stay untouched and the
+           step-to-artifact mapping lives in one central place:
+
+           ```bash
+           #!/bin/bash
+           input=$(cat)
+           prompt=$(jq -r '.prompt // empty' <<<"$input")
+
+           case "$prompt" in
+             /speckit.plan*)      file="specs/threat-model.md" ;;
+             /speckit.implement*) file="docs/secure-coding-rules.md" ;;
+             /speckit.review*)    file="docs/security-review-checklist.md" ;;
+             *) exit 0 ;;
+           esac
+
+           jq -nc --arg ctx "$(cat "$file")" \
+             '{hookSpecificOutput: {hookEventName: "UserPromptSubmit",
+               additionalContext: $ctx}}'
+           ```
+
+           Registered in `.claude/settings.json` under `hooks`, the mapping is
+           versioned with the repository, survives Spec Kit updates and cannot
+           be forgotten by developers. Keep the injected artifacts small and
+           step-specific: the goal is the right rules in context, not all
+           rules.
+      risk: |-
+        Security rules exist but are not in the model context at the step where
+        the AI assistant needs them, or the context is flooded with irrelevant
+        rules so the model ignores them. Generated specifications, plans and code
+        silently drop security requirements between steps.
+      measure: |-
+        Structure AI-assisted development workflows so that each step loads its
+        relevant security artifacts into the model context (e.g. via step-specific
+        instruction templates in spec-driven development). Verify that security
+        requirements from the specification are carried through plan,
+        implementation and review steps.
+      dependsOn:
+        - 51ebc877-c4fd-4b50-9305-320152242ddf # Basic secure coding rules for AI assistants
+        - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Security requirements for AI-assisted development
+        - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      assessment: |
+        - Show the mapping of security artifacts to workflow steps (step templates or hook configuration).
+        - Demonstrate that the matching security artifact is loaded into the model context when a workflow step is invoked.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 4
+      tags:
+        - ai
+        - guidance
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/new-sdlc-vibe-coding
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spec-kit
+      references:
+        samm2:
+          - D-SR-A-2
+        iso27001-2017:
+          - 14.2.1
+        iso27001-2022:
+          - 8.28
+      comments: ""
+    Threat modeling of AI components:
+      uuid: 5a1cd6cd-ebd0-4e70-b314-37b8ab0b7d8d
+      description: |-
+        General threat modeling practices (how to run sessions, processes and
+        standards) are defined in the _Culture and Organization_ dimension,
+        subdimension _Design_. This activity only adds the AI-specific delta.
+        AI components introduce elements classic threat models miss: the model
+        context as a data flow that attackers reach via prompts, documents and
+        tool results; agents and tool integrations as trust boundaries;
+        retrieval-augmented generation (RAG) knowledge bases and training data
+        as poisoning targets; model output as an injection vector. The subject
+        here is the product: applications that contain AI components. Passing
+        security requirements into AI-*assisted* implementation of arbitrary
+        features is covered by _Security requirements for AI-assisted
+        development_.
+
+        A data-centric approach works well for the AI delta: follow the data
+        (prompts, retrieved documents, tool results, training and evaluation
+        data) through every transformation and storage point and model the
+        threats along that flow, as described in the guidance of NIST SP
+        800-154 (data-centric system threat modeling). Running only the
+        generic checklist over an AI feature leaves these risks
+        undiscovered, because the AI-specific data flows never appear in it.
+
+        When evaluating mitigations, apply the design test from Anthropic's
+        _Zero Trust for AI Agents_: "does this make the attack impossible,
+        or just tedious?" Agentic attackers automate tedium away: they
+        retry endlessly at almost no cost, so a control that only adds
+        friction (a rate limit, one more network hop to pivot through, a
+        non-standard port) loses its value. Favor controls that take a
+        capability away entirely, such as a network path that simply does
+        not exist or a credential that has already expired.
+      risk: |-
+        AI-specific threats such as prompt injection paths, excessive agency of tool-using agents,
+        data leakage through the model context and poisoning of
+        retrieval-augmented generation (RAG) sources
+        remain unidentified and unmitigated.
+      measure: |-
+        Extend the established threat modeling practice to AI components: model
+        the context window, tool integrations, agents and data sources explicitly
+        and use AI-specific threat catalogs (e.g. OWASP Top 10 for LLM
+        Applications, MITRE ATLAS) alongside the generic methodology. For
+        agentic systems, the MAESTRO framework of the Cloud Security Alliance
+        (CSA) structures threats along seven layers, from the foundation model
+        to the agent ecosystem.
+      dependsOn:
+        - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
+      assessment: |
+        - Show a threat model of an AI feature that covers the model context, tool integrations, agents and data sources.
+        - Show which AI-specific threat catalog (e.g. OWASP Top 10 for LLM Applications, MITRE ATLAS) was used and the resulting mitigations.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 1
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - guidance
+        - threat-modeling
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/google-saif
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/gdm-ai-control-roadmap
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c09
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c08
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-llm-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/mitre-atlas
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/csa-maestro
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fullstory-ai-threat-modeling
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-designer
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threagile
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aima
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-ai-exchange
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anthropic-zero-trust-agents
+      references:
+        samm2:
+          - D-TA-A-1
+        iso27001-2017:
+          - 14.1.1
+        iso27001-2022:
+          - 8.26
+      comments: ""
+    AI usage policy:
+      uuid: a511a9a9-1b75-4dfd-8a4f-e516e8096150
+      description: |-
+        An AI usage policy defines which AI tools and models are approved, for which
+        tasks they may be used, which data may be shared with them and how
+        AI-generated output has to be handled (e.g. mandatory review).
+      risk: |-
+        Without a policy, employees use arbitrary AI tools ("shadow AI") with unknown
+        data handling, share confidential information with them and ship unreviewed
+        AI-generated code.
+      measure: |-
+        Define, communicate and enforce a policy for the usage of AI tools during
+        development, including an approval process for new tools and models.
+      assessment: |
+        - Show the published AI usage policy including approved tools, allowed data classes and handling rules for AI-generated output.
+        - Show the approval process for new tools and models with a recent example.
+        - Show how the policy is communicated to employees (e.g. onboarding, training).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 2
+      tags:
+        - ai
+        - guidance
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/nist-ssdf-genai
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/google-saif
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c06
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/eu-ai-act
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aima
+      references:
+        samm2:
+          - G-PC-A-1
+        iso27001-2017:
+          - 5.1.1
+        iso27001-2022:
+          - 5.1
+      comments: ""
