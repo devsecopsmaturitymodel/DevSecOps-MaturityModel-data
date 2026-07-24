@@ -36,6 +36,8 @@ AI:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-security-rules
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/secure-rules-files
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openssf-ai-assistant-instructions
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/claude-secure-coding-rules
       references:
         samm2:
           - G-EG-A-1
@@ -82,6 +84,8 @@ AI:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/secure-rules-files
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-asvs
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/claude-secure-coding-rules
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/semgrep-skills
       references:
         samm2:
           - G-EG-A-2

@@ -1537,6 +1537,45 @@ implementations:
     description: |-
       Curated secure-coding rules files for AI coding assistants (e.g. Cursor,
       GitHub Copilot, Claude Code) per language, maintained by Wiz Research.
+  openssf-ai-assistant-instructions:
+    uuid: 6d2ae0e3-c1f3-4a5a-9bf9-9efd68cc64b3
+    name: OpenSSF Security-Focused Guide for AI Code Assistant Instructions
+    tags: [ai, guidance, documentation]
+    url: https://best.openssf.org/Security-Focused-Guide-for-AI-Code-Assistant-Instructions.html
+    description: |-
+      OpenSSF Best Practices guide on writing security-focused instruction
+      files for AI code assistants (e.g. CLAUDE.md, AGENTS.md,
+      copilot-instructions.md), including concrete secure-coding rule
+      examples to include in an organization-wide baseline.
+  claude-secure-coding-rules:
+    uuid: e883179f-888c-4b75-a2da-a7ea46f88b78
+    name: TikiTribe Claude Secure Coding Rules
+    tags: [ai, guidance, documentation]
+    url: https://github.com/TikiTribe/claude-secure-coding-rules
+    description: |-
+      Community-maintained secure-coding rule set for Claude Code and other
+      AI coding assistants, with general and language/framework-specific
+      rules ready to be imported into repository instruction files.
+  semgrep-skills:
+    uuid: 8b9bbe23-bb52-4360-be6d-e6406e4e5506
+    name: Semgrep Skills
+    tags: [ai, guidance, tool]
+    url: https://github.com/semgrep/skills#available-skills
+    description: |-
+      Agent skills by Semgrep that load security guidance and scanning
+      capabilities into AI coding assistants on demand, including
+      language- and framework-specific secure-coding skills.
+  vulnhunter:
+    uuid: f18f3411-cd68-4f19-b2a4-d07a8353b597
+    name: Capital One VulnHunter
+    tags: [ai, testing, tool]
+    url: https://github.com/capitalone/vulnhunter
+    description: |-
+      Open-source agentic AI security tool by Capital One that traces
+      realistic attack paths from entry points through the codebase
+      (attacker-first forward analysis) instead of pattern matching,
+      then generates fixes and independently verifies its own findings
+      to reduce false positives. Runs on Claude Code, multi-language.
   openssf-scorecard:
     uuid: 4a5296a6-4d8f-4b97-902b-f04722438a66
     name: OpenSSF Scorecard

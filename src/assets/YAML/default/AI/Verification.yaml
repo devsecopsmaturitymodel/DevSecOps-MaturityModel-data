@@ -370,6 +370,7 @@ AI:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-verify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/vulnhunter
       references:
         samm2:
           - V-ST-A-1
