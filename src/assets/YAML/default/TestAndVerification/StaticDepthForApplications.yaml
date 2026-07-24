@@ -15,7 +15,7 @@ Test and Verification:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/pmd
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       references:
         samm2:
           - V-ST-A-2
@@ -60,7 +60,7 @@ Test and Verification:
       usefulness: 3
       level: 2
       dependsOn:
-        - Automated PRs for patches
+        - 8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
       difficultyOfImplementation:
         knowledge: 1
         time: 1
@@ -78,8 +78,8 @@ Test and Verification:
         This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
       risk: Automatic PRs for dependencies are overlooked resulting in known vulnerabilities in production artifacts.
       dependsOn:
-        - Automated PRs for patches
-        - Defined build process
+        - 8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       measure: |
         Test of the Patch Deployment Time.
         This activity is not repeated in the Sub-Dimension "Static depth for infrastructure", but it applies to infrastructure as well.
@@ -165,8 +165,8 @@ Test and Verification:
       usefulness: 3
       level: 5
       dependsOn:
-        - Static analysis for important client side components
-        - Static analysis for important server side components
+        - e237176b-bec5-447d-a926-e37d6dd60e4b # Static analysis for important client side components
+        - 6c05c837-8c99-46e2-828b-7c903e27dba4 # Static analysis for important server side components
         - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation: []
       references:
@@ -200,8 +200,8 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/visa-vvah
       dependsOn:
-        - Static analysis for important client side components
-        - Static analysis for important server side components
+        - e237176b-bec5-447d-a926-e37d6dd60e4b # Static analysis for important client side components
+        - 6c05c837-8c99-46e2-828b-7c903e27dba4 # Static analysis for important server side components
         - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
@@ -234,7 +234,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/checkmarx-vscode-extension
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
         - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
@@ -277,7 +277,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/appscan-vscode-extension
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/visa-vvah
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
         - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       references:
         samm2:
@@ -359,7 +359,7 @@ Test and Verification:
       usefulness: 2
       level: 3
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
         - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
         - f2f0f274-c1a0-4501-92fe-7fc4452bc8ad # EPSS/CISA KEV
       implementation:
@@ -391,7 +391,7 @@ Test and Verification:
       usefulness: 5
       level: 2
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
         - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-dependency-che
@@ -469,9 +469,9 @@ Test and Verification:
       usefulness: 1
       level: 4
       dependsOn:
-        - Software Composition Analysis (server side)
-        - Software Composition Analysis (client side)
-        - Static analysis for all self written components
+        - d918cd44-a972-43e9-a974-eff3f4a5dcfe # Software Composition Analysis (server side)
+        - 07fe8c4f-ae33-4409-b1b2-cf64cfccea86 # Software Composition Analysis (client side)
+        - ee68331f-9b1d-4f61-844b-b2ea04753a84 # Static analysis for all self written components
       implementation: []
       references:
         samm2:

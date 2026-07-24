@@ -49,7 +49,7 @@ Implementation:
       usefulness: 4
       level: 2
       dependsOn:
-        - MFA for admins
+        - 8098e416-e1ed-4ae4-a561-83efbe76bf57 # MFA for admins
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/yubikey
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sms
@@ -157,7 +157,7 @@ Implementation:
       usefulness: 3
       level: 3
       dependsOn:
-        - Infrastructure as Code
+        - 8b994601-575e-4ea5-b228-accb18c8e514 # Infrastructure as Code
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/remove-direct-access
       references:
@@ -245,7 +245,7 @@ Implementation:
       usefulness: 5
       level: 3
       dependsOn:
-        - Audit of system events
+        - 1cd5e4b8-be36-4726-adc7-d8f843f47ac8 # Audit of system events
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/seccomp
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/strace
@@ -277,7 +277,7 @@ Implementation:
       level: 4
       dependsOn:
         - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
-        - Infrastructure as Code
+        - 8b994601-575e-4ea5-b228-accb18c8e514 # Infrastructure as Code
       implementation: []
       references:
         samm2:
@@ -542,7 +542,7 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/crypto
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/authentication
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       references:
         samm2:
           - O-EM-A-2
@@ -593,7 +593,7 @@ Implementation:
       usefulness: 3
       level: 2
       dependsOn:
-        - Usage of containers
+        - 3a94d55e-fd82-4996-9eb3-20d23ff2a873 # Usage of containers
       implementation: []
       references:
         samm2:
@@ -634,7 +634,7 @@ Implementation:
       usefulness: 3
       level: 3
       dependsOn:
-        - Context-aware output encoding
+        - e1f37abb-d848-4a3a-b3df-65e91a89dcb7 # Context-aware output encoding
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:
@@ -673,7 +673,7 @@ Implementation:
       usefulness: 3
       level: 4
       dependsOn:
-        - WAF baseline
+        - f0e01814-3b88-4bd0-a3a9-f91db001d20b # WAF baseline
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:
@@ -717,7 +717,7 @@ Implementation:
       usefulness: 4
       level: 5
       dependsOn:
-        - WAF medium
+        - f0e01814-3b88-4bd0-a3a9-f91db001d20b-medium # WAF medium
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/api-myths
       references:

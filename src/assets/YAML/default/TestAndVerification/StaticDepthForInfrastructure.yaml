@@ -111,7 +111,7 @@ Test and Verification:
       usefulness: 1
       level: 4
       dependsOn:
-        - Usage of a maximum lifetime for images
+        - 485a3383-7f2e-4dba-bb84-479377070904 # Usage of a maximum lifetime for images
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anchore-io
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/clair
@@ -227,7 +227,7 @@ Test and Verification:
       usefulness: 1
       level: 4
       dependsOn:
-        - Usage of a maximum lifetime for images
+        - 485a3383-7f2e-4dba-bb84-479377070904 # Usage of a maximum lifetime for images
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anchore-io
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/clair

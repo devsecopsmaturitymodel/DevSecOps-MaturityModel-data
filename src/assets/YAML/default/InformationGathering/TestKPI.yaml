@@ -175,7 +175,7 @@ Information Gathering:
         resources: 1
       usefulness: 3
       dependsOn:
-        - Usage of a vulnerability management system
+        - 85ba5623-84be-4219-8892-808837be582d # Usage of a vulnerability management system
       level: 3
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo

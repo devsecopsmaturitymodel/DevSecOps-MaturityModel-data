@@ -4,7 +4,7 @@ meta:
   released: "2026-07-24"
   publisher: tpagel
 ---
-AI:
+Agentic AI:
   Data Protection:
     Basic data leak prevention:
       uuid: dc62d384-0b9c-47d9-b7a5-9d82e53642ba
@@ -8685,7 +8685,7 @@ Implementation:
       usefulness: 4
       level: 5
       dependsOn:
-      - f0e01814-3b88-4bd0-a3a9-f91db001d20b-medium # WAF medium
+      - f0e01814-3b88-4bd0-a3a9-f91db001d20b # WAF baseline
       implementation:
       - uuid: 6150533e-58ca-4b52-a9b2-6226545d9ea0
         name: Top 5 API Security Myths That Are Crushing Your Business

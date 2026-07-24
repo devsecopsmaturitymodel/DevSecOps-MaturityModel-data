@@ -15,8 +15,8 @@ Culture and Organization:
       usefulness: 3
       level: 4
       dependsOn:
-        - Conduction of simple threat modeling on technical level
-        - Creation of threat modeling processes and standards
+        - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
+        - dd5ed7c1-bdbf-400f-b75f-6d3953a1a04e # Creation of threat modeling processes and standards
       description: |
         **Example High Maturity Scenario:**
 
@@ -185,7 +185,7 @@ Culture and Organization:
       usefulness: 4
       level: 5
       dependsOn:
-        - Creation of simple abuse stories
+        - bacf85b6-5bc0-405d-b5ba-a5d971467cc1 # Creation of simple abuse stories
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-user-stories
       references:
@@ -231,8 +231,8 @@ Culture and Organization:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-user-stories
       dependsOn:
-        - Conduction of simple threat modeling on technical level
-        - Creation of threat modeling processes and standards
+        - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
+        - dd5ed7c1-bdbf-400f-b75f-6d3953a1a04e # Creation of threat modeling processes and standards
       references:
         samm2:
           - D-TA-B-2
@@ -267,7 +267,7 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
       dependsOn:
-        - Conduction of simple threat modeling on technical level
+        - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
       references:
         samm2:
           - D-TA-B-3

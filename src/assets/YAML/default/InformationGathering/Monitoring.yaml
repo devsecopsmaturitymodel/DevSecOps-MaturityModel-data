@@ -15,8 +15,8 @@ Information Gathering:
       usefulness: 4
       level: 3
       dependsOn:
-        - Simple application metrics
-        - Visualized metrics
+        - e9a6d403-a467-445e-b98a-74f0c29da0b1 # Simple application metrics
+        - ded39bcf-4eaa-4c5f-9c94-09acde0a4734 # Visualized metrics
       implementation: []
       references:
         samm2:
@@ -39,8 +39,8 @@ Information Gathering:
       usefulness: 4
       level: 4
       dependsOn:
-        - Simple application metrics
-        - Visualized metrics
+        - e9a6d403-a467-445e-b98a-74f0c29da0b1 # Simple application metrics
+        - ded39bcf-4eaa-4c5f-9c94-09acde0a4734 # Visualized metrics
       implementation: []
       references:
         samm2:
@@ -61,7 +61,7 @@ Information Gathering:
       usefulness: 4
       level: 3
       dependsOn:
-        - Visualized metrics
+        - ded39bcf-4eaa-4c5f-9c94-09acde0a4734 # Visualized metrics
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/falco
       references:
@@ -99,7 +99,7 @@ Information Gathering:
       usefulness: 5
       level: 2
       dependsOn:
-        - Visualized metrics
+        - ded39bcf-4eaa-4c5f-9c94-09acde0a4734 # Visualized metrics
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anthropic-zero-trust-agents
       references:
@@ -134,7 +134,7 @@ Information Gathering:
       usefulness: 4
       level: 4
       dependsOn:
-        - Visualized metrics
+        - ded39bcf-4eaa-4c5f-9c94-09acde0a4734 # Visualized metrics
       implementation: []
       references:
         samm2:
@@ -155,7 +155,7 @@ Information Gathering:
       usefulness: 5
       level: 3
       dependsOn:
-        - Visualized metrics
+        - ded39bcf-4eaa-4c5f-9c94-09acde0a4734 # Visualized metrics
       implementation: []
       references:
         samm2:
@@ -182,8 +182,8 @@ Information Gathering:
       usefulness: 4
       level: 4
       dependsOn:
-        - Visualized metrics
-        - Filter outgoing traffic
+        - ded39bcf-4eaa-4c5f-9c94-09acde0a4734 # Visualized metrics
+        - 6df508ef-86fc-4c22-bd9f-646c3127ce7d # Filter outgoing traffic
       implementation: []
       references:
         samm2:
@@ -227,7 +227,7 @@ Information Gathering:
       usefulness: 5
       level: 5
       dependsOn:
-        - Grouping of metrics
+        - 42170a71-d4c8-47af-bd71-bf36875fd05b # Grouping of metrics
       implementation: []
       references:
         samm2:
@@ -252,8 +252,8 @@ Information Gathering:
       usefulness: 3
       level: 2
       dependsOn:
-        - Simple application metrics
-        - Simple system metrics
+        - e9a6d403-a467-445e-b98a-74f0c29da0b1 # Simple application metrics
+        - 3d1f4c3b-f713-46d9-933a-54a014a26c03 # Simple system metrics
       implementation: []
       references:
         samm2:
@@ -276,7 +276,7 @@ Information Gathering:
       usefulness: 5
       level: 4
       dependsOn:
-        - Grouping of metrics
+        - 42170a71-d4c8-47af-bd71-bf36875fd05b # Grouping of metrics
       implementation: []
       references:
         samm2:
@@ -393,7 +393,7 @@ Information Gathering:
       usefulness: 5
       level: 3
       dependsOn:
-        - Alerting
+        - 8a442d8e-0eb1-4793-a513-571aef982edd # Alerting
       implementation: []
       references:
         samm2:
@@ -417,8 +417,8 @@ Information Gathering:
       usefulness: 3
       level: 2
       dependsOn:
-        - Simple application metrics
-        - Simple system metrics
+        - e9a6d403-a467-445e-b98a-74f0c29da0b1 # Simple application metrics
+        - 3d1f4c3b-f713-46d9-933a-54a014a26c03 # Simple system metrics
       implementation: []
       references:
         samm2:

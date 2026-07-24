@@ -109,7 +109,7 @@ Build and Deployment:
          - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-containers
          - $ref: src/assets/YAML/default/implementations.yaml#/implementations/immutable-images
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       references:
         samm2:
           - I-SB-B-1
@@ -133,7 +133,7 @@ Build and Deployment:
         Creation of an SBOM of components (e.g. application and container image
         content) during build.
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -179,8 +179,8 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-content-trust
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/in-toto
       dependsOn:
-        - Defined build process
-        - Pinning of artifacts
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
+        - f3c4971e-9f4d-4e59-8ed0-f0bdb6262477 # Pinning of artifacts
       references:
         samm2:
           - I-SB-A-1
@@ -205,7 +205,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-commits
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/signing-of-commits-protection
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       references:
         samm2:
           - I-SB-A-2

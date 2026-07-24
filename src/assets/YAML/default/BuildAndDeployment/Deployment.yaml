@@ -17,7 +17,7 @@ Build and Deployment:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/blue-green-deployment
       dependsOn:
-        - Smoke Test
+        - 73aaae0b-5d68-4953-9fa4-fd25bf665f2a # Smoke Test
       references:
         samm2:
           - I-SD-A-3
@@ -290,7 +290,7 @@ Build and Deployment:
       level: 3
       implementation: ""
       dependsOn:
-        - Environment depending configuration parameters (secrets)
+        - df428c9d-efa0-4226-9f47-a15bb53f822b # Environment depending configuration parameters (secrets)
       references:
         samm2:
           - I-SD-B-2
@@ -321,7 +321,7 @@ Build and Deployment:
         exists.
       dependsOn:
         - 83057028-0b77-4d2e-8135-40969768ae88 # Inventory of production artifacts
-        - SBOM of components
+        - 2858ac12-0179-40d9-9acf-1b839c030473 # SBOM of components
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -463,7 +463,7 @@ Build and Deployment:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       references:
         samm2:
           - I-SD-A-2
@@ -495,7 +495,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/martin-feature-toggles
       dependsOn:
-        - Same artifact for environments
+        - a854b48d-83bd-4f8d-8621-a0bdd470837f # Same artifact for environments
       references:
         samm2:
           - I-SD-A-2

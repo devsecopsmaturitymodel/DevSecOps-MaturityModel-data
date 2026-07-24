@@ -152,7 +152,7 @@ Implementation:
       usefulness: 4
       level: 2
       dependsOn:
-        - App. Hardening Level 1 (50%)
+        - b597928e-54d6-48a5-a806-8003dcd56aab # App. Hardening Level 1 (50%)
       description: |
         To tackle the security of code developed in-house, OWASP offers an extensive collection of [Cheatsheets](https://cheatsheetseries.owasp.org/) demonstrating how to implement features securely. Moreover, the Security Knowledge Framework[1] offers an extensive library of code patterns spanning several programming languages. These patterns can be used to not only jump-start the development process, but also do so securely.
 
@@ -217,7 +217,7 @@ Implementation:
           - 8.22
       comments: ""
       dependsOn:
-        - App. Hardening Level 1
+        - cf819225-30cb-4702-8e32-60225eedc33d # App. Hardening Level 1
     App. Hardening Level 2:
       uuid: ffe86caf-2fec-4630-b514-2db83983984d
       risk:
@@ -249,7 +249,7 @@ Implementation:
           - 8.22
       comments: ""
       dependsOn:
-        - App. Hardening Level 2 (75%)
+        - 03643ca2-03c2-472b-8e19-956bf02fe9b7 # App. Hardening Level 2 (75%)
     App. Hardening Level 3:
       uuid: 4cae98c2-4163-44ed-bb88-3c67c569533a
       risk:
@@ -280,7 +280,7 @@ Implementation:
           - Hardening is not explicitly covered by ISO 27001 - too specific
           - 8.22
       dependsOn:
-        - App. Hardening Level 2
+        - ffe86caf-2fec-4630-b514-2db83983984d # App. Hardening Level 2
     Secure headers:
       uuid: 29318d60-18ce-4526-80ea-f5928e49f639
       description: |

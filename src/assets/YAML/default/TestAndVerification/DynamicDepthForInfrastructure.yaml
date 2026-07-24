@@ -44,7 +44,7 @@ Test and Verification:
         time: 1
         resources: 2
       dependsOn:
-        - Isolated networks for virtual environments
+        - 4ce24abd-8ba6-494c-828d-4d193e28e4a1 # Isolated networks for virtual environments
       usefulness: 2
       level: 2
       implementation:
@@ -89,7 +89,7 @@ Test and Verification:
           - 8.19
           - 8.8
       dependsOn:
-        - Evaluation of the trust of used components
+        - 0de465a6-55a7-4343-af79-948bb5ff10ba # Evaluation of the trust of used components
     Test for unused Resources:
       uuid: 6532c1fe-9d23-4228-8722-558ddabca7d4
       risk:

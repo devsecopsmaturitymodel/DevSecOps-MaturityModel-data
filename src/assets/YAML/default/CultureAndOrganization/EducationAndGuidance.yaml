@@ -312,7 +312,7 @@ Culture and Organization:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
       dependsOn:
-        - Each team has a security champion
+        - 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87 # Each team has a security champion
       references:
         samm2:
           - D-TA-B-2
