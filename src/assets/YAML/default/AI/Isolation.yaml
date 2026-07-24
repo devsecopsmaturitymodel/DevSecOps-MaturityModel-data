@@ -2,18 +2,19 @@
 ---
 AI:
   Isolation:
-    AI agents are running in virtualized environments:
+    Usage of sandboxing for AI agents:
       uuid: 4debe8ea-f54a-4a00-a1cb-6fad9e571a88
       description: |-
         AI coding assistants and agents execute commands, install dependencies and
-        run generated code autonomously. Running them in disposable, container-based
-        environments (e.g. dev containers, sandboxes, ephemeral virtual machines)
-        limits the blast radius of malicious or faulty agent behavior.
+        run generated code autonomously. Running them in disposable, sandboxed
+        environments limits the blast radius of malicious or faulty agent behavior.
 
-        Use container technology (e.g. dev containers) or lightweight virtual machines
-        to sandbox agent runs. Mount only the repository being worked on, avoid mounting
+        Use a sandboxing technology to isolate agent runs, e.g. container-based
+        isolation (dev containers), lightweight virtual machines or OS-level
+        sandboxing mechanisms. Mount only the repository being worked on, avoid mounting
         credentials (e.g. cloud CLI configuration, SSH keys) and drop unneeded capabilities.
-        Destroy the environment after the task is finished.
+        Destroy the environment after the task is finished. Restricting network
+        egress of the sandbox is addressed by _Network isolation for AI agents_.
       risk: |-
         An AI agent may be manipulated (e.g. via prompt injection in source code,
         issues, dependencies or web content) or may malfunction. Without isolation,
@@ -21,12 +22,12 @@ AI:
         the developer workstation and connected systems.
       measure: |-
         Run AI agents and AI coding assistants with command execution capabilities in
-        a dedicated, least-privilege container or virtual machine which contains only
-        the required project files and is destroyed after use.
+        a dedicated, least-privilege sandbox (e.g. a container or virtual machine)
+        which contains only the required project files and is destroyed after use.
       dependsOn:
         - 3a94d55e-fd82-4996-9eb3-20d23ff2a873 # Applications are running in virtualized environments
       assessment: |
-        - Show the container or virtual machine configuration used for AI agent runs (e.g. a dev container definition) and demonstrate a live agent session running inside it.
+        - Show the sandbox configuration used for AI agent runs (e.g. a dev container definition) and demonstrate a live agent session running inside it.
         - Show that only the project working directory is mounted and no credentials (SSH keys, cloud CLI configuration) are reachable from inside the environment.
         - Demonstrate that the environment is destroyed after the task is finished.
       difficultyOfImplementation:
@@ -96,7 +97,7 @@ AI:
         endpoints (e.g. model API, package registries, source code management system).
         Deny all other egress traffic by default.
       dependsOn:
-        - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # AI agents are running in virtualized environments
+        - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # Usage of sandboxing for AI agents
       assessment: |
         - Show the egress policy of the agent environment (firewall init script, proxy configuration or network policies) including the domain allow-list.
         - Demonstrate from inside the agent environment that an allow-listed endpoint is reachable and a request to an arbitrary host is blocked.
@@ -150,7 +151,7 @@ AI:
         (hooks, MCP servers, settings) of untrusted origin, keep agent versions
         patched and never disable workspace trust prompts.
       dependsOn:
-        - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # AI agents are running in virtualized environments
+        - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # Usage of sandboxing for AI agents
       assessment: |
         - Show the documented procedure for opening third-party repositories with AI agents.
         - Demonstrate that workspace trust prompts are enabled and that repository-local agent configuration (hooks, MCP servers, settings) is not honored for untrusted repositories.
