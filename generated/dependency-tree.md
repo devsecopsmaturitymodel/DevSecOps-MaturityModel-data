@@ -31,35 +31,35 @@ graph LR
 23(L2 Alerting)
 24(L4 Dynamic load of security rules)
 25(L5 Automated containment of anomalous AI agents)
-26(L1 Usage of sandboxing for AI agents)
-27(L2 Applications are running in virtualized environments)
-28(L2 Rate limiting and resource budgets for AI systems)
-29(L2 Monitoring of costs)
-30(L2 Untrusted workspace handling for AI agents)
-31(L2 Permission management for AI agents)
-32(L3 Network isolation for AI agents)
-33(L4 Human approval for irreversible AI agent actions)
-34(L4 Trust boundaries between AI agents)
-35(L4 Regular automated AI red teaming)
-36(L3 Basic AI red teaming)
-37(L2 Human review of AI generated plans)
-38(L2 Human review of AI generated specifications)
-39(L2 Self-verification of AI generated changes)
-40(L1 Defined build process)
-41(L2 Security unit tests for important components)
-42(L2 Static and dynamic analysis of AI generated code)
-43(L3 Static analysis for important server side components)
-44(L2 Simple Scan)
-45(L2 Validation of AI-suggested dependencies)
-46(L2 Software Composition Analysis server side)
-47(L3 Human review of AI generated code)
-48(L3 No verification bypass for AI generated code)
-49(L3 Security test generation with AI)
-50(L4 Continuous detection of compromised AI components)
-51(L3 Test for compromised components)
-52(L5 Drift detection for agent instructions and guardrails)
-53(L3 Drift detection for deployed configuration)
-54(L2 Building and testing of artifacts in virtualized environments)
+26(L2 Rate limiting and resource budgets for AI systems)
+27(L2 Monitoring of costs)
+28(L2 Untrusted workspace handling for AI agents)
+29(L1 Usage of sandboxing for AI agents)
+30(L2 Permission management for AI agents)
+31(L3 Network isolation for AI agents)
+32(L4 Human approval for irreversible AI agent actions)
+33(L4 Trust boundaries between AI agents)
+34(L4 Regular automated AI red teaming)
+35(L3 Basic AI red teaming)
+36(L2 Human review of AI generated plans)
+37(L2 Human review of AI generated specifications)
+38(L2 Self-verification of AI generated changes)
+39(L1 Defined build process)
+40(L2 Security unit tests for important components)
+41(L2 Static and dynamic analysis of AI generated code)
+42(L3 Static analysis for important server side components)
+43(L2 Simple Scan)
+44(L2 Validation of AI-suggested dependencies)
+45(L2 Software Composition Analysis server side)
+46(L3 Human review of AI generated code)
+47(L3 No verification bypass for AI generated code)
+48(L3 Security test generation with AI)
+49(L4 Continuous detection of compromised AI components)
+50(L3 Test for compromised components)
+51(L5 Drift detection for agent instructions and guardrails)
+52(L3 Drift detection for deployed configuration)
+53(L2 Building and testing of artifacts in virtualized environments)
+54(L2 Usage of containers)
 55(L2 Pinning of artifacts)
 56(L2 SBOM of components)
 57(L3 Signing of code)
@@ -179,8 +179,8 @@ graph LR
 11 --> 9
 11 --> 13
 11 --> 24
+11 --> 36
 11 --> 37
-11 --> 38
 12 --> 11
 12 --> 60
 14 --> 13
@@ -195,76 +195,75 @@ graph LR
 16 --> 106
 18 --> 17
 18 --> 25
-18 --> 34
-18 --> 47
+18 --> 33
+18 --> 46
 20 --> 19
 20 --> 143
 15 --> 22
+15 --> 32
 15 --> 33
-15 --> 34
 23 --> 22
-23 --> 28
+23 --> 26
 23 --> 16
 23 --> 108
 23 --> 114
 13 --> 24
-13 --> 49
+13 --> 48
 22 --> 25
 27 --> 26
-27 --> 54
-27 --> 95
 29 --> 28
-26 --> 30
-26 --> 32
-31 --> 18
-31 --> 33
-36 --> 35
-38 --> 37
-40 --> 39
-40 --> 48
-40 --> 55
-40 --> 56
-40 --> 57
-40 --> 58
-40 --> 59
-40 --> 60
-40 --> 68
-40 --> 100
-40 --> 44
-40 --> 46
-40 --> 145
-40 --> 147
-40 --> 148
-40 --> 43
-40 --> 149
-40 --> 51
-40 --> 152
-40 --> 153
-41 --> 39
-43 --> 42
-43 --> 48
-43 --> 150
-43 --> 154
-44 --> 42
-44 --> 48
-44 --> 134
-44 --> 139
-46 --> 45
-46 --> 131
-46 --> 51
-46 --> 151
-47 --> 49
-19 --> 50
-51 --> 50
-7 --> 52
-53 --> 52
+29 --> 31
+30 --> 18
+30 --> 32
+35 --> 34
+37 --> 36
+39 --> 38
+39 --> 47
+39 --> 55
+39 --> 56
+39 --> 57
+39 --> 58
+39 --> 59
+39 --> 60
+39 --> 68
+39 --> 100
+39 --> 43
+39 --> 45
+39 --> 145
+39 --> 147
+39 --> 148
+39 --> 42
+39 --> 149
+39 --> 50
+39 --> 152
+39 --> 153
+40 --> 38
+42 --> 41
+42 --> 47
+42 --> 150
+42 --> 154
+43 --> 41
+43 --> 47
+43 --> 134
+43 --> 139
+45 --> 44
+45 --> 131
+45 --> 50
+45 --> 151
+46 --> 48
+19 --> 49
+50 --> 49
+7 --> 51
+52 --> 51
+54 --> 53
+54 --> 95
 55 --> 58
 60 --> 59
 60 --> 91
 60 --> 94
 59 --> 61
 59 --> 62
-59 --> 53
+59 --> 52
 59 --> 66
 59 --> 67
 59 --> 102
@@ -272,11 +271,11 @@ graph LR
 61 --> 62
 61 --> 81
 61 --> 128
-61 --> 46
+61 --> 45
 61 --> 146
 61 --> 147
 61 --> 148
-61 --> 43
+61 --> 42
 61 --> 150
 61 --> 154
 64 --> 63
@@ -317,11 +316,11 @@ graph LR
 109 --> 115
 109 --> 116
 109 --> 117
-110 --> 29
+110 --> 27
 110 --> 109
 110 --> 112
 110 --> 115
-111 --> 29
+111 --> 27
 111 --> 109
 118 --> 117
 120 --> 119
@@ -356,11 +355,12 @@ O --> 10
 O --> 12
 O --> 14
 O --> 20
-O --> 27
-O --> 31
-O --> 36
+O --> 29
+O --> 30
+O --> 35
+O --> 39
 O --> 40
-O --> 41
+O --> 54
 O --> 64
 O --> 73
 O --> 80

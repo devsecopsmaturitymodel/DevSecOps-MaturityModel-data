@@ -1,6 +1,6 @@
-# yaml-language-server: $schema=../../schemas/dsomm-schema-ai.json
+# yaml-language-server: $schema=../../schemas/dsomm-schema-agentic-ai.json
 ---
-AI:
+Agentic AI:
   Guidance:
     Static load of security rules:
       uuid: 51ebc877-c4fd-4b50-9305-320152242ddf

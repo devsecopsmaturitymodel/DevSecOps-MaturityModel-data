@@ -1,6 +1,6 @@
-# yaml-language-server: $schema=../../schemas/dsomm-schema-ai.json
+# yaml-language-server: $schema=../../schemas/dsomm-schema-agentic-ai.json
 ---
-AI:
+Agentic AI:
   Red Teaming:
     Basic AI red teaming:
       uuid: b4233919-6de0-4ed3-b7da-3bdd91c8db5e

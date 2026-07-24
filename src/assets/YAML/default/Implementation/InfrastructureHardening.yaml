@@ -68,7 +68,7 @@ Implementation:
         d3f:
           - Multi-factorAuthentication
       comments: ""
-    Applications are running in virtualized environments:
+    Usage of containers:
       uuid: 3a94d55e-fd82-4996-9eb3-20d23ff2a873
       risk:
         Through a vulnerability in one service on a server, the attacker gains
@@ -593,7 +593,7 @@ Implementation:
       usefulness: 3
       level: 2
       dependsOn:
-        - Applications are running in virtualized environments
+        - Usage of containers
       implementation: []
       references:
         samm2:

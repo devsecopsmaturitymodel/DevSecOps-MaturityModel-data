@@ -26,7 +26,7 @@ Build and Deployment:
       usefulness: 2
       level: 2
       dependsOn:
-        - 3a94d55e-fd82-4996-9eb3-20d23ff2a873 # Applications are running in virtualized environments
+        - 3a94d55e-fd82-4996-9eb3-20d23ff2a873 # Usage of containers
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology

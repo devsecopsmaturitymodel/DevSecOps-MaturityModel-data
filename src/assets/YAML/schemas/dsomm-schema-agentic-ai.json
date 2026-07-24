@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Schema for DSOMM Dimension AI",
+  "title": "Schema for DSOMM Dimension Agentic AI",
   "type": "object",
   "properties": {
-    "AI": {
+    "Agentic AI": {
       "type": "object",
       "patternProperties": {
         "^.*$": {
@@ -153,6 +153,6 @@
     }
   },
   "required": [
-    "AI"
+    "Agentic AI"
   ]
 }

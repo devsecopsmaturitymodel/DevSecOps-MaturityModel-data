@@ -84,7 +84,7 @@ schema-required attribute as mandatory.
 | `description` | schema | Markdown long-form explanation of the activity (background, benefits, guidelines). Required by schema, though older activities often omit it. |
 | `comments` | schema¹ | Assessment comments placeholder, initialize with `""`. |
 
-¹ Optional in `dsomm-schema-test-and-verification.json` and `dsomm-schema-ai.json`;
+¹ Optional in `dsomm-schema-test-and-verification.json` and `dsomm-schema-agentic-ai.json`;
 required by the other dimension schemas.
 
 The former assessment-state attributes `isImplemented` and `evidence` have been
@@ -132,10 +132,10 @@ checks all URLs.
   requires fewer attributes; `dsomm-schema-implementation.json` uses
   `teamsImplemented`/`teamsEvidence`).
 
-## The AI dimension
+## The Agentic AI dimension
 
-The `AI` dimension (`src/assets/YAML/default/AI/`, schema
-`schemas/dsomm-schema-ai.json`) covers the secure use of AI in software
+The `Agentic AI` dimension (`src/assets/YAML/default/AgenticAI/`, schema
+`schemas/dsomm-schema-agentic-ai.json`) covers the secure use of AI in software
 development and the security of AI-based features:
 
 | Subdimension | Activity | Level |
@@ -170,7 +170,7 @@ development and the security of AI-based features:
 | Verification | Static and dynamic analysis of AI generated code | 3 |
 | Verification | Security test generation with AI | 3 |
 
-All AI activities carry the tag `ai` plus a subdimension tag
+All Agentic AI activities carry the tag `ai` plus a subdimension tag
 (`isolation`, `guidance`, `red-teaming`, `data-protection`, `verification`).
 
 ## Handling duplicates (e.g. SAST/DAST for AI-generated code)
@@ -178,11 +178,11 @@ All AI activities carry the tag `ai` plus a subdimension tag
 AI-generated code must be verified with SAST/DAST — but static and dynamic
 analysis are already covered by the *Test and Verification* dimension
 (`StaticDepthForApplications`, `DynamicDepthForApplications`, …). Copying those
-activities into the AI dimension would break the model: the generator rejects
+activities into the Agentic AI dimension would break the model: the generator rejects
 duplicate uuids and duplicate activity names, and a copy would fork the
 assessment state (an organization would have to answer the same question twice).
 
-The proposed rules, applied in the AI dimension:
+The proposed rules, applied in the Agentic AI dimension:
 
 1. **One canonical activity per topic.** A practice lives in exactly one
    dimension/subdimension. SAST/DAST stay in *Test and Verification*.

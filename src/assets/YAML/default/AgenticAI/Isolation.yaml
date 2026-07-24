@@ -1,6 +1,6 @@
-# yaml-language-server: $schema=../../schemas/dsomm-schema-ai.json
+# yaml-language-server: $schema=../../schemas/dsomm-schema-agentic-ai.json
 ---
-AI:
+Agentic AI:
   Isolation:
     Usage of sandboxing for AI agents:
       uuid: 4debe8ea-f54a-4a00-a1cb-6fad9e571a88
@@ -24,8 +24,6 @@ AI:
         Run AI agents and AI coding assistants with command execution capabilities in
         a dedicated, least-privilege sandbox (e.g. a container or virtual machine)
         which contains only the required project files and is destroyed after use.
-      dependsOn:
-        - 3a94d55e-fd82-4996-9eb3-20d23ff2a873 # Applications are running in virtualized environments
       assessment: |
         - Show the sandbox configuration used for AI agent runs (e.g. a dev container definition) and demonstrate a live agent session running inside it.
         - Show that only the project working directory is mounted and no credentials (SSH keys, cloud CLI configuration) are reachable from inside the environment.

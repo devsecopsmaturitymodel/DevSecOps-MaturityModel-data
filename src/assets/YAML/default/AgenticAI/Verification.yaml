@@ -1,6 +1,6 @@
-# yaml-language-server: $schema=../../schemas/dsomm-schema-ai.json
+# yaml-language-server: $schema=../../schemas/dsomm-schema-agentic-ai.json
 ---
-AI:
+Agentic AI:
   Verification:
     Human review of AI generated specifications:
       uuid: 09307f26-bf34-49c2-828e-649130876978
