@@ -140,7 +140,7 @@ development and the security of AI-based features:
 
 | Subdimension | Activity | Level |
 |---|---|---|
-| Isolation | Container-based isolation of AI agents | 1 |
+| Isolation | Usage of sandboxing for AI agents | 1 |
 | Isolation | Permission management for AI agents | 1 |
 | Isolation | Least privilege on external systems for AI agents | 2 |
 | Isolation | Untrusted workspace handling for AI agents | 2 |
