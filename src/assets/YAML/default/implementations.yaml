@@ -1315,6 +1315,25 @@ implementations:
       Toolkit for spec-driven development with AI coding assistants: work is
       split into explicit specify, plan, tasks and implement steps, each with
       its own instructions loaded into the model context.
+  bmad-method:
+    uuid: a51e79cd-95dc-4c88-9100-5701e92c205b
+    name: BMAD-Method
+    tags: [ai, guidance, framework]
+    url: https://github.com/bmad-code-org/BMAD-METHOD
+    description: |-
+      Meta-framework for agentic, spec-driven development: agents and tasks
+      declare the documents (templates, checklists, data files) they load
+      when activated, so per-phase context such as security checklists is
+      part of the workflow definition itself.
+  kiro-steering:
+    uuid: 0e88ae34-21f1-450c-82d1-9be08dbf5088
+    name: Kiro Steering
+    tags: [ai, guidance, framework]
+    url: https://kiro.dev/docs/steering/
+    description: |-
+      Steering files in the Kiro IDE provide persistent project guidance
+      with tool-enforced inclusion modes (`always`, `fileMatch`, `manual`),
+      allowing security guidance to be loaded conditionally per context.
   aisvs-c01:
     uuid: 3769fa07-ae91-4110-bdc1-48bb704461c1
     name: "OWASP AISVS C01: Training Data Integrity and Traceability"

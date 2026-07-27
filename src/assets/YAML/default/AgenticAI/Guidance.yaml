@@ -149,8 +149,8 @@ Agentic AI:
         are written down before code exists,
         every phase produces an artifact a human can review, and the phases are
         the anchor points where security context (rules, threat models,
-        checklists) can be loaded deliberately (see _Loading security rules at
-        the right development step_).
+        checklists) can be loaded deliberately (see _Instructed load of
+        security rules_).
       risk: |-
         AI assistants generate code directly from vague prompts. Requirements
         exist only implicitly in the developer's head, security requirements are
@@ -556,6 +556,67 @@ Agentic AI:
         iso27001-2022:
           - 5.18
       comments: ""
+    Instructed load of security rules:
+      uuid: 364123db-b41c-431a-94a0-dfd8236b2daa
+      description: |-
+        The mapping of security artifacts to development steps is declared in
+        the AI assistant's repository instruction file (e.g. `CLAUDE.md`,
+        `AGENTS.md`): the assistant is instructed to read the matching
+        artifact when a workflow step starts, e.g.:
+
+        ```markdown
+        ## Workflow rules
+        - On /speckit.plan: read specs/threat-model.md first.
+        - On /speckit.implement: read docs/secure-coding-rules.md first.
+        ```
+
+        Since the instruction file is loaded at session start, only the small
+        step-to-artifact mapping is permanently in context; the artifacts
+        themselves are loaded by the model on demand at the step where they
+        are effective. This works across tools that read instruction files
+        and requires no additional tooling.
+
+        The approach is probabilistic: following the instruction is up to the
+        model and can fail in long sessions, after context compaction or when
+        many instructions compete. Deterministic, tool-enforced loading of
+        the same mapping is covered by _Dynamic load of security rules_.
+      risk: |-
+        Security artifacts exist, but nothing tells the AI assistant when to
+        load which artifact. Guidance is either loaded all at once and
+        diluted, or missing at the step where it is needed, so generated
+        plans and code silently drop security requirements.
+      measure: |-
+        Declare in the repository instruction file which security artifact
+        the AI assistant reads at which workflow step (e.g. threat model
+        during planning, secure coding rules during implementation) and
+        verify in sample sessions that the artifacts are actually loaded.
+      dependsOn:
+        - 51ebc877-c4fd-4b50-9305-320152242ddf # Static load of security rules
+        - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      assessment: |
+        - Show the step-to-artifact mapping in the instruction file.
+        - Show a session where the assistant loads the matching security artifact when a workflow step is invoked.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - guidance
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openssf-ai-assistant-instructions
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spec-kit
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+      references:
+        samm2:
+          - D-SR-A-2
+        iso27001-2017:
+          - 14.2.1
+        iso27001-2022:
+          - 8.28
+      comments: ""
     Dynamic load of security rules:
       uuid: 862d08a4-7299-4b2c-9d38-8fcaade66d3e
       description: |-
@@ -566,9 +627,12 @@ Agentic AI:
         to the step where they are effective: security requirements and abuse
         cases during specification, threat model results during planning, secure
         coding rules during implementation, review checklists during verification.
+        In contrast to the instruction-based mapping of _Instructed load of
+        security rules_, this activity requires the loading to be enforced by
+        the tooling instead of relying on the model to follow instructions.
 
-        Two ways to bind security artifacts to workflow steps, using Spec Kit
-        with Claude Code as example:
+        Three ways to bind security artifacts to workflow steps, the first two
+        using Spec Kit with Claude Code as example:
 
         1. **Extend the step templates**: add the security artifact references
            directly to the phase templates (e.g. `.specify/templates/`). Simple,
@@ -599,9 +663,19 @@ Agentic AI:
 
            Registered in `.claude/settings.json` under `hooks`, the mapping is
            versioned with the repository, survives Spec Kit updates and cannot
-           be forgotten by developers. Keep the injected artifacts small and
-           step-specific: the goal is the right rules in context, not all
-           rules.
+           be forgotten by developers.
+        3. **Meta-framework with per-step context loading**: spec-driven
+           meta-frameworks let the workflow definition itself declare which
+           documents each phase loads, e.g. BMAD-Method agents and tasks
+           declare the checklists and templates they load when activated, and
+           Kiro steering files are included conditionally via
+           `inclusion: fileMatch`. A meta-framework satisfies this activity
+           only where the tool enforces the inclusion: if its phases are
+           themselves just instructions the model follows, the loading remains
+           probabilistic (see _Instructed load of security rules_).
+
+        Keep the loaded artifacts small and step-specific: the goal is the
+        right rules in context, not all rules.
       risk: |-
         Security rules exist but are not in the model context at the step where
         the AI assistant needs them, or the context is flooded with irrelevant
@@ -617,6 +691,7 @@ Agentic AI:
         - 51ebc877-c4fd-4b50-9305-320152242ddf # Basic secure coding rules for AI assistants
         - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Security requirements for AI-assisted development
         - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+        - 364123db-b41c-431a-94a0-dfd8236b2daa # Instructed load of security rules
       assessment: |
         - Show the mapping of security artifacts to workflow steps (step templates or hook configuration).
         - Demonstrate that the matching security artifact is loaded into the model context when a workflow step is invoked.
@@ -625,7 +700,7 @@ Agentic AI:
         time: 2
         resources: 1
       usefulness: 4
-      level: 4
+      level: 3
       tags:
         - ai
         - guidance
@@ -633,6 +708,8 @@ Agentic AI:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/new-sdlc-vibe-coding
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spec-kit
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/bmad-method
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/kiro-steering
       references:
         samm2:
           - D-SR-A-2
