@@ -1,7 +1,7 @@
 ---
 meta:
   version: __VERSION_PLACEHOLDER__
-  released: "2026-07-24"
+  released: "2026-07-27"
   publisher: tpagel
 ---
 Agentic AI:
@@ -912,6 +912,99 @@ Agentic AI:
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/AI%20usage%20policy
       comments: ""
+    Instructed load of security rules:
+      uuid: 364123db-b41c-431a-94a0-dfd8236b2daa
+      description: |-
+        The mapping of security artifacts to development steps is declared in
+        the AI assistant's repository instruction file (e.g. `CLAUDE.md`,
+        `AGENTS.md`): the assistant is instructed to read the matching
+        artifact when a workflow step starts, e.g.:
+
+        ```markdown
+        ## Workflow rules
+        - On /speckit.plan: read specs/threat-model.md first.
+        - On /speckit.implement: read docs/secure-coding-rules.md first.
+        ```
+
+        Since the instruction file is loaded at session start, only the small
+        step-to-artifact mapping is permanently in context; the artifacts
+        themselves are loaded by the model on demand at the step where they
+        are effective. This works across tools that read instruction files
+        and requires no additional tooling.
+
+        The approach is probabilistic: following the instruction is up to the
+        model and can fail in long sessions, after context compaction or when
+        many instructions compete. Deterministic, tool-enforced loading of
+        the same mapping is covered by _Dynamic load of security rules_.
+      risk: |-
+        Security artifacts exist, but nothing tells the AI assistant when to
+        load which artifact. Guidance is either loaded all at once and
+        diluted, or missing at the step where it is needed, so generated
+        plans and code silently drop security requirements.
+      measure: |-
+        Declare in the repository instruction file which security artifact
+        the AI assistant reads at which workflow step (e.g. threat model
+        during planning, secure coding rules during implementation) and
+        verify in sample sessions that the artifacts are actually loaded.
+      dependsOn:
+      - 51ebc877-c4fd-4b50-9305-320152242ddf # Static load of security rules
+      - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      assessment: |
+        - Show the step-to-artifact mapping in the instruction file.
+        - Show a session where the assistant loads the matching security artifact when a workflow step is invoked.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+      - ai
+      - guidance
+      implementation:
+      - uuid: 6d2ae0e3-c1f3-4a5a-9bf9-9efd68cc64b3
+        name: OpenSSF Security-Focused Guide for AI Code Assistant Instructions
+        tags:
+        - ai
+        - guidance
+        - documentation
+        url: https://best.openssf.org/Security-Focused-Guide-for-AI-Code-Assistant-Instructions.html
+        description: |-
+          OpenSSF Best Practices guide on writing security-focused instruction
+          files for AI code assistants (e.g. CLAUDE.md, AGENTS.md,
+          copilot-instructions.md), including concrete secure-coding rule
+          examples to include in an organization-wide baseline.
+      - uuid: 71db66a9-8b71-48e4-9b96-1695ed1062a2
+        name: GitHub Spec Kit
+        tags:
+        - ai
+        - guidance
+        - framework
+        url: https://github.com/github/spec-kit
+        description: |-
+          Toolkit for spec-driven development with AI coding assistants: work is
+          split into explicit specify, plan, tasks and implement steps, each with
+          its own instructions loaded into the model context.
+      - uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
+        name: 'OWASP AISVS Appendix C: Appendix C AI for Code Generation'
+        tags:
+        - ai
+        - documentation
+        - aisvs
+        url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x92-Appendix-C_AI_for_Code_Generation.md
+        description: |-
+          OWASP Artificial Intelligence Security Verification Standard,
+          Appendix C: Appendix C AI for Code Generation.
+      references:
+        samm2:
+        - D-SR-A-2
+        iso27001-2017:
+        - 14.2.1
+        iso27001-2022:
+        - 8.28
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Instructed%20load%20of%20security%20rules
+      comments: ""
     Inventory of AI agents:
       uuid: c1f02ad7-e97e-4c87-b827-7542793ddb0a
       description: |-
@@ -1114,7 +1207,7 @@ Agentic AI:
         security requirements) \nare written down before code exists,\nevery phase
         produces an artifact a human can review, and the phases are\nthe anchor points
         where security context (rules, threat models,\nchecklists) can be loaded deliberately
-        (see _Loading security rules at\nthe right development step_)."
+        (see _Instructed load of\nsecurity rules_)."
       risk: |-
         AI assistants generate code directly from vague prompts. Requirements
         exist only implicitly in the developer's head, security requirements are
@@ -1462,6 +1555,161 @@ Agentic AI:
         - 5.18
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Decommissioning%20of%20AI%20agents
+      comments: ""
+    Dynamic load of security rules:
+      uuid: 862d08a4-7299-4b2c-9d38-8fcaade66d3e
+      description: |-
+        In spec-driven development, AI-assisted work is split into explicit steps
+        (e.g. specify, plan, implement, review). Model context is limited: loading
+        all security guidance at once dilutes it, loading it at the wrong step
+        means it is absent when needed. Security artifacts are therefore assigned
+        to the step where they are effective: security requirements and abuse
+        cases during specification, threat model results during planning, secure
+        coding rules during implementation, review checklists during verification.
+        In contrast to the instruction-based mapping of _Instructed load of
+        security rules_, this activity requires the loading to be enforced by
+        the tooling instead of relying on the model to follow instructions.
+
+        Three ways to bind security artifacts to workflow steps, the first two
+        using Spec Kit with Claude Code as example:
+
+        1. **Extend the step templates**: add the security artifact references
+           directly to the phase templates (e.g. `.specify/templates/`). Simple,
+           but the changes live inside the tool's files and must be re-applied
+           after tool updates.
+        2. **Hook that detects the step command** (update-safe and automatic):
+           a `UserPromptSubmit` hook fires on every prompt, checks which
+           workflow command was invoked and injects the matching file as
+           `additionalContext`. The tool's templates stay untouched and the
+           step-to-artifact mapping lives in one central place:
+
+           ```bash
+           #!/bin/bash
+           input=$(cat)
+           prompt=$(jq -r '.prompt // empty' <<<"$input")
+
+           case "$prompt" in
+             /speckit.plan*)      file="specs/threat-model.md" ;;
+             /speckit.implement*) file="docs/secure-coding-rules.md" ;;
+             /speckit.review*)    file="docs/security-review-checklist.md" ;;
+             *) exit 0 ;;
+           esac
+
+           jq -nc --arg ctx "$(cat "$file")" \
+             '{hookSpecificOutput: {hookEventName: "UserPromptSubmit",
+               additionalContext: $ctx}}'
+           ```
+
+           Registered in `.claude/settings.json` under `hooks`, the mapping is
+           versioned with the repository, survives Spec Kit updates and cannot
+           be forgotten by developers.
+        3. **Meta-framework with per-step context loading**: spec-driven
+           meta-frameworks let the workflow definition itself declare which
+           documents each phase loads, e.g. BMAD-Method agents and tasks
+           declare the checklists and templates they load when activated, and
+           Kiro steering files are included conditionally via
+           `inclusion: fileMatch`. A meta-framework satisfies this activity
+           only where the tool enforces the inclusion: if its phases are
+           themselves just instructions the model follows, the loading remains
+           probabilistic (see _Instructed load of security rules_).
+
+        Keep the loaded artifacts small and step-specific: the goal is the
+        right rules in context, not all rules.
+      risk: |-
+        Security rules exist but are not in the model context at the step where
+        the AI assistant needs them, or the context is flooded with irrelevant
+        rules so the model ignores them. Generated specifications, plans and code
+        silently drop security requirements between steps.
+      measure: |-
+        Structure AI-assisted development workflows so that each step loads its
+        relevant security artifacts into the model context (e.g. via step-specific
+        instruction templates in spec-driven development). Verify that security
+        requirements from the specification are carried through plan,
+        implementation and review steps.
+      dependsOn:
+      - 51ebc877-c4fd-4b50-9305-320152242ddf # Static load of security rules
+      - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Threat modeling rule
+      - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      - 364123db-b41c-431a-94a0-dfd8236b2daa # Instructed load of security rules
+      assessment: |
+        - Show the mapping of security artifacts to workflow steps (step templates or hook configuration).
+        - Demonstrate that the matching security artifact is loaded into the model context when a workflow step is invoked.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 3
+      tags:
+      - ai
+      - guidance
+      implementation:
+      - uuid: 8077812b-e320-4435-9afb-e1e334314abf
+        name: The New SDLC With Vibe Coding (Google whitepaper)
+        tags:
+        - ai
+        - guidance
+        - documentation
+        url: https://addyosmani.com/blog/new-sdlc-vibe-coding/
+        description: |-
+          Google whitepaper (Osmani, Saboo, Kartakis) distinguishing vibe coding
+          from agentic engineering: specs, guardrails, evals and review as the
+          "harness" around the model, phase-specific context engineering, evals in
+          CI, traces of every agent run and scoped per-agent permissions as the
+          production substrate.
+      - uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
+        name: 'OWASP AISVS Appendix C: Appendix C AI for Code Generation'
+        tags:
+        - ai
+        - documentation
+        - aisvs
+        url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x92-Appendix-C_AI_for_Code_Generation.md
+        description: |-
+          OWASP Artificial Intelligence Security Verification Standard,
+          Appendix C: Appendix C AI for Code Generation.
+      - uuid: 71db66a9-8b71-48e4-9b96-1695ed1062a2
+        name: GitHub Spec Kit
+        tags:
+        - ai
+        - guidance
+        - framework
+        url: https://github.com/github/spec-kit
+        description: |-
+          Toolkit for spec-driven development with AI coding assistants: work is
+          split into explicit specify, plan, tasks and implement steps, each with
+          its own instructions loaded into the model context.
+      - uuid: a51e79cd-95dc-4c88-9100-5701e92c205b
+        name: BMAD-Method
+        tags:
+        - ai
+        - guidance
+        - framework
+        url: https://github.com/bmad-code-org/BMAD-METHOD
+        description: |-
+          Meta-framework for agentic, spec-driven development: agents and tasks
+          declare the documents (templates, checklists, data files) they load
+          when activated, so per-phase context such as security checklists is
+          part of the workflow definition itself.
+      - uuid: 0e88ae34-21f1-450c-82d1-9be08dbf5088
+        name: Kiro Steering
+        tags:
+        - ai
+        - guidance
+        - framework
+        url: https://kiro.dev/docs/steering/
+        description: |-
+          Steering files in the Kiro IDE provide persistent project guidance
+          with tool-enforced inclusion modes (`always`, `fileMatch`, `manual`),
+          allowing security guidance to be loaded conditionally per context.
+      references:
+        samm2:
+        - D-SR-A-2
+        iso27001-2017:
+        - 14.2.1
+        iso27001-2022:
+        - 8.28
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Dynamic%20load%20of%20security%20rules
       comments: ""
     Evaluation of the trust of used AI components:
       uuid: 399c5b7f-1310-4841-89f7-16daff2fe3ef
@@ -2003,124 +2251,6 @@ Agentic AI:
         - 8.16
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Anomaly%20detection%20for%20AI%20agent%20behavior
-      comments: ""
-    Dynamic load of security rules:
-      uuid: 862d08a4-7299-4b2c-9d38-8fcaade66d3e
-      description: |-
-        In spec-driven development, AI-assisted work is split into explicit steps
-        (e.g. specify, plan, implement, review). Model context is limited: loading
-        all security guidance at once dilutes it, loading it at the wrong step
-        means it is absent when needed. Security artifacts are therefore assigned
-        to the step where they are effective: security requirements and abuse
-        cases during specification, threat model results during planning, secure
-        coding rules during implementation, review checklists during verification.
-
-        Two ways to bind security artifacts to workflow steps, using Spec Kit
-        with Claude Code as example:
-
-        1. **Extend the step templates**: add the security artifact references
-           directly to the phase templates (e.g. `.specify/templates/`). Simple,
-           but the changes live inside the tool's files and must be re-applied
-           after tool updates.
-        2. **Hook that detects the step command** (update-safe and automatic):
-           a `UserPromptSubmit` hook fires on every prompt, checks which
-           workflow command was invoked and injects the matching file as
-           `additionalContext`. The tool's templates stay untouched and the
-           step-to-artifact mapping lives in one central place:
-
-           ```bash
-           #!/bin/bash
-           input=$(cat)
-           prompt=$(jq -r '.prompt // empty' <<<"$input")
-
-           case "$prompt" in
-             /speckit.plan*)      file="specs/threat-model.md" ;;
-             /speckit.implement*) file="docs/secure-coding-rules.md" ;;
-             /speckit.review*)    file="docs/security-review-checklist.md" ;;
-             *) exit 0 ;;
-           esac
-
-           jq -nc --arg ctx "$(cat "$file")" \
-             '{hookSpecificOutput: {hookEventName: "UserPromptSubmit",
-               additionalContext: $ctx}}'
-           ```
-
-           Registered in `.claude/settings.json` under `hooks`, the mapping is
-           versioned with the repository, survives Spec Kit updates and cannot
-           be forgotten by developers. Keep the injected artifacts small and
-           step-specific: the goal is the right rules in context, not all
-           rules.
-      risk: |-
-        Security rules exist but are not in the model context at the step where
-        the AI assistant needs them, or the context is flooded with irrelevant
-        rules so the model ignores them. Generated specifications, plans and code
-        silently drop security requirements between steps.
-      measure: |-
-        Structure AI-assisted development workflows so that each step loads its
-        relevant security artifacts into the model context (e.g. via step-specific
-        instruction templates in spec-driven development). Verify that security
-        requirements from the specification are carried through plan,
-        implementation and review steps.
-      dependsOn:
-      - 51ebc877-c4fd-4b50-9305-320152242ddf # Static load of security rules
-      - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Threat modeling rule
-      - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
-      assessment: |
-        - Show the mapping of security artifacts to workflow steps (step templates or hook configuration).
-        - Demonstrate that the matching security artifact is loaded into the model context when a workflow step is invoked.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 2
-        resources: 1
-      usefulness: 4
-      level: 4
-      tags:
-      - ai
-      - guidance
-      implementation:
-      - uuid: 8077812b-e320-4435-9afb-e1e334314abf
-        name: The New SDLC With Vibe Coding (Google whitepaper)
-        tags:
-        - ai
-        - guidance
-        - documentation
-        url: https://addyosmani.com/blog/new-sdlc-vibe-coding/
-        description: |-
-          Google whitepaper (Osmani, Saboo, Kartakis) distinguishing vibe coding
-          from agentic engineering: specs, guardrails, evals and review as the
-          "harness" around the model, phase-specific context engineering, evals in
-          CI, traces of every agent run and scoped per-agent permissions as the
-          production substrate.
-      - uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
-        name: 'OWASP AISVS Appendix C: Appendix C AI for Code Generation'
-        tags:
-        - ai
-        - documentation
-        - aisvs
-        url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x92-Appendix-C_AI_for_Code_Generation.md
-        description: |-
-          OWASP Artificial Intelligence Security Verification Standard,
-          Appendix C: Appendix C AI for Code Generation.
-      - uuid: 71db66a9-8b71-48e4-9b96-1695ed1062a2
-        name: GitHub Spec Kit
-        tags:
-        - ai
-        - guidance
-        - framework
-        url: https://github.com/github/spec-kit
-        description: |-
-          Toolkit for spec-driven development with AI coding assistants: work is
-          split into explicit specify, plan, tasks and implement steps, each with
-          its own instructions loaded into the model context.
-      references:
-        samm2:
-        - D-SR-A-2
-        iso27001-2017:
-        - 14.2.1
-        iso27001-2022:
-        - 8.28
-        openCRE:
-        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Dynamic%20load%20of%20security%20rules
       comments: ""
     Automated containment of anomalous AI agents:
       uuid: 3bbd6dd9-0821-426c-8a19-41737ed61459

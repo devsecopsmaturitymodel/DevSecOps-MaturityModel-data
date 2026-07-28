@@ -1,0 +1,50 @@
+added 342 packages, and audited 551 packages in 6s
+107 packages are looking for funding
+  run `npm fund` for details
+5 vulnerabilities (1 moderate, 4 high)
+To address issues that do not require attention, run:
+  npm audit fix
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+Run `npm audit` for details.
+[8:58:42 AM] [semantic-release] › ℹ  Running semantic-release version 24.2.9
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "verifyConditions" from "@semantic-release/changelog"
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "verifyConditions" from "@semantic-release/github"
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "analyzeCommits" from "@semantic-release/commit-analyzer"
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "generateNotes" from "@semantic-release/release-notes-generator"
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "prepare" from "@semantic-release/changelog"
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "publish" from "@semantic-release/github"
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "addChannel" from "@semantic-release/github"
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "success" from "@semantic-release/github"
+[8:58:42 AM] [semantic-release] › ✔  Loaded plugin "fail" from "@semantic-release/github"
+[8:58:44 AM] [semantic-release] › ✔  Run automated release from branch main on repository https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data
+[8:58:44 AM] [semantic-release] › ✔  Allowed to push to the Git repository
+[8:58:44 AM] [semantic-release] › ℹ  Start step "verifyConditions" of plugin "@semantic-release/changelog"
+[8:58:44 AM] [semantic-release] › ✔  Completed step "verifyConditions" of plugin "@semantic-release/changelog"
+[8:58:44 AM] [semantic-release] › ℹ  Start step "verifyConditions" of plugin "@semantic-release/github"
+[8:58:44 AM] [semantic-release] [@semantic-release/github] › ℹ  Verify GitHub authentication (https://api.github.com)
+[8:58:45 AM] [semantic-release] › ✔  Completed step "verifyConditions" of plugin "@semantic-release/github"
+[8:58:45 AM] [semantic-release] › ℹ  Found git tag v1.21.1 associated with version 1.21.1 on branch main
+[8:58:45 AM] [semantic-release] › ℹ  Found 3 commits since last release
+[8:58:45 AM] [semantic-release] › ℹ  Start step "analyzeCommits" of plugin "@semantic-release/commit-analyzer"
+[8:58:45 AM] [semantic-release] [@semantic-release/commit-analyzer] › ℹ  Analyzing commit: fix: new structure
+[8:58:45 AM] [semantic-release] [@semantic-release/commit-analyzer] › ℹ  The release type for the commit is patch
+[8:58:45 AM] [semantic-release] [@semantic-release/commit-analyzer] › ℹ  Analyzing commit: BREAKING CHANGE: new structure
+[8:58:45 AM] [semantic-release] [@semantic-release/commit-analyzer] › ℹ  The commit should not trigger a release
+[8:58:45 AM] [semantic-release] [@semantic-release/commit-analyzer] › ℹ  Analyzing commit: 🤖 fmt
+[8:58:45 AM] [semantic-release] [@semantic-release/commit-analyzer] › ℹ  The commit should not trigger a release
+[8:58:45 AM] [semantic-release] [@semantic-release/commit-analyzer] › ℹ  Analysis of 3 commits complete: patch release
+[8:58:45 AM] [semantic-release] › ✔  Completed step "analyzeCommits" of plugin "@semantic-release/commit-analyzer"
+[8:58:45 AM] [semantic-release] › ℹ  The next release version is 1.21.2
+[8:58:45 AM] [semantic-release] › ℹ  Start step "generateNotes" of plugin "@semantic-release/release-notes-generator"
+[8:58:45 AM] [semantic-release] › ✔  Completed step "generateNotes" of plugin "@semantic-release/release-notes-generator"
+[8:58:45 AM] [semantic-release] › ℹ  Start step "prepare" of plugin "@semantic-release/changelog"
+[8:58:45 AM] [semantic-release] [@semantic-release/changelog] › ℹ  Update /home/runner/work/DevSecOps-MaturityModel-data/DevSecOps-MaturityModel-data/CHANGELOG.md
+[8:58:45 AM] [semantic-release] › ✔  Completed step "prepare" of plugin "@semantic-release/changelog"
+[8:58:46 AM] [semantic-release] › ✔  Created tag v1.21.2
+[8:58:46 AM] [semantic-release] › ℹ  Start step "publish" of plugin "@semantic-release/github"
+[8:58:47 AM] [semantic-release] [@semantic-release/github] › ℹ  Published GitHub release: https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/releases/tag/v1.21.2
+[8:58:47 AM] [semantic-release] › ✔  Completed step "publish" of plugin "@semantic-release/github"
+[8:58:47 AM] [semantic-release] › ℹ  Start step "success" of plugin "@semantic-release/github"
+[8:58:49 AM] [semantic-release] › ✔  Completed step "success" of plugin "@semantic-release/github"
+[8:58:49 AM] [semantic-release] › ✔  Published release 1.21.2 on default channel
