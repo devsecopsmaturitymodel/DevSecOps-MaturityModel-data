@@ -1,0 +1,501 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-implementation.json
+---
+Implementation:
+  Identity and Access Management:
+    Central identity provider for human access:
+      uuid: 6ffb2c07-8fca-4bc1-a219-1d1944a3bbac
+      description: |
+        All human access to systems and applications is brokered through a single
+        identity provider (IdP) with single sign-on, rather than per-system local
+        accounts. This creates one place to enforce policy, disable a leaver, and
+        audit access.
+      risk:
+        Local, per-system accounts fragment control. Leavers keep access nobody
+        remembers to revoke, password policy is inconsistent, and there is no single
+        audit trail, so a compromised credential is hard to detect and contain.
+      measure: |
+        - Human access to systems and applications is federated through a central IdP / SSO.
+        - Local accounts are the documented exception, not the norm, and are inventoried.
+        - Disabling an identity in the IdP removes access across federated systems.
+      assessment: |
+        - Present the IdP and the list of federated applications.
+        - Show that a sample of critical systems authenticate via the IdP.
+        - Demonstrate that disabling a test identity removes its access.
+        - Show your application delegates login to the IdP via OIDC/SAML rather than
+          a custom login form.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 1
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/directory-service
+      tags:
+        - identity
+        - sso
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 9.2.1
+          - 9.2.2
+        iso27001-2022:
+          - 5.16 # Identity management
+          - 5.17 # Authentication information
+      comments: ""
+
+    Use correct OAuth2/OIDC authorization flows:
+      uuid: 2a2405ca-bfee-4dea-a391-dd5060cc07fa
+      description: |
+        Each client uses the OAuth2/OIDC flow appropriate for its type: Authorization
+        Code + PKCE for user-facing apps (SPA, mobile, native), Client Credentials for
+        service-to-service/machine access. Deprecated, insecure flows (Implicit Grant,
+        Resource Owner Password Credentials) are not used.
+      risk:
+        The wrong or deprecated flow leaks tokens or credentials - Implicit Grant
+        exposes tokens in the URL fragment/browser history, ROPC hands the client raw
+        user passwords, and public clients without PKCE are vulnerable to
+        authorization-code interception.
+      measure: |
+        - Each client type uses its recommended flow (Auth Code + PKCE for public/
+          user-facing clients, Client Credentials for service-to-service).
+        - Implicit Grant and ROPC are not used for new integrations, and existing
+          usage is inventoried and being retired.
+        - Redirect URIs are exact-match allow-listed, not wildcarded.
+      assessment: |
+        - For a sample of applications, show which flow each uses and confirm it
+          matches its client type.
+        - Show PKCE is enforced for public clients.
+        - Show the IdP's client registrations for any Implicit/ROPC grants and, if
+          present, the remediation plan.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      dependsOn:
+        - Central identity provider for human access
+      implementation: []
+      tags:
+        - identity
+        - oauth
+        - oidc
+      references:
+        samm2:
+          - D-SR-A-2
+        iso27001-2017:
+          - 9.4.2
+        iso27001-2022:
+          - 8.5
+      comments: ""
+
+    Account inventory:
+      uuid: 7fe91f4d-1228-46e3-84ca-47b1d1cb8e1b
+      description: |
+        A current, owned inventory of all accounts exists, covering both human and
+        non-human (service / machine) identities. You cannot secure or right-size
+        access you cannot see.
+      risk:
+        Without an inventory, orphaned accounts, forgotten service accounts and
+        shared logins accumulate unnoticed and become a prime target for attackers
+        and a blind spot during incident response.
+      measure: |
+        - An inventory of human and non-human accounts is maintained and has a named owner.
+        - Each account maps to a responsible person or system and its purpose.
+        - The inventory is refreshed on a defined cadence or generated automatically.
+      assessment: |
+        - Present the account inventory and its owner.
+        - Sample entries and confirm each has an accountable owner and purpose.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 1
+      implementation: []
+      tags:
+        - identity
+        - inventory
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 9.2.1
+        iso27001-2022:
+          - 5.16 # Identity management
+          - 8.2  # Privileged access rights
+      comments: ""
+
+    Enforce server-side authorization on every request:
+      uuid: 2244983e-5279-4a6c-b594-155a5d26ebc2
+      description: |
+        Every request that reads or changes data is checked against the caller's
+        role/ownership on the server, deny-by-default. Hiding a button in the UI or
+        trusting a client-supplied role is not authorization.
+      risk:
+        An attacker can access or modify data/actions beyond their role simply by
+        changing an ID, calling an API directly, or forging a client-side flag
+        (IDOR / broken access control), since the server never re-checks the client's claim.
+      measure: |
+        - Authorization is checked server-side on every state-changing and data-returning endpoint.
+        - Checks are centralized (middleware / policy layer), not duplicated ad-hoc per handler.
+        - Access is deny-by-default; missing a check fails closed, not open.
+      assessment: |
+        - Pick 3 endpoints and show the server-side authorization check for each.
+        - Attempt an IDOR test (swap an ID/role in the request) and show it is rejected.
+        - Show the authorization logic lives in one reusable place, not copy-pasted.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 5
+      level: 1
+      implementation: []
+      tags:
+        - identity
+        - access-control
+      references:
+        samm2:
+          - D-SR-A-1
+        iso27001-2017:
+          - 9.4.1
+        iso27001-2022:
+          - 8.3
+      comments: ""
+
+    Least-privilege access baseline:
+      uuid: d9dc7614-81fb-45a9-a1e0-e033755ddbed
+      description: |
+        Every identity - human and machine - should hold only the permissions it
+        needs to do its job, and nothing more. This activity establishes a
+        default-deny posture and removes shared or ambient administrative access.
+      risk:
+        Over-broad permissions mean a single compromised account or token can read,
+        modify or destroy far more than its role requires, turning a small breach
+        into a large one.
+      measure: |
+        - Access is default-deny; permissions are granted through defined roles.
+        - No shared accounts; every action is attributable to one identity.
+        - Standing administrative access is inventoried and capped (e.g. < 5 admins per system).
+        - Application and pipeline service accounts are scoped to only the resources/actions
+          they need (narrow IaC-defined IAM policies, minimal CI `permissions:` blocks),
+          not broad admin roles.
+      assessment: |
+        - Present the role / permission definitions and show default-deny is in effect.
+        - Present the admin inventory per critical system and show the cap is met.
+        - Sample 3 identities and demonstrate their grants match their role.
+        - Pick one service's IaC-defined role and show it grants only what that service actually uses.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 5
+      level: 2
+      dependsOn:
+        - 82e499d1-f463-4a4b-be90-68812a874af6 # Simple access control for systems
+        - Account inventory
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/directory-service
+      tags:
+        - identity
+        - least-privilege
+      references:
+        samm2:
+          - D-SA-A-2
+        iso27001-2017:
+          - 9.1.1
+          - 9.2.3
+        iso27001-2022:
+          - 8.2  # Privileged access rights
+          - 8.3  # Information access restriction
+          - 5.15 # Access control
+        d3f:
+          - LocalAccountMonitoring
+      comments: ""
+
+    Segregation of duties for critical actions:
+      uuid: 879e1f8f-61db-4af5-bb9b-07f21ac417b8
+      description: |
+        Conflicting responsibilities are split across different identities so that
+        no single person can both introduce and approve a sensitive change.
+      risk:
+        If one identity can author and also approve or deploy a change, a mistake
+        or a malicious insider can push unreviewed changes straight to production,
+        and audit trails can be altered by the same actor.
+      measure: |
+        - Conflicting duty pairs are identified (e.g. author vs approver,
+          deploy vs approve-to-prod, security audit vs infrastructure admin).
+        - Each pair is enforced technically (branch protection, maker-checker,
+          separate accounts / roles), not just by policy.
+      assessment: |
+        - Present the documented list of conflicting duty pairs.
+        - Demonstrate enforcement for at least one pair (e.g. a pull request cannot
+          be approved by its author; a production deploy requires a second approver).
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 2
+      implementation: []
+      tags:
+        - identity
+        - segregation-of-duties
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 6.1.2 # Segregation of duties
+        iso27001-2022:
+          - 5.3 # Segregation of duties
+          - 8.2 # Privileged access rights
+      comments: ""
+
+    Automated authorization test coverage:
+      uuid: 55d43b9a-ab12-4b6f-b289-23ff0cf38565
+      description: |
+        Automated tests assert that each role/permission boundary is enforced,
+        including explicit "should be denied" cases, and run in CI on every change.
+      risk:
+        Without regression tests, authorization checks silently break as code
+        changes (a refactor drops a check) and manual QA won't cover every
+        role x endpoint combination.
+      measure: |
+        - A test suite covers each role against each sensitive endpoint/action.
+        - Tests include negative cases (should be denied), not only allowed paths.
+        - Tests run in CI and block merge on failure.
+      assessment: |
+        - Show the authorization test suite, including at least one negative test.
+        - Show CI results proving these tests gate merges.
+        - Introduce a deliberate regression and show CI catches it.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 2
+      dependsOn:
+        - Enforce server-side authorization on every request
+      implementation: []
+      tags:
+        - identity
+        - access-control
+        - testing
+      references:
+        samm2:
+          - V-RT-A-1
+        iso27001-2017:
+          - 14.2.8
+        iso27001-2022:
+          - 8.29
+      comments: ""
+
+    Automated joiner-mover-leaver provisioning:
+      uuid: 582ff41d-99a6-4142-83f5-16e949422e18
+      description: |
+        Access is granted, changed and revoked automatically, driven from an
+        authoritative source such as an HR system or the IdP, across the joiner,
+        mover and leaver lifecycle.
+      risk:
+        Manual provisioning is slow and error-prone. Movers accumulate permissions
+        they no longer need (privilege creep) and leavers retain access long after
+        departure, both of which widen the attack surface.
+      measure: |
+        - Provisioning and de-provisioning are automated from an authoritative source.
+        - Role changes trigger corresponding access changes (removing stale grants).
+        - Leavers lose all access within an agreed, measured SLA.
+      assessment: |
+        - Show the automated provisioning pipeline and its authoritative source.
+        - Present metrics on leaver de-provisioning time against the SLA.
+        - Trace one recent mover and confirm stale access was removed.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 4
+        resources: 3
+      usefulness: 4
+      level: 3
+      dependsOn:
+        - Least-privilege access baseline
+        - Central identity provider for human access
+      implementation: []
+      tags:
+        - identity
+        - lifecycle
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 9.2.1
+          - 9.2.6
+        iso27001-2022:
+          - 5.16 # Identity management
+          - 5.18 # Access rights
+      comments: ""
+
+    Periodic access recertification:
+      uuid: 7f216405-fb84-4c84-a495-6b8f4958834a
+      description: |
+        Access rights, especially privileged ones, are reviewed and re-attested by
+        an accountable owner on a defined cadence, and access that is no longer
+        justified is removed.
+      risk:
+        Without regular review, permissions granted for one-off needs become
+        permanent. Over time entitlements drift far from what people actually need,
+        undermining least privilege and segregation of duties.
+      measure: |
+        - Access reviews run on a defined cadence (e.g. quarterly for privileged access).
+        - Owners re-attest each grant; unconfirmed or unused access is revoked.
+        - Reviews are recorded and auditable.
+      assessment: |
+        - Present the most recent recertification campaign and its outcomes.
+        - Show evidence that flagged access was actually revoked.
+        - Show reviews cover your application's own service-account permissions,
+          not just human accounts.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 3
+      dependsOn:
+        - Least-privilege access baseline
+      implementation: []
+      tags:
+        - identity
+        - access-review
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 9.2.5
+        iso27001-2022:
+          - 5.18 # Access rights
+          - 8.2  # Privileged access rights
+      comments: ""
+
+    Just-in-time privileged access:
+      uuid: d42995ac-f4e5-4fa6-b01a-83a0d35ef3b1
+      description: |
+        Privileged access is requested on demand, time-boxed, approved and
+        automatically revoked, so there is zero standing administrative access for
+        day-to-day work.
+      risk:
+        Standing admin rights are always-on targets. If such an account is
+        compromised, the attacker inherits persistent high privilege. Removing
+        standing access shrinks both the window and the blast radius.
+      measure: |
+        - Privileged access is granted just-in-time, time-boxed, and auto-revoked.
+        - Requests require approval and produce an audit record.
+        - Standing admin access for routine work is eliminated or reduced to a
+          justified, minimal break-glass set.
+      assessment: |
+        - Demonstrate a JIT elevation request, approval and automatic expiry.
+        - Show that routine admin roles carry no standing membership.
+        - Present the break-glass account list and its controls.
+        - Show developers requesting prod access for debugging go through the JIT
+          flow rather than holding standing prod credentials.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 3
+      usefulness: 5
+      level: 4
+      dependsOn:
+        - Least-privilege access baseline
+        - 8098e416-e1ed-4ae4-a561-83efbe76bf57 # MFA for admins
+      implementation: []
+      tags:
+        - identity
+        - privileged-access
+      references:
+        samm2:
+          - O-EM-A-3
+        iso27001-2017:
+          - 9.2.3
+        iso27001-2022:
+          - 8.2 # Privileged access rights
+          - 8.3 # Information access restriction
+      comments: ""
+
+    Workload and machine identity:
+      uuid: 9f83087c-7d97-4715-a2ff-10d3f167c3cc
+      description: |
+        Non-human access (services, pipelines, workloads) uses short-lived,
+        cryptographically verifiable identities - for example OIDC federation or
+        SPIFFE/SVID - instead of long-lived shared keys.
+      risk:
+        Long-lived machine credentials are copied into pipelines, images and config,
+        rarely rotated and hard to attribute. A single leaked static key can grant
+        persistent access with no expiry.
+      measure: |
+        - Workloads authenticate with short-lived, verifiable identities.
+        - Long-lived static machine credentials are being actively retired.
+        - Each workload identity is attributable and least-privileged.
+      assessment: |
+        - Show a workload authenticating via federated / short-lived identity.
+        - Present the inventory of remaining static machine credentials and the
+          plan to retire them.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 4
+        resources: 3
+      usefulness: 4
+      level: 4
+      dependsOn:
+        - Least-privilege access baseline
+      implementation: []
+      tags:
+        - identity
+        - workload-identity
+      references:
+        samm2:
+          - O-EM-A-3
+        iso27001-2017:
+          - 9.2.1
+        iso27001-2022:
+          - 5.16 # Identity management
+          - 8.3  # Information access restriction
+      comments: ""
+
+    Continuous and risk-adaptive access:
+      uuid: eba1a951-df6b-4c02-86c5-0370654aa930
+      description: |
+        Access decisions are evaluated continuously against device posture, context
+        and risk signals, attribute-based access control (ABAC) is in place, and
+        segregation-of-duties conflicts are detected automatically.
+      risk:
+        Access granted once and never re-evaluated ignores changing risk - a
+        compromised device or anomalous behaviour keeps its access. Manual SoD
+        checks miss conflicts that emerge as roles change.
+      measure: |
+        - Access is continuously evaluated using device, context and risk signals.
+        - ABAC policies complement roles for fine-grained decisions.
+        - Segregation-of-duties conflicts are detected and flagged automatically.
+      assessment: |
+        - Demonstrate a risk-based access decision (e.g. step-up or denial on
+          anomalous context).
+        - Show automated SoD conflict detection output and how conflicts are resolved.
+      difficultyOfImplementation:
+        knowledge: 5
+        time: 5
+        resources: 4
+      usefulness: 4
+      level: 5
+      dependsOn:
+        - Just-in-time privileged access
+        - Periodic access recertification
+      implementation: []
+      tags:
+        - identity
+        - zero-trust
+      references:
+        samm2:
+          - O-EM-A-3
+        iso27001-2017:
+          - 9.4.1
+        iso27001-2022:
+          - 8.2  # Privileged access rights
+          - 8.16 # Monitoring activities
+      comments: ""
