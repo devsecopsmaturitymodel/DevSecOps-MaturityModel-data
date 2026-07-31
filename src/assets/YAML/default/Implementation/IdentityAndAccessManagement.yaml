@@ -315,14 +315,31 @@ Implementation:
       evidence: ""
       comments: ""
 
-    Role based authentication and authorization:
+    Fine-grained access control (RBAC/ABAC/PBAC):
       uuid: 070bb14b-e04a-4f3d-896a-a08eba7a35f9
+      description: |
+        Access decisions are driven by a structured model rather than ad-hoc,
+        per-user grants: roles (RBAC) as the baseline, with attributes (ABAC) or
+        centrally evaluated policies (PBAC, e.g. OPA/Rego) layered in where roles
+        alone are too coarse.
       risk:
-        Everyone is able to get unauthorized access to information on systems
-        or to modify information unauthorized on systems.
-      measure:
-        The usage of a (role based) access control helps to restrict system
-        access to authorized users. And enhancement is to use *attribute based access control*.
+        Without a structured model, access grants accumulate per-user and ad-hoc.
+        Nobody can answer "who can do X and why" from the code/config directly,
+        access sprawls, and every system/application enforces authorization
+        differently.
+      measure: |
+        - Access is restricted through a defined model: roles at minimum (RBAC).
+        - Where roles alone are too coarse (e.g. cross-tenant, resource-owner,
+          time/location-based decisions), attributes (ABAC) or centrally evaluated
+          policies (PBAC) refine the decision.
+        - Roles/attributes/policies are explicitly defined and documented, not
+          implicit in application code.
+      assessment: |
+        - Present the role/attribute/policy definitions for a sample system.
+        - Trace one access decision back to a specific role, attribute, or policy
+          rule rather than a hardcoded per-user check.
+        - Where ABAC/PBAC is used, show the policy engine (e.g. OPA) and a sample
+          policy.
       difficultyOfImplementation:
         knowledge: 2
         time: 3
@@ -332,6 +349,7 @@ Implementation:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/directory-service
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/plugins
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/open-policy-agent
       references:
         samm2:
           - O-EM-A-2
