@@ -2,14 +2,45 @@
 ---
 Implementation:
   Identity and Access Management:
+
+    # ---------- Level 1: foundations ----------
+
+    Simple access control for systems:
+      uuid: 82e499d1-f463-4a4b-be90-68812a874af6
+      description: Basic access control for internal systems is implemented.
+      risk: Attackers gain access to other internal systems and application interfaces if one breach occurs.
+      measure: All internal systems are using simple authentication.
+      assessment: |
+        - Presenting the documentation of the review of all user privileges yearly.
+        - Presenting the admin count and validating that there are less than 5 admins per system.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 5
+      level: 1
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/http-basic-authentic
+      tags:
+        - identity
+        - access-control
+      references:
+        samm2:
+          - O-EM-A-1 # Configuration Hardening
+        iso27001-2017:
+          - 9.4.1 # Information Access Restriction
+        iso27001-2022:
+          - 8.3 # Information Access Restriction
+      comments: ""
+
     MFA for admins:
       uuid: 8098e416-e1ed-4ae4-a561-83efbe76bf57
       risk:
         One factor authentication is more vulnerable to brute force attacks and
         is considered less secure.
       measure:
-        Two ore more factor authentication for all privileged accounts on systems and
-        applications
+        Two or more factor authentication for all privileged accounts on systems and
+        applications.
       difficultyOfImplementation:
         knowledge: 2
         time: 1
@@ -20,22 +51,98 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/yubikey
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sms
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/totp
+      tags:
+        - identity
+        - mfa
       references:
         samm2:
-          - O-EM-A-1
+          - O-EM-A-1 # Configuration Hardening
         iso27001-2017:
-          - 9.2.4
-          - 6.1.2 # Segregation of duties.
-          - 14.2.1 # Secure development policies.
+          - 9.2.4 # Management of secret authentication informatio
+          - 6.1.2 # Segregation of duties
+          - 14.2.1 # Secure development policies
         iso27001-2022:
           - 5.17 # Authentication information
-          - 5.3
-          - 8.25
+          - 5.3 # Segregation of Duties
         d3f:
           - Multi-factorAuthentication
-      isImplemented: false
-      evidence: ""
       comments: ""
+
+    Account inventory:
+      uuid: 7fe91f4d-1228-46e3-84ca-47b1d1cb8e1b
+      description: |
+        A current, owned inventory of all accounts exists, covering both human and
+        non-human (service / machine) identities. You cannot secure or right-size
+        access you cannot see.
+      risk:
+        Without an inventory, orphaned accounts, forgotten service accounts and
+        shared logins accumulate unnoticed and become a prime target for attackers
+        and a blind spot during incident response.
+      measure: |
+        - An inventory of human and non-human accounts is maintained and has a named owner.
+        - Each account maps to a responsible person or system and its purpose.
+        - The inventory is refreshed on a defined cadence or generated automatically.
+      assessment: |
+        - Present the account inventory and its owner.
+        - Sample entries and confirm each has an accountable owner and purpose.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 1
+      implementation: []
+      tags:
+        - identity
+        - inventory
+      references:
+        samm2:
+          - O-EM-A-1 # Configuration Hardening
+        iso27001-2017:
+          - 9.2.1 # Conduct internal audits at planned intervals
+        iso27001-2022:
+          - 5.16 # Identity management
+          - 8.2  # Privileged access rights
+      comments: ""
+
+    Enforce server-side authorization on every request:
+      uuid: 2244983e-5279-4a6c-b594-155a5d26ebc2
+      description: |
+        Every request that reads or changes data is checked against the caller's
+        role/ownership on the server, deny-by-default. Hiding a button in the UI or
+        trusting a client-supplied role is not authorization.
+      risk:
+        An attacker can access or modify data/actions beyond their role simply by
+        changing an ID, calling an API directly, or forging a client-side flag
+        (IDOR / broken access control), since the server never re-checks the client's claim.
+      measure: |
+        - Authorization is checked server-side on every state-changing and data-returning endpoint.
+        - Checks are centralized (middleware / policy layer), not duplicated ad-hoc per handler.
+        - Access is deny-by-default; missing a check fails closed, not open.
+      assessment: |
+        - Pick 3 endpoints and show the server-side authorization check for each.
+        - Attempt an IDOR test (swap an ID/role in the request) and show it is rejected.
+        - Show the authorization logic lives in one reusable place, not copy-pasted.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 5
+      level: 1
+      implementation: []
+      tags:
+        - identity
+        - access-control
+      references:
+        samm2:
+          - D-SR-A-1 # Software Requirements
+        iso27001-2017:
+          - 9.4.1 # Information Access Restriction
+        iso27001-2022:
+          - 8.3 # Information Access Restriction
+      comments: ""
+
+    # ---------- Level 2: consolidate and structure ----------
 
     Central identity provider for human access:
       uuid: 6ffb2c07-8fca-4bc1-a219-1d1944a3bbac
@@ -63,7 +170,9 @@ Implementation:
         time: 3
         resources: 2
       usefulness: 4
-      level: 1
+      level: 2
+      dependsOn:
+        - Simple access control for systems
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/directory-service
       tags:
@@ -71,10 +180,10 @@ Implementation:
         - sso
       references:
         samm2:
-          - O-EM-A-1
+          - O-EM-A-1 # Configuration Hardening
         iso27001-2017:
-          - 9.2.1
-          - 9.2.2
+          - 9.2.1 # User registration and de-registration
+          - 9.2.4 # Management of secret authentication information
         iso27001-2022:
           - 5.16 # Identity management
           - 5.17 # Authentication information
@@ -86,8 +195,8 @@ Implementation:
         One factor authentication is more vulnerable to brute force attacks and
         is considered less secure.
       measure:
-        Two ore more factor authentication for all accounts on all (important) systems and
-        applications
+        Two or more factor authentication for all accounts on all (important) systems and
+        applications.
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -100,21 +209,20 @@ Implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/yubikey
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/sms
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/totp
+      tags:
+        - identity
+        - mfa
       references:
         samm2:
-          - O-EM-A-1
+          - O-EM-A-1 #Configuration Hardening
         iso27001-2017:
-          - 9.2.4
-          - 6.1.2 # Segregation of duties.
-          - 14.2.1 # Secure development policies.
+          - 9.2.4 #Management of secret authentication information
+          - 6.1.2 # Segregation of duties
+          - 14.2.1 # Secure development policies
         iso27001-2022:
           - 5.17 # Authentication information
-          - 5.3
-          - 8.25
         d3f:
           - Multi-factorAuthentication
-      isImplemented: false
-      evidence: ""
       comments: ""
 
     Use correct OAuth2/OIDC authorization flows:
@@ -156,85 +264,11 @@ Implementation:
         - oidc
       references:
         samm2:
-          - D-SR-A-2
+          - D-SR-A-2 # Software Requirements
         iso27001-2017:
-          - 9.4.2
+          - 9.4.2 # secure Log-on procedures
         iso27001-2022:
-          - 8.5
-      comments: ""
-
-    Account inventory:
-      uuid: 7fe91f4d-1228-46e3-84ca-47b1d1cb8e1b
-      description: |
-        A current, owned inventory of all accounts exists, covering both human and
-        non-human (service / machine) identities. You cannot secure or right-size
-        access you cannot see.
-      risk:
-        Without an inventory, orphaned accounts, forgotten service accounts and
-        shared logins accumulate unnoticed and become a prime target for attackers
-        and a blind spot during incident response.
-      measure: |
-        - An inventory of human and non-human accounts is maintained and has a named owner.
-        - Each account maps to a responsible person or system and its purpose.
-        - The inventory is refreshed on a defined cadence or generated automatically.
-      assessment: |
-        - Present the account inventory and its owner.
-        - Sample entries and confirm each has an accountable owner and purpose.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 3
-        resources: 2
-      usefulness: 4
-      level: 1
-      implementation: []
-      tags:
-        - identity
-        - inventory
-      references:
-        samm2:
-          - O-EM-A-1
-        iso27001-2017:
-          - 9.2.1
-        iso27001-2022:
-          - 5.16 # Identity management
-          - 8.2  # Privileged access rights
-      comments: ""
-
-    Enforce server-side authorization on every request:
-      uuid: 2244983e-5279-4a6c-b594-155a5d26ebc2
-      description: |
-        Every request that reads or changes data is checked against the caller's
-        role/ownership on the server, deny-by-default. Hiding a button in the UI or
-        trusting a client-supplied role is not authorization.
-      risk:
-        An attacker can access or modify data/actions beyond their role simply by
-        changing an ID, calling an API directly, or forging a client-side flag
-        (IDOR / broken access control), since the server never re-checks the client's claim.
-      measure: |
-        - Authorization is checked server-side on every state-changing and data-returning endpoint.
-        - Checks are centralized (middleware / policy layer), not duplicated ad-hoc per handler.
-        - Access is deny-by-default; missing a check fails closed, not open.
-      assessment: |
-        - Pick 3 endpoints and show the server-side authorization check for each.
-        - Attempt an IDOR test (swap an ID/role in the request) and show it is rejected.
-        - Show the authorization logic lives in one reusable place, not copy-pasted.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 1
-      usefulness: 5
-      level: 1
-      implementation: []
-      tags:
-        - identity
-        - access-control
-      references:
-        samm2:
-          - D-SR-A-1
-        iso27001-2017:
-          - 9.4.1
-        iso27001-2022:
-          - 8.3
+          - 8.5 # Secure Authentication
       comments: ""
 
     Least-privilege access baseline:
@@ -275,10 +309,9 @@ Implementation:
         - least-privilege
       references:
         samm2:
-          - D-SA-A-2
+          - O-EM-A-2 # Configuration Hardening
         iso27001-2017:
-          - 9.1.1
-          - 9.2.3
+          - 9.1.1 # User registration and de-registration
         iso27001-2022:
           - 8.2  # Privileged access rights
           - 8.3  # Information access restriction
@@ -287,79 +320,48 @@ Implementation:
           - LocalAccountMonitoring
       comments: ""
 
-    Simple access control for systems:
-      uuid: 82e499d1-f463-4a4b-be90-68812a874af6
-      description: Basic access control for internal systems is implemented.
-      risk: Attackers a gaining access to other internal systems and application interfaces is one breach occurs.
-      measure: All internal systems are using simple authentication
-      assessment: |
-        - Presenting the documentation of the review of all user privileges yearly. 
-        - Presenting the admin count and validating that there are less than 5 admins per system.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 3
-        resources: 3
-      usefulness: 5
-      level: 1
-      implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/http-basic-authentic
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/vpn
-      references:
-        samm2:
-          - O-EM-A-1
-        iso27001-2017:
-          - 9.4.1
-        iso27001-2022:
-          - 8.3
-      isImplemented: false
-      evidence: ""
-      comments: ""
-
-    Fine-grained access control (RBAC/ABAC/PBAC):
+    Role-based access control (RBAC) baseline:
       uuid: 070bb14b-e04a-4f3d-896a-a08eba7a35f9
       description: |
-        Access decisions are driven by a structured model rather than ad-hoc,
-        per-user grants: roles (RBAC) as the baseline, with attributes (ABAC) or
-        centrally evaluated policies (PBAC, e.g. OPA/Rego) layered in where roles
-        alone are too coarse.
+        Access decisions are driven by defined roles rather than ad-hoc, per-user
+        grants. Roles are declared and documented, not implicit in application code.
       risk:
         Without a structured model, access grants accumulate per-user and ad-hoc.
-        Nobody can answer "who can do X and why" from the code/config directly,
-        access sprawls, and every system/application enforces authorization
-        differently.
+        Nobody can answer "who can do X and why" from the code/config directly, and
+        every system enforces authorization differently.
       measure: |
-        - Access is restricted through a defined model: roles at minimum (RBAC).
-        - Where roles alone are too coarse (e.g. cross-tenant, resource-owner,
-          time/location-based decisions), attributes (ABAC) or centrally evaluated
-          policies (PBAC) refine the decision.
-        - Roles/attributes/policies are explicitly defined and documented, not
-          implicit in application code.
+        - Access is restricted through defined roles (RBAC) rather than per-user grants.
+        - Roles are explicitly defined and documented, not implicit in code.
+        - New access is granted by assigning a role, not by bespoke permission edits.
       assessment: |
-        - Present the role/attribute/policy definitions for a sample system.
-        - Trace one access decision back to a specific role, attribute, or policy
-          rule rather than a hardcoded per-user check.
-        - Where ABAC/PBAC is used, show the policy engine (e.g. OPA) and a sample
-          policy.
+        - Present the role definitions for a sample system.
+        - Trace one access decision back to a specific role rather than a hardcoded
+          per-user check.
       difficultyOfImplementation:
         knowledge: 2
         time: 3
         resources: 1
-      usefulness: 3
-      level: 3
+      usefulness: 4
+      level: 2
+      dependsOn:
+        - Simple access control for systems
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/directory-service
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/plugins
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/open-policy-agent
+      tags:
+        - identity
+        - access-control
+        - rbac
       references:
         samm2:
-          - O-EM-A-2
+          - O-EM-A-2 # Configuration Hardening
         iso27001-2017:
-          - 9.4.1
+          - 9.4.1 # Information Access Restriction
         iso27001-2022:
-          - 8.3
-      isImplemented: false
-      evidence: ""
+          - 8.3 # Information Access Restriction
       comments: ""
+
+    # ---------- Level 3: automate and assure ----------
 
     Segregation of duties for critical actions:
       uuid: 879e1f8f-61db-4af5-bb9b-07f21ac417b8
@@ -384,14 +386,17 @@ Implementation:
         time: 3
         resources: 2
       usefulness: 4
-      level: 2
+      level: 3
+      dependsOn:
+        - Least-privilege access baseline
+        - Role-based access control (RBAC) baseline
       implementation: []
       tags:
         - identity
         - segregation-of-duties
       references:
         samm2:
-          - O-EM-A-2
+          - O-EM-A-2 # Configuration Hardening
         iso27001-2017:
           - 6.1.2 # Segregation of duties
         iso27001-2022:
@@ -421,7 +426,7 @@ Implementation:
         time: 3
         resources: 2
       usefulness: 4
-      level: 2
+      level: 3
       dependsOn:
         - Enforce server-side authorization on every request
       implementation: []
@@ -431,11 +436,11 @@ Implementation:
         - testing
       references:
         samm2:
-          - V-RT-A-1
+          - V-RT-A-1 # Control Verification
         iso27001-2017:
-          - 14.2.8
+          - 14.2.8 # System Security Testing
         iso27001-2022:
-          - 8.29
+          - 8.29 # Security Testing in Development and Acceptance
       comments: ""
 
     Automated joiner-mover-leaver provisioning:
@@ -471,37 +476,35 @@ Implementation:
         - lifecycle
       references:
         samm2:
-          - O-EM-A-2
+          - O-EM-A-2 # Configuration Hardening
         iso27001-2017:
-          - 9.2.1
-          - 9.2.6
+          - 9.2.1 # Conduct internal audits at planned intervals
         iso27001-2022:
           - 5.16 # Identity management
           - 5.18 # Access rights
       comments: ""
 
-    Periodic access recertification:
-      uuid: 7f216405-fb84-4c84-a495-6b8f4958834a
+    Workload and machine identity:
+      uuid: 9f83087c-7d97-4715-a2ff-10d3f167c3cc
       description: |
-        Access rights, especially privileged ones, are reviewed and re-attested by
-        an accountable owner on a defined cadence, and access that is no longer
-        justified is removed.
+        Non-human access (services, pipelines, workloads) uses short-lived,
+        cryptographically verifiable identities - for example OIDC federation or
+        SPIFFE/SVID - instead of long-lived shared keys.
       risk:
-        Without regular review, permissions granted for one-off needs become
-        permanent. Over time entitlements drift far from what people actually need,
-        undermining least privilege and segregation of duties.
+        Long-lived machine credentials are copied into pipelines, images and config,
+        rarely rotated and hard to attribute. A single leaked static key can grant
+        persistent access with no expiry.
       measure: |
-        - Access reviews run on a defined cadence (e.g. quarterly for privileged access).
-        - Owners re-attest each grant; unconfirmed or unused access is revoked.
-        - Reviews are recorded and auditable.
+        - Workloads authenticate with short-lived, verifiable identities.
+        - Long-lived static machine credentials are being actively retired.
+        - Each workload identity is attributable and least-privileged.
       assessment: |
-        - Present the most recent recertification campaign and its outcomes.
-        - Show evidence that flagged access was actually revoked.
-        - Show reviews cover your application's own service-account permissions,
-          not just human accounts.
+        - Show a workload authenticating via federated / short-lived identity.
+        - Present the inventory of remaining static machine credentials and the
+          plan to retire them.
       difficultyOfImplementation:
-        knowledge: 2
-        time: 3
+        knowledge: 4
+        time: 4
         resources: 3
       usefulness: 4
       level: 3
@@ -510,16 +513,18 @@ Implementation:
       implementation: []
       tags:
         - identity
-        - access-review
+        - workload-identity
       references:
         samm2:
-          - O-EM-A-2
+          - O-EM-A-3 # Configuration Hardening
         iso27001-2017:
-          - 9.2.5
+          - 9.2.1 # Conduct internal audits at planned intervals
         iso27001-2022:
-          - 5.18 # Access rights
-          - 8.2  # Privileged access rights
+          - 5.16 # Identity management
+          - 8.3  # Information access restriction
       comments: ""
+
+    # ---------- Level 4: eliminate standing privilege / policy-driven access ----------
 
     Just-in-time privileged access:
       uuid: d42995ac-f4e5-4fa6-b01a-83a0d35ef3b1
@@ -557,67 +562,117 @@ Implementation:
         - privileged-access
       references:
         samm2:
-          - O-EM-A-3
+          - O-EM-A-3 #Configuration Hardening
         iso27001-2017:
-          - 9.2.3
+          - 9.2.3 # Management of privileged access rights
         iso27001-2022:
           - 8.2 # Privileged access rights
           - 8.3 # Information access restriction
       comments: ""
 
-    Workload and machine identity:
-      uuid: 9f83087c-7d97-4715-a2ff-10d3f167c3cc
+    Attribute/policy-based access control (ABAC/PBAC):
+      uuid: a7ac8754-b7fc-43e6-afcf-78e95dfac988
       description: |
-        Non-human access (services, pipelines, workloads) uses short-lived,
-        cryptographically verifiable identities - for example OIDC federation or
-        SPIFFE/SVID - instead of long-lived shared keys.
+        Where roles alone are too coarse (cross-tenant, resource-owner, or
+        time/location/context-based decisions), access is refined with attributes
+        (ABAC) or centrally evaluated policies (PBAC, e.g. OPA/Rego). Policies are
+        version-controlled and tested like code.
       risk:
-        Long-lived machine credentials are copied into pipelines, images and config,
-        rarely rotated and hard to attribute. A single leaked static key can grant
-        persistent access with no expiry.
+        Roles alone cannot express fine-grained or contextual decisions, leading
+        either to role explosion (a role per edge case) or to gaps where coarse
+        roles grant more than intended.
       measure: |
-        - Workloads authenticate with short-lived, verifiable identities.
-        - Long-lived static machine credentials are being actively retired.
-        - Each workload identity is attributable and least-privileged.
+        - Attributes (ABAC) or centrally evaluated policies (PBAC) refine decisions
+          beyond static roles where roles are too coarse.
+        - A policy engine (e.g. OPA) centralizes decisions rather than scattering
+          them across application code.
+        - Policies are version-controlled and covered by tests.
       assessment: |
-        - Show a workload authenticating via federated / short-lived identity.
-        - Present the inventory of remaining static machine credentials and the
-          plan to retire them.
+        - Show the policy engine and a sample policy.
+        - Trace one access decision back to a specific attribute or policy rule.
+        - Show the policies live in version control with tests.
       difficultyOfImplementation:
         knowledge: 4
         time: 4
+        resources: 2
+      usefulness: 3
+      level: 4
+      dependsOn:
+        - Role-based access control (RBAC) baseline
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/open-policy-agent
+      tags:
+        - identity
+        - access-control
+        - abac
+        - pbac
+      references:
+        samm2:
+          - O-EM-A-2 # Configuration Hardening
+        iso27001-2017:
+          - 9.4.1 # Information Access Restriction
+        iso27001-2022:
+          - 8.3 # Information Access Restriction
+      comments: ""
+
+    Periodic access recertification:
+      uuid: 7f216405-fb84-4c84-a495-6b8f4958834a
+      description: |
+        Access rights, especially privileged ones, are reviewed and re-attested by
+        an accountable owner on a defined cadence, and access that is no longer
+        justified is removed.
+      risk:
+        Without regular review, permissions granted for one-off needs become
+        permanent. Over time entitlements drift far from what people actually need,
+        undermining least privilege and segregation of duties.
+      measure: |
+        - Access reviews run on a defined cadence (e.g. quarterly for privileged access).
+        - Owners re-attest each grant; unconfirmed or unused access is revoked.
+        - Reviews are recorded and auditable.
+      assessment: |
+        - Present the most recent recertification campaign and its outcomes.
+        - Show evidence that flagged access was actually revoked.
+        - Show reviews cover your application's own service-account permissions,
+          not just human accounts.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
         resources: 3
       usefulness: 4
       level: 4
       dependsOn:
         - Least-privilege access baseline
+        - Automated joiner-mover-leaver provisioning
       implementation: []
       tags:
         - identity
-        - workload-identity
+        - access-review
       references:
         samm2:
-          - O-EM-A-3
+          - O-EM-A-2 # Configuration Hardening
         iso27001-2017:
-          - 9.2.1
+          - 9.2.5 # Review of user access rights
         iso27001-2022:
-          - 5.16 # Identity management
-          - 8.3  # Information access restriction
+          - 5.18 # Access rights
+          - 8.2  # Privileged access rights
       comments: ""
+
+    # ---------- Level 5: continuous verification ----------
 
     Continuous and risk-adaptive access:
       uuid: eba1a951-df6b-4c02-86c5-0370654aa930
       description: |
         Access decisions are evaluated continuously against device posture, context
-        and risk signals, attribute-based access control (ABAC) is in place, and
-        segregation-of-duties conflicts are detected automatically.
+        and risk signals, and segregation-of-duties conflicts are detected
+        automatically. Builds on policy-based access control to make decisions
+        dynamic rather than static.
       risk:
         Access granted once and never re-evaluated ignores changing risk - a
         compromised device or anomalous behaviour keeps its access. Manual SoD
         checks miss conflicts that emerge as roles change.
       measure: |
         - Access is continuously evaluated using device, context and risk signals.
-        - ABAC policies complement roles for fine-grained decisions.
+        - Policy decisions incorporate real-time risk (step-up or denial on anomaly).
         - Segregation-of-duties conflicts are detected and flagged automatically.
       assessment: |
         - Demonstrate a risk-based access decision (e.g. step-up or denial on
@@ -631,6 +686,7 @@ Implementation:
       level: 5
       dependsOn:
         - Just-in-time privileged access
+        - Attribute/policy-based access control (ABAC/PBAC)
         - Periodic access recertification
       implementation: []
       tags:
@@ -638,9 +694,9 @@ Implementation:
         - zero-trust
       references:
         samm2:
-          - O-EM-A-3
+          - O-EM-A-3 # Configuration Hardening
         iso27001-2017:
-          - 9.4.1
+          - 9.4.1 # Information Access Restriction
         iso27001-2022:
           - 8.2  # Privileged access rights
           - 8.16 # Monitoring activities
