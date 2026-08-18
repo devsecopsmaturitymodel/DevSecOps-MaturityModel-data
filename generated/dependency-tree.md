@@ -25,12 +25,12 @@ graph LR
 17(L2 Centralized application logging)
 18(L3 Decommissioning of AI agents)
 19(L3 Least privilege on external systems for AI agents)
-20(L3 Dynamic load of security rules)
-21(L3 Evaluation of the trust of used AI components)
-22(L2 Evaluation of the trust of used components)
-23(L3 Threat modeling of AI components)
-24(L4 Anomaly detection for AI agent behavior)
-25(L2 Alerting)
+20(L3 Evaluation of the trust of used AI components)
+21(L2 Evaluation of the trust of used components)
+22(L3 Threat modeling of AI components)
+23(L4 Anomaly detection for AI agent behavior)
+24(L2 Alerting)
+25(L4 Dynamic load of security rules)
 26(L5 Automated containment of anomalous AI agents)
 27(L2 Rate limiting and resource budgets for AI systems)
 28(L2 Monitoring of costs)
@@ -168,7 +168,7 @@ graph LR
 
 1 --> 0
 1 --> 11
-1 --> 21
+1 --> 20
 0 --> 2
 4 --> 3
 5 --> 4
@@ -177,17 +177,17 @@ graph LR
 6 --> 102
 9 --> 8
 9 --> 12
-9 --> 20
+9 --> 25
 10 --> 8
 10 --> 12
 10 --> 14
-10 --> 20
+10 --> 25
 10 --> 37
 10 --> 38
 13 --> 10
 13 --> 61
 15 --> 14
-15 --> 23
+15 --> 22
 15 --> 76
 15 --> 77
 15 --> 78
@@ -200,20 +200,20 @@ graph LR
 19 --> 26
 19 --> 34
 19 --> 47
-14 --> 20
-14 --> 49
-8 --> 20
-22 --> 21
-22 --> 144
-16 --> 24
+21 --> 20
+21 --> 144
+16 --> 23
 16 --> 33
 16 --> 34
-25 --> 24
-25 --> 27
-25 --> 17
-25 --> 109
-25 --> 115
-24 --> 26
+24 --> 23
+24 --> 27
+24 --> 17
+24 --> 109
+24 --> 115
+14 --> 25
+14 --> 49
+8 --> 25
+23 --> 26
 28 --> 27
 30 --> 29
 30 --> 32
@@ -255,7 +255,7 @@ graph LR
 46 --> 51
 46 --> 152
 47 --> 49
-21 --> 50
+20 --> 50
 51 --> 50
 7 --> 52
 53 --> 52
@@ -313,7 +313,7 @@ graph LR
 102 --> 105
 108 --> 107
 107 --> 109
-110 --> 25
+110 --> 24
 110 --> 113
 110 --> 100
 110 --> 114
@@ -358,7 +358,7 @@ O --> 6
 O --> 9
 O --> 13
 O --> 15
-O --> 22
+O --> 21
 O --> 30
 O --> 31
 O --> 36

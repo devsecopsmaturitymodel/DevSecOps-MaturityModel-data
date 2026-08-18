@@ -1,8 +1,8 @@
 ---
 meta:
-  version: __VERSION_PLACEHOLDER__
-  released: "2026-07-28"
-  publisher: tpagel
+  version: 4.3.1
+  released: "2026-08-18"
+  publisher: https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data
 ---
 Agentic AI:
   Data Protection:
@@ -1556,161 +1556,6 @@ Agentic AI:
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Decommissioning%20of%20AI%20agents
       comments: ""
-    Dynamic load of security rules:
-      uuid: 862d08a4-7299-4b2c-9d38-8fcaade66d3e
-      description: |-
-        In spec-driven development, AI-assisted work is split into explicit steps
-        (e.g. specify, plan, implement, review). Model context is limited: loading
-        all security guidance at once dilutes it, loading it at the wrong step
-        means it is absent when needed. Security artifacts are therefore assigned
-        to the step where they are effective: security requirements and abuse
-        cases during specification, threat model results during planning, secure
-        coding rules during implementation, review checklists during verification.
-        In contrast to the instruction-based mapping of _Instructed load of
-        security rules_, this activity requires the loading to be enforced by
-        the tooling instead of relying on the model to follow instructions.
-
-        Three ways to bind security artifacts to workflow steps, the first two
-        using Spec Kit with Claude Code as example:
-
-        1. **Extend the step templates**: add the security artifact references
-           directly to the phase templates (e.g. `.specify/templates/`). Simple,
-           but the changes live inside the tool's files and must be re-applied
-           after tool updates.
-        2. **Hook that detects the step command** (update-safe and automatic):
-           a `UserPromptSubmit` hook fires on every prompt, checks which
-           workflow command was invoked and injects the matching file as
-           `additionalContext`. The tool's templates stay untouched and the
-           step-to-artifact mapping lives in one central place:
-
-           ```bash
-           #!/bin/bash
-           input=$(cat)
-           prompt=$(jq -r '.prompt // empty' <<<"$input")
-
-           case "$prompt" in
-             /speckit.plan*)      file="specs/threat-model.md" ;;
-             /speckit.implement*) file="docs/secure-coding-rules.md" ;;
-             /speckit.review*)    file="docs/security-review-checklist.md" ;;
-             *) exit 0 ;;
-           esac
-
-           jq -nc --arg ctx "$(cat "$file")" \
-             '{hookSpecificOutput: {hookEventName: "UserPromptSubmit",
-               additionalContext: $ctx}}'
-           ```
-
-           Registered in `.claude/settings.json` under `hooks`, the mapping is
-           versioned with the repository, survives Spec Kit updates and cannot
-           be forgotten by developers.
-        3. **Meta-framework with per-step context loading**: spec-driven
-           meta-frameworks let the workflow definition itself declare which
-           documents each phase loads, e.g. BMAD-Method agents and tasks
-           declare the checklists and templates they load when activated, and
-           Kiro steering files are included conditionally via
-           `inclusion: fileMatch`. A meta-framework satisfies this activity
-           only where the tool enforces the inclusion: if its phases are
-           themselves just instructions the model follows, the loading remains
-           probabilistic (see _Instructed load of security rules_).
-
-        Keep the loaded artifacts small and step-specific: the goal is the
-        right rules in context, not all rules.
-      risk: |-
-        Security rules exist but are not in the model context at the step where
-        the AI assistant needs them, or the context is flooded with irrelevant
-        rules so the model ignores them. Generated specifications, plans and code
-        silently drop security requirements between steps.
-      measure: |-
-        Structure AI-assisted development workflows so that each step loads its
-        relevant security artifacts into the model context (e.g. via step-specific
-        instruction templates in spec-driven development). Verify that security
-        requirements from the specification are carried through plan,
-        implementation and review steps.
-      dependsOn:
-      - 51ebc877-c4fd-4b50-9305-320152242ddf # Static load of security rules
-      - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Threat modeling rule
-      - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
-      - 364123db-b41c-431a-94a0-dfd8236b2daa # Instructed load of security rules
-      assessment: |
-        - Show the mapping of security artifacts to workflow steps (step templates or hook configuration).
-        - Demonstrate that the matching security artifact is loaded into the model context when a workflow step is invoked.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 2
-        resources: 1
-      usefulness: 4
-      level: 3
-      tags:
-      - ai
-      - guidance
-      implementation:
-      - uuid: 8077812b-e320-4435-9afb-e1e334314abf
-        name: The New SDLC With Vibe Coding (Google whitepaper)
-        tags:
-        - ai
-        - guidance
-        - documentation
-        url: https://addyosmani.com/blog/new-sdlc-vibe-coding/
-        description: |-
-          Google whitepaper (Osmani, Saboo, Kartakis) distinguishing vibe coding
-          from agentic engineering: specs, guardrails, evals and review as the
-          "harness" around the model, phase-specific context engineering, evals in
-          CI, traces of every agent run and scoped per-agent permissions as the
-          production substrate.
-      - uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
-        name: 'OWASP AISVS Appendix C: Appendix C AI for Code Generation'
-        tags:
-        - ai
-        - documentation
-        - aisvs
-        url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x92-Appendix-C_AI_for_Code_Generation.md
-        description: |-
-          OWASP Artificial Intelligence Security Verification Standard,
-          Appendix C: Appendix C AI for Code Generation.
-      - uuid: 71db66a9-8b71-48e4-9b96-1695ed1062a2
-        name: GitHub Spec Kit
-        tags:
-        - ai
-        - guidance
-        - framework
-        url: https://github.com/github/spec-kit
-        description: |-
-          Toolkit for spec-driven development with AI coding assistants: work is
-          split into explicit specify, plan, tasks and implement steps, each with
-          its own instructions loaded into the model context.
-      - uuid: a51e79cd-95dc-4c88-9100-5701e92c205b
-        name: BMAD-Method
-        tags:
-        - ai
-        - guidance
-        - framework
-        url: https://github.com/bmad-code-org/BMAD-METHOD
-        description: |-
-          Meta-framework for agentic, spec-driven development: agents and tasks
-          declare the documents (templates, checklists, data files) they load
-          when activated, so per-phase context such as security checklists is
-          part of the workflow definition itself.
-      - uuid: 0e88ae34-21f1-450c-82d1-9be08dbf5088
-        name: Kiro Steering
-        tags:
-        - ai
-        - guidance
-        - framework
-        url: https://kiro.dev/docs/steering/
-        description: |-
-          Steering files in the Kiro IDE provide persistent project guidance
-          with tool-enforced inclusion modes (`always`, `fileMatch`, `manual`),
-          allowing security guidance to be loaded conditionally per context.
-      references:
-        samm2:
-        - D-SR-A-2
-        iso27001-2017:
-        - 14.2.1
-        iso27001-2022:
-        - 8.28
-        openCRE:
-        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Dynamic%20load%20of%20security%20rules
-      comments: ""
     Evaluation of the trust of used AI components:
       uuid: 399c5b7f-1310-4841-89f7-16daff2fe3ef
       description: |-
@@ -2252,6 +2097,161 @@ Agentic AI:
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Anomaly%20detection%20for%20AI%20agent%20behavior
       comments: ""
+    Dynamic load of security rules:
+      uuid: 862d08a4-7299-4b2c-9d38-8fcaade66d3e
+      description: |-
+        In spec-driven development, AI-assisted work is split into explicit steps
+        (e.g. specify, plan, implement, review). Model context is limited: loading
+        all security guidance at once dilutes it, loading it at the wrong step
+        means it is absent when needed. Security artifacts are therefore assigned
+        to the step where they are effective: security requirements and abuse
+        cases during specification, threat model results during planning, secure
+        coding rules during implementation, review checklists during verification.
+        In contrast to the instruction-based mapping of _Instructed load of
+        security rules_, this activity requires the loading to be enforced by
+        the tooling instead of relying on the model to follow instructions.
+
+        Three ways to bind security artifacts to workflow steps, the first two
+        using Spec Kit with Claude Code as example:
+
+        1. **Extend the step templates**: add the security artifact references
+           directly to the phase templates (e.g. `.specify/templates/`). Simple,
+           but the changes live inside the tool's files and must be re-applied
+           after tool updates.
+        2. **Hook that detects the step command** (update-safe and automatic):
+           a `UserPromptSubmit` hook fires on every prompt, checks which
+           workflow command was invoked and injects the matching file as
+           `additionalContext`. The tool's templates stay untouched and the
+           step-to-artifact mapping lives in one central place:
+
+           ```bash
+           #!/bin/bash
+           input=$(cat)
+           prompt=$(jq -r '.prompt // empty' <<<"$input")
+
+           case "$prompt" in
+             /speckit.plan*)      file="specs/threat-model.md" ;;
+             /speckit.implement*) file="docs/secure-coding-rules.md" ;;
+             /speckit.review*)    file="docs/security-review-checklist.md" ;;
+             *) exit 0 ;;
+           esac
+
+           jq -nc --arg ctx "$(cat "$file")" \
+             '{hookSpecificOutput: {hookEventName: "UserPromptSubmit",
+               additionalContext: $ctx}}'
+           ```
+
+           Registered in `.claude/settings.json` under `hooks`, the mapping is
+           versioned with the repository, survives Spec Kit updates and cannot
+           be forgotten by developers.
+        3. **Meta-framework with per-step context loading**: spec-driven
+           meta-frameworks let the workflow definition itself declare which
+           documents each phase loads, e.g. BMAD-Method agents and tasks
+           declare the checklists and templates they load when activated, and
+           Kiro steering files are included conditionally via
+           `inclusion: fileMatch`. A meta-framework satisfies this activity
+           only where the tool enforces the inclusion: if its phases are
+           themselves just instructions the model follows, the loading remains
+           probabilistic (see _Instructed load of security rules_).
+
+        Keep the loaded artifacts small and step-specific: the goal is the
+        right rules in context, not all rules.
+      risk: |-
+        Security rules exist but are not in the model context at the step where
+        the AI assistant needs them, or the context is flooded with irrelevant
+        rules so the model ignores them. Generated specifications, plans and code
+        silently drop security requirements between steps.
+      measure: |-
+        Structure AI-assisted development workflows so that each step loads its
+        relevant security artifacts into the model context (e.g. via step-specific
+        instruction templates in spec-driven development). Verify that security
+        requirements from the specification are carried through plan,
+        implementation and review steps.
+      dependsOn:
+      - 51ebc877-c4fd-4b50-9305-320152242ddf # Static load of security rules
+      - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Threat modeling rule
+      - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      - 364123db-b41c-431a-94a0-dfd8236b2daa # Instructed load of security rules
+      assessment: |
+        - Show the mapping of security artifacts to workflow steps (step templates or hook configuration).
+        - Demonstrate that the matching security artifact is loaded into the model context when a workflow step is invoked.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 4
+      tags:
+      - ai
+      - guidance
+      implementation:
+      - uuid: 8077812b-e320-4435-9afb-e1e334314abf
+        name: The New SDLC With Vibe Coding (Google whitepaper)
+        tags:
+        - ai
+        - guidance
+        - documentation
+        url: https://addyosmani.com/blog/new-sdlc-vibe-coding/
+        description: |-
+          Google whitepaper (Osmani, Saboo, Kartakis) distinguishing vibe coding
+          from agentic engineering: specs, guardrails, evals and review as the
+          "harness" around the model, phase-specific context engineering, evals in
+          CI, traces of every agent run and scoped per-agent permissions as the
+          production substrate.
+      - uuid: d1d4271b-0f4c-4356-845c-8f91b6c83c33
+        name: 'OWASP AISVS Appendix C: Appendix C AI for Code Generation'
+        tags:
+        - ai
+        - documentation
+        - aisvs
+        url: https://github.com/OWASP/AISVS/blob/main/1.0/en/0x92-Appendix-C_AI_for_Code_Generation.md
+        description: |-
+          OWASP Artificial Intelligence Security Verification Standard,
+          Appendix C: Appendix C AI for Code Generation.
+      - uuid: 71db66a9-8b71-48e4-9b96-1695ed1062a2
+        name: GitHub Spec Kit
+        tags:
+        - ai
+        - guidance
+        - framework
+        url: https://github.com/github/spec-kit
+        description: |-
+          Toolkit for spec-driven development with AI coding assistants: work is
+          split into explicit specify, plan, tasks and implement steps, each with
+          its own instructions loaded into the model context.
+      - uuid: a51e79cd-95dc-4c88-9100-5701e92c205b
+        name: BMAD-Method
+        tags:
+        - ai
+        - guidance
+        - framework
+        url: https://github.com/bmad-code-org/BMAD-METHOD
+        description: |-
+          Meta-framework for agentic, spec-driven development: agents and tasks
+          declare the documents (templates, checklists, data files) they load
+          when activated, so per-phase context such as security checklists is
+          part of the workflow definition itself.
+      - uuid: 0e88ae34-21f1-450c-82d1-9be08dbf5088
+        name: Kiro Steering
+        tags:
+        - ai
+        - guidance
+        - framework
+        url: https://kiro.dev/docs/steering/
+        description: |-
+          Steering files in the Kiro IDE provide persistent project guidance
+          with tool-enforced inclusion modes (`always`, `fileMatch`, `manual`),
+          allowing security guidance to be loaded conditionally per context.
+      references:
+        samm2:
+        - D-SR-A-2
+        iso27001-2017:
+        - 14.2.1
+        iso27001-2022:
+        - 8.28
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Dynamic%20load%20of%20security%20rules
+      comments: ""
     Automated containment of anomalous AI agents:
       uuid: 3bbd6dd9-0821-426c-8a19-41737ed61459
       description: |-
@@ -2469,6 +2469,38 @@ Agentic AI:
         name: Container technologies and orchestration like Docker, Kubernetes
         tags: []
         url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
+      - uuid: 83654ac0-17e0-41fa-ab18-cd3ac23d0efb
+        name: OpenSandbox
+        tags:
+        - ai
+        - isolation
+        - container
+        url: https://github.com/opensandbox-group/OpenSandbox
+        description: |-
+          Open-source sandbox platform for AI applications: disposable, isolated
+          execution environments for coding agents, AI code execution and browser
+          automation with Docker and Kubernetes runtimes, optional stronger
+          isolation via gVisor, Kata Containers or Firecracker, network policies
+          with egress control and credential injection via a credential vault.
+          Suited for self-hosted, server-side agent execution as part of an AI
+          application or central agent platform; for isolating locally run coding
+          agents on developer machines, see Docker Sandboxes.
+      - uuid: 5f8b58ac-0e16-4c39-a596-2f677e07be4d
+        name: Docker Sandboxes
+        tags:
+        - ai
+        - isolation
+        - container
+        url: https://docs.docker.com/ai/sandboxes/
+        description: |-
+          Runs AI coding agents (e.g. Claude Code) on the developer workstation in
+          disposable microVM sandboxes via the sbx CLI: each sandbox has its own
+          Docker daemon, filesystem and network, so agents can install packages and
+          execute code without touching the host. Supports network, filesystem and
+          MCP policies, centrally manageable for organizations. Suited for
+          isolating locally run coding agents on developer machines; for
+          server-side agent execution on self-hosted infrastructure, see
+          OpenSandbox.
       references:
         samm2:
         - I-SB-A-2
@@ -2752,6 +2784,22 @@ Agentic AI:
           Anthropic's reference devcontainer for running the Claude Code agent in an
           isolated container, including an init-firewall.sh script that enforces
           default-deny egress with a domain allow-list via iptables/ipset.
+      - uuid: 5f8b58ac-0e16-4c39-a596-2f677e07be4d
+        name: Docker Sandboxes
+        tags:
+        - ai
+        - isolation
+        - container
+        url: https://docs.docker.com/ai/sandboxes/
+        description: |-
+          Runs AI coding agents (e.g. Claude Code) on the developer workstation in
+          disposable microVM sandboxes via the sbx CLI: each sandbox has its own
+          Docker daemon, filesystem and network, so agents can install packages and
+          execute code without touching the host. Supports network, filesystem and
+          MCP policies, centrally manageable for organizations. Suited for
+          isolating locally run coding agents on developer machines; for
+          server-side agent execution on self-hosted infrastructure, see
+          OpenSandbox.
       references:
         samm2:
         - O-EM-A-2
@@ -2889,6 +2937,22 @@ Agentic AI:
           The ten most critical security risks of agentic AI systems (ASI01-ASI10),
           e.g. agent goal hijack, tool misuse, memory poisoning and rogue agents.
           Usable as a threat catalog for threat modeling and red teaming of AI agents.
+      - uuid: 83654ac0-17e0-41fa-ab18-cd3ac23d0efb
+        name: OpenSandbox
+        tags:
+        - ai
+        - isolation
+        - container
+        url: https://github.com/opensandbox-group/OpenSandbox
+        description: |-
+          Open-source sandbox platform for AI applications: disposable, isolated
+          execution environments for coding agents, AI code execution and browser
+          automation with Docker and Kubernetes runtimes, optional stronger
+          isolation via gVisor, Kata Containers or Firecracker, network policies
+          with egress control and credential injection via a credential vault.
+          Suited for self-hosted, server-side agent execution as part of an AI
+          application or central agent platform; for isolating locally run coding
+          agents on developer machines, see Docker Sandboxes.
       references:
         samm2:
         - O-EM-A-1
@@ -3025,6 +3089,38 @@ Agentic AI:
         name: Container technologies and orchestration like Docker, Kubernetes
         tags: []
         url: https://d3fend.mitre.org/dao/artifact/d3f:ContainerOrchestrationSoftware/
+      - uuid: 83654ac0-17e0-41fa-ab18-cd3ac23d0efb
+        name: OpenSandbox
+        tags:
+        - ai
+        - isolation
+        - container
+        url: https://github.com/opensandbox-group/OpenSandbox
+        description: |-
+          Open-source sandbox platform for AI applications: disposable, isolated
+          execution environments for coding agents, AI code execution and browser
+          automation with Docker and Kubernetes runtimes, optional stronger
+          isolation via gVisor, Kata Containers or Firecracker, network policies
+          with egress control and credential injection via a credential vault.
+          Suited for self-hosted, server-side agent execution as part of an AI
+          application or central agent platform; for isolating locally run coding
+          agents on developer machines, see Docker Sandboxes.
+      - uuid: 5f8b58ac-0e16-4c39-a596-2f677e07be4d
+        name: Docker Sandboxes
+        tags:
+        - ai
+        - isolation
+        - container
+        url: https://docs.docker.com/ai/sandboxes/
+        description: |-
+          Runs AI coding agents (e.g. Claude Code) on the developer workstation in
+          disposable microVM sandboxes via the sbx CLI: each sandbox has its own
+          Docker daemon, filesystem and network, so agents can install packages and
+          execute code without touching the host. Supports network, filesystem and
+          MCP policies, centrally manageable for organizations. Suited for
+          isolating locally run coding agents on developer machines; for
+          server-side agent execution on self-hosted infrastructure, see
+          OpenSandbox.
       references:
         samm2:
         - O-EM-A-2
@@ -5914,6 +6010,20 @@ Culture and Organization:
         - owasp
         - defender
         url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+      - uuid: b0b620e4-19c1-4f29-9249-470533cdcaaa
+        name: OWASP ThreatAtlas
+        tags:
+        - owasp
+        - defender
+        - threat-modeling
+        - collaboration
+        url: https://github.com/OWASP/www-project-threatatlas
+        description: |-
+          Self-hosted web application for collaborative threat modeling sessions:
+          interactive data flow diagrams with trust boundaries, threat catalogs
+          (e.g. STRIDE, LINDDUN), likelihood/impact scoring, real-time
+          collaboration with approvals workflow, diagram versioning with change
+          history and integration into issue trackers and CI/CD security gates.
       - uuid: 1c56dbea-e067-44e2-8d3b-0a1205a70617
         name: Threat Matrix for Storage
         url: https://www.microsoft.com/en-US/security/blog/2021/04/08/threat-matrix-for-storage/
@@ -6109,6 +6219,20 @@ Culture and Organization:
         - owasp
         - defender
         url: https://owaspsamm.org/model/design/threat-assessment/stream-b/
+      - uuid: b0b620e4-19c1-4f29-9249-470533cdcaaa
+        name: OWASP ThreatAtlas
+        tags:
+        - owasp
+        - defender
+        - threat-modeling
+        - collaboration
+        url: https://github.com/OWASP/www-project-threatatlas
+        description: |-
+          Self-hosted web application for collaborative threat modeling sessions:
+          interactive data flow diagrams with trust boundaries, threat catalogs
+          (e.g. STRIDE, LINDDUN), likelihood/impact scoring, real-time
+          collaboration with approvals workflow, diagram versioning with change
+          history and integration into issue trackers and CI/CD security gates.
       dependsOn:
       - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
       references:
@@ -6203,6 +6327,20 @@ Culture and Organization:
         tags:
         - threat-modeling
         url: https://github.com/Threagile/threagile
+      - uuid: b0b620e4-19c1-4f29-9249-470533cdcaaa
+        name: OWASP ThreatAtlas
+        tags:
+        - owasp
+        - defender
+        - threat-modeling
+        - collaboration
+        url: https://github.com/OWASP/www-project-threatatlas
+        description: |-
+          Self-hosted web application for collaborative threat modeling sessions:
+          interactive data flow diagrams with trust boundaries, threat catalogs
+          (e.g. STRIDE, LINDDUN), likelihood/impact scoring, real-time
+          collaboration with approvals workflow, diagram versioning with change
+          history and integration into issue trackers and CI/CD security gates.
       - uuid: 1c56dbea-e067-44e2-8d3b-0a1205a70617
         name: Threat Matrix for Storage
         url: https://www.microsoft.com/en-US/security/blog/2021/04/08/threat-matrix-for-storage/
@@ -10275,6 +10413,13 @@ Test and Verification:
         url: https://github.com/faloker/purify/
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+        name: SecObserve
+        tags:
+        - vulnerability management system
+        url: https://github.com/SecObserve/SecObserve
+        description: |
+          SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
       references:
         samm2:
         - I-DM-A-1
@@ -10376,6 +10521,13 @@ Test and Verification:
         url: https://github.com/faloker/purify/
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+        name: SecObserve
+        tags:
+        - vulnerability management system
+        url: https://github.com/SecObserve/SecObserve
+        description: |
+          SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
       - uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
         name: Dependency-Track
         description: |
@@ -10457,6 +10609,13 @@ Test and Verification:
         url: https://github.com/faloker/purify/
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+        name: SecObserve
+        tags:
+        - vulnerability management system
+        url: https://github.com/SecObserve/SecObserve
+        description: |
+          SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
       references:
         samm2:
         - I-DM-A-2
@@ -10614,6 +10773,13 @@ Test and Verification:
         url: https://github.com/faloker/purify/
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+        name: SecObserve
+        tags:
+        - vulnerability management system
+        url: https://github.com/SecObserve/SecObserve
+        description: |
+          SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
       - uuid: 7ec30b0e-9681-427a-80ee-ab811d9e476f
         name: DefectDojo Client
         tags:
@@ -10717,6 +10883,13 @@ Test and Verification:
         url: https://github.com/faloker/purify/
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+        name: SecObserve
+        tags:
+        - vulnerability management system
+        url: https://github.com/SecObserve/SecObserve
+        description: |
+          SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
       - uuid: 3b99799c-e875-4cc2-aad7-5ce4564a1cde
         name: Business friendly vulnerability management metrics
         url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
@@ -10865,6 +11038,13 @@ Test and Verification:
         url: https://github.com/faloker/purify/
         description: |
           The goal of Purify to be an easy-in-use and efficient tool to simplify a workflow of managing vulnerabilities delivered from various (even custom) tools.
+      - uuid: d899488c-5799-4df1-a14c-3bb92fec3ac3
+        name: SecObserve
+        tags:
+        - vulnerability management system
+        url: https://github.com/SecObserve/SecObserve
+        description: |
+          SecObserve is an open source vulnerability and license management system for software development teams and cloud environments. It supports a variety of open source vulnerability scanners and integrates into CI/CD pipelines.
       - uuid: 3b99799c-e875-4cc2-aad7-5ce4564a1cde
         name: Business friendly vulnerability management metrics
         url: https://medium.com/uber-security-privacy/business-friendly-vulnerability-management-metrics-cfd702fd7705
