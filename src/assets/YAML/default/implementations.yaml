@@ -192,6 +192,17 @@ implementations:
     name: Threagile
     tags: [threat-modeling]
     url: https://github.com/Threagile/threagile
+  threatatlas:
+    uuid: b0b620e4-19c1-4f29-9249-470533cdcaaa
+    name: OWASP ThreatAtlas
+    tags: [owasp, defender, threat-modeling, collaboration]
+    url: https://github.com/OWASP/www-project-threatatlas
+    description: |-
+      Self-hosted web application for collaborative threat modeling sessions:
+      interactive data flow diagrams with trust boundaries, threat catalogs
+      (e.g. STRIDE, LINDDUN), likelihood/impact scoring, real-time
+      collaboration with approvals workflow, diagram versioning with change
+      history and integration into issue trackers and CI/CD security gates.
   don-t-forget-evil-user-stories:
     uuid: bb5b8988-021b-452a-a914-bd36887b6860
     name: "Don't Forget EVIL User stories"
@@ -1242,6 +1253,34 @@ implementations:
       Anthropic's reference devcontainer for running the Claude Code agent in an
       isolated container, including an init-firewall.sh script that enforces
       default-deny egress with a domain allow-list via iptables/ipset.
+  docker-sandboxes:
+    uuid: 5f8b58ac-0e16-4c39-a596-2f677e07be4d
+    name: Docker Sandboxes
+    tags: [ai, isolation, container]
+    url: https://docs.docker.com/ai/sandboxes/
+    description: |-
+      Runs AI coding agents (e.g. Claude Code) on the developer workstation in
+      disposable microVM sandboxes via the sbx CLI: each sandbox has its own
+      Docker daemon, filesystem and network, so agents can install packages and
+      execute code without touching the host. Supports network, filesystem and
+      MCP policies, centrally manageable for organizations. Suited for
+      isolating locally run coding agents on developer machines; for
+      server-side agent execution on self-hosted infrastructure, see
+      OpenSandbox.
+  opensandbox:
+    uuid: 83654ac0-17e0-41fa-ab18-cd3ac23d0efb
+    name: OpenSandbox
+    tags: [ai, isolation, container]
+    url: https://github.com/opensandbox-group/OpenSandbox
+    description: |-
+      Open-source sandbox platform for AI applications: disposable, isolated
+      execution environments for coding agents, AI code execution and browser
+      automation with Docker and Kubernetes runtimes, optional stronger
+      isolation via gVisor, Kata Containers or Firecracker, network policies
+      with egress control and credential injection via a credential vault.
+      Suited for self-hosted, server-side agent execution as part of an AI
+      application or central agent platform; for isolating locally run coding
+      agents on developer machines, see Docker Sandboxes.
   llm-guard:
     uuid: 498456d3-815a-4f57-84c2-81dcb97a4cb8
     name: LLM Guard

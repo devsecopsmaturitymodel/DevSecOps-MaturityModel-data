@@ -43,6 +43,8 @@ Agentic AI:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c09
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c04
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/opensandbox
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-sandboxes
       references:
         samm2:
           - I-SB-A-2
@@ -117,6 +119,8 @@ Agentic AI:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/gdm-ai-control-roadmap
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/firewalls
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/opensandbox
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-sandboxes
       references:
         samm2:
           - O-EM-A-2
@@ -166,6 +170,7 @@ Agentic AI:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ncc-ai-coding-agent-security
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/claude-code-devcontainer
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-sandboxes
       references:
         samm2:
           - O-EM-A-2
@@ -335,6 +340,7 @@ Agentic AI:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/hashicorp-vault
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anthropic-zero-trust-agents
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/opensandbox
       references:
         samm2:
           - O-EM-A-1

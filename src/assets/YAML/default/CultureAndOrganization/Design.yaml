@@ -39,6 +39,7 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threagile
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threatatlas
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/apiiro-ai-threat-modeling
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-designer
@@ -154,6 +155,7 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/draw-io
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threatatlas
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-designer
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tm-skills
@@ -266,6 +268,7 @@ Culture and Organization:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threatatlas
       dependsOn:
         - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
       references:

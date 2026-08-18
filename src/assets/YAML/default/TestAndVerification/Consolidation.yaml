@@ -53,6 +53,7 @@ Test and Verification:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/SecObserve
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
       references:
         samm2:
@@ -165,6 +166,7 @@ Test and Verification:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/SecObserve
       references:
         samm2:
           - I-DM-A-1
@@ -203,6 +205,7 @@ Test and Verification:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/SecObserve
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependencyTrack
       references:
         samm2:
@@ -234,6 +237,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/logparser-jenkins-pl
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/SecObserve
       references:
         samm2:
           - I-DM-A-2
@@ -442,6 +446,7 @@ Test and Verification:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/jira
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/SecObserve
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:
         samm2:
@@ -479,6 +484,7 @@ Test and Verification:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-defectdojo
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/purify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/SecObserve
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/business-friendly-vulnerability-metrics
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/defectdojo-client
       references:

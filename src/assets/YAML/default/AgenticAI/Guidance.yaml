@@ -700,7 +700,7 @@ Agentic AI:
         time: 2
         resources: 1
       usefulness: 4
-      level: 3
+      level: 4
       tags:
         - ai
         - guidance
