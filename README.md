@@ -64,6 +64,10 @@ If you prefer Podman over Docker, set the environement variable `DOCKER_CMD` to 
 - ISO 27001:2017 mapping by Andre Baumeier.
 - Other inspirations and contributions are acknowledged in the original README.
 
+## AI Assistance
+
+AI tools were used to assist in drafting and refining texts in this model (e.g. activity descriptions). All AI-assisted content has been reviewed by maintainers.
+
 
 ## License
 

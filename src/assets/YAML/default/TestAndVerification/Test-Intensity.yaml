@@ -31,8 +31,6 @@ Test and Verification:
           - 8.32
           - 8.27
           - 8.8
-      isImplemented: false
-      evidence: ""
       comments: ""
     Deactivating of unneeded tests:
       uuid: 1bd78cdd-ef11-4bb5-9b58-5af2e25fe1c5
@@ -62,8 +60,6 @@ Test and Verification:
           - 8.8
           - 8.25
           - 8.27
-      isImplemented: false
-      evidence: ""
       comments: ""
     Default settings for intensity:
       uuid: ab0a4b51-3b18-43f1-a6fc-a98e4b28453d
@@ -89,8 +85,6 @@ Test and Verification:
           - 8.8
           - 8.25
           - 8.27
-      isImplemented: false
-      evidence: ""
       comments: ""
     High test intensity:
       uuid: 2ebfc421-8c76-415c-a3b0-fa518915bd10
@@ -118,8 +112,6 @@ Test and Verification:
           - 8.8
           - 8.25
           - 8.27
-      isImplemented: false
-      evidence: ""
       comments: ""
     Regular automated tests:
       uuid: 598897a2-358e-441f-984c-e12ec4f6110a
@@ -147,6 +139,4 @@ Test and Verification:
         iso27001-2022:
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""

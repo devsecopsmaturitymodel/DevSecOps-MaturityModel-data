@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Schema for DSOMM Dimension Culture and Organization",
+  "title": "Schema for DSOMM Dimension Agentic AI",
   "type": "object",
   "properties": {
-    "Culture and Organization": {
+    "Agentic AI": {
       "type": "object",
       "patternProperties": {
         "^.*$": {
@@ -126,6 +126,12 @@
                 },
                 "comments": {
                   "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               },
               "required": [
@@ -137,8 +143,7 @@
                 "usefulness",
                 "level",
                 "implementation",
-                "references",
-                "comments"
+                "references"
               ],
               "additionalProperties": false
             }
@@ -148,6 +153,6 @@
     }
   },
   "required": [
-    "Culture and Organization"
+    "Agentic AI"
   ]
 }
