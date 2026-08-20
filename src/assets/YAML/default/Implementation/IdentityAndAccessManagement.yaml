@@ -371,46 +371,6 @@ Implementation:
           - 8.3 # Information Access Restriction
       comments: ""
 
-    Segregation of duties for critical actions:
-      uuid: 879e1f8f-61db-4af5-bb9b-07f21ac417b8
-      description: |
-        Conflicting responsibilities are split across different identities so that
-        no single person can both introduce and approve a sensitive change.
-      risk:
-        If one identity can author and also approve or deploy a change, a mistake
-        or a malicious insider can push unreviewed changes straight to production,
-        and audit trails can be altered by the same actor.
-      measure: |
-        - Conflicting duty pairs are identified (e.g. author vs approver,
-          deploy vs approve-to-prod, security audit vs infrastructure admin).
-        - Each pair is enforced technically (branch protection, maker-checker,
-          separate accounts / roles), not just by policy.
-      assessment: |
-        - Present the documented list of conflicting duty pairs.
-        - Demonstrate enforcement for at least one pair (e.g. a pull request cannot
-          be approved by its author; a production deploy requires a second approver).
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 3
-        resources: 2
-      usefulness: 4
-      level: 3
-      dependsOn:
-        - Least-privilege access baseline
-      implementation: []
-      tags:
-        - identity
-        - segregation-of-duties
-      references:
-        samm2:
-          - O-EM-A-2 # Configuration Hardening
-        iso27001-2017:
-          - 6.1.2 # Segregation of duties
-        iso27001-2022:
-          - 5.3 # Segregation of duties
-          - 8.2 # Privileged access rights
-      comments: ""
-
     Automated authorization test coverage:
       uuid: 55d43b9a-ab12-4b6f-b289-23ff0cf38565
       description: |
@@ -493,6 +453,46 @@ Implementation:
       comments: ""
 
     # ---------- Level 4: eliminate standing privilege ----------
+
+    Segregation of duties for critical actions:
+      uuid: 879e1f8f-61db-4af5-bb9b-07f21ac417b8
+      description: |
+        Conflicting responsibilities are split across different identities so that
+        no single person can both introduce and approve a sensitive change.
+      risk:
+        If one identity can author and also approve or deploy a change, a mistake
+        or a malicious insider can push unreviewed changes straight to production,
+        and audit trails can be altered by the same actor.
+      measure: |
+        - Conflicting duty pairs are identified (e.g. author vs approver,
+          deploy vs approve-to-prod, security audit vs infrastructure admin).
+        - Each pair is enforced technically (branch protection, maker-checker,
+          separate accounts / roles), not just by policy.
+      assessment: |
+        - Present the documented list of conflicting duty pairs.
+        - Demonstrate enforcement for at least one pair (e.g. a pull request cannot
+          be approved by its author; a production deploy requires a second approver).
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 4
+      dependsOn:
+        - Least-privilege access baseline
+      implementation: []
+      tags:
+        - identity
+        - segregation-of-duties
+      references:
+        samm2:
+          - O-EM-A-2 # Configuration Hardening
+        iso27001-2017:
+          - 6.1.2 # Segregation of duties
+        iso27001-2022:
+          - 5.3 # Segregation of duties
+          - 8.2 # Privileged access rights
+      comments: ""
 
     Workload and machine identity:
       uuid: 9f83087c-7d97-4715-a2ff-10d3f167c3cc
