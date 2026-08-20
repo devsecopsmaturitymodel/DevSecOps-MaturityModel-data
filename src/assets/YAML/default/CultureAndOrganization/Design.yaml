@@ -15,8 +15,8 @@ Culture and Organization:
       usefulness: 3
       level: 4
       dependsOn:
-        - Conduction of simple threat modeling on technical level
-        - Creation of threat modeling processes and standards
+        - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
+        - dd5ed7c1-bdbf-400f-b75f-6d3953a1a04e # Creation of threat modeling processes and standards
       description: |
         **Example High Maturity Scenario:**
 
@@ -30,6 +30,8 @@ Culture and Organization:
         * Input is escaped output is encoded appropriately using well established libraries.
 
         Source: OWASP Project Integration Project
+        # AI support
+        At this maturity level, AI can lift threat modeling from periodic workshops to a continuous activity: AI threat modeling tools generate architecture-aware threat model drafts from feature tickets and design documents before implementation starts, re-run the analysis when new tickets arrive and compare the threat model against the implemented code to surface drift between design intent and implementation (e.g. Apiiro AI Threat Modeling, commercial). The generated models require expert review, see the note on failure modes in _Conduction of simple threat modeling on technical level_.
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/whiteboard
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/miro-or-any-other-c
@@ -37,7 +39,10 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threagile
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threatatlas
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/apiiro-ai-threat-modeling
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-designer
       references:
         samm2:
           - D-TA-B-2
@@ -51,8 +56,6 @@ Culture and Organization:
           - May be part of risk assessment
           - 5.12
           - 8.25
-      isImplemented: false
-      evidence: ""
       comments: ""
     Conduction of simple threat modeling on business level:
       uuid: 48f97f31-931c-46eb-9b3e-e2fec0cd0426
@@ -83,8 +86,6 @@ Culture and Organization:
           - May be part of risk assessment
           - 5.12
           - 8.25
-      isImplemented: false
-      evidence: ""
       comments: ""
     Conduction of simple threat modeling on technical level:
       uuid: 47419324-e263-415b-815d-e7161b6b905e
@@ -116,7 +117,7 @@ Culture and Organization:
 
         ![SKF](https://github.com/OWASP/www-project-integration-standards/raw/master/writeups/owasp_in_sdlc/images/skf_qs.png "SKF")
 
-        This practice has the side effect that it trains non-security specialists to think like attackers.
+        This practice has the side effect that it trains non-security specialists to spot how functionality can be misused.
 
         The outcomes of this stage should help lay the foundation of secure design and considerations.
 
@@ -131,6 +132,10 @@ Culture and Organization:
         GraphQL queries are dynamically translated to SQL, Elasticsearch and NoSQL queries. Access to data is protected with basic auth set to _1234:1234_ for development purposes.
 
         Source: OWASP Project Integration Project
+        # AI support
+        Large language models can support threat modeling as a complementary tool: given an architecture description, a data flow diagram or a user story, they generate candidate threat lists (e.g. along STRIDE) and suggested mitigations, which the team then reviews, corrects and prioritizes in the workshop. Tools such as [STRIDE GPT](https://github.com/mrwadams/stride-gpt) automate this drafting step; agentic applications such as [Threat Designer](https://github.com/awslabs/threat-designer) analyze architecture diagrams and let the team refine the resulting threat model interactively; agent skills such as [tm_skills](https://github.com/izar/tm_skills) let an AI coding agent generate pytm-based threat models with data flow diagrams directly from the codebase and evaluate user stories for security-notable events.
+
+        Be aware of the failure modes: a language model confidently fills gaps in an incomplete system description and produces threats for components that do not exist, and its output is non-deterministic (the same input yields different threat models). Validating an AI-generated threat model requires exactly the security expertise the tool seems to replace (see [Team Werewolves wins!](https://threatmodeling.dev/team-werewolves-wins/)). AI-generated threats are a starting point for the discussion, not its result. The team exercise and the shared understanding remain the core of this activity.
       risk:
         Technical related threats are discovered too late in the development and deployment process.
       measure: |
@@ -150,7 +155,10 @@ Culture and Organization:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/draw-io
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threatatlas
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-matrix-for-storage
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-designer
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tm-skills
       references:
         samm2:
           - D-TA-B-2
@@ -164,8 +172,6 @@ Culture and Organization:
           - May be part of risk assessment
           - 5.12
           - 8.25
-      isImplemented: false
-      evidence: ""
       comments: ""
     Creation of advanced abuse stories:
       uuid: 0a929c3e-ab9a-4206-8761-adf84b74622e
@@ -181,7 +187,7 @@ Culture and Organization:
       usefulness: 4
       level: 5
       dependsOn:
-        - Creation of simple abuse stories
+        - bacf85b6-5bc0-405d-b5ba-a5d971467cc1 # Creation of simple abuse stories
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-user-stories
       references:
@@ -200,11 +206,20 @@ Culture and Organization:
           - 5.8
           - May be part of risk assessment
           - 5.9
-      isImplemented: false
-      evidence: ""
       comments: ""
     Creation of simple abuse stories:
       uuid: bacf85b6-5bc0-405d-b5ba-a5d971467cc1
+      description: |-
+        Abuse stories are the attacker's counterpart to user stories: for a
+        given user story they describe how the same functionality can be
+        misused. Large language models are well suited as a complementary
+        tool for this activity: given a user story and its acceptance
+        criteria, they generate candidate abuse stories. This covers a step
+        teams often skip, because systematically asking how functionality
+        can be misused requires experience most development teams do not
+        have. Generated abuse stories are drafts: the team
+        reviews them, discards irrelevant ones and derives security
+        acceptance criteria from the relevant ones.
       risk:
         User stories mostly don't consider security implications. Security flaws
         are discovered too late in the development and deployment process.
@@ -218,8 +233,8 @@ Culture and Organization:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/don-t-forget-evil-user-stories
       dependsOn:
-        - Conduction of simple threat modeling on technical level
-        - Creation of threat modeling processes and standards
+        - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
+        - dd5ed7c1-bdbf-400f-b75f-6d3953a1a04e # Creation of threat modeling processes and standards
       references:
         samm2:
           - D-TA-B-2
@@ -235,8 +250,6 @@ Culture and Organization:
           - 5.8
           - May be part of risk assessment
           - 5.9
-      isImplemented: false
-      evidence: ""
       comments: ""
     Creation of threat modeling processes and standards:
       uuid: dd5ed7c1-bdbf-400f-b75f-6d3953a1a04e
@@ -255,8 +268,9 @@ Culture and Organization:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-samm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threatatlas
       dependsOn:
-        - Conduction of simple threat modeling on technical level
+        - 47419324-e263-415b-815d-e7161b6b905e # Conduction of simple threat modeling on technical level
       references:
         samm2:
           - D-TA-B-3
@@ -271,8 +285,6 @@ Culture and Organization:
           - May be part of risk assessment
           - 5.12
           - 8.25
-      isImplemented: false
-      evidence: ""
       comments: ""
     Information security targets are communicated:
       uuid: 1b9281b9-48e2-4c01-9ac6-9db9931c4885
@@ -299,6 +311,4 @@ Culture and Organization:
         iso27001-2022:
           - 5.1
           - 5.4
-      isImplemented: false
-      evidence: ""
       comments: ""

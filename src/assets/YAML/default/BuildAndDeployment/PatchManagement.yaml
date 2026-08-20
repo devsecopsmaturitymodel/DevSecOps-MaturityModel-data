@@ -33,8 +33,6 @@ Build and Deployment:
           - 8.8
           - 8.19
           - 8.27
-      isImplemented: false
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -109,8 +107,6 @@ Build and Deployment:
           - 12.6.1
         iso27001-2022:
           - 8.8
-      isImplemented: false
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -146,7 +142,6 @@ Build and Deployment:
           - 14.2.1
         iso27001-2022:
           - 8.25
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -185,7 +180,6 @@ Build and Deployment:
           - 12.6.1
         iso27001-2022:
           - 8.8
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -220,8 +214,6 @@ Build and Deployment:
           - 12.6.1
         iso27001-2022:
           - 8.8
-      isImplemented: false
-      evidence: ""
       comments: ""
       tags:
         - patching
@@ -242,7 +234,7 @@ Build and Deployment:
       usefulness: 3
       level: 2
       dependsOn:
-        - Automated PRs for patches
+        - 8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/renovate
@@ -270,7 +262,7 @@ Build and Deployment:
       usefulness: 3
       level: 3
       dependsOn:
-        - Automated merge of automated PRs
+        - f2594f8f-1cd6-45f9-af29-eaf3315698eb # Automated merge of automated PRs
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/terraform
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/argocd

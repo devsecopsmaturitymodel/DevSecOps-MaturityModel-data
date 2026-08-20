@@ -1,0 +1,14 @@
+_meta:
+  label: Agentic AI
+  icon:
+  description: |-
+    This dimension addresses the secure usage of AI during software development
+    and operations, as well as the security of AI-assisted engineering workflows.
+    The _Isolation_ subdimension focuses on containing AI agents and AI-generated code in restricted environments.
+    The _Guidance_ subdimension focuses on secure coding rules and policies for AI-assisted development.
+    The _Red Teaming_ subdimension focuses on adversarial testing of AI components and AI-based features.
+    The _Data Protection_ subdimension focuses on preventing leakage of sensitive data through AI tools,
+    including validation of model input and output (e.g. prompt injection prevention).
+    The _Verification_ subdimension focuses on the verification of AI-generated artifacts (specifications, plans and code); automated security
+    testing such as SAST/DAST is intentionally NOT duplicated here, it is referenced from the
+    _Test and Verification_ dimension (see ARCHITECTURE.md, section "Handling duplicates").

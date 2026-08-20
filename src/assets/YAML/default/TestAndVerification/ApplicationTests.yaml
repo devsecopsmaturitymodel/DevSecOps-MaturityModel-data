@@ -26,8 +26,6 @@ Test and Verification:
         iso27001-2022:
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""
     Security integration tests for important components:
       uuid: f57d55f2-dc05-4b34-9d1f-f8ce5bfb0715
@@ -52,8 +50,6 @@ Test and Verification:
         iso27001-2022:
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""
     Security unit tests for important components:
       uuid: eb2c7f9d-d0bd-4253-a2ba-cff2ace4a075
@@ -82,8 +78,6 @@ Test and Verification:
         iso27001-2022:
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
     Smoke Test:
       uuid: 73aaae0b-5d68-4953-9fa4-fd25bf665f2a
       risk:
@@ -110,6 +104,4 @@ Test and Verification:
         iso27001-2022:
           - 8.32
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""

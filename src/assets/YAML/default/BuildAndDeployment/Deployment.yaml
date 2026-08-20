@@ -17,7 +17,7 @@ Build and Deployment:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/blue-green-deployment
       dependsOn:
-        - Smoke Test
+        - 73aaae0b-5d68-4953-9fa4-fd25bf665f2a # Smoke Test
       references:
         samm2:
           - I-SD-A-3
@@ -35,8 +35,6 @@ Build and Deployment:
           - 8.32
           - 8.19
           - 8.29
-      isImplemented: false
-      evidence: ""
       comments: ""
     Canary deployment:
       uuid: c4204a32-2545-4424-b524-d1cc52b46abd
@@ -99,8 +97,6 @@ Build and Deployment:
           - 8.29
           - 8.31
           - 8.32
-      isImplemented: false
-      evidence: ""
       comments: ""
     Defined decommissioning process:
       uuid: da4ff665-dcb9-4e93-9d20-48cdedc50fc2
@@ -128,8 +124,6 @@ Build and Deployment:
           - 11.2.7
         iso27001-2022:
           - 7.14
-      isImplemented: false
-      evidence: ""
       comments: ""
     Defined deployment process:
       uuid: 74938a3f-1269-49b9-9d0f-c43a79a1985a
@@ -195,6 +189,56 @@ Build and Deployment:
         iso27001-2022:
           - 5.37
           - 8.32
+    Drift detection for deployed configuration:
+      uuid: 9cba815f-02d2-4b06-a11f-7f28580e135a
+      description: |-
+        Deployment pipelines put an approved, versioned state into production —
+        drift detection continuously verifies that production still matches it.
+        Deployed infrastructure and configuration can be changed past the
+        pipeline: through a quick hotfix, direct console or shell access, or a
+        compromised automation account. Continuously comparing the running
+        state against the versioned desired state (e.g. GitOps reconciliation,
+        infrastructure-as-code plan diffs) detects such out-of-band changes.
+      risk: |-
+        Production is modified outside the deployment process — a manual
+        hotfix, a console change or an attacker altering configuration. The
+        running state no longer matches the reviewed, versioned state:
+        hardening is silently loosened and never restored, the repository
+        gives a false sense of the deployed reality, and rebuilding the
+        environment reproduces neither the fix nor the compromise analysis.
+      measure: |-
+        Continuously compare the deployed state of infrastructure and
+        configuration against the versioned desired state (e.g. via GitOps
+        controllers that reconcile and report drift, or scheduled
+        infrastructure-as-code plan runs). Alert on every deviation and either
+        revert it automatically to the approved state or bring the change
+        through the regular review process. Document intentional exceptions
+        so the alerts stay actionable.
+      dependsOn:
+        - 67e1a9aa-9fbf-4ec5-a2de-400f01960c51 # Automated deployment process
+      assessment: |
+        - Show the drift detection mechanism (e.g. GitOps reconciliation status or scheduled plan diffs) and the covered environments.
+        - Demonstrate that an out-of-band change to production configuration raises an alert or is reverted automatically.
+        - Show how the last drift finding was handled (automatic revert or formal re-approval) and the documented exceptions.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 3
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/gitops
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/argocd
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/fluxcd
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/terraform
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 12.1.2
+        iso27001-2022:
+          - 8.9
+      comments: ""
     Environment depending configuration parameters (secrets):
       uuid: df428c9d-efa0-4226-9f47-a15bb53f822b
       risk: >-
@@ -225,7 +269,6 @@ Build and Deployment:
           - 8.31
         d3f:
           - ApplicationConfigurationHardening
-      isImplemented: false
       tags:
         - secret
     Handover of confidential parameters:
@@ -247,7 +290,7 @@ Build and Deployment:
       level: 3
       implementation: ""
       dependsOn:
-        - Environment depending configuration parameters (secrets)
+        - df428c9d-efa0-4226-9f47-a15bb53f822b # Environment depending configuration parameters (secrets)
       references:
         samm2:
           - I-SD-B-2
@@ -265,7 +308,6 @@ Build and Deployment:
           - 8.24
         d3f:
           - ApplicationConfigurationHardening
-      isImplemented: false
       tags:
         - secret
     Inventory of production dependencies:
@@ -279,7 +321,7 @@ Build and Deployment:
         exists.
       dependsOn:
         - 83057028-0b77-4d2e-8135-40969768ae88 # Inventory of production artifacts
-        - SBOM of components
+        - 2858ac12-0179-40d9-9acf-1b839c030473 # SBOM of components
       difficultyOfImplementation:
         knowledge: 2
         time: 2
@@ -403,8 +445,6 @@ Build and Deployment:
           - 8.19
           - 8.32
           - 8.14
-      isImplemented: false
-      evidence: ""
       comments: ""
     Same artifact for environments:
       uuid: a854b48d-83bd-4f8d-8621-a0bdd470837f
@@ -423,7 +463,7 @@ Build and Deployment:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
       dependsOn:
-        - Defined build process
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
       references:
         samm2:
           - I-SD-A-2
@@ -436,8 +476,6 @@ Build and Deployment:
           - 8.33
           - 8.29
           - 8.31
-      isImplemented: false
-      evidence: ""
       comments: ""
     Usage of feature toggles:
       uuid: a511799b-045e-4b96-9843-7d63d8c1e2ad
@@ -457,7 +495,7 @@ Build and Deployment:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/martin-feature-toggles
       dependsOn:
-        - Same artifact for environments
+        - a854b48d-83bd-4f8d-8621-a0bdd470837f # Same artifact for environments
       references:
         samm2:
           - I-SD-A-2
@@ -472,8 +510,6 @@ Build and Deployment:
           - 8.31
         d3f:
           - ApplicationConfigurationHardening
-      isImplemented: false
-      evidence: ""
       comments: ""
     Evaluation of the trust of used components:
       uuid: 0de465a6-55a7-4343-af79-948bb5ff10ba
@@ -503,6 +539,4 @@ Build and Deployment:
           - Not explicitly covered by ISO 27001 - too specific
           - 8.25
           - 8.27
-      isImplemented: false
-      evidence: ""
       comments: ""

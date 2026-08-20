@@ -69,8 +69,6 @@ Culture and Organization:
           - 7.1.1
         iso27001-2022:
           - 6.1
-      isImplemented: false
-      evidence: ""
       comments: ""
     Aligning security in teams:
       uuid: f994a55d-71bb-45a4-a887-0a213d72c504
@@ -96,8 +94,6 @@ Culture and Organization:
           - 7.1.1
         iso27001-2022:
           - 6.1
-      isImplemented: false
-      evidence: ""
       comments: ""
     Conduction of build-it, break-it, fix-it contests:
       uuid: bfdb576e-a416-4ec6-96fe-a078d58b2ff8
@@ -124,8 +120,6 @@ Culture and Organization:
           - 7.2.2
         iso27001-2022:
           - 6.3
-      isImplemented: false
-      evidence: ""
       comments: ""
     Conduction of collaborative security checks with developers and system administrators:
       uuid: 95caef96-36ed-458c-a087-5c35d4f9dec2
@@ -159,8 +153,6 @@ Culture and Organization:
           - 6.3
           - 8.8
           - 8.34
-      isImplemented: false
-      evidence: ""
       comments: ""
     Conduction of collaborative team security checks:
       uuid: 35446784-7610-40d9-af9e-d43f3173bf8c
@@ -185,8 +177,6 @@ Culture and Organization:
         iso27001-2022:
           - Mutual security testing is not explicitly required in ISO 27001 may be
           - 6.3
-      isImplemented: false
-      evidence: ""
       comments: ""
     Conduction of war games:
       uuid: 534f60bf-0995-4314-bb9c-f0f2bf204694
@@ -216,8 +206,6 @@ Culture and Organization:
           - 6.3
           - 5.24
           - 5.26
-      isImplemented: false
-      evidence: ""
       comments: ""
     Each team has a security champion:
       uuid: 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87
@@ -253,8 +241,6 @@ Culture and Organization:
           - Security champions are missing in ISO 27001 most likely
           - 5.4
           - 6.3
-      isImplemented: false
-      evidence: ""
       comments: ""
     Regular security training for all:
       uuid: 9768f154-357a-4c06-af6f-d66570677c9b
@@ -286,8 +272,6 @@ Culture and Organization:
           - 7.2.2
         iso27001-2022:
           - 6.3
-      isImplemented: false
-      evidence: ""
       comments: ""
     Regular security training for externals:
       uuid: 31833d56-35af-4ef3-9300-f23d27646ce7
@@ -311,8 +295,6 @@ Culture and Organization:
           - 7.2.2
         iso27001-2022:
           - 6.3
-      isImplemented: false
-      evidence: ""
       comments: ""
     Regular security training of security champions:
       uuid: f88d1b17-3d7d-4c3d-8139-ad44fc4942d4
@@ -330,7 +312,7 @@ Culture and Organization:
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-cheatsheet-series
       dependsOn:
-        - Each team has a security champion
+        - 6217fe11-5ed7-4cf4-9de4-555bcfa6fe87 # Each team has a security champion
       references:
         samm2:
           - D-TA-B-2
@@ -341,8 +323,6 @@ Culture and Organization:
         iso27001-2022:
           - Security champions are missing in ISO 27001
           - 6.3
-      isImplemented: false
-      evidence: ""
       comments: ""
     Reward of good communication:
       uuid: 91b6f75b-9f4a-4d77-95a2-af7ad3222c7c
@@ -369,8 +349,6 @@ Culture and Organization:
             but nothing to promote good behavior.
         iso27001-2022:
           - ISO 27001:2022 mapping is missing
-      isImplemented: false
-      evidence: ""
       comments: ""
     Security code review:
       uuid: 7121b0c7-6ace-4d6b-95d0-94535dbccb57
@@ -407,8 +385,6 @@ Culture and Organization:
           - ISO 27001:2017 mapping is missing
         iso27001-2022:
           - ISO 27001:2022 mapping is missing
-      isImplemented: false
-      evidence: ""
       comments: ""
     Security consulting on request:
       uuid: 0b28367b-75a0-4bae-a926-3725c1bf9bb0
@@ -443,8 +419,6 @@ Culture and Organization:
           - 5.2
           - 5.6
           - 5.8
-      isImplemented: false
-      evidence: ""
       comments: ""
     Security-Lessoned-Learned:
       uuid: 58c46807-fee9-448b-b6dd-8050c464ab52
@@ -468,8 +442,6 @@ Culture and Organization:
           - 16.1.6
         iso27001-2022:
           - 5.27
-      isImplemented: false
-      evidence: ""
       comments: ""
     Simple mob hacking:
       uuid: 535f301a-e8e8-4eda-ad77-a08b035c92de
@@ -508,6 +480,4 @@ Culture and Organization:
           - 7.2.2
         iso27001-2022:
           - 6.3
-      isImplemented: false
-      evidence: ""
       comments: ""

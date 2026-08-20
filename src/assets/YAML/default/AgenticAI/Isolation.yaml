@@ -1,0 +1,491 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-agentic-ai.json
+---
+Agentic AI:
+  Isolation:
+    Usage of sandboxing for AI agents:
+      uuid: 4debe8ea-f54a-4a00-a1cb-6fad9e571a88
+      description: |-
+        AI coding assistants and agents execute commands, install dependencies and
+        run generated code autonomously. Running them in disposable, sandboxed
+        environments limits the blast radius of malicious or faulty agent behavior.
+
+        Use a sandboxing technology to isolate agent runs, e.g. container-based
+        isolation (dev containers), lightweight virtual machines or OS-level
+        sandboxing mechanisms. Mount only the repository being worked on, avoid mounting
+        credentials (e.g. cloud CLI configuration, SSH keys) and drop unneeded capabilities.
+        Destroy the environment after the task is finished. Restricting network
+        egress of the sandbox is addressed by _Network isolation for AI agents_.
+      risk: |-
+        An AI agent may be manipulated (e.g. via prompt injection in source code,
+        issues, dependencies or web content) or may malfunction. Without isolation,
+        it can read secrets, modify unrelated projects, exfiltrate data or damage
+        the developer workstation and connected systems.
+      measure: |-
+        Run AI agents and AI coding assistants with command execution capabilities in
+        a dedicated, least-privilege sandbox (e.g. a container or virtual machine)
+        which contains only the required project files and is destroyed after use.
+      assessment: |
+        - Show the sandbox configuration used for AI agent runs (e.g. a dev container definition) and demonstrate a live agent session running inside it.
+        - Show that only the project working directory is mounted and no credentials (SSH keys, cloud CLI configuration) are reachable from inside the environment.
+        - Demonstrate that the environment is destroyed after the task is finished.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 1
+      tags:
+        - ai
+        - isolation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ncc-ai-coding-agent-security
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-permissions
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c09
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c04
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/opensandbox
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-sandboxes
+      references:
+        samm2:
+          - I-SB-A-2
+        iso27001-2017:
+          - 14.2.6
+        iso27001-2022:
+          - 8.31
+      comments: ""
+    Network isolation for AI agents:
+      uuid: 951e6090-057b-4dc4-8b4f-18c6adcfc1ab
+      description: |-
+        Restricting the network egress of AI agent environments prevents data
+        exfiltration and the download of malicious tooling in case an agent is
+        hijacked through prompt injection.
+
+        Example for a coding agent like Claude Code running in a container:
+
+        1. **Firewall inside the container**: on container start, an init script
+           running with the `NET_ADMIN` capability configures a default-deny
+           egress policy (iptables) and resolves an allow-list of required
+           domains into an ipset: model API (e.g. `api.anthropic.com`), package
+           registries (e.g. `registry.npmjs.org`) and the source code management
+           system. Anthropic's reference devcontainer ships this as
+           `init-firewall.sh`. The agent process runs as a non-root user
+           afterwards, so it cannot alter the firewall rules it is confined by.
+        2. **Alternative, egress proxy**: attach the container to an internal
+           network without direct internet access (e.g.
+           `docker network create --internal`) and route traffic through a
+           filtering HTTP(S) proxy (`HTTPS_PROXY` environment variable) that
+           enforces the domain allow-list and logs all requests. In Kubernetes,
+           enforce the same with NetworkPolicies or a service mesh egress
+           gateway.
+        3. **DNS**: allow DNS only to the internal resolver and only for
+           allow-listed domains, otherwise blocked domains remain reachable via
+           direct IP or DNS tunneling can be used for exfiltration.
+        4. **Verify**: from inside the running container, check that a request
+           to an allow-listed endpoint succeeds and a request to an arbitrary
+           host (e.g. `curl https://example.com`) is blocked.
+
+        Isolation-conscious design pays a double dividend: forcing all agent
+        traffic through one enforced egress point (firewall or proxy) creates
+        a monitored bottleneck. Attacks that would otherwise be invisible
+        must pass through it, which is a high-leverage place for detection
+        (see the Google DeepMind AI Control Roadmap).
+      risk: |-
+        A prompt-injected AI agent can exfiltrate source code, secrets or personal
+        data to arbitrary hosts, or download and execute attacker-controlled payloads.
+      measure: |-
+        Limit network access of AI agent environments to an allow-list of required
+        endpoints (e.g. model API, package registries, source code management system).
+        Deny all other egress traffic by default.
+      dependsOn:
+        - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # Usage of sandboxing for AI agents
+      assessment: |
+        - Show the egress policy of the agent environment (firewall init script, proxy configuration or network policies) including the domain allow-list.
+        - Demonstrate from inside the agent environment that an allow-listed endpoint is reachable and a request to an arbitrary host is blocked.
+        - Show where blocked egress attempts are logged and who reviews them.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - isolation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-permissions
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c09
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c04
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/claude-code-devcontainer
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/gdm-ai-control-roadmap
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/firewalls
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/container-technology
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/opensandbox
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-sandboxes
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 13.1.3
+        iso27001-2022:
+          - 8.22
+      comments: ""
+    Untrusted workspace handling for AI agents:
+      uuid: 859c71b6-110f-40a9-9c98-20e8314ebdb7
+      description: |-
+        Launching an AI coding agent inside a cloned third-party repository
+        can hand control to the repository author before the user grants any
+        trust: documented vulnerabilities in several agents (e.g. Claude
+        Code, Cursor) showed that files under the repository's control
+        (agent settings, hooks, definitions of Model Context Protocol (MCP)
+        servers, bundled executables) were already evaluated while the
+        workspace trust dialog was still unanswered. Even a checkout done
+        only for a code review can therefore be enough to compromise the
+        developer workstation.
+      risk: |-
+        An attacker publishes a prepared repository; when a developer opens
+        it with an AI agent, configuration or executables under the
+        attacker's control run on the developer machine before any trust
+        decision, with access to credentials and every other project on
+        that machine.
+      measure: |-
+        Treat third-party repositories as untrusted workspaces: open them only
+        in an isolated container, do not honor repo-local agent configuration
+        (hooks, MCP servers, settings) of untrusted origin, keep agent versions
+        patched and never disable workspace trust prompts.
+      dependsOn:
+        - 4debe8ea-f54a-4a00-a1cb-6fad9e571a88 # Usage of sandboxing for AI agents
+      assessment: |
+        - Show the documented procedure for opening third-party repositories with AI agents.
+        - Demonstrate that workspace trust prompts are enabled and that repository-local agent configuration (hooks, MCP servers, settings) is not honored for untrusted repositories.
+        - Show how agent versions are kept patched (update mechanism or policy).
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - isolation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ncc-ai-coding-agent-security
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/claude-code-devcontainer
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/docker-sandboxes
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 14.2.6
+        iso27001-2022:
+          - 8.31
+      comments: ""
+    Permission management for AI agents:
+      uuid: 4a618049-19da-4e20-b933-81f203ecd4d2
+      description: |-
+        AI coding agents have their own permission model that controls which
+        tools, commands and file operations they may execute and which actions
+        are auto-approved (e.g. the allow-list in Claude Code settings).
+        These grants accumulate over time through convenience approvals and
+        form the first authorization layer, before any external credential is
+        involved.
+      risk: |-
+        Overly broad "always allow" grants accumulate unnoticed. A manipulated
+        or malfunctioning agent executes destructive commands, accesses
+        credential stores or pushes code without any confirmation, because the
+        permission was granted once and never reviewed.
+      measure: |-
+        Configure agent permissions default-deny if agents are not isolated (e.g. least privileges with a container): 
+        require confirmation for sensitive operations (pushes, deletions, network access, credential
+        paths), distribute a hardened baseline configuration to all projects and
+        audit the accumulated allow-lists regularly.
+      assessment: |
+        - Show the hardened baseline permission configuration that is distributed to projects.
+        - Demonstrate that a sensitive operation (e.g. push, deletion, access to credential paths) requires confirmation.
+        - Show the last audit of accumulated allow-lists including date and findings.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - isolation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ncc-ai-coding-agent-security
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-permissions
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c09
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/grantguard
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 9.2.3
+        iso27001-2022:
+          - 8.2
+      comments: ""
+    Human approval for irreversible AI agent actions:
+      uuid: cd1cb2bd-4bd6-4b9f-beaa-921fe9ea9576
+      description: |-
+        Agent actions differ vastly in blast radius: reading data is harmless,
+        transferring money is not. Graduated human oversight assigns every
+        class of agent action an approval tier based on its reversibility:
+        low-risk, reversible actions run autonomously within guardrails;
+        reversible actions with business impact run under monitoring with an
+        intervention window; irreversible actions (financial transactions,
+        permission changes, sharing data with third parties, outbound
+        communication) require explicit human approval before execution,
+        high-risk ones by two independent people (four-eyes principle).
+        Whereas _Permission management for AI agents_ governs the agent's
+        tool-level permission model, this activity governs the business
+        actions an agent performs through those tools. It completes the
+        human-oversight ladder started by the artifact reviews
+        (_Human review of AI generated specifications_, _Human review of
+        AI generated plans_, _Human review of AI generated code_ in
+        Verification): those gate what is built, this activity gates what
+        a running agent does.
+      risk: |-
+        A manipulated (e.g. via prompt injection) or malfunctioning agent
+        performs an action that cannot be rolled back: money is transferred,
+        data reaches a third party, an e-mail is sent, permissions are
+        escalated. After-the-fact monitoring cannot undo it. The opposite
+        failure mode is rubber-stamping: approvals nobody actually reads
+        create the appearance of oversight without any. Attackers exploit
+        this deliberately. A manipulated agent justifies a harmful action
+        with a fabricated but plausible rationale, and the approver waves
+        it through because the agent appears competent (automation bias,
+        see OWASP Top 10 for Agentic Applications, ASI09).
+      measure: |-
+        Classify agent action types by reversibility and assign approval
+        tiers: pre-approval for irreversible actions, monitoring with an
+        intervention window for reversible actions with business impact
+        (e.g. buffer outbound messages for a defined period so an
+        intervention stops delivery), autonomy only for low-risk reversible
+        actions. If the reversibility of an action class cannot be
+        demonstrated, default to pre-approval. Require a second, independent
+        approver for high-risk actions, record the approver identity, the
+        decision context and the reason in the audit log, and design the
+        approval step so the approver actually sees the action and its
+        context instead of clicking through.
+      dependsOn:
+        - 4a618049-19da-4e20-b933-81f203ecd4d2 # Permission management for AI agents
+        - 84ba7525-857e-4849-98ba-5fada1a1454d # Audit logging of AI agent actions
+      assessment: |
+        - Show the classification of agent action types by reversibility and the approval tier assigned to each class.
+        - Demonstrate that an irreversible action (e.g. an outbound message or a permission change) is blocked until a human approves it, and that an intervention within the monitoring window stops a buffered action.
+        - Show a high-risk action with two documented, independent approvals.
+        - Show an audit log entry of an approval including approver identity, decision context and reason.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 4
+      tags:
+        - ai
+        - isolation
+        - human-approval
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/eu-ai-act
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 6.1.2
+        iso27001-2022:
+          - 5.3
+      comments: ""
+    Least privilege on external systems for AI agents:
+      uuid: 45f722b2-25b4-472a-a743-f7207a77b5c9
+      description: |-
+        Beyond their own permission model, AI agents authenticate against
+        external systems: source code management (e.g. GitHub), CI/CD, cloud
+        providers and internal APIs. Scoped, short-lived and auditable
+        credentials ensure an agent can only perform the actions required for
+        its task on those systems.
+      risk: |-
+        AI agents using broadly scoped personal or service credentials can be tricked
+        into destructive or unauthorized actions (e.g. deleting repositories, approving
+        their own pull requests, accessing production data).
+      measure: |-
+        Provide AI agents with dedicated identities and short-lived, minimally scoped
+        credentials (e.g. fine-grained access tokens restricted to one repository).
+        Where supported, keep credentials out of the agent process entirely: a
+        proxy or gateway injects them at the network boundary ("secretless"
+        architecture), so a prompt-injected agent cannot exfiltrate what it
+        never holds. Log and review agent actions separately from human actions.
+      dependsOn:
+        - 4a618049-19da-4e20-b933-81f203ecd4d2 # Permission management for AI agents
+      assessment: |
+        - Show a dedicated agent identity in the source code management system (or other external system) and the scopes granted to it.
+        - Show that agent credentials are short-lived and minimally scoped (token configuration or issuance policy).
+        - Show where agent credentials are stored and injected, preferably outside the agent process (e.g. credential injection at a proxy or gateway).
+        - Demonstrate that agent actions are distinguishable from human actions in the audit log.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - isolation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/agent-identity-access-model
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-cloud
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c05
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/hashicorp-vault
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anthropic-zero-trust-agents
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/opensandbox
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 9.2.3
+        iso27001-2022:
+          - 8.2
+      comments: ""
+    Trust boundaries between AI agents:
+      uuid: abe74dfd-d554-4ec5-8b94-f75d352afaaa
+      description: |-
+        In multi-agent systems, agents delegate tasks to other agents, and
+        the trust relationships between them are dynamic and often implicit.
+        Two failure modes dominate (OWASP Top 10 for Agentic Applications,
+        ASI03):
+        - Unscoped privilege inheritance: a delegating agent hands its
+          complete permissions down to a subagent whose task requires only
+          a fraction of them.
+        - Confused deputy: an attacker who controls a weakly privileged
+          agent routes plausible requests through a strongly privileged
+          one. The receiving agent executes them because they arrive from
+          a familiar peer, and nobody checks the original intent.
+
+        Explicit trust boundaries treat every delegation like an external
+        request. The receiving agent verifies the identity and
+        authorization of the delegating agent instead of trusting the
+        chain. The messages between agents need the same protection as the
+        delegation itself: without mutual authentication, message signing
+        and replay protection, an attacker can spoof or replay agent
+        messages and register fake agents in the discovery mechanism
+        (ASI07, Insecure Inter-Agent Communication). Splitting a large
+        agent into several smaller ones compartmentalizes risk only if
+        each agent has its own identity and credentials. Shared
+        credentials undo the compartmentalization. _Least privilege on
+        external systems for AI agents_ scopes each agent's access to
+        external systems; this activity scopes the trust between the
+        agents themselves.
+      risk: |-
+        An attacker compromises one low-privilege agent (e.g. via prompt
+        injection) and pivots through delegation: higher-privileged agents
+        accept its requests unchecked, inherited access contexts carry full
+        permissions into subtasks, and the attacker reaches systems the
+        initially compromised agent could never access directly.
+      measure: |-
+        Give every agent its own identity and its own credentials, never
+        shared between agents. Scope each delegated task to the minimum
+        permissions it needs instead of passing on the delegating agent's
+        access context. Check at every step of a multi-agent workflow that
+        the delegating agent is who it claims to be and is authorized to
+        request the action. Secure the communication channel itself with
+        mutual authentication and signed messages (e.g. mutual TLS),
+        replay protection (e.g. nonces and expiry times) and rejection of
+        protocol downgrades. Accept agents into a workflow only from a
+        registry or discovery mechanism that verifies agent identity and
+        descriptors. Record the communication between agents so that
+        delegations deviating from the usual patterns surface for review
+        (see _Audit logging of AI agent actions_ and _Anomaly detection
+        for AI agent behavior_).
+      dependsOn:
+        - 45f722b2-25b4-472a-a743-f7207a77b5c9 # Least privilege on external systems for AI agents
+        - 84ba7525-857e-4849-98ba-5fada1a1454d # Audit logging of AI agent actions
+      assessment: |
+        - Show that each agent in a multi-agent workflow has its own identity and credentials (no shared credentials).
+        - Show how a delegated task receives a reduced permission scope instead of the delegating agent's full access context.
+        - Demonstrate that a delegation from an unauthorized or unknown agent is rejected.
+        - Show how inter-agent messages are authenticated and protected against replay, and that a message from an unregistered agent or a protocol downgrade is rejected.
+        - Show how inter-agent communication is logged and how unusual delegation patterns are flagged.
+      difficultyOfImplementation:
+        knowledge: 4
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 4
+      tags:
+        - ai
+        - isolation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/agent-identity-access-model
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c05
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/anthropic-zero-trust-agents
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 9.2.3
+        iso27001-2022:
+          - 8.2
+      comments: ""
+    Rate limiting and resource budgets for AI systems:
+      uuid: 64aef733-bfb0-4df4-95de-bcecf668605d
+      description: |-
+        Every model call costs compute and money, and AI endpoints answer
+        expensive requests on demand. Without limits a single user, script or
+        runaway agent can exhaust the service: availability suffers or the
+        provider bill explodes ("denial of wallet"), and mass querying of a
+        model additionally enables extraction of its behavior via
+        input-output harvesting. Limits apply in both directions: inbound on
+        exposed AI endpoints (requests per user and time window), outbound
+        for the organization's own agents (token and cost budgets, iteration
+        caps against runaway loops). The generic resource limits for
+        infrastructure are defined in _Virtual environments are limited_
+        (Implementation). This activity adds the AI-specific units:
+        requests, tokens and cost.
+      risk: |-
+        An attacker or a buggy client floods an AI endpoint with expensive
+        requests: the service becomes unavailable for legitimate users or
+        causes unbounded provider costs. A runaway agent loops at machine
+        speed and burns budget unnoticed. Unlimited mass querying supports
+        model extraction and brute-force prompt attacks.
+      measure: |-
+        Enforce rate limits per user, API key or tenant on all AI endpoints
+        and restrict input size before it reaches the model. Set token and
+        cost budgets per agent, team and time period, with alerts before a
+        budget is exhausted. Cap agent iterations (maximum tool calls or
+        recursion depth per task) so runaway loops terminate. An LLM gateway
+        or proxy centralizes these limits across models and providers.
+      dependsOn:
+        - 10e23a8c-22ff-4487-a706-87ccc9d0798e # Monitoring of costs
+        - 8a442d8e-0eb1-4793-a513-571aef982edd # Alerting
+      assessment: |
+        - Show the rate limit configuration of an AI endpoint and a test where the limit triggers.
+        - Show the token and cost budgets per agent or team and the alert before a budget is exhausted.
+        - Show the iteration cap of an agent and what happens when it is reached.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - isolation
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/litellm
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/tealtiger
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-ai-exchange
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-llm-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 12.1.3
+        iso27001-2022:
+          - 8.6
+      comments: ""

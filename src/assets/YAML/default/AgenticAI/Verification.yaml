@@ -1,0 +1,542 @@
+# yaml-language-server: $schema=../../schemas/dsomm-schema-agentic-ai.json
+---
+Agentic AI:
+  Verification:
+    Human review of AI generated specifications:
+      uuid: 09307f26-bf34-49c2-828e-649130876978
+      description: |-
+        In AI-assisted development, human attention scales best at the
+        specification level: one page of specification determines what all
+        downstream artifacts (plans, code, tests) will contain, and an
+        error here is multiplied into every one of them. Reviewing the
+        specification the AI works from (a user story with acceptance
+        criteria, or the specify-phase artifact in spec-driven development)
+        catches wrong intent, missing security requirements and wrong
+        assumptions before anything is generated. It is the first rung of
+        the human-oversight ladder that continues with _Human review of AI
+        generated plans_, _Human review of AI generated code_ and _Human
+        approval for irreversible AI agent actions_ (Isolation).
+      risk: |-
+        An AI assistant implements exactly what an unreviewed specification
+        says: missing authorization requirements, absent abuse cases and
+        wrong assumptions are faithfully turned into plans, code and tests.
+        Later code review rarely catches this, because reviewers check whether
+        the code matches the specification, not whether the specification is
+        right.
+      measure: |-
+        Require human review of the specification before AI-assisted
+        implementation starts: are the security acceptance criteria complete,
+        are scope and assumptions correct, is anything security-relevant
+        missing? In spec-driven workflows, make this review the gate of the
+        specify phase and keep the reviewed specification under version
+        control.
+      dependsOn:
+        - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      assessment: |
+        - Show a recent specification an AI assistant worked from and its documented human review before implementation started.
+        - Show that the review checked the security acceptance criteria (e.g. review comments or a checklist).
+        - In spec-driven workflows: show that the specify phase cannot be left without the review gate.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 5
+      level: 2
+      tags:
+        - ai
+        - verification
+        - human-review
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/new-sdlc-vibe-coding
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spec-kit
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+      references:
+        samm2:
+          - D-SR-A-1
+        iso27001-2017:
+          - 14.1.1
+        iso27001-2022:
+          - 8.26
+      comments: ""
+    Human review of AI generated plans:
+      uuid: 1bd1308d-ae3b-499a-ae81-818993571f52
+      description: |-
+        Between specification and code sits the plan: which components are
+        touched, which dependencies are added, how the security requirements
+        will be implemented. Reviewing the AI-generated plan catches
+        design-level flaws (a dropped security requirement, an insecure
+        design choice, an unnecessary new dependency, changes to
+        security-critical components) while they are still one line in a
+        plan instead of hundreds of generated lines of code. In spec-driven
+        development this is the gate of the plan phase; agents also propose
+        plans outside formal workflows (e.g. a plan mode) that can be
+        reviewed the same way.
+      risk: |-
+        The AI-generated plan silently drops security requirements from the
+        specification, chooses an insecure design or pulls in avoidable
+        dependencies. The agent then generates large amounts of code against
+        the flawed plan. Code reviewers, biased by plausible-looking
+        code, then verify the implementation against the plan instead of
+        questioning the plan itself.
+      measure: |-
+        Require human review of the plan before AI-assisted implementation:
+        verify that every security requirement from the specification is
+        carried through, that security-relevant design decisions are
+        justified and that changes to security-critical components are
+        flagged for deeper review. In spec-driven workflows, make this
+        review the gate of the plan phase and keep the reviewed plan under
+        version control.
+      dependsOn:
+        - 09307f26-bf34-49c2-828e-649130876978 # Human review of AI generated specifications
+        - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
+      assessment: |
+        - Show a recent AI-generated plan and its documented human review before implementation.
+        - Show that the review traced the security requirements from the specification into the plan.
+        - Show how plans touching security-critical components are flagged for deeper review.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - verification
+        - human-review
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/new-sdlc-vibe-coding
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/spec-kit
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/threat-modeling-play
+      references:
+        samm2:
+          - D-SR-A-1
+        iso27001-2017:
+          - 14.2.1
+        iso27001-2022:
+          - 8.25
+      comments: ""
+    Human review of AI generated code:
+      uuid: d6bc0b7f-fd98-49fe-b66c-7c5fa70452c6
+      description: |-
+        AI-generated code is plausible-looking by construction and often accepted
+        without scrutiny ("automation bias"). It must be treated like code from an
+        untrusted contributor: a human with knowledge of the codebase reviews it
+        before it is merged. The upstream reviews of specification and plan
+        (_Human review of AI generated specifications_, _Human review of AI
+        generated plans_) reduce what code review must catch, and the
+        automated gates (_Self-verification of AI generated changes_, _Static
+        and dynamic analysis of AI generated code_) filter mechanical
+        findings. Neither replaces this activity: agents deviate from
+        approved plans, so the code remains the last artifact gate before
+        merge.
+      risk: |-
+        AI-generated code containing subtle logic flaws, insecure defaults or
+        hallucinated/typo-squatted dependencies is merged unreviewed because it
+        "looks right" and compiles.
+      measure: |-
+        Require human review for all AI-generated changes before merge. Reviewers are
+        accountable for the change as if they had written it. AI agents must not be
+        able to approve or merge their own pull requests.
+      dependsOn:
+        - 45f722b2-25b4-472a-a743-f7207a77b5c9 # Least privilege on external systems for AI agents
+      assessment: |
+        - Show branch protection requiring human review before merge and that agent identities cannot approve or merge their own pull requests.
+        - Show recent reviews of AI-generated changes and who is accountable for them.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 1
+      usefulness: 5
+      level: 3
+      tags:
+        - ai
+        - verification
+        - human-review
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/new-sdlc-vibe-coding
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/gdm-ai-control-roadmap
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-verify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-policies
+      references:
+        samm2:
+          - V-ST-A-1
+        iso27001-2017:
+          - 14.2.3
+        iso27001-2022:
+          - 8.29
+      comments: ""
+    Validation of AI-suggested dependencies:
+      uuid: df2db3f4-bae6-448e-844e-9562a4eabc39
+      description: |-
+        AI assistants hallucinate package names: research found around 20% of
+        dependencies suggested by LLMs do not exist. Attackers register these
+        names ("slopsquatting") or typo-variants on public registries, so blindly
+        installing AI-suggested packages imports attacker-controlled code.
+
+        Automate the checks so they do not depend on developer discipline:
+
+        - **Enforce a minimum OpenSSF Scorecard score** for new
+          dependencies, e.g. as a policy check in a pull-through proxy like an artifact registry or in the pull request
+          pipeline. Scorecard rates projects on maintenance, code review,
+          branch protection, dangerous workflows and vulnerability
+          handling; a threshold (e.g. score >= 5) filters low-hygiene and
+          abandoned packages before a human even reviews them.
+        - **Verify identity and existence**: does the package match the
+          intended project (publisher, source repository, age, download
+          counts)? Hallucinated and slopsquatted names fail exactly these
+          checks; tools like packj flag them automatically.
+        - **Gate before merge**: run the established software composition
+          analysis and the artifact repository policy on the change that
+          adds the dependency, so a malicious or compromised version never
+          enters the build.
+      risk: |-
+        A developer installs an AI-suggested package that is hallucinated,
+        typo-squatted or malicious. The package executes attacker code during
+        install or at runtime and compromises the application and build
+        environment.
+      measure: |-
+        Verify every AI-suggested dependency before adoption: check that the
+        package exists, is the intended one (name, publisher, repository), is
+        actively maintained and passes the established software composition
+        analysis. Prefer dependencies already used in the organization.
+      dependsOn:
+        - d918cd44-a972-43e9-a974-eff3f4a5dcfe # Software Composition Analysis (server side)
+      assessment: |
+        - Show the documented verification steps for adopting a new dependency and a recent example of an AI-suggested package that was checked (or rejected).
+        - Show that software composition analysis covers AI-suggested packages before merge.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - verification
+        - sca
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c06
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/packj
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openssf-scorecard
+      references:
+        samm2:
+          - V-ST-A-2
+        iso27001-2017:
+          - 14.2.5
+        iso27001-2022:
+          - 8.27
+      comments: ""
+    Security test generation with AI:
+      uuid: fea96e68-de10-4a62-9df0-4727f700a4a0
+      description: |-
+        AI assistants can generate security-focused test cases (abuse cases,
+        authorization tests, input fuzzing, tests derived from threat models and
+        acceptance criteria) alongside the implementation, increasing security
+        test coverage at low cost.
+      risk: |-
+        Security requirements are implemented but never tested, because writing
+        security tests manually is perceived as too expensive. Regressions in
+        security controls go unnoticed.
+      measure: |-
+        Use AI assistants to generate security test cases from security acceptance
+        criteria and threat models (e.g. negative tests, authorization matrices,
+        injection payloads). Review generated tests like any other AI-generated
+        code and run them in the delivery pipeline.
+      dependsOn:
+        - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Security requirements for AI-assisted development
+        - d6bc0b7f-fd98-49fe-b66c-7c5fa70452c6 # Human review of AI generated code
+      assessment: |
+        - Show security test cases generated from acceptance criteria or threat models and their human review.
+        - Show the generated tests running in the delivery pipeline.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 1
+      usefulness: 3
+      level: 3
+      tags:
+        - ai
+        - verification
+        - testing
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+      references:
+        samm2:
+          - V-ST-A-1
+        iso27001-2017:
+          - 14.2.8
+        iso27001-2022:
+          - 8.29
+      comments: ""
+    Self-verification of AI generated changes:
+      uuid: 63e82b31-4167-480d-a22b-baf8ef79af61
+      description: |-
+        An AI-generated change is only a claim until something independent
+        confirms it. Instead of presenting an untested edit, the agent
+        executes the checks the project already defines for humans (test
+        suite, type checker, linter, build) in its sandboxed environment
+        and keeps refining the change until the checks succeed or a defined
+        budget ends the attempt. What reaches the human reviewer is then a
+        verified state backed by check output, not an assertion. This
+        introduces its own failure mode, reward hacking: an agent optimizing
+        for passing checks may get there by weakening assertions, deleting
+        failing tests or hardcoding expected values instead of fixing the
+        code.
+      risk: |-
+        Unverified AI changes are delivered as plausible-looking code that does
+        not build or breaks behavior. Conversely, an agent iterating to green
+        without guardrails games the tests (weakened or deleted tests, hardcoded
+        results), so a passing suite no longer means correct code.
+      measure: |-
+        Require AI agents to verify their changes against the project's own
+        checks before presenting them, and guard the loop against test
+        manipulation: record which checks failed before the agent started so
+        it can only claim genuinely new fixes, route every edit that touches
+        test code into human review, and re-run the full suite in the
+        pipeline independent of the agent's environment.
+      dependsOn:
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
+        - eb2c7f9d-d0bd-4253-a2ba-cff2ace4a075 # Security unit tests for important components
+      assessment: |
+        - Show the agent workflow or configuration that runs the project's own checks (tests, type checker, linter, build) before changes are presented.
+        - Show the guardrails against test manipulation: baseline comparison of test results, review flags on modified test code and an independent re-run of the suite in the pipeline.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 5
+      level: 2
+      tags:
+        - ai
+        - verification
+        - testing
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/new-sdlc-vibe-coding
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-verify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+      references:
+        samm2:
+          - V-ST-A-1
+        iso27001-2017:
+          - 14.2.8
+        iso27001-2022:
+          - 8.29
+      comments: ""
+    Static and dynamic analysis of AI generated code:
+      uuid: 10362082-f48f-4218-be08-4ab78e589df0
+      description: |-
+        Static and dynamic security testing (SAST, DAST, software composition
+        analysis) is defined in the _Test and Verification_ dimension and is
+        author-agnostic. This activity references those activities for
+        AI-generated code instead of duplicating them. The AI-specific delta
+        is coverage and pace: AI agents produce code in places classic scan
+        scopes miss (generated infrastructure code, scripts, one-off tools)
+        and at a rate that makes scanning inside the development loop (e.g.
+        the agent running the static analysis itself during
+        self-verification) more important than for human-written code.
+        Complementary: _No verification bypass for AI generated code_ ensures
+        no delivery path skips these scans.
+      risk: |-
+        AI-generated code reproduces insecure patterns from training data at
+        scale. If static and dynamic analysis does not cover all AI-produced
+        artifacts, typical vulnerabilities (injection, insecure defaults,
+        hardcoded secrets) ship unnoticed, faster and in higher volume than
+        with human-written code.
+      measure: |-
+        Apply the established static and dynamic security analysis to all
+        AI-generated code and artifacts. Include AI-produced infrastructure
+        code and scripts in the scan scope and surface findings inside the
+        AI-assisted development loop, so agents can fix them before human
+        review.
+      dependsOn:
+        - 6c05c837-8c99-46e2-828b-7c903e27dba4 # Static analysis for important server side components
+        - 07796811-37f9-467c-9ff2-48f346e77ff3 # Simple Scan
+      assessment: |
+        - Show that the scan scope includes AI-produced artifacts such as generated infrastructure code and scripts.
+        - Show a recent AI-generated change where static analysis findings were surfaced and fixed inside the AI-assisted development loop.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 2
+      tags:
+        - ai
+        - verification
+        - testing
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-verify
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/vulnhunter
+      references:
+        samm2:
+          - V-ST-A-1
+        iso27001-2017:
+          - 14.2.8
+        iso27001-2022:
+          - 8.29
+      comments: ""
+    No verification bypass for AI generated code:
+      uuid: c548df0b-0964-4fad-9f98-28fcd7442011
+      description: |-
+        Automated security testing of source code and running applications (SAST,
+        DAST, SCA) is defined in the _Test and Verification_ dimension and applies
+        to all code regardless of its author. This activity does not duplicate those
+        activities; it ensures AI-generated code cannot reach production on a path
+        that skips them (e.g. agent-pushed commits, auto-merge bots, generated
+        infrastructure code outside the pipeline).
+      risk: |-
+        AI agents and code generation workflows introduce alternative paths to
+        production (direct pushes, auto-merges, generated artifacts) that bypass the
+        established SAST/DAST/SCA gates, so AI-generated vulnerabilities are never
+        scanned.
+      measure: |-
+        Enforce that every AI-generated change goes through the same defined build
+        and security testing pipeline as human-written code. Verify branch
+        protection and pipeline gates cannot be bypassed by agent identities.
+      dependsOn:
+        - f6f7737f-25a9-4317-8de2-09bf59f29b5b # Defined build process
+        - 6c05c837-8c99-46e2-828b-7c903e27dba4 # Static analysis for important server side components
+        - 07796811-37f9-467c-9ff2-48f346e77ff3 # Simple Scan
+      assessment: |
+        - Show the branch protection and pipeline gates and that agent identities cannot bypass them (e.g. no direct-push or auto-merge exceptions).
+        - Show for a sample of recent AI-generated changes that each went through the full security testing pipeline.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 2
+        resources: 1
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - verification
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-appc
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ci-cd-tools
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-policies
+      references:
+        samm2:
+          - I-SB-A-1
+        iso27001-2017:
+          - 14.2.2
+        iso27001-2022:
+          - 8.32
+      comments: ""
+    Continuous detection of compromised AI components:
+      uuid: db390bba-3a49-4b1f-9982-c7d79fe88ea1
+      description: |-
+        Trust evaluation at adoption time (see _Evaluation of the trust of
+        used AI components_) does not catch compromise that happens
+        afterwards: AI components can be hijacked later like any other
+        dependency, e.g. through a compromised publisher account or a
+        malicious update. The basis is _Test for compromised components_
+        (Test and Verification, Static depth for applications); behavioral
+        classification registries extend it to AI components: they catalog
+        agent extensions (skills, MCP servers, plugins) under persistent
+        identifiers together with a record of how each component actually
+        behaves, so a component whose behavior starts to deviate, or that
+        appears in compromise advisories, can be identified and blocked like
+        a compromised package.
+      risk: |-
+        An approved AI component (skill, MCP server, plugin, model) is
+        compromised after its adoption, e.g. via a hijacked maintainer
+        account. The malicious update runs with the agent's privileges and
+        remains trusted, because it was vetted once and is never re-checked.
+      measure: |-
+        Continuously check the inventory of approved AI components against
+        compromise intelligence: match components and versions against
+        behavioral classification registries and compromise advisories,
+        alert on deviations between declared and observed behavior and
+        quarantine affected components analogous to _Test for compromised
+        components_.
+      dependsOn:
+        - 399c5b7f-1310-4841-89f7-16daff2fe3ef # Evaluation of the trust of used AI components
+        - 9c776b4e-5895-4040-b63b-c74236ec71b3 # Test for compromised components
+      assessment: |
+        - Show how the inventory of approved AI components is matched against compromise intelligence (e.g. a behavioral classification registry) and how often.
+        - Show the alerting and quarantine process and what happened on the last hit or test.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 4
+      tags:
+        - ai
+        - verification
+        - inventory
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ave-registry
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/openssf-malicious-packages
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c06
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 15.1.1
+        iso27001-2022:
+          - 5.19
+      comments: ""
+    Drift detection for agent instructions and guardrails:
+      uuid: 30e29dfc-2bb8-4fe1-bc7e-b3a9ade1ee9e
+      description: |-
+        _Protection of agent memory against poisoning_ puts system prompts,
+        rule files and guardrail configurations under version control and
+        review. Drift detection continuously verifies that what runs in
+        production still matches the approved state. Deployed instructions
+        and guardrails can be changed past the review process: through a
+        quick hotfix, direct console access, a compromised pipeline or an
+        agent writing to its own configuration. Comparing hashes of the
+        normalized deployed content against the last approved repository
+        version detects such silent changes. The generic detection of
+        configuration drift in production is defined in _Drift detection for
+        deployed configuration_ (Build and Deployment). This activity
+        extends it to the content assets that determine agent behavior.
+      risk: |-
+        A system prompt or guardrail configuration is modified outside the
+        review process (by an attacker, by an agent altering its own
+        instructions or by a well-meant manual hotfix). The deployed agent
+        behaves differently from the reviewed state, loosened guardrails are
+        never tightened again ("configuration drift") and nobody notices,
+        because the repository still looks correct.
+      measure: |-
+        Compare the deployed state of agent instructions (system prompts,
+        rule files) and guardrail configurations against the last approved
+        repository version on a schedule (at every deployment and at least
+        daily) using hashes of normalized content. Alert on every deviation,
+        treat drift of instructions or guardrails as a security incident with
+        high priority, and either restore the approved version or formally
+        re-approve the change. Document known runtime transformations as
+        normalization exceptions to keep the false-positive rate low.
+      dependsOn:
+        - 106622af-8969-4d9b-81ad-86d8e2bfd631 # Protection of agent memory against poisoning
+        - 9cba815f-02d2-4b06-a11f-7f28580e135a # Drift detection for deployed configuration
+      assessment: |
+        - Show the drift detection mechanism (hash comparison of normalized content), its schedule and the covered assets (system prompts, rule files, guardrail configurations).
+        - Demonstrate that an out-of-band change to a deployed system prompt or guardrail raises an alert within the scan cycle.
+        - Show how the last drift alert was handled (restore or formal re-approval) and the documented normalization exceptions.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 5
+      tags:
+        - ai
+        - verification
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aigf
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/owasp-agentic-top-10
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aima
+      references:
+        samm2:
+          - O-EM-A-2
+        iso27001-2017:
+          - 12.1.2
+        iso27001-2022:
+          - 8.9
+      comments: ""
