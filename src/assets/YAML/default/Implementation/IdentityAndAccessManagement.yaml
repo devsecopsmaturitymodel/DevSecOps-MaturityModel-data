@@ -68,43 +68,6 @@ Implementation:
           - Multi-factorAuthentication
       comments: ""
 
-    Account inventory:
-      uuid: 7fe91f4d-1228-46e3-84ca-47b1d1cb8e1b
-      description: |
-        A current, owned inventory of all accounts exists, covering both human and
-        non-human (service / machine) identities. You cannot secure or right-size
-        access you cannot see.
-      risk:
-        Without an inventory, orphaned accounts, forgotten service accounts and
-        shared logins accumulate unnoticed and become a prime target for attackers
-        and a blind spot during incident response.
-      measure: |
-        - An inventory of human and non-human accounts is maintained and has a named owner.
-        - Each account maps to a responsible person or system and its purpose.
-        - The inventory is refreshed on a defined cadence or generated automatically.
-      assessment: |
-        - Present the account inventory and its owner.
-        - Sample entries and confirm each has an accountable owner and purpose.
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 3
-        resources: 2
-      usefulness: 4
-      level: 1
-      implementation: []
-      tags:
-        - identity
-        - inventory
-      references:
-        samm2:
-          - O-EM-A-1 # Configuration Hardening
-        iso27001-2017:
-          - 9.2.1 # Conduct internal audits at planned intervals
-        iso27001-2022:
-          - 5.16 # Identity management
-          - 8.2  # Privileged access rights
-      comments: ""
-
     Enforce server-side authorization on every request:
       uuid: 2244983e-5279-4a6c-b594-155a5d26ebc2
       description: |
@@ -143,6 +106,43 @@ Implementation:
       comments: ""
 
     # ---------- Level 2: consolidate and structure ----------
+
+    Account inventory:
+      uuid: 7fe91f4d-1228-46e3-84ca-47b1d1cb8e1b
+      description: |
+        A current, owned inventory of all accounts exists, covering both human and
+        non-human (service / machine) identities. You cannot secure or right-size
+        access you cannot see.
+      risk:
+        Without an inventory, orphaned accounts, forgotten service accounts and
+        shared logins accumulate unnoticed and become a prime target for attackers
+        and a blind spot during incident response.
+      measure: |
+        - An inventory of human and non-human accounts is maintained and has a named owner.
+        - Each account maps to a responsible person or system and its purpose.
+        - The inventory is refreshed on a defined cadence or generated automatically.
+      assessment: |
+        - Present the account inventory and its owner.
+        - Sample entries and confirm each has an accountable owner and purpose.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 2
+      implementation: []
+      tags:
+        - identity
+        - inventory
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 9.2.1
+        iso27001-2022:
+          - 5.16 # Identity management
+          - 8.2  # Privileged access rights
+      comments: ""
 
     Central identity provider for human access:
       uuid: 6ffb2c07-8fca-4bc1-a219-1d1944a3bbac
@@ -225,52 +225,6 @@ Implementation:
           - Multi-factorAuthentication
       comments: ""
 
-    Use correct OAuth2/OIDC authorization flows:
-      uuid: 2a2405ca-bfee-4dea-a391-dd5060cc07fa
-      description: |
-        Each client uses the OAuth2/OIDC flow appropriate for its type: Authorization
-        Code + PKCE for user-facing apps (SPA, mobile, native), Client Credentials for
-        service-to-service/machine access. Deprecated, insecure flows (Implicit Grant,
-        Resource Owner Password Credentials) are not used.
-      risk:
-        The wrong or deprecated flow leaks tokens or credentials - Implicit Grant
-        exposes tokens in the URL fragment/browser history, ROPC hands the client raw
-        user passwords, and public clients without PKCE are vulnerable to
-        authorization-code interception.
-      measure: |
-        - Each client type uses its recommended flow (Auth Code + PKCE for public/
-          user-facing clients, Client Credentials for service-to-service).
-        - Implicit Grant and ROPC are not used for new integrations, and existing
-          usage is inventoried and being retired.
-        - Redirect URIs are exact-match allow-listed, not wildcarded.
-      assessment: |
-        - For a sample of applications, show which flow each uses and confirm it
-          matches its client type.
-        - Show PKCE is enforced for public clients.
-        - Show the IdP's client registrations for any Implicit/ROPC grants and, if
-          present, the remediation plan.
-      difficultyOfImplementation:
-        knowledge: 3
-        time: 2
-        resources: 1
-      usefulness: 4
-      level: 2
-      dependsOn:
-        - Central identity provider for human access
-      implementation: []
-      tags:
-        - identity
-        - oauth
-        - oidc
-      references:
-        samm2:
-          - D-SR-A-2 # Software Requirements
-        iso27001-2017:
-          - 9.4.2 # secure Log-on procedures
-        iso27001-2022:
-          - 8.5 # Secure Authentication
-      comments: ""
-
     Least-privilege access baseline:
       uuid: d9dc7614-81fb-45a9-a1e0-e033755ddbed
       description: |
@@ -320,31 +274,85 @@ Implementation:
           - LocalAccountMonitoring
       comments: ""
 
-    Role-based access control (RBAC) baseline:
-      uuid: 070bb14b-e04a-4f3d-896a-a08eba7a35f9
+
+    # ---------- Level 3: model, automate and assure ----------
+
+    Use correct OAuth2/OIDC authorization flows:
+      uuid: 2a2405ca-bfee-4dea-a391-dd5060cc07fa
       description: |
-        Access decisions are driven by defined roles rather than ad-hoc, per-user
-        grants. Roles are declared and documented, not implicit in application code.
+        Each client uses the OAuth2/OIDC flow appropriate for its type: Authorization
+        Code + PKCE for user-facing apps (SPA, mobile, native), Client Credentials for
+        service-to-service/machine access. Deprecated, insecure flows (Implicit Grant,
+        Resource Owner Password Credentials) are not used.
       risk:
-        Without a structured model, access grants accumulate per-user and ad-hoc.
-        Nobody can answer "who can do X and why" from the code/config directly, and
-        every system enforces authorization differently.
+        The wrong or deprecated flow leaks tokens or credentials - Implicit Grant
+        exposes tokens in the URL fragment/browser history, ROPC hands the client raw
+        user passwords, and public clients without PKCE are vulnerable to
+        authorization-code interception.
       measure: |
-        - Access is restricted through defined roles (RBAC) rather than per-user grants.
-        - Roles are explicitly defined and documented, not implicit in code.
-        - New access is granted by assigning a role, not by bespoke permission edits.
+        - Each client type uses its recommended flow (Auth Code + PKCE for public/
+          user-facing clients, Client Credentials for service-to-service).
+        - Implicit Grant and ROPC are not used for new integrations, and existing
+          usage is inventoried and being retired.
+        - Redirect URIs are exact-match allow-listed, not wildcarded.
       assessment: |
-        - Present the role definitions for a sample system.
-        - Trace one access decision back to a specific role rather than a hardcoded
-          per-user check.
+        - For a sample of applications, show which flow each uses and confirm it
+          matches its client type.
+        - Show PKCE is enforced for public clients.
+        - Show the IdP's client registrations for any Implicit/ROPC grants and, if
+          present, the remediation plan.
       difficultyOfImplementation:
-        knowledge: 2
-        time: 3
+        knowledge: 3
+        time: 2
         resources: 1
       usefulness: 4
-      level: 2
+      level: 3
       dependsOn:
-        - Simple access control for systems
+        - Central identity provider for human access
+      implementation: []
+      tags:
+        - identity
+        - oauth
+        - oidc
+      references:
+        samm2:
+          - D-SR-A-2
+        iso27001-2017:
+          - 9.4.2
+        iso27001-2022:
+          - 8.5
+      comments: ""
+
+    Fine-Grained Access Controls for authentication and authorization:
+      uuid: 070bb14b-e04a-4f3d-896a-a08eba7a35f9
+      description: |
+        Access decisions are driven by a defined, structured model rather than
+        ad-hoc per-user grants: roles (RBAC) as the baseline, refined with attributes
+        (ABAC) or simple policy rules (PBAC) where roles alone are too coarse. Roles,
+        attributes and policies are explicitly defined and documented, not implicit
+        in application code.
+      risk:
+        Without a structured model, grants accumulate per-user and ad-hoc and nobody
+        can answer "who can do X and why" from the code/config. Roles alone also
+        cannot express fine-grained or contextual decisions, causing either role
+        explosion or gaps where coarse roles grant more than intended.
+      measure: |
+        - Access is restricted through defined roles (RBAC) rather than per-user grants.
+        - Where roles are too coarse (cross-tenant, resource-owner, time/location),
+          attributes (ABAC) or policy rules (PBAC) refine the decision.
+        - Roles, attributes and policies are explicitly defined and documented.
+      assessment: |
+        - Present the role / attribute / policy definitions for a sample system.
+        - Trace one access decision back to a specific role, attribute or policy rule
+          rather than a hardcoded per-user check.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 3
+        resources: 2
+      usefulness: 4
+      level: 3
+      dependsOn:
+        - Least-privilege access baseline
       implementation:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/directory-service
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/plugins
@@ -352,6 +360,8 @@ Implementation:
         - identity
         - access-control
         - rbac
+        - abac
+        - pbac
       references:
         samm2:
           - O-EM-A-2 # Configuration Hardening
@@ -360,8 +370,6 @@ Implementation:
         iso27001-2022:
           - 8.3 # Information Access Restriction
       comments: ""
-
-    # ---------- Level 3: automate and assure ----------
 
     Segregation of duties for critical actions:
       uuid: 879e1f8f-61db-4af5-bb9b-07f21ac417b8
@@ -389,7 +397,6 @@ Implementation:
       level: 3
       dependsOn:
         - Least-privilege access baseline
-        - Role-based access control (RBAC) baseline
       implementation: []
       tags:
         - identity
@@ -479,10 +486,13 @@ Implementation:
           - O-EM-A-2 # Configuration Hardening
         iso27001-2017:
           - 9.2.1 # Conduct internal audits at planned intervals
+          - 9.2.6 # Removal or adjustment of access rights
         iso27001-2022:
           - 5.16 # Identity management
           - 5.18 # Access rights
       comments: ""
+
+    # ---------- Level 4: eliminate standing privilege ----------
 
     Workload and machine identity:
       uuid: 9f83087c-7d97-4715-a2ff-10d3f167c3cc
@@ -507,7 +517,7 @@ Implementation:
         time: 4
         resources: 3
       usefulness: 4
-      level: 3
+      level: 4
       dependsOn:
         - Least-privilege access baseline
       implementation: []
@@ -523,8 +533,6 @@ Implementation:
           - 5.16 # Identity management
           - 8.3  # Information access restriction
       comments: ""
-
-    # ---------- Level 4: eliminate standing privilege / policy-driven access ----------
 
     Just-in-time privileged access:
       uuid: d42995ac-f4e5-4fa6-b01a-83a0d35ef3b1
@@ -570,51 +578,6 @@ Implementation:
           - 8.3 # Information access restriction
       comments: ""
 
-    Attribute/policy-based access control (ABAC/PBAC):
-      uuid: a7ac8754-b7fc-43e6-afcf-78e95dfac988
-      description: |
-        Where roles alone are too coarse (cross-tenant, resource-owner, or
-        time/location/context-based decisions), access is refined with attributes
-        (ABAC) or centrally evaluated policies (PBAC, e.g. OPA/Rego). Policies are
-        version-controlled and tested like code.
-      risk:
-        Roles alone cannot express fine-grained or contextual decisions, leading
-        either to role explosion (a role per edge case) or to gaps where coarse
-        roles grant more than intended.
-      measure: |
-        - Attributes (ABAC) or centrally evaluated policies (PBAC) refine decisions
-          beyond static roles where roles are too coarse.
-        - A policy engine (e.g. OPA) centralizes decisions rather than scattering
-          them across application code.
-        - Policies are version-controlled and covered by tests.
-      assessment: |
-        - Show the policy engine and a sample policy.
-        - Trace one access decision back to a specific attribute or policy rule.
-        - Show the policies live in version control with tests.
-      difficultyOfImplementation:
-        knowledge: 4
-        time: 4
-        resources: 2
-      usefulness: 3
-      level: 4
-      dependsOn:
-        - Role-based access control (RBAC) baseline
-      implementation:
-        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/open-policy-agent
-      tags:
-        - identity
-        - access-control
-        - abac
-        - pbac
-      references:
-        samm2:
-          - O-EM-A-2 # Configuration Hardening
-        iso27001-2017:
-          - 9.4.1 # Information Access Restriction
-        iso27001-2022:
-          - 8.3 # Information Access Restriction
-      comments: ""
-
     Periodic access recertification:
       uuid: 7f216405-fb84-4c84-a495-6b8f4958834a
       description: |
@@ -657,7 +620,52 @@ Implementation:
           - 8.2  # Privileged access rights
       comments: ""
 
-    # ---------- Level 5: continuous verification ----------
+    # ---------- Level 5: continuous verification & policy as code ----------
+
+    Externalized policy-as-code authorization:
+      uuid: 3153c507-8e40-44c5-9957-fba236a80a5a
+      description: |
+        Authorization decisions are externalized to a central decision point (a
+        policy engine such as OPA/Rego) rather than scattered across each service.
+        Policies are managed as version-controlled, tested code and every decision
+        is logged, giving consistent, auditable enforcement across all services.
+      risk:
+        When each service implements its own authorization logic, rules drift apart,
+        are inconsistently enforced and cannot be reviewed or changed centrally. A
+        gap in one service becomes an unseen hole, and there is no single audit trail
+        of who was allowed to do what.
+      measure: |
+        - A central policy engine (e.g. OPA) evaluates authorization decisions for
+          multiple services rather than each service deciding in isolation.
+        - Policies are version-controlled and covered by automated tests.
+        - Authorization decisions are logged and auditable.
+      assessment: |
+        - Show the policy engine and a sample policy under version control with tests.
+        - Show at least two services delegating decisions to the central engine.
+        - Present authorization decision logs.
+      difficultyOfImplementation:
+        knowledge: 5
+        time: 4
+        resources: 3
+      usefulness: 3
+      level: 5
+      dependsOn:
+        - Fine-Grained Access Controls for authentication and authorization
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/open-policy-agent
+      tags:
+        - identity
+        - access-control
+        - pbac
+        - policy-as-code
+      references:
+        samm2:
+          - O-EM-A-3
+        iso27001-2017:
+          - 9.4.1
+        iso27001-2022:
+          - 8.3
+      comments: ""
 
     Continuous and risk-adaptive access:
       uuid: eba1a951-df6b-4c02-86c5-0370654aa930
@@ -686,7 +694,7 @@ Implementation:
       level: 5
       dependsOn:
         - Just-in-time privileged access
-        - Attribute/policy-based access control (ABAC/PBAC)
+        - Fine-Grained Access Controls for authentication and authorization
         - Periodic access recertification
       implementation: []
       tags:
