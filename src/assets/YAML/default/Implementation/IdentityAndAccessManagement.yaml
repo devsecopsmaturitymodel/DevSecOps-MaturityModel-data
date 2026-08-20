@@ -26,7 +26,7 @@ Implementation:
         - access-control
       references:
         samm2:
-          - O-EM-A-1 # Configuration Hardening
+          - O-EM-A-1 # Configuration Hardening 
         iso27001-2017:
           - 9.4.1 # Information Access Restriction
         iso27001-2022:
