@@ -1,3 +1,10 @@
+## [5.0.2](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v5.0.1...v5.0.2) (2026-08-21)
+
+
+### Bug Fixes
+
+* **ci:** fall back to latest git tag when no release is published ([0b89113](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/0b89113de93ccec720f77583d53747537a64c01f))
+
 ## [5.0.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v5.0.0...v5.0.1) (2026-08-21)
 
 

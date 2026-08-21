@@ -1,6 +1,6 @@
 ---
 meta:
-  version: 5.0.1
+  version: 5.0.2
   released: "2026-08-21"
   publisher: https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data
 ---
@@ -8068,7 +8068,7 @@ Implementation:
       - mfa
       references:
         samm2:
-        - O-EM-A-1
+        - D-SA-B-1
         iso27001-2017:
         - 9.2.4
         - 9.4.2
@@ -8110,6 +8110,8 @@ Implementation:
         - 9.4.1
         iso27001-2022:
         - 8.3
+        d3f:
+        - PasswordAuthentication
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Identity%20and%20Access%20Management/subsection/Simple%20access%20control%20for%20systems
       comments: ""
@@ -8146,7 +8148,6 @@ Implementation:
         - 9.2.1
         iso27001-2022:
         - 5.16
-        - 8.2
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Identity%20and%20Access%20Management/subsection/Account%20inventory
       comments: ""
@@ -8188,7 +8189,7 @@ Implementation:
       - sso
       references:
         samm2:
-        - O-EM-A-1
+        - D-SA-A-2
         iso27001-2017:
         - 9.2.1
         - 9.2.4
@@ -8281,7 +8282,7 @@ Implementation:
       - mfa
       references:
         samm2:
-        - O-EM-A-1
+        - D-SA-B-2
         iso27001-2017:
         - 9.2.4
         - 9.4.2
@@ -8419,11 +8420,13 @@ Implementation:
       - pbac
       references:
         samm2:
-        - O-EM-A-2
+        - D-SA-A-3
         iso27001-2017:
         - 9.4.1
         iso27001-2022:
         - 8.3
+        d3f:
+        - AccessModeling
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Identity%20and%20Access%20Management/subsection/Fine-Grained%20Access%20Controls%20for%20authentication%20and%20authorization
       comments: ""
@@ -8470,6 +8473,8 @@ Implementation:
         - 9.4.2
         iso27001-2022:
         - 8.5
+        d3f:
+        - Token-basedAuthentication
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Identity%20and%20Access%20Management/subsection/Use%20correct%20OAuth2%2FOIDC%20authorization%20flows
       comments: ""
@@ -8556,6 +8561,8 @@ Implementation:
         iso27001-2022:
         - 5.18
         - 8.2
+        d3f:
+        - AccessModeling
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Identity%20and%20Access%20Management/subsection/Periodic%20access%20recertification
       comments: ""
@@ -8630,12 +8637,14 @@ Implementation:
       - workload-identity
       references:
         samm2:
-        - O-EM-A-3
+        - D-SA-B-2
         iso27001-2017:
         - 9.2.4
         iso27001-2022:
         - 5.16
         - 8.3
+        d3f:
+        - Certificate-basedAuthentication
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Identity%20and%20Access%20Management/subsection/Workload%20and%20machine%20identity
       comments: ""
@@ -8675,10 +8684,12 @@ Implementation:
         samm2:
         - O-EM-A-3
         iso27001-2017:
-        - 9.4.1
+        - 9.2.3
         iso27001-2022:
         - 8.2
         - 8.16
+        d3f:
+        - UserBehaviorAnalysis
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Identity%20and%20Access%20Management/subsection/Continuous%20and%20risk-adaptive%20access
       comments: ""
@@ -8722,7 +8733,7 @@ Implementation:
       - policy-as-code
       references:
         samm2:
-        - O-EM-A-3
+        - D-SA-B-3
         iso27001-2017:
         - 9.4.1
         iso27001-2022:
@@ -8731,48 +8742,6 @@ Implementation:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Identity%20and%20Access%20Management/subsection/Externalized%20policy-as-code%20authorization
       comments: ""
   Infrastructure Hardening:
-    MFA for admins:
-      uuid: 8098e416-e1ed-4ae4-a561-83efbe76bf57
-      risk: One factor authentication is more vulnerable to brute force attacks and
-        is considered less secure.
-      measure: Two ore more factor authentication for all privileged accounts on systems
-        and applications
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 1
-        resources: 2
-      usefulness: 4
-      level: 1
-      implementation:
-      - uuid: d5981117-9bc2-45ed-b4a4-383135dc13d8
-        name: YubiKey - Smartcard
-        tags: []
-        url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
-      - uuid: 6151cfb3-c894-421e-83da-cac0b2bfaec8
-        name: SMS
-        tags: []
-      - uuid: f69f5d03-691f-4e14-8fbc-ad66e2e5a12d
-        name: TOTP
-        tags: []
-        url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
-      references:
-        samm2:
-        - O-EM-A-1
-        iso27001-2017:
-        - 9.2.4
-        - 6.1.2
-        - 14.2.1
-        iso27001-2022:
-        - 5.17
-        - 5.3
-        - 8.25
-        d3f:
-        - Multi-factorAuthentication
-        openCRE:
-        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/MFA%20for%20admins
-      comments: ""
-      tags:
-      - none
     Usage of edge encryption at transit:
       uuid: ad23be9c-5661-4f1f-81a3-5a5dc7061629
       risk: Evil actors might be able to perform a man in the middle attack and sniff
@@ -8940,50 +8909,6 @@ Implementation:
         - 8.22
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/Isolated%20networks%20for%20virtual%20environments
-      comments: ""
-      tags:
-      - none
-    MFA:
-      uuid: 598e9f13-1ac8-4a01-b85e-8fab93ee81de
-      risk: One factor authentication is more vulnerable to brute force attacks and
-        is considered less secure.
-      measure: Two ore more factor authentication for all accounts on all (important)
-        systems and applications
-      difficultyOfImplementation:
-        knowledge: 2
-        time: 2
-        resources: 2
-      usefulness: 4
-      level: 2
-      dependsOn:
-      - 8098e416-e1ed-4ae4-a561-83efbe76bf57 # MFA for admins
-      implementation:
-      - uuid: d5981117-9bc2-45ed-b4a4-383135dc13d8
-        name: YubiKey - Smartcard
-        tags: []
-        url: https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/
-      - uuid: 6151cfb3-c894-421e-83da-cac0b2bfaec8
-        name: SMS
-        tags: []
-      - uuid: f69f5d03-691f-4e14-8fbc-ad66e2e5a12d
-        name: TOTP
-        tags: []
-        url: https://d3fend.mitre.org/technique/d3f:One-timePassword/
-      references:
-        samm2:
-        - O-EM-A-1
-        iso27001-2017:
-        - 9.2.4
-        - 6.1.2
-        - 14.2.1
-        iso27001-2022:
-        - 5.17
-        - 5.3
-        - 8.25
-        d3f:
-        - Multi-factorAuthentication
-        openCRE:
-        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Infrastructure%20Hardening/subsection/MFA
       comments: ""
       tags:
       - none
