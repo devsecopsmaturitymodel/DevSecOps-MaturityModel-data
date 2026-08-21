@@ -19,7 +19,9 @@ jobs:
       - uses: actions/checkout@v3
         with:
           persist-credentials: false # This is important if you have branch protection rules!
+          fetch-depth: 0 # semantic-release needs the full history and tags
       - name: Semantic Release
+        id: semantic
         uses: cycjimmy/semantic-release-action@v4
         with:
           branch: 'main'
@@ -27,8 +29,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
         id: get-version
+        # Fall back to the last released version when this run produced no new
+        # release (e.g. re-runs after a partial failure, or the daily cron).
         run: |
-          echo "::set-output name=version::$(grep -oP '\[\d+\.\d+\.\d+\]' CHANGELOG.md | tr -d '[]')"
+          VERSION="${{ steps.semantic.outputs.new_release_version }}"
+          if [ -z "$VERSION" ]; then
+            VERSION="${{ steps.semantic.outputs.last_release_version }}"
+          fi
+          if [ -z "$VERSION" ]; then
+            echo "Could not determine release version" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: show version
         run: |

@@ -1,3 +1,13 @@
+# [5.0.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.3.1...v5.0.0) (2026-08-18)
+
+
+* BREAKING CHANGE: add agentic AI ([#80](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/issues/80)) ([718d47c](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/718d47c494e700745e58db4b7978f6ae09cdfa79))
+
+
+### BREAKING CHANGES
+
+* add agentic AI (#80)
+
 ## [4.3.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.3.0...v4.3.1) (2026-04-27)
 
 
