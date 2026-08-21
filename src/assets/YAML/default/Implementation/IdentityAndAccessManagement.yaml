@@ -527,7 +527,7 @@ Implementation:
         samm2:
           - O-EM-A-3 # Configuration Hardening
         iso27001-2017:
-          - 9.2.1 # Conduct internal audits at planned intervals
+          - 9.2.4 # Management of secret authentication information
         iso27001-2022:
           - 5.16 # Identity management
           - 8.3  # Information access restriction
