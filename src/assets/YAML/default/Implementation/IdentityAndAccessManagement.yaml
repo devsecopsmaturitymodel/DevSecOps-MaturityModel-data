@@ -26,11 +26,13 @@ Implementation:
         - access-control
       references:
         samm2:
-          - O-EM-A-1 # Configuration Hardening 
+          - O-EM-A-1 # Configuration Hardening
         iso27001-2017:
           - 9.4.1 # Information Access Restriction
         iso27001-2022:
           - 8.3 # Information Access Restriction
+        d3f:
+          - PasswordAuthentication
       comments: ""
 
     MFA for admins:
@@ -56,7 +58,7 @@ Implementation:
         - mfa
       references:
         samm2:
-          - O-EM-A-1 # Configuration Hardening
+          - D-SA-B-1 # Technology Management
         iso27001-2017:
           - 9.2.4 # Management of secret authentication information
           - 9.4.2 # Secure log-on procedures
@@ -135,12 +137,11 @@ Implementation:
         - inventory
       references:
         samm2:
-          - O-EM-A-1
+          - O-EM-A-1 # Configuration Hardening
         iso27001-2017:
-          - 9.2.1
+          - 9.2.1 # User registration and de-registration
         iso27001-2022:
           - 5.16 # Identity management
-          - 8.2  # Privileged access rights
       comments: ""
 
     Central identity provider for human access:
@@ -179,7 +180,7 @@ Implementation:
         - sso
       references:
         samm2:
-          - O-EM-A-1 # Configuration Hardening
+          - D-SA-A-2 # Architecture Design
         iso27001-2017:
           - 9.2.1 # User registration and de-registration
           - 9.2.4 # Management of secret authentication information
@@ -213,7 +214,7 @@ Implementation:
         - mfa
       references:
         samm2:
-          - O-EM-A-1 #Configuration Hardening
+          - D-SA-B-2 # Technology Management
         iso27001-2017:
           - 9.2.4 # Management of secret authentication information
           - 9.4.2 # Secure log-on procedures
@@ -315,11 +316,13 @@ Implementation:
         - oidc
       references:
         samm2:
-          - D-SR-A-2
+          - D-SR-A-2 # Software Requirements
         iso27001-2017:
-          - 9.4.2
+          - 9.4.2 # Secure log-on procedures
         iso27001-2022:
-          - 8.5
+          - 8.5 # Secure authentication
+        d3f:
+          - Token-basedAuthentication
       comments: ""
 
     Fine-Grained Access Controls for authentication and authorization:
@@ -363,11 +366,13 @@ Implementation:
         - pbac
       references:
         samm2:
-          - O-EM-A-2 # Configuration Hardening
+          - D-SA-A-3 # Architecture Design
         iso27001-2017:
           - 9.4.1 # Information Access Restriction
         iso27001-2022:
           - 8.3 # Information Access Restriction
+        d3f:
+          - AccessModeling
       comments: ""
 
     Automated authorization test coverage:
@@ -525,12 +530,14 @@ Implementation:
         - workload-identity
       references:
         samm2:
-          - O-EM-A-3 # Configuration Hardening
+          - D-SA-B-2 # Technology Management
         iso27001-2017:
           - 9.2.4 # Management of secret authentication information
         iso27001-2022:
           - 5.16 # Identity management
           - 8.3  # Information access restriction
+        d3f:
+          - Certificate-basedAuthentication
       comments: ""
 
     Just-in-time privileged access:
@@ -617,6 +624,8 @@ Implementation:
         iso27001-2022:
           - 5.18 # Access rights
           - 8.2  # Privileged access rights
+        d3f:
+          - AccessModeling
       comments: ""
 
     # ---------- Level 5: continuous verification & policy as code ----------
@@ -659,11 +668,11 @@ Implementation:
         - policy-as-code
       references:
         samm2:
-          - O-EM-A-3
+          - D-SA-B-3 # Technology Management
         iso27001-2017:
-          - 9.4.1
+          - 9.4.1 # Information Access Restriction
         iso27001-2022:
-          - 8.3
+          - 8.3 # Information access restriction
       comments: ""
 
     Continuous and risk-adaptive access:
@@ -703,8 +712,10 @@ Implementation:
         samm2:
           - O-EM-A-3 # Configuration Hardening
         iso27001-2017:
-          - 9.4.1 # Information Access Restriction
+          - 9.2.3 # Management of privileged access rights
         iso27001-2022:
           - 8.2  # Privileged access rights
           - 8.16 # Monitoring activities
+        d3f:
+          - UserBehaviorAnalysis
       comments: ""
