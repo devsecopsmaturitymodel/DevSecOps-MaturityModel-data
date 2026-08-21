@@ -97,73 +97,88 @@ graph LR
 89(L2 Require a PR before merging)
 90(L3 Dismiss stale PR approvals)
 91(L3 Require status checks to pass)
-92(L2 Backup)
-93(L2 MFA)
-94(L1 MFA for admins)
-95(L2 Usage of test and production environments)
-96(L2 Virtual environments are limited)
-97(L3 Immutable infrastructure)
-98(L3 Infrastructure as Code)
-99(L3 Limitation of system events)
-100(L3 Audit of system events)
-101(L3 Usage of security by default for components)
-102(L3 WAF baseline)
-103(L4 Production near environments are used by developers)
-104(L4 WAF medium)
-105(L5 WAF Advanced)
-106(L3 Logging of AI interactions)
-107(L3 Visualized logging)
-108(L1 Centralized system logging)
-109(L5 Correlation of security events)
-110(L2 Visualized metrics)
-111(L1 Simple application metrics)
-112(L1 Simple system metrics)
-113(L3 Advanced availability and stability metrics)
-114(L3 Deactivation of unused metrics)
-115(L3 Targeted alerting)
-116(L4 Advanced app. metrics)
-117(L4 Coverage and control metrics)
-118(L4 Defense metrics)
-119(L3 Filter outgoing traffic)
-120(L4 Screens with metric visualization)
-121(L3 Grouping of metrics)
-122(L5 Metrics are combined with tests)
-123(L2 Patching mean time to resolution via PR)
-124(L3 Generation of response statistics)
-125(L3 Usage of a vulnerability management system)
-126(L4 Patching mean time to resolution via production)
-127(L2 Artifact-based false positive treatment)
-128(L1 Simple false positive treatment)
-129(L3 Fix based on accessibility)
-130(L1 Treatment of defects with high or critical severity)
-131(L3 Global false positive treatment)
-132(L2 Exploit likelihood estimation)
-133(L3 Office Hours)
-134(L2 Coverage of client side dynamic components)
-135(L2 Usage of different roles)
-136(L3 Coverage of hidden endpoints)
-137(L3 Coverage of more input vectors)
-138(L3 Coverage of sequential operations)
-139(L4 Usage of multiple scanners)
-140(L5 Coverage of service to service communication)
-141(L2 Test for exposed services)
-142(L2 Isolated networks for virtual environments)
-143(L2 Test network segmentation)
-144(L3 Test for unauthorized installation)
-145(L2 Test for Time to Patch)
-146(L2 Test libyear)
-147(L3 API design validation)
-148(L3 Software Composition Analysis client side)
-149(L3 Static analysis for important client side components)
-150(L3 Test for Patch Deployment Time)
-151(L4 Static analysis for all self written components)
-152(L4 Usage of multiple analyzers)
-153(L5 Dead code elimination)
-154(L5 Exclusion of source code duplicates)
-155(L5 Static analysis for all components/libraries)
-156(L4 Correlate known vulnerabilities in infrastructure with new image versions)
-157(L2 Usage of a maximum lifetime for images)
-158(L4 Test of infrastructure components for known vulnerabilities)
+92(L2 Central identity provider for human access)
+93(L1 Simple access control for systems)
+94(L2 Least-privilege access baseline)
+95(L2 Account inventory)
+96(L2 MFA)
+97(L1 MFA for admins)
+98(L3 Automated authorization test coverage)
+99(L1 Enforce server-side authorization on every request)
+100(L3 Automated joiner-mover-leaver provisioning)
+101(L3 Fine-Grained Access Controls for authentication and authorization)
+102(L3 Use correct OAuth2/OIDC authorization flows)
+103(L4 Just-in-time privileged access)
+104(L4 Periodic access recertification)
+105(L4 Segregation of duties for critical actions)
+106(L4 Workload and machine identity)
+107(L5 Continuous and risk-adaptive access)
+108(L5 Externalized policy-as-code authorization)
+109(L2 Backup)
+110(L2 Usage of test and production environments)
+111(L2 Virtual environments are limited)
+112(L3 Immutable infrastructure)
+113(L3 Infrastructure as Code)
+114(L3 Limitation of system events)
+115(L3 Audit of system events)
+116(L3 Usage of security by default for components)
+117(L3 WAF baseline)
+118(L4 Production near environments are used by developers)
+119(L4 WAF medium)
+120(L5 WAF Advanced)
+121(L3 Logging of AI interactions)
+122(L3 Visualized logging)
+123(L1 Centralized system logging)
+124(L5 Correlation of security events)
+125(L2 Visualized metrics)
+126(L1 Simple application metrics)
+127(L1 Simple system metrics)
+128(L3 Advanced availability and stability metrics)
+129(L3 Deactivation of unused metrics)
+130(L3 Targeted alerting)
+131(L4 Advanced app. metrics)
+132(L4 Coverage and control metrics)
+133(L4 Defense metrics)
+134(L3 Filter outgoing traffic)
+135(L4 Screens with metric visualization)
+136(L3 Grouping of metrics)
+137(L5 Metrics are combined with tests)
+138(L2 Patching mean time to resolution via PR)
+139(L3 Generation of response statistics)
+140(L3 Usage of a vulnerability management system)
+141(L4 Patching mean time to resolution via production)
+142(L2 Artifact-based false positive treatment)
+143(L1 Simple false positive treatment)
+144(L3 Fix based on accessibility)
+145(L1 Treatment of defects with high or critical severity)
+146(L3 Global false positive treatment)
+147(L2 Exploit likelihood estimation)
+148(L3 Office Hours)
+149(L2 Coverage of client side dynamic components)
+150(L2 Usage of different roles)
+151(L3 Coverage of hidden endpoints)
+152(L3 Coverage of more input vectors)
+153(L3 Coverage of sequential operations)
+154(L4 Usage of multiple scanners)
+155(L5 Coverage of service to service communication)
+156(L2 Test for exposed services)
+157(L2 Isolated networks for virtual environments)
+158(L2 Test network segmentation)
+159(L3 Test for unauthorized installation)
+160(L2 Test for Time to Patch)
+161(L2 Test libyear)
+162(L3 API design validation)
+163(L3 Software Composition Analysis client side)
+164(L3 Static analysis for important client side components)
+165(L3 Test for Patch Deployment Time)
+166(L4 Static analysis for all self written components)
+167(L4 Usage of multiple analyzers)
+168(L5 Dead code elimination)
+169(L5 Exclusion of source code duplicates)
+170(L5 Static analysis for all components/libraries)
+171(L4 Correlate known vulnerabilities in infrastructure with new image versions)
+172(L2 Usage of a maximum lifetime for images)
+173(L4 Test of infrastructure components for known vulnerabilities)
 
 
 1 --> 0
@@ -174,7 +189,7 @@ graph LR
 5 --> 4
 5 --> 7
 6 --> 4
-6 --> 102
+6 --> 117
 9 --> 8
 9 --> 12
 9 --> 25
@@ -194,22 +209,22 @@ graph LR
 11 --> 16
 11 --> 18
 17 --> 16
-17 --> 106
-17 --> 107
+17 --> 121
+17 --> 122
 19 --> 18
 19 --> 26
 19 --> 34
 19 --> 47
 21 --> 20
-21 --> 144
+21 --> 159
 16 --> 23
 16 --> 33
 16 --> 34
 24 --> 23
 24 --> 27
 24 --> 17
-24 --> 109
-24 --> 115
+24 --> 124
+24 --> 130
 14 --> 25
 14 --> 49
 8 --> 25
@@ -230,74 +245,74 @@ graph LR
 40 --> 60
 40 --> 61
 40 --> 69
-40 --> 101
+40 --> 116
 40 --> 44
 40 --> 46
-40 --> 146
-40 --> 148
-40 --> 149
+40 --> 161
+40 --> 163
+40 --> 164
 40 --> 43
-40 --> 150
+40 --> 165
 40 --> 51
-40 --> 153
-40 --> 154
+40 --> 168
+40 --> 169
 41 --> 39
 43 --> 42
 43 --> 48
-43 --> 151
-43 --> 155
+43 --> 166
+43 --> 170
 44 --> 42
 44 --> 48
-44 --> 135
-44 --> 140
+44 --> 150
+44 --> 155
 46 --> 45
-46 --> 132
+46 --> 147
 46 --> 51
-46 --> 152
+46 --> 167
 47 --> 49
 20 --> 50
 51 --> 50
 7 --> 52
 53 --> 52
 55 --> 54
-55 --> 96
+55 --> 111
 56 --> 59
 61 --> 60
-61 --> 92
-61 --> 95
+61 --> 109
+61 --> 110
 60 --> 62
 60 --> 63
 60 --> 53
 60 --> 67
 60 --> 68
-60 --> 103
+60 --> 118
 60 --> 72
 62 --> 63
 62 --> 82
-62 --> 129
+62 --> 144
 62 --> 46
-62 --> 147
-62 --> 148
-62 --> 149
+62 --> 162
+62 --> 163
+62 --> 164
 62 --> 43
-62 --> 151
-62 --> 155
+62 --> 166
+62 --> 170
 65 --> 64
 63 --> 66
 57 --> 66
 69 --> 70
 72 --> 71
 74 --> 73
-74 --> 123
-74 --> 126
-74 --> 145
-74 --> 150
+74 --> 138
+74 --> 141
+74 --> 160
+74 --> 165
 73 --> 75
 77 --> 76
 77 --> 78
 76 --> 79
 81 --> 80
-81 --> 125
+81 --> 140
 84 --> 83
 83 --> 85
 85 --> 86
@@ -305,52 +320,71 @@ graph LR
 89 --> 88
 89 --> 90
 89 --> 91
-94 --> 93
-98 --> 97
-98 --> 103
-100 --> 99
-102 --> 104
-102 --> 105
-108 --> 107
-107 --> 109
-110 --> 24
-110 --> 113
-110 --> 100
-110 --> 114
-110 --> 116
-110 --> 117
-110 --> 118
-111 --> 28
-111 --> 110
-111 --> 113
-111 --> 116
-112 --> 28
-112 --> 110
-119 --> 118
-121 --> 120
-121 --> 122
-125 --> 124
+93 --> 92
+93 --> 94
+95 --> 94
+97 --> 96
+97 --> 103
+97 --> 96
+99 --> 98
+94 --> 100
+94 --> 101
+94 --> 103
+94 --> 104
+94 --> 105
+94 --> 106
+92 --> 100
+92 --> 102
+100 --> 104
+103 --> 107
+101 --> 107
+101 --> 108
+104 --> 107
+113 --> 112
+113 --> 118
+115 --> 114
+117 --> 119
+117 --> 120
+123 --> 122
+122 --> 124
+125 --> 24
+125 --> 128
+125 --> 115
+125 --> 129
 125 --> 131
-123 --> 126
-128 --> 127
-130 --> 129
-127 --> 131
-132 --> 125
-132 --> 148
-133 --> 125
-135 --> 134
-135 --> 136
-135 --> 137
-135 --> 138
-135 --> 139
-142 --> 141
-142 --> 143
-149 --> 151
-149 --> 155
-148 --> 152
-151 --> 152
+125 --> 132
+125 --> 133
+126 --> 28
+126 --> 125
+126 --> 128
+126 --> 131
+127 --> 28
+127 --> 125
+134 --> 133
+136 --> 135
+136 --> 137
+140 --> 139
+140 --> 146
+138 --> 141
+143 --> 142
+145 --> 144
+142 --> 146
+147 --> 140
+147 --> 163
+148 --> 140
+150 --> 149
+150 --> 151
+150 --> 152
+150 --> 153
+150 --> 154
 157 --> 156
 157 --> 158
+164 --> 166
+164 --> 170
+163 --> 167
+166 --> 167
+172 --> 171
+172 --> 173
 
 O --> 1
 O --> 5
@@ -370,16 +404,19 @@ O --> 74
 O --> 81
 O --> 84
 O --> 89
-O --> 94
-O --> 98
-O --> 108
-O --> 111
-O --> 112
-O --> 119
-O --> 121
-O --> 128
-O --> 130
-O --> 133
-O --> 142
+O --> 93
+O --> 95
+O --> 97
+O --> 99
+O --> 113
+O --> 123
+O --> 126
+O --> 127
+O --> 134
+O --> 136
+O --> 143
+O --> 145
+O --> 148
 O --> 157
+O --> 172
 ```
