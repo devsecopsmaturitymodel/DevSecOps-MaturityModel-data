@@ -264,7 +264,7 @@ Implementation:
         samm2:
           - O-EM-A-2 # Configuration Hardening
         iso27001-2017:
-          - 9.1.1 # User registration and de-registration
+          - 9.4.1 # Information access restriction
         iso27001-2022:
           - 8.2  # Privileged access rights
           - 8.3  # Information access restriction
