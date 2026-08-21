@@ -324,7 +324,7 @@ Implementation:
 
     Fine-Grained Access Controls for authentication and authorization:
       uuid: 070bb14b-e04a-4f3d-896a-a08eba7a35f9
-           description: |
+      description: |
         Access decisions are driven by a defined, structured model rather than
         ad-hoc per-user grants: roles (RBAC) as the baseline, refined with attributes
         (ABAC) or simple policy rules (PBAC) where roles alone are too coarse. Roles,
