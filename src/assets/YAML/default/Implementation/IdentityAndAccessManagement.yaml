@@ -270,7 +270,7 @@ Implementation:
           - 8.3  # Information access restriction
           - 5.15 # Access control
         d3f:
-          - LocalAccountMonitoring
+          - AccessModeling
       comments: ""
 
 
