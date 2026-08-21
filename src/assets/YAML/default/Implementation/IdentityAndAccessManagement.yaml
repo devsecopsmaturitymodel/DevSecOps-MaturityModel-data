@@ -215,11 +215,11 @@ Implementation:
         samm2:
           - O-EM-A-1 #Configuration Hardening
         iso27001-2017:
-          - 9.2.4 #Management of secret authentication information
-          - 6.1.2 # Segregation of duties
-          - 14.2.1 # Secure development policies
+          - 9.2.4 # Management of secret authentication information
+          - 9.4.2 # Secure log-on procedures
         iso27001-2022:
           - 5.17 # Authentication information
+          - 8.5 # Secure authentication
         d3f:
           - Multi-factorAuthentication
       comments: ""
