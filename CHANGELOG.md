@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v5.0.0...v5.0.1) (2026-08-21)
+
+
+### Bug Fixes
+
+* **ci:** derive release version from semantic-release outputs, not CHANGELOG.md ([756e4c0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/commit/756e4c01f882b44703abdf3964aa665789055628))
+
 # [5.0.0](https://github.com/devsecopsmaturitymodel/DevSecOps-MaturityModel-data/compare/v4.3.1...v5.0.0) (2026-08-18)
 
 
