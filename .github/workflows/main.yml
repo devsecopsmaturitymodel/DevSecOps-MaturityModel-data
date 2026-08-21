@@ -29,12 +29,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get Semantic Release Version
         id: get-version
-        # Fall back to the last released version when this run produced no new
-        # release (e.g. re-runs after a partial failure, or the daily cron).
+        # The action only sets its outputs when a release is published, so on
+        # no-release runs (bot pushes, re-runs, the daily cron) fall back to
+        # the latest git tag (checkout fetches all tags via fetch-depth: 0).
         run: |
           VERSION="${{ steps.semantic.outputs.new_release_version }}"
           if [ -z "$VERSION" ]; then
-            VERSION="${{ steps.semantic.outputs.last_release_version }}"
+            VERSION="$(git describe --tags --abbrev=0 | sed 's/^v//')"
           fi
           if [ -z "$VERSION" ]; then
             echo "Could not determine release version" >&2
