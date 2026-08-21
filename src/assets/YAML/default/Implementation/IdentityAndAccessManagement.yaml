@@ -444,7 +444,7 @@ Implementation:
         samm2:
           - O-EM-A-2 # Configuration Hardening
         iso27001-2017:
-          - 9.2.1 # Conduct internal audits at planned intervals
+          - 9.2.1 # User registration and de-registration
           - 9.2.6 # Removal or adjustment of access rights
         iso27001-2022:
           - 5.16 # Identity management
