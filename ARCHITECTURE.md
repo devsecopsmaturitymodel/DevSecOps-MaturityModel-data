@@ -155,8 +155,6 @@ development and the security of AI-based features:
 | Verification | Continuous detection of compromised AI components | 4 |
 | Guidance | Threat modeling of AI components | 3 |
 | Guidance | Loading security rules at the right development step | 4 |
-| Red Teaming | Basic AI red teaming | 2 |
-| Red Teaming | Regular automated AI red teaming | 4 |
 | Data Protection | Basic data leak prevention | 1 |
 | Data Protection | Input validation for AI systems | 2 |
 | Data Protection | Secure output handling in AI applications | 4 |
@@ -171,7 +169,7 @@ development and the security of AI-based features:
 | Verification | Security test generation with AI | 3 |
 
 All Agentic AI activities carry the tag `ai` plus a subdimension tag
-(`isolation`, `guidance`, `red-teaming`, `data-protection`, `verification`).
+(`isolation`, `guidance`, `data-protection`, `verification`).
 
 ## Handling duplicates (e.g. SAST/DAST for AI-generated code)
 
