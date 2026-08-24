@@ -166,6 +166,67 @@ Implementation:
         iso27001-2022:
           - 5.3
           - 8.25
+    Block pushes containing secrets:
+      uuid: 50ba2bfb-2ae3-4576-8813-a8f00d8a3220
+      description: |-
+        _Test for stored secrets in code_ (Test and Verification) finds
+        secrets after they have entered the repository; at that point the
+        secret is exposed in the history and must be rotated. Server-side
+        push protection moves the control from detection to prevention:
+        the source code management system rejects pushes containing known
+        secret formats before they enter the repository, independent of
+        any tooling on the committing machine. Like other source control
+        policies (e.g. _Require a PR before merging_, _Block force
+        pushes_), enforcement on the server also covers commits produced
+        by AI coding agents and other automation, which push at higher
+        volume than humans and cannot be assumed to run local checks.
+        Local scanners as pre-commit hooks or CI steps (e.g. Gitleaks)
+        remain useful as an early warning, but the enforcement point is
+        the server. Pattern-based blocking catches known secret formats,
+        not everything, so this activity complements rather than replaces
+        the detection activities.
+      risk: |-
+        Secrets are detected only after they have been pushed: they are
+        already exposed in the repository history, rotation is urgent
+        and often incomplete, and clones and forks retain the secret
+        even after a history rewrite.
+      measure: |-
+        Enable server-side push protection on the source code management
+        system so that pushes containing known secret formats are rejected
+        before entering the repository, with a documented bypass procedure
+        for false positives. Optionally add local pre-commit or CI scanning
+        as an early warning.
+      dependsOn:
+        - c6e3c812-56e2-41b0-ae01-b7afc41a004c # Test for stored secrets in code
+      assessment: |
+        - Demonstrate that a push containing a test secret is rejected by the source code management system.
+        - Show that push protection is enabled for all relevant repositories, not only a sample.
+        - Show the documented bypass procedure and who may use it.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 2
+      usefulness: 3
+      level: 3
+      tags:
+        - secrets
+        - scm
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/github-push-protection
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/gitleaks
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/trufflehog
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - vcs usage is not explicitly covered by ISO 27001 - too specific
+          - 9.4.3
+          - 10.1.2
+        iso27001-2022:
+          - vcs usage is not explicitly covered by ISO 27001 - too specific
+          - 5.17
+          - 8.24
+      comments: ""
     Block force pushes:
       uuid: c7d99b18-c3e1-4d22-b2e3-9aa9146c0b17
       risk: |-

@@ -141,32 +141,45 @@ development and the security of AI-based features:
 | Subdimension | Activity | Level |
 |---|---|---|
 | Isolation | Usage of sandboxing for AI agents | 1 |
-| Isolation | Permission management for AI agents | 1 |
-| Isolation | Least privilege on external systems for AI agents | 2 |
 | Isolation | Untrusted workspace handling for AI agents | 2 |
+| Isolation | Permission management for AI agents | 2 |
+| Isolation | Rate limiting and resource budgets for AI systems | 2 |
 | Isolation | Network isolation for AI agents | 3 |
-| Guidance | Basic secure coding rules for AI assistants | 1 |
-| Guidance | AI usage policy | 2 |
-| Guidance | Security requirements for AI-assisted development | 2 |
+| Isolation | Least privilege on external systems for AI agents | 3 |
+| Isolation | Enforcement of guardrails outside the reach of AI agents | 3 |
+| Isolation | Human approval for irreversible AI agent actions | 4 |
+| Isolation | Trust boundaries between AI agents | 4 |
+| Guidance | Static load of security rules | 1 |
+| Guidance | Language and framework specific security rules | 2 |
+| Guidance | Threat modeling rule | 2 |
 | Guidance | Spec-driven development | 2 |
 | Guidance | Inventory of AI agents | 2 |
-| Guidance | Language and framework specific secure coding rules for AI assistants | 3 |
+| Guidance | Instructed load of security rules | 2 |
+| Guidance | AI usage policy | 2 |
 | Guidance | Evaluation of the trust of used AI components | 3 |
-| Verification | Continuous detection of compromised AI components | 4 |
+| Guidance | Audit logging of AI agent actions | 3 |
+| Guidance | Decommissioning of AI agents | 3 |
 | Guidance | Threat modeling of AI components | 3 |
-| Guidance | Loading security rules at the right development step | 4 |
-| Data Protection | Basic data leak prevention | 1 |
-| Data Protection | Input validation for AI systems | 2 |
+| Guidance | Tripwires for AI agent environments | 3 |
+| Guidance | Anomaly detection for AI agent behavior | 4 |
+| Guidance | Dynamic load of security rules | 4 |
+| Guidance | Automated containment of anomalous AI agents | 5 |
+| Data Protection | Basic data leak prevention | 2 |
+| Data Protection | Input validation for AI systems | 3 |
 | Data Protection | Secure output handling in AI applications | 4 |
-| Data Protection | Protection of agent memory against poisoning | 3 |
-| Data Protection | Automated data leak detection for AI interactions | 4 |
 | Data Protection | Hallucination detection for AI responses | 4 |
-| Verification | Human review of AI generated code | 1 |
+| Data Protection | Automated data leak detection for AI interactions | 4 |
+| Data Protection | Protection of agent memory against poisoning | 5 |
+| Verification | Human review of AI generated specifications | 2 |
+| Verification | Human review of AI generated plans | 2 |
 | Verification | Validation of AI-suggested dependencies | 2 |
 | Verification | Self-verification of AI generated changes | 2 |
-| Verification | No verification bypass for AI generated code | 2 |
-| Verification | Static and dynamic analysis of AI generated code | 3 |
+| Verification | Static and dynamic analysis of AI generated code | 2 |
+| Verification | Human review of AI generated code | 3 |
 | Verification | Security test generation with AI | 3 |
+| Verification | No verification bypass for AI generated code | 3 |
+| Verification | Continuous detection of compromised AI components | 4 |
+| Verification | Drift detection for agent instructions and guardrails | 5 |
 
 All Agentic AI activities carry the tag `ai` plus a subdimension tag
 (`isolation`, `guidance`, `data-protection`, `verification`).

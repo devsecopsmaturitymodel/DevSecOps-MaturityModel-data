@@ -1690,3 +1690,56 @@ implementations:
       Test framework for LLM applications with automated red teaming
       (prompt injection, jailbreaks, PII leakage) and CI integration for
       regression testing of prompts, models and guardrails.
+  coding-agent-security-cheat-sheet:
+    uuid: 1319ba45-3b1a-41ff-9bd7-08db69b6a3fa
+    name: "Christian Schneider: Coding Agent Security Cheat Sheet"
+    tags: [ai, isolation, permissions, documentation]
+    url: https://christian-schneider.net/slides/Coding-Agent-Security-Cheat-Sheet.pdf
+    description: |-
+      One-page defense-in-depth cheat sheet for teams using AI coding
+      agents: treating everything the agent reads as instructions, gating
+      actions with enforceable policy instead of vigilance, sandboxing and
+      egress control, keeping secrets out of reach, vetting extension
+      surfaces (MCP servers, skills, rules files) like dependencies, and
+      tripwires plus incident handling for when prevention fails.
+  thinkst-canarytokens:
+    uuid: cc93edd0-1fcd-45de-b6c7-491c4055c1a8
+    name: Thinkst Canarytokens
+    tags: [ai, detection, honeytoken]
+    url: https://canarytokens.org/
+    description: |-
+      Free service to generate honeytokens: fake AWS credentials, API keys,
+      documents or DNS hostnames that trigger an alert the moment they are
+      used. Planted in agent-reachable locations, they turn silent
+      credential theft or exfiltration into an immediate, high-confidence
+      alert.
+  finos-gitproxy:
+    uuid: 81efafd2-8582-48c6-8634-0d18d570e701
+    name: FINOS GitProxy
+    tags: [ai, scm, approval, proxy]
+    url: https://github.com/finos/git-proxy
+    description: |-
+      Proxy in front of the git hosting service that intercepts pushes and
+      holds them for review against configurable policy checks before they
+      reach the upstream repository. Serves as an approval gate for pushes
+      that is enforced outside the developer machine and outside the reach
+      of a coding agent.
+  github-push-protection:
+    uuid: 523b4380-e46b-4ed8-9d61-80f099166f4c
+    name: GitHub secret scanning push protection
+    tags: [scm, secrets, detection]
+    url: https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection
+    description: |-
+      Server-side push protection that rejects pushes containing known
+      secret formats before they enter the repository. Enforcement happens
+      on the git host, independent of local tooling, so it also catches
+      secrets committed by coding agents.
+  gitleaks:
+    uuid: 0ef364bc-d0f8-43ff-868b-a1f4c3d592c0
+    name: Gitleaks
+    tags: [secrets, detection, sast]
+    url: https://github.com/gitleaks/gitleaks
+    description: |-
+      Scanner for hardcoded secrets in git repositories, files and commit
+      history. Usable as pre-commit hook and CI step as an early local
+      warning before server-side push protection.

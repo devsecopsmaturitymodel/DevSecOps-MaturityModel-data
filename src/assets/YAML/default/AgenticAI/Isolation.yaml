@@ -216,6 +216,7 @@ Agentic AI:
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-permissions
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/aisvs-c09
         - $ref: src/assets/YAML/default/implementations.yaml#/implementations/grantguard
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/coding-agent-security-cheat-sheet
       references:
         samm2:
           - O-EM-A-1
@@ -488,4 +489,79 @@ Agentic AI:
           - 12.1.3
         iso27001-2022:
           - 8.6
+      comments: ""
+    Enforcement of guardrails outside the reach of AI agents:
+      uuid: c01906d5-4db2-4a9d-a692-63928ff6575c
+      description: |-
+        _Permission management for AI agents_ defines what an agent may do;
+        this activity makes sure neither the agent nor a convenience-driven
+        user can weaken that definition. Agent-side guardrails (settings,
+        allow-lists, policy hooks) usually live in files the agent itself can
+        write, and approval fatigue predictably leads users to switch on
+        standing auto-approve. Enforcement therefore has to move to points
+        the agent process cannot touch:
+
+        - **Managed configuration**: distribute the permission baseline via
+          administratively enforced settings that local project or user
+          configuration cannot override, and disable standing auto-approve
+          modes there.
+        - **Hooks outside the write reach**: store policy hooks that run
+          before tool calls outside the workspace and repository the agent
+          can modify. Prefer narrow allow-lists over deny-lists: deny
+          patterns are obfuscatable, and an allowed interpreter can run
+          arbitrary code.
+        - **Approval gate at the version control boundary**: route agent
+          pushes through a proxy that holds them for review (e.g. FINOS
+          GitProxy) and close the direct route to the version control host
+          through credential and network design (see _Network isolation for
+          AI agents_ and _Least privilege on external systems for AI
+          agents_).
+
+        Server-side rejection of pushed secrets is defined in _Block
+        pushes containing secrets_ (Implementation, Development and Source
+        Control): it applies to humans and agents alike, and because it is
+        enforced on the git host, it belongs to the enforcement points an
+        agent cannot bypass or rewrite.
+      risk: |-
+        A prompt-injected agent rewrites its own permission configuration or
+        hook scripts, or a user worn down by approval prompts enables
+        standing auto-approve. Every agent-side guardrail silently
+        disappears while dashboards and settings still look enforced, and a
+        hijacked agent pushes malicious code or secrets straight to the
+        version control host.
+      measure: |-
+        Enforce agent guardrails at points outside the agent's write reach:
+        administratively managed permission baselines that local settings
+        cannot override (including disabled standing auto-approve), policy
+        hooks stored outside the workspace and an approval gate at the
+        version control boundary for agent pushes.
+      dependsOn:
+        - 4a618049-19da-4e20-b933-81f203ecd4d2 # Permission management for AI agents
+        - 50ba2bfb-2ae3-4576-8813-a8f00d8a3220 # Block pushes containing secrets
+      assessment: |
+        - Show the administratively enforced permission baseline and demonstrate that a local project or user setting (e.g. enabling auto-approve) does not override it.
+        - Show that policy hooks run from a location the agent cannot write to.
+        - Demonstrate that an agent push is held at the approval gate (proxy) and that the direct route to the version control host is closed for agent credentials.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - isolation
+        - permissions
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/coding-agent-security-cheat-sheet
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/finos-gitproxy
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ncc-ai-coding-agent-security
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/ai-coding-cli-permissions
+      references:
+        samm2:
+          - O-EM-A-1
+        iso27001-2017:
+          - 9.2.3
+        iso27001-2022:
+          - 8.2
       comments: ""

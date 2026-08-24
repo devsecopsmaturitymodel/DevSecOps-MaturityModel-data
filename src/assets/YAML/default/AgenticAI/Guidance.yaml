@@ -842,3 +842,64 @@ Agentic AI:
         iso27001-2022:
           - 5.1
       comments: ""
+    Tripwires for AI agent environments:
+      uuid: 0d617373-e48f-4bbe-9792-a1bd82b25c54
+      description: |-
+        Isolation and permission controls can fail silently: a
+        prompt-injected agent that reads a credential and sends it out
+        produces traffic and tool calls that look like normal work.
+        Tripwires (honeytokens) close this visibility gap deterministically:
+        fake credentials, API keys or documents that no legitimate workflow
+        ever touches are planted in exactly the places a manipulated agent
+        or an attacker would look — the workspace (e.g. an `.env` file),
+        agent memory and configuration directories, or data stores reachable
+        through the agent's tools. Any use of such a token is by definition
+        an incident, so the alert is high-confidence with near-zero false
+        positives. Whereas _Anomaly detection for AI agent behavior_ needs a
+        behavior profile and produces probabilistic signals, a tripwire
+        needs neither and fires exactly once at the moment of compromise.
+        The alert path must be tested: a tripwire nobody receives is
+        decoration.
+      risk: |-
+        A manipulated agent reads and exfiltrates real secrets while staying
+        inside its granted permissions; egress and tool usage look
+        plausible, so neither logs nor anomaly detection raise a timely
+        signal. The compromise is discovered only when the stolen credential
+        is abused in production.
+      measure: |-
+        Plant honeytokens (e.g. fake cloud credentials, API keys or
+        documents that alert on use) in locations AI agents can reach but no
+        legitimate workflow uses: the agent workspace, memory and
+        configuration paths and tool-reachable data stores. Route triggered
+        tokens into the existing alerting channel with a defined response
+        (contain the agent, revoke real credentials, investigate via the
+        audit log), and verify regularly that a triggered token actually
+        produces an alert that a human receives.
+      dependsOn:
+        - 8a442d8e-0eb1-4793-a513-571aef982edd # Alerting
+      assessment: |
+        - Show where honeytokens are planted in agent-reachable locations (workspace, memory or configuration paths, tool-reachable data stores).
+        - Trigger a test token and show the resulting alert including who received it and the defined response.
+        - Show the documented response procedure for a triggered tripwire and the protocol of the last alert-path test.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 3
+      tags:
+        - ai
+        - guidance
+        - logging
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/thinkst-canarytokens
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/coding-agent-security-cheat-sheet
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/gdm-ai-control-roadmap
+      references:
+        samm2:
+          - O-IM-A-2
+        iso27001-2017:
+          - 12.4.1
+        iso27001-2022:
+          - 8.16
+      comments: ""
