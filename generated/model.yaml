@@ -1970,6 +1970,105 @@ Agentic AI:
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Threat%20modeling%20of%20AI%20components
       comments: ""
+    Tripwires for AI agent environments:
+      uuid: 0d617373-e48f-4bbe-9792-a1bd82b25c54
+      description: "Isolation and permission controls can fail silently: a\nprompt-injected
+        agent that reads a credential and sends it out\nproduces traffic and tool
+        calls that look like normal work.\nTripwires (honeytokens) close this visibility
+        gap deterministically:\nfake credentials, API keys or documents that no legitimate
+        workflow\never touches are planted in exactly the places a manipulated agent\nor
+        an attacker would look \u2014 the workspace (e.g. an `.env` file),\nagent
+        memory and configuration directories, or data stores reachable\nthrough the
+        agent's tools. Any use of such a token is by definition\nan incident, so the
+        alert is high-confidence with near-zero false\npositives. Whereas _Anomaly
+        detection for AI agent behavior_ needs a\nbehavior profile and produces probabilistic
+        signals, a tripwire\nneeds neither and fires exactly once at the moment of
+        compromise.\nThe alert path must be tested: a tripwire nobody receives is\ndecoration."
+      risk: |-
+        A manipulated agent reads and exfiltrates real secrets while staying
+        inside its granted permissions; egress and tool usage look
+        plausible, so neither logs nor anomaly detection raise a timely
+        signal. The compromise is discovered only when the stolen credential
+        is abused in production.
+      measure: |-
+        Plant honeytokens (e.g. fake cloud credentials, API keys or
+        documents that alert on use) in locations AI agents can reach but no
+        legitimate workflow uses: the agent workspace, memory and
+        configuration paths and tool-reachable data stores. Route triggered
+        tokens into the existing alerting channel with a defined response
+        (contain the agent, revoke real credentials, investigate via the
+        audit log), and verify regularly that a triggered token actually
+        produces an alert that a human receives.
+      dependsOn:
+      - 8a442d8e-0eb1-4793-a513-571aef982edd # Alerting
+      assessment: |
+        - Show where honeytokens are planted in agent-reachable locations (workspace, memory or configuration paths, tool-reachable data stores).
+        - Trigger a test token and show the resulting alert including who received it and the defined response.
+        - Show the documented response procedure for a triggered tripwire and the protocol of the last alert-path test.
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
+      level: 3
+      tags:
+      - ai
+      - guidance
+      - logging
+      implementation:
+      - uuid: cc93edd0-1fcd-45de-b6c7-491c4055c1a8
+        name: Thinkst Canarytokens
+        tags:
+        - ai
+        - detection
+        - honeytoken
+        url: https://canarytokens.org/
+        description: |-
+          Free service to generate honeytokens: fake AWS credentials, API keys,
+          documents or DNS hostnames that trigger an alert the moment they are
+          used. Planted in agent-reachable locations, they turn silent
+          credential theft or exfiltration into an immediate, high-confidence
+          alert.
+      - uuid: 1319ba45-3b1a-41ff-9bd7-08db69b6a3fa
+        name: 'Christian Schneider: Coding Agent Security Cheat Sheet'
+        tags:
+        - ai
+        - isolation
+        - permissions
+        - documentation
+        url: https://christian-schneider.net/slides/Coding-Agent-Security-Cheat-Sheet.pdf
+        description: |-
+          One-page defense-in-depth cheat sheet for teams using AI coding
+          agents: treating everything the agent reads as instructions, gating
+          actions with enforceable policy instead of vigilance, sandboxing and
+          egress control, keeping secrets out of reach, vetting extension
+          surfaces (MCP servers, skills, rules files) like dependencies, and
+          tripwires plus incident handling for when prevention fails.
+      - uuid: f2966f4c-38b2-4dbf-95a4-6f0a8fc15ae3
+        name: Google DeepMind AI Control Roadmap
+        tags:
+        - ai
+        - monitoring
+        - threat
+        - documentation
+        url: https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/gdm-ai-control-roadmap.pdf
+        description: |-
+          Roadmap for controlling potentially misaligned AI agents. It treats
+          agents as untrusted principals and layers system-level defences: the
+          TRAIT&R threat taxonomy (based on MITRE ATT&CK),
+          action/chain-of-thought monitoring, pull-request monitoring, UEBA
+          anomaly detection, honeypots and tiered prevention/response up to
+          shutdown infrastructure.
+      references:
+        samm2:
+        - O-IM-A-2
+        iso27001-2017:
+        - 12.4.1
+        iso27001-2022:
+        - 8.16
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Guidance/subsection/Tripwires%20for%20AI%20agent%20environments
+      comments: ""
     Anomaly detection for AI agent behavior:
       uuid: 99049c0a-400f-4c58-986c-ab448ca8e0fc
       description: |-
@@ -2594,6 +2693,21 @@ Agentic AI:
           (user- and project-level settings): classifies grants into risk categories
           (e.g. destructive wildcards, credential-store access, unrestricted pushes)
           and supports reviewing and removing unsafe permissions. Runs fully local.
+      - uuid: 1319ba45-3b1a-41ff-9bd7-08db69b6a3fa
+        name: 'Christian Schneider: Coding Agent Security Cheat Sheet'
+        tags:
+        - ai
+        - isolation
+        - permissions
+        - documentation
+        url: https://christian-schneider.net/slides/Coding-Agent-Security-Cheat-Sheet.pdf
+        description: |-
+          One-page defense-in-depth cheat sheet for teams using AI coding
+          agents: treating everything the agent reads as instructions, gating
+          actions with enforceable policy instead of vigilance, sandboxing and
+          egress control, keeping secrets out of reach, vetting extension
+          surfaces (MCP servers, skills, rules files) like dependencies, and
+          tripwires plus incident handling for when prevention fails.
       references:
         samm2:
         - O-EM-A-1
@@ -2809,6 +2923,135 @@ Agentic AI:
         - 8.31
         openCRE:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Isolation/subsection/Untrusted%20workspace%20handling%20for%20AI%20agents
+      comments: ""
+    Enforcement of guardrails outside the reach of AI agents:
+      uuid: c01906d5-4db2-4a9d-a692-63928ff6575c
+      description: |-
+        _Permission management for AI agents_ defines what an agent may do;
+        this activity makes sure neither the agent nor a convenience-driven
+        user can weaken that definition. Agent-side guardrails (settings,
+        allow-lists, policy hooks) usually live in files the agent itself can
+        write, and approval fatigue predictably leads users to switch on
+        standing auto-approve. Enforcement therefore has to move to points
+        the agent process cannot touch:
+
+        - **Managed configuration**: distribute the permission baseline via
+          administratively enforced settings that local project or user
+          configuration cannot override, and disable standing auto-approve
+          modes there.
+        - **Hooks outside the write reach**: store policy hooks that run
+          before tool calls outside the workspace and repository the agent
+          can modify. Prefer narrow allow-lists over deny-lists: deny
+          patterns are obfuscatable, and an allowed interpreter can run
+          arbitrary code.
+        - **Approval gate at the version control boundary**: route agent
+          pushes through a proxy that holds them for review (e.g. FINOS
+          GitProxy) and close the direct route to the version control host
+          through credential and network design (see _Network isolation for
+          AI agents_ and _Least privilege on external systems for AI
+          agents_).
+
+        Server-side rejection of pushed secrets is defined in _Block
+        pushes containing secrets_ (Implementation, Development and Source
+        Control): it applies to humans and agents alike, and because it is
+        enforced on the git host, it belongs to the enforcement points an
+        agent cannot bypass or rewrite.
+      risk: |-
+        A prompt-injected agent rewrites its own permission configuration or
+        hook scripts, or a user worn down by approval prompts enables
+        standing auto-approve. Every agent-side guardrail silently
+        disappears while dashboards and settings still look enforced, and a
+        hijacked agent pushes malicious code or secrets straight to the
+        version control host.
+      measure: |-
+        Enforce agent guardrails at points outside the agent's write reach:
+        administratively managed permission baselines that local settings
+        cannot override (including disabled standing auto-approve), policy
+        hooks stored outside the workspace and an approval gate at the
+        version control boundary for agent pushes.
+      dependsOn:
+      - 4a618049-19da-4e20-b933-81f203ecd4d2 # Permission management for AI agents
+      - 50ba2bfb-2ae3-4576-8813-a8f00d8a3220 # Block pushes containing secrets
+      assessment: |
+        - Show the administratively enforced permission baseline and demonstrate that a local project or user setting (e.g. enabling auto-approve) does not override it.
+        - Show that policy hooks run from a location the agent cannot write to.
+        - Demonstrate that an agent push is held at the approval gate (proxy) and that the direct route to the version control host is closed for agent credentials.
+      difficultyOfImplementation:
+        knowledge: 3
+        time: 2
+        resources: 2
+      usefulness: 4
+      level: 3
+      tags:
+      - ai
+      - isolation
+      - permissions
+      implementation:
+      - uuid: 1319ba45-3b1a-41ff-9bd7-08db69b6a3fa
+        name: 'Christian Schneider: Coding Agent Security Cheat Sheet'
+        tags:
+        - ai
+        - isolation
+        - permissions
+        - documentation
+        url: https://christian-schneider.net/slides/Coding-Agent-Security-Cheat-Sheet.pdf
+        description: |-
+          One-page defense-in-depth cheat sheet for teams using AI coding
+          agents: treating everything the agent reads as instructions, gating
+          actions with enforceable policy instead of vigilance, sandboxing and
+          egress control, keeping secrets out of reach, vetting extension
+          surfaces (MCP servers, skills, rules files) like dependencies, and
+          tripwires plus incident handling for when prevention fails.
+      - uuid: 81efafd2-8582-48c6-8634-0d18d570e701
+        name: FINOS GitProxy
+        tags:
+        - ai
+        - scm
+        - approval
+        - proxy
+        url: https://github.com/finos/git-proxy
+        description: |-
+          Proxy in front of the git hosting service that intercepts pushes and
+          holds them for review against configurable policy checks before they
+          reach the upstream repository. Serves as an approval gate for pushes
+          that is enforced outside the developer machine and outside the reach
+          of a coding agent.
+      - uuid: 0c01a64e-23d1-4c2e-a5c2-d728bcce0689
+        name: 'NCC Group: An Introduction to AI Coding Agent Security'
+        tags:
+        - ai
+        - isolation
+        - permissions
+        - threat
+        - documentation
+        url: https://www.nccgroup.com/media/jtepwx1t/nccgroup_codingagentswhitepaper.pdf
+        description: |-
+          Whitepaper analyzing the security of AI coding agents (Claude Code,
+          Cursor, Codex): permission models and dangerous permission modes, sandbox
+          implementations and escalations, agent tools, configuration files/hooks
+          as attack surface, and untrusted/trusted workspace attack vectors.
+      - uuid: c4f17d85-4e64-45d9-93aa-59fbef85f8d6
+        name: 'AI Coding Agent CLI design: Permissions & Sandboxed Execution'
+        tags:
+        - ai
+        - isolation
+        - permissions
+        - documentation
+        url: https://system-design-interviews.com/book/interview.html#ai-coding-cli/safety
+        description: |-
+          System-design walkthrough of an AI coding agent CLI (Claude Code / Codex):
+          permission engine with blast-radius split, allow/deny rules, OS-level
+          sandbox with default-deny egress, and treating repo content (including
+          agent memory files) as untrusted data.
+      references:
+        samm2:
+        - O-EM-A-1
+        iso27001-2017:
+        - 9.2.3
+        iso27001-2022:
+        - 8.2
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Isolation/subsection/Enforcement%20of%20guardrails%20outside%20the%20reach%20of%20AI%20agents
       comments: ""
     Least privilege on external systems for AI agents:
       uuid: 45f722b2-25b4-472a-a743-f7207a77b5c9
@@ -7590,6 +7833,93 @@ Implementation:
         - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/Block%20force%20pushes
       tags:
       - none
+    Block pushes containing secrets:
+      uuid: 50ba2bfb-2ae3-4576-8813-a8f00d8a3220
+      description: |-
+        _Test for stored secrets in code_ (Test and Verification) finds
+        secrets after they have entered the repository; at that point the
+        secret is exposed in the history and must be rotated. Server-side
+        push protection moves the control from detection to prevention:
+        the source code management system rejects pushes containing known
+        secret formats before they enter the repository, independent of
+        any tooling on the committing machine. Like other source control
+        policies (e.g. _Require a PR before merging_, _Block force
+        pushes_), enforcement on the server also covers commits produced
+        by AI coding agents and other automation, which push at higher
+        volume than humans and cannot be assumed to run local checks.
+        Local scanners as pre-commit hooks or CI steps (e.g. Gitleaks)
+        remain useful as an early warning, but the enforcement point is
+        the server. Pattern-based blocking catches known secret formats,
+        not everything, so this activity complements rather than replaces
+        the detection activities.
+      risk: |-
+        Secrets are detected only after they have been pushed: they are
+        already exposed in the repository history, rotation is urgent
+        and often incomplete, and clones and forks retain the secret
+        even after a history rewrite.
+      measure: |-
+        Enable server-side push protection on the source code management
+        system so that pushes containing known secret formats are rejected
+        before entering the repository, with a documented bypass procedure
+        for false positives. Optionally add local pre-commit or CI scanning
+        as an early warning.
+      dependsOn:
+      - c6e3c812-56e2-41b0-ae01-b7afc41a004c # Test for stored secrets in code
+      assessment: |
+        - Demonstrate that a push containing a test secret is rejected by the source code management system.
+        - Show that push protection is enabled for all relevant repositories, not only a sample.
+        - Show the documented bypass procedure and who may use it.
+      difficultyOfImplementation:
+        knowledge: 1
+        time: 1
+        resources: 2
+      usefulness: 3
+      level: 3
+      tags:
+      - secrets
+      - scm
+      implementation:
+      - uuid: 523b4380-e46b-4ed8-9d61-80f099166f4c
+        name: GitHub secret scanning push protection
+        tags:
+        - scm
+        - secrets
+        - detection
+        url: https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection
+        description: |-
+          Server-side push protection that rejects pushes containing known
+          secret formats before they enter the repository. Enforcement happens
+          on the git host, independent of local tooling, so it also catches
+          secrets committed by coding agents.
+      - uuid: 0ef364bc-d0f8-43ff-868b-a1f4c3d592c0
+        name: Gitleaks
+        tags:
+        - secrets
+        - detection
+        - sast
+        url: https://github.com/gitleaks/gitleaks
+        description: |-
+          Scanner for hardcoded secrets in git repositories, files and commit
+          history. Usable as pre-commit hook and CI step as an early local
+          warning before server-side push protection.
+      - uuid: d90fefc9-4e5d-420f-ac87-eeb165bf0ee6
+        name: truffleHog
+        tags: []
+        url: https://github.com/trufflesecurity/trufflehog
+      references:
+        samm2:
+        - O-EM-A-1
+        iso27001-2017:
+        - vcs usage is not explicitly covered by ISO 27001 - too specific
+        - 9.4.3
+        - 10.1.2
+        iso27001-2022:
+        - vcs usage is not explicitly covered by ISO 27001 - too specific
+        - 5.17
+        - 8.24
+        openCRE:
+        - https://www.opencre.org/node/standard/DevSecOps%20Maturity%20Model%20%28DSOMM%29/section/Development%20and%20Source%20Control/subsection/Block%20pushes%20containing%20secrets
+      comments: ""
     Dismiss stale PR approvals:
       uuid: ea6f69f7-54a5-4922-ac15-a77ff0c16162
       risk: Intentional or accidental alterations in critical branches like main (or
