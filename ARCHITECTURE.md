@@ -174,9 +174,9 @@ development and the security of AI-based features:
 | Verification | Human review of AI generated plans | 2 |
 | Verification | Validation of AI-suggested dependencies | 2 |
 | Verification | Self-verification of AI generated changes | 2 |
-| Verification | Static and dynamic analysis of AI generated code | 2 |
 | Verification | Human review of AI generated code | 3 |
 | Verification | Security test generation with AI | 3 |
+| Verification | Static and dynamic analysis of AI generated code | 3 |
 | Verification | No verification bypass for AI generated code | 3 |
 | Verification | Continuous detection of compromised AI components | 4 |
 | Verification | Drift detection for agent instructions and guardrails | 5 |
