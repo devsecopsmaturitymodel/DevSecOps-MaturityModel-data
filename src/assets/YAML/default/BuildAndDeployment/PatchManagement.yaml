@@ -248,6 +248,59 @@ Build and Deployment:
       comments: ""
       tags:
         - patching
+    Waiting period before adopting new dependency versions:
+      uuid: 594d9d39-b79f-4975-b3a7-ad3eca032087
+      description: |
+        Automated dependency updates adopt new versions within minutes of their
+        publication. Supply chain attacks exploit exactly this window: a hijacked
+        maintainer account publishes a malicious version that is downloaded,
+        installed and executed before the registry, the maintainer or any advisory
+        feed can react. Compromised versions are typically detected and yanked
+        within hours to a few days. A configured waiting period lets a new version
+        age before it may enter a build, so that most malicious releases are already
+        withdrawn when the update is proposed.
+      risk: |
+        A compromised version of a legitimate dependency is pulled into the build
+        automatically and executes malicious code during installation, stealing
+        registry tokens and cloud credentials, before the version is withdrawn or
+        any advisory exists.
+      measure: |
+        Configure the automated update tooling to ignore versions that are younger
+        than a defined age, e.g. `minimumReleaseAge` in Renovate or
+        `cooldown` in Dependabot. A period of three to seven days covers the
+        typical detection and takedown time of compromised packages. Define the
+        period in the patch policy and allow a documented exception path for
+        security fixes that must be adopted immediately. The waiting period is the
+        client side of the measure; enforcing it for all consumers additionally
+        requires a managed artifact repository.
+      assessment: |
+        - A minimum release age is configured in the automated update tooling of all relevant repositories.
+        - The chosen period and the exception path for urgent security fixes are documented in the patch policy.
+        - Updates younger than the configured period are demonstrably not proposed or merged.
+      level: 2
+      difficultyOfImplementation:
+        knowledge: 2
+        time: 1
+        resources: 1
+      usefulness: 4
+      dependsOn:
+        - 8ae0b92c-10e0-4602-ba22-7524d6aed488 # Automated PRs for patches
+      implementation:
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/dependabot
+        - $ref: src/assets/YAML/default/implementations.yaml#/implementations/renovate
+      references:
+        samm2:
+          - O-EM-B-2
+        iso27001-2017:
+          - 12.6.1
+          - 15.1.1
+        iso27001-2022:
+          - "8.8"
+          - "5.19"
+      comments: ""
+      tags:
+        - patching
+        - supply-chain
     Automated deployment of automated PRs: &automerge-PR
       uuid: 08f27c26-2c6a-47fe-9458-5e88f188085d
       <<: *automerge-PR
