@@ -248,7 +248,7 @@ Build and Deployment:
       comments: ""
       tags:
         - patching
-    Waiting period before adopting new dependency versions:
+    Minimum release age:
       uuid: 594d9d39-b79f-4975-b3a7-ad3eca032087
       description: |
         Automated dependency updates adopt new versions within minutes of their
