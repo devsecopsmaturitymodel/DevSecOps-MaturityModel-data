@@ -246,7 +246,7 @@ Agentic AI:
         injection payloads). Review generated tests like any other AI-generated
         code and run them in the delivery pipeline.
       dependsOn:
-        - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Security requirements for AI-assisted development
+        - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Threat modeling rule
         - d6bc0b7f-fd98-49fe-b66c-7c5fa70452c6 # Human review of AI generated code
       assessment: |
         - Show security test cases generated from acceptance criteria or threat models and their human review.
@@ -362,7 +362,7 @@ Agentic AI:
         time: 2
         resources: 2
       usefulness: 4
-      level: 2
+      level: 3
       tags:
         - ai
         - verification

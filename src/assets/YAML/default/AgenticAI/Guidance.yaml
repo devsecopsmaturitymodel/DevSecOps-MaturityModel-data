@@ -65,7 +65,7 @@ Agentic AI:
         The rules are to be dynamically imported during the correct spec-driven
         development phase.
       dependsOn:
-        - 51ebc877-c4fd-4b50-9305-320152242ddf # Basic secure coding rules for AI assistants
+        - 51ebc877-c4fd-4b50-9305-320152242ddf # Static load of security rules
         - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
       assessment: |
         - Show the rule sets for the languages and frameworks.
@@ -688,8 +688,8 @@ Agentic AI:
         requirements from the specification are carried through plan,
         implementation and review steps.
       dependsOn:
-        - 51ebc877-c4fd-4b50-9305-320152242ddf # Basic secure coding rules for AI assistants
-        - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Security requirements for AI-assisted development
+        - 51ebc877-c4fd-4b50-9305-320152242ddf # Static load of security rules
+        - 1caad69c-316c-422a-a56b-04ad6f6cc306 # Threat modeling rule
         - 923a2a23-d63b-421c-926a-191d1dd5f570 # Spec-driven development
         - 364123db-b41c-431a-94a0-dfd8236b2daa # Instructed load of security rules
       assessment: |
@@ -731,8 +731,7 @@ Agentic AI:
         as poisoning targets; model output as an injection vector. The subject
         here is the product: applications that contain AI components. Passing
         security requirements into AI-*assisted* implementation of arbitrary
-        features is covered by _Security requirements for AI-assisted
-        development_.
+        features is covered by the _Threat modeling rule_ activity.
 
         A data-centric approach works well for the AI delta: follow the data
         (prompts, retrieved documents, tool results, training and evaluation
