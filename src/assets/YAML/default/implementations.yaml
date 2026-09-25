@@ -230,6 +230,22 @@ implementations:
     name: OWASP Cheatsheet Series
     tags: [training, secure coding]
     url: https://cheatsheetseries.owasp.org/
+  owasp-secrets-management-cheatsheet:
+    uuid: 4a7d2c91-6e35-4f80-b2c9-1d8a5e73f604
+    name: OWASP Secrets Management Cheat Sheet
+    tags: [owasp, secrets, secure coding, guidance]
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html
+    description: |-
+      OWASP guidance for identifying, storing, delivering, rotating and revoking
+      application secrets without hardcoding them in source code.
+  owasp-key-management-cheatsheet:
+    uuid: 7c1e5a84-3b62-4f09-a8d7-2e5c91b6f430
+    name: OWASP Key Management Cheat Sheet
+    tags: [owasp, cryptography, key-management, guidance]
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Key_Management_Cheat_Sheet.html
+    description: |-
+      OWASP guidance for protecting cryptographic keys through generation,
+      storage, use, rotation, backup and destruction.
   owasp-security-champ:
     uuid: c191a515-3c10-4903-a889-70c8021f2ea1
     name: OWASP Security Champions Playbook
@@ -849,6 +865,14 @@ implementations:
     name: Building your DevSecOps pipeline 5 essential activities
     url: https://www.blackduck.com/blog/devsecops-pipeline-checklist/
     tags: [pre-commit]
+  pre-commit:
+    uuid: 2d7f4a91-6c35-4e80-b2a9-8f1d5c7e3b64
+    name: pre-commit
+    tags: [pre-commit, git, developer-tools]
+    url: https://github.com/pre-commit/pre-commit
+    description: |-
+      Framework for managing and running Git hooks, including local secret
+      detection hooks before changes are committed.
   dependencyTrack:
     uuid: 500399bd-7dfc-47fd-99d8-b55cefb760a9
     name: Dependency-Track
@@ -871,6 +895,22 @@ implementations:
     description: |-
       Community-governed secrets and encryption management system for storing,
       generating, distributing and auditing secrets, keys and certificates.
+  infisical:
+    uuid: 4c8e1a73-5f29-4d60-b7a2-9e3c6f1d8b45
+    name: Infisical
+    tags: [secrets, kubernetes, access-control, rotation]
+    url: https://github.com/Infisical/infisical
+    description: |-
+      Open-source secrets management platform for centrally storing, controlling,
+      auditing and delivering application configuration and secrets.
+  secretless-broker:
+    uuid: 8a3e6c17-5d42-4f90-b1c8-7e2a9d4f6b35
+    name: Secretless Broker
+    tags: [secrets, secretless, brokering, access-control]
+    url: https://github.com/cyberark/secretless-broker
+    description: |-
+      Open-source broker that lets applications connect to protected services
+      without handling or storing the underlying credentials.
   secrets-store-csi-driver:
     uuid: 7b2e5d94-1c68-4fa3-a907-6e3d8b2c5f19
     name: Secrets Store CSI Driver
