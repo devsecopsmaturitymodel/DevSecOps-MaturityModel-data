@@ -721,6 +721,30 @@ implementations:
     name: truffleHog
     tags: []
     url: https://github.com/trufflesecurity/trufflehog
+  detect-secrets:
+    uuid: 8c2d1f6a-7b45-4e90-a3c1-6d8f2b9e5a17
+    name: detect-secrets
+    tags: [secrets, detection, pre-commit]
+    url: https://github.com/Yelp/detect-secrets
+    description: |-
+      Secret detection tool with configurable plugins, baselines, auditing and
+      pre-commit enforcement.
+  nosey-parker:
+    uuid: 1a6e4c92-3f78-4b0d-9c25-7d1e8a5f6b34
+    name: Nosey Parker
+    tags: [secrets, detection, git]
+    url: https://github.com/praetorian-inc/noseyparker
+    description: |-
+      Fast secret scanner for repositories and data sets, including historical
+      Git content.
+  titus:
+    uuid: 3f7a1c92-6e48-4b05-a9d2-8c5e1f7b3a64
+    name: Titus
+    tags: [secrets, detection, git]
+    url: https://github.com/praetorian-inc/titus
+    description: |-
+      Secret discovery tool for scanning repositories and source files for
+      credentials and other sensitive material.
   go-pillage-registrie:
     uuid: 382873e2-8604-4410-ae5e-b0f5ccdee835
     name: go-pillage-registries
@@ -839,6 +863,80 @@ implementations:
     url: https://github.com/hashicorp/vault
     description: |
       A tool for secrets management, encryption as a service, and privileged access management.
+  openbao:
+    uuid: 5f3a8d21-6c47-4e90-b2a5-7d1f8c3e9a64
+    name: OpenBao
+    tags: [secrets, certificates, pki, encryption, open-source]
+    url: https://github.com/openbao/openbao
+    description: |-
+      Community-governed secrets and encryption management system for storing,
+      generating, distributing and auditing secrets, keys and certificates.
+  secrets-store-csi-driver:
+    uuid: 7b2e5d94-1c68-4fa3-a907-6e3d8b2c5f19
+    name: Secrets Store CSI Driver
+    tags: [secrets, kubernetes, delivery]
+    url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+    description: |-
+      Kubernetes CSI driver that mounts secrets, keys and certificates from
+      external providers into workloads.
+  step-ca:
+    uuid: 9d4b7f26-2e81-4c53-a906-8f1d3b5e7a42
+    name: step-ca
+    tags: [certificates, pki, acme, ssh]
+    url: https://github.com/smallstep/certificates
+    description: |-
+      Online certificate authority for automated X.509 and SSH certificate
+      issuance, renewal and revocation.
+  trust-manager:
+    uuid: 6e1a4c83-9b27-4d50-af62-5c8e3f7b1d94
+    name: trust-manager
+    tags: [certificates, trust, kubernetes]
+    url: https://github.com/cert-manager/trust-manager
+    description: |-
+      Kubernetes controller that builds and distributes trusted CA bundles to
+      application namespaces and workloads.
+  sealed-secrets:
+    uuid: 2a4f9c18-6d73-4e81-a5b2-0c9d7f36e4ab
+    name: Sealed Secrets
+    tags: [secrets, encryption, kubernetes, gitops]
+    url: https://github.com/bitnami-labs/sealed-secrets
+    description: |
+      A Kubernetes controller and command-line tool for encrypting secrets so they can be safely stored in version control.
+  sops:
+    uuid: 7b1e5d42-9a68-4f30-bc17-2d84e6a9f503
+    name: SOPS
+    tags: [secrets, encryption, gitops]
+    url: https://github.com/getsops/sops
+    description: |
+      An editor for encrypted files that supports common key management services and fits GitOps workflows.
+  git-crypt:
+    uuid: c6d2a8f4-1b97-4e53-9d60-7a25f8c31e04
+    name: git-crypt
+    tags: [secrets, encryption, git]
+    url: https://github.com/AGWA/git-crypt
+    description: |
+      Transparent file encryption in Git repositories, allowing selected files to remain encrypted at rest.
+  external-secrets-operator:
+    uuid: 4e8b1c73-f205-46a9-bd64-9f37a2c5801e
+    name: External Secrets Operator
+    tags: [secrets, kubernetes, gitops]
+    url: https://github.com/external-secrets/external-secrets
+    description: |
+      A Kubernetes operator that synchronizes secrets from external secret management systems into Kubernetes.
+  spiffe-spire:
+    uuid: d3a7e9b1-6c45-4f82-9d08-2e51b7a64c93
+    name: SPIFFE/SPIRE
+    tags: [identity, workload-identity, certificates, mtls]
+    url: https://github.com/spiffe/spire
+    description: |
+      A workload identity platform that issues short-lived cryptographic identities for service-to-service authentication.
+  cert-manager:
+    uuid: 5f28b6d4-0e93-4a71-bc56-8d17e2f9a403
+    name: cert-manager
+    tags: [certificates, kubernetes, automation]
+    url: https://github.com/cert-manager/cert-manager
+    description: |
+      A Kubernetes add-on that automates the issuance and renewal of certificates from configured certificate authorities.
   stoplight-spectral:
     uuid: 261f243e-f89c-4169-b076-b22a03ec00be
     name: Spectral
@@ -1743,3 +1841,11 @@ implementations:
       Scanner for hardcoded secrets in git repositories, files and commit
       history. Usable as pre-commit hook and CI step as an early local
       warning before server-side push protection.
+  betterleaks:
+    uuid: 4b4f8c6e-0e3b-4d1d-9f6a-5c2e8a7b1d40
+    name: Betterleaks
+    tags: [secrets, detection, git]
+    url: https://github.com/betterleaks/betterleaks
+    description: |-
+      Open-source scanner for detecting secrets in repositories, files and
+      commit history, suitable for local development and CI pipelines.
