@@ -1,4 +1,11 @@
 _meta:
   label: Infrastructure Hardening
+  icon:
   description: |-
-    A markdown description of this dimension.
+    Infrastructure hardening establishes and maintains secure configurations for
+    hosts, networks, platforms, workloads and deployment environments. It covers
+    reducing unnecessary attack surface, protecting data and communications with
+    appropriate encryption, enforcing secure defaults, and managing infrastructure
+    secrets and certificates throughout their lifecycle. Controls should be
+    consistently applied, monitored for drift and updated as the environment and
+    threat landscape change.
